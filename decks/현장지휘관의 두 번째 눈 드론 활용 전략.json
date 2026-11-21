@@ -4,7 +4,7 @@
  "transition": "fade",
  "decor": "none",
  "created": "2026-11-10T12:00:00.000Z",
- "modified": "2026-11-21T15:20:00.000Z",
+ "modified": "2026-11-21T15:40:00.000Z",
  "footer": {
   "text": "현장지휘관의 두 번째 눈 · 인천소방학교 지휘역량강화센터",
   "num": true,
@@ -1761,6 +1761,47 @@
       "align": "left",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl1t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl1i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -1905,6 +1946,68 @@
       "align": "left",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl2p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 16,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl2t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl2i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -2279,6 +2382,68 @@
       "valign": "top",
       "tshadow": true
      }
+    },
+    {
+     "id": "ccl3p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl3t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl3i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -2653,6 +2818,68 @@
       "valign": "top",
       "tshadow": true
      }
+    },
+    {
+     "id": "ccl4p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl4t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl4i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -3238,6 +3465,47 @@
       "align": "left",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl5t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl5i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -3612,6 +3880,68 @@
       "valign": "top",
       "tshadow": true
      }
+    },
+    {
+     "id": "ccl6p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl6t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl6i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -3918,6 +4248,68 @@
       "bold": true,
       "letterSpacing": -5
      }
+    },
+    {
+     "id": "ccl7p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl7t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl7i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -4509,6 +4901,47 @@
       "align": "left",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl8t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl8i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -4757,6 +5190,47 @@
       "align": "left",
       "valign": "middle"
      }
+    },
+    {
+     "id": "ccl9t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl9i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -5304,6 +5778,47 @@
       "valign": "middle",
       "bold": true
      }
+    },
+    {
+     "id": "ccl10t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl10i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -6356,6 +6871,47 @@
       "align": "right",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl11t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl11i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -6653,6 +7209,47 @@
      "shadow": false,
      "html": "",
      "style": {}
+    },
+    {
+     "id": "ccl12t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl12i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -6950,6 +7547,47 @@
      "shadow": false,
      "html": "",
      "style": {}
+    },
+    {
+     "id": "ccl13t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl13i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -7488,6 +8126,47 @@
       "border": 2,
       "borderColor": "#3FD3F2"
      }
+    },
+    {
+     "id": "ccl14t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl14i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -7925,6 +8604,68 @@
       "align": "left",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl15p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 16,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl15t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl15i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -8135,6 +8876,47 @@
       "valign": "middle",
       "bold": true
      }
+    },
+    {
+     "id": "ccl16t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl16i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -8738,6 +9520,47 @@
       "valign": "middle",
       "bold": true
      }
+    },
+    {
+     "id": "ccl17t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl17i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -9255,6 +10078,68 @@
       "align": "left",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl18p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 16,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl18t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl18i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -9504,6 +10389,68 @@
       "align": "left",
       "valign": "middle"
      }
+    },
+    {
+     "id": "ccl19p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 16,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl19t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl19i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -10124,6 +11071,47 @@
       "align": "left",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl20t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl20i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -10933,6 +11921,47 @@
       "valign": "middle",
       "bold": true
      }
+    },
+    {
+     "id": "ccl21t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl21i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -11763,6 +12792,47 @@
       "align": "left",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl22t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl22i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -12421,6 +13491,47 @@
       "align": "left",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl23t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl23i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -13251,6 +14362,47 @@
       "align": "left",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl24t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl24i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -14081,6 +15233,47 @@
       "align": "left",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl25t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl25i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -14403,6 +15596,47 @@
       "align": "left",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl26t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl26i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -14662,6 +15896,47 @@
       "align": "left",
       "valign": "top"
      }
+    },
+    {
+     "id": "ccl27t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl27i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -15500,6 +16775,47 @@
       "bold": true,
       "font": "mono"
      }
+    },
+    {
+     "id": "ccl28t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl28i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -15748,6 +17064,47 @@
       "align": "left",
       "valign": "middle"
      }
+    },
+    {
+     "id": "ccl29t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl29i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -16202,6 +17559,47 @@
       "valign": "middle",
       "bold": true
      }
+    },
+    {
+     "id": "ccl30t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl30i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -16548,6 +17946,47 @@
       "align": "left",
       "valign": "middle"
      }
+    },
+    {
+     "id": "ccl31t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl31i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -17114,6 +18553,47 @@
       "bold": true,
       "font": "mono"
      }
+    },
+    {
+     "id": "ccl32t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl32i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -17487,6 +18967,68 @@
       "valign": "top",
       "tshadow": true
      }
+    },
+    {
+     "id": "ccl33p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl33t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl33i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -17861,6 +19403,68 @@
       "valign": "top",
       "tshadow": true
      }
+    },
+    {
+     "id": "ccl34p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl34t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl34i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -18066,6 +19670,47 @@
      "shadow": false,
      "html": "",
      "style": {}
+    },
+    {
+     "id": "ccl35t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl35i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -18439,6 +20084,68 @@
       "valign": "top",
       "tshadow": true
      }
+    },
+    {
+     "id": "ccl36p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl36t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl36i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -18813,6 +20520,68 @@
       "valign": "top",
       "tshadow": true
      }
+    },
+    {
+     "id": "ccl37p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl37t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl37i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -19187,6 +20956,68 @@
       "valign": "top",
       "tshadow": true
      }
+    },
+    {
+     "id": "ccl38p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl38t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl38i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -19390,6 +21221,47 @@
       "letterSpacing": 2,
       "font": "mono"
      }
+    },
+    {
+     "id": "ccl39t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl39i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -19592,6 +21464,47 @@
       "letterSpacing": 2,
       "font": "mono"
      }
+    },
+    {
+     "id": "ccl40t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl40i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -19965,6 +21878,68 @@
       "valign": "top",
       "tshadow": true
      }
+    },
+    {
+     "id": "ccl41p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl41t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl41i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -20214,6 +22189,47 @@
       "align": "left",
       "valign": "middle"
      }
+    },
+    {
+     "id": "ccl42t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl42i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -20540,6 +22556,68 @@
       "valign": "top",
       "tshadow": true
      }
+    },
+    {
+     "id": "ccl43p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl43t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl43i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -21154,6 +23232,47 @@
       "align": "left",
       "valign": "middle"
      }
+    },
+    {
+     "id": "ccl44t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl44i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -21819,6 +23938,47 @@
       "align": "left",
       "valign": "middle"
      }
+    },
+    {
+     "id": "ccl45t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl45i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -22341,6 +24501,47 @@
       "align": "left",
       "valign": "middle"
      }
+    },
+    {
+     "id": "ccl46t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl46i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -23005,6 +25206,47 @@
       "align": "left",
       "valign": "middle"
      }
+    },
+    {
+     "id": "ccl47t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl47i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -23527,6 +25769,47 @@
       "align": "left",
       "valign": "middle"
      }
+    },
+    {
+     "id": "ccl48t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl48i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -23900,6 +26183,68 @@
       "valign": "top",
       "tshadow": true
      }
+    },
+    {
+     "id": "ccl49p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl49t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl49i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -24274,6 +26619,68 @@
       "valign": "top",
       "tshadow": true
      }
+    },
+    {
+     "id": "ccl50p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl50t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl50i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -24688,6 +27095,47 @@
       "align": "left",
       "valign": "middle"
      }
+    },
+    {
+     "id": "ccl51t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl51i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -25176,6 +27624,47 @@
       "align": "center",
       "valign": "middle"
      }
+    },
+    {
+     "id": "ccl52t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl52i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -25455,6 +27944,68 @@
       "valign": "middle",
       "bold": true
      }
+    },
+    {
+     "id": "ccl53p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 16,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl53t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl53i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -25980,6 +28531,47 @@
       "valign": "middle",
       "bold": true
      }
+    },
+    {
+     "id": "ccl54t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl54i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false
@@ -26353,6 +28945,68 @@
       "valign": "top",
       "tshadow": true
      }
+    },
+    {
+     "id": "ccl55p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 118,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl55t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 132,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl55i",
+     "type": "image",
+     "x": 1806,
+     "y": 126,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
@@ -26825,6 +29479,68 @@
       "valign": "top",
       "bold": true
      }
+    },
+    {
+     "id": "ccl56p",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 16,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {},
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62
+    },
+    {
+     "id": "ccl56t",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     },
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
+    },
+    {
+     "id": "ccl56i",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1
     }
    ],
    "hidden": false,
