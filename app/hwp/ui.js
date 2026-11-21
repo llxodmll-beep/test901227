@@ -303,7 +303,7 @@
     opts = opts || {};
     return new Promise(res => {
       let done = false;
-      const c = GH.cfg || GH.detect() || { owner: 'kwonyujin119', repo: 'test0', branch: 'main' };
+      const c = GH.cfg || GH.detect() || { owner: 'llxodmll-beep', repo: 'test901227', branch: 'main' };
       const linked = !!GH.token && !opts.expired; // 이미 연결됨 → 상태를 보여 주고, 토큰 칸은 바꿀 때만
       dialog(linked ? '문서함 연결 (GitHub) — 연결되어 있습니다' : '문서함 연결 (GitHub)', `${linked ? `<div class="info" style="margin-bottom:10px"><b>이 기기는 GitHub 저장소 ${escH(c.owner)}/${escH(c.repo)} 에 연결되어 있습니다.</b> PRESENTATION과 같은 연결입니다. 토큰을 바꿀 때만 아래에 새 토큰을 넣고 [바꾸기], 그대로 두려면 [취소].</div>` : ''}${opts.expired ? '<div class="warn" style="margin-bottom:10px"><b>GitHub 토큰의 사용 기간이 끝났거나 올바르지 않습니다.</b><br>새 토큰을 붙여넣고 <b>연결</b>을 누르면 하던 일을 이어서 합니다.</div>' : ''}<div class="info">문서는 GitHub 저장소 <b>${escH(c.owner)}/${escH(c.repo)}</b> 의 <code>documents/</code> 폴더에 저장되어 PC·휴대폰 어디서나 열립니다. 저장하려면 기기마다 한 번 연결이 필요합니다 (PRESENTATION과 같은 연결).</div>
         ${linked ? '<button class="tb" id="g_give" style="margin-top:10px">' + icon('phone', 15) + ' 다른 기기로 이 연결 넘겨주기 (QR · 링크)</button>' : '<div class="info" style="margin-top:8px"><b>이미 연결된 기기가 있으면 토큰을 새로 만들 필요가 없습니다.</b> 그 기기의 DOCUMENT에서 [저장소 연결 → 다른 기기로 이 연결 넘겨주기]를 눌러 나온 QR을 이 기기로 찍고 코드 8자리를 넣으세요.</div>'}

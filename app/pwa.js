@@ -2,7 +2,8 @@
    1) [앱 설치] → 브라우저가 허락하면 바로 설치 창
    2) 다른 앱 안에서 연 화면(카톡 · 크롬 커스텀 탭 등)이라 설치가 안 되면 → 크롬 앱(카톡은 기본 브라우저)으로 이 화면을 바로 열고,
       거기서 [설치] 단추 하나만 뜨게 함 (?install=1)
-   3) 이미 설치돼 있으면 → 설치된 DPV 앱으로 바로 엶 (안드로이드)
+   3) 이미 설치돼 있거나 크롬이 설치 창을 주지 않으면 → 크롬 ⋮ 메뉴로 안내 (안드로이드)
+      — 주소만 넘기는 intent 로 '앱 열기'를 하면 안드로이드가 엉뚱한 앱 · 탭을 앞으로 띄울 수 있어 쓰지 않음
    4) 아이폰은 Apple 이 코드로 설치를 허락하지 않아, 공유 단추 위치만 한 줄로 알림
    3) Windows 는 '설치 파일'(바탕화면·시작 메뉴 아이콘을 만들어 앱 창으로 엶)도 제공 — 브라우저 사정과 무관하게 항상 됨 */
 (() => {
@@ -18,8 +19,6 @@
   const browser = /KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(ua) ? 'inapp' : /Edg\//.test(ua) ? 'edge' : /Whale\//.test(ua) ? 'whale' : /SamsungBrowser/.test(ua) ? 'samsung' : /Firefox\/|FxiOS/.test(ua) ? 'firefox' : /CriOS/.test(ua) ? 'chrome-ios' : /Chrome\//.test(ua) ? 'chrome' : /Safari\//.test(ua) ? 'safari' : 'other';
   const standalone = matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: window-controls-overlay)').matches || navigator.standalone === true;
   const loadedAt = Date.now();
-  const hopped = /[?&]install=2(&|$)/.test(location.search);
-  const fromApp = /^android-app:/.test(document.referrer || ''); // 다른 앱이 크롬 커스텀 탭으로 연 화면이면 대개 이렇게 표시됨
   const PWA = window.PWA = { standalone, prompt: null, installed: false, browser, os, install, start };
   document.documentElement.classList.toggle('in-app', standalone);
   const fire = () => window.dispatchEvent(new Event('pwa-change'));
@@ -48,7 +47,7 @@
   const here = extra => { const u = new URL(location.href); u.hash = ''; u.searchParams.delete('install'); if (extra) for (const k in extra) u.searchParams.set(k, extra[k]); return u; };
   const intentFor = (u, pkg) => `intent://${u.host}${u.pathname}${u.search}#Intent;scheme=https;${pkg ? `package=${pkg};` : ''}S.browser_fallback_url=${encodeURIComponent(u.href)};end`;
   const toChrome = () => { location.href = intentFor(here({ install: '1' }), 'com.android.chrome'); };
-  const openApp = () => { if (os === 'android') location.href = intentFor(here()); else note('이미 설치되어 있습니다 — 바탕화면 · 시작 메뉴의 DPV 아이콘으로 여세요'); };
+  const openApp = () => { if (os === 'android') openedSheet(); else note('이미 설치되어 있습니다 — 바탕화면 · 시작 메뉴의 DPV 아이콘으로 여세요'); };
   /* 단추 하나짜리 창 (설명 대신) */
   function sheet(o) {
     css(); closeGuide();
@@ -62,22 +61,12 @@
     const cp = guide.querySelector('[data-cp]'); if (cp) cp.onclick = () => { (navigator.clipboard ? navigator.clipboard.writeText(location.href) : Promise.reject()).then(() => { cp.textContent = '복사했습니다'; }).catch(() => { window.prompt('이 주소를 복사하세요', location.href); }); };
     const go = guide.querySelector('[data-go]'); if (go) { go.onclick = () => { closeGuide(); o.run(); }; go.focus(); }
   }
-  function cctSheet() {
-    try { history.replaceState(null, '', here({ install: '1' }).href); } catch (e) { }
-    sheet(fromApp
-      ? { title: '크롬으로 한 번만 열어 주세요', point: 'Chrome에서 열기', copy: true, text: '지금 화면은 다른 앱 안에 열린 창이라, 안드로이드가 여기서는 앱 설치를 막아 둡니다. 오른쪽 위 <b>⋮</b> → <b>[Chrome에서 열기]</b> 를 누르면 열린 크롬 화면에 <b>[설치]</b> 단추가 바로 떠 있습니다.' }
-      : { title: '오른쪽 위 ⋮ 에서 한 번만 눌러 주세요', point: '앱 설치 · Chrome에서 열기', copy: true, text: '이 화면에서는 브라우저가 바로 설치 창을 허락하지 않았습니다. 오른쪽 위 <b>⋮</b> 메뉴의 <b>[앱 설치]</b>(또는 <b>[홈 화면에 추가]</b>)를 누르세요. 메뉴에 <b>[Chrome에서 열기]</b> 가 있으면 그것을 누르면, 열린 화면에 <b>[설치]</b> 단추가 바로 떠 있습니다.' });
-  }
-  /* 크롬이 설치 창을 끝내 주지 않음 = 이 기기에 DPV 앱이 이미 있음 (홈 화면 아이콘만 지우면 앱은 앱스 화면에 남음) */
-  const alreadySheet = () => sheet({ title: '기기에 남은 옛 DPV 앱이 설치를 막고 있습니다', label: '앱 열기', icon: 'arrowRight', run: () => openApp(),
-    text: '크롬은 이 기기에 DPV(이전 이름 <b>업무 공간</b>) 앱이 있다고 보고 새로 설치하지 않습니다. 열리지 않으면 그 앱이 꺼져 있거나 망가진 것입니다.<br><br><b>휴대폰 설정 → 애플리케이션 → 검색에서 \'DPV\' 와 \'업무\' 검색</b> → 나온 앱을 눌러 <b>[삭제]</b> (‘사용 안 함’ 상태여도 여기서 보입니다) → 이 화면에서 [앱 설치] 를 다시 누르면 진짜 앱으로 설치됩니다.' });
-  /* 크롬 앱의 새 탭으로 바로 열기: 다른 앱 안 크롬 창(커스텀 탭)에서 새 창은 크롬 앱으로 열림. 화면이 그대로면(막힘) ⋮ 안내 */
-  function toChromeTab() {
-    let w = null;
-    try { w = window.open(here({ install: '2' }).href, '_blank'); } catch (e) { }
-    if (!w) return cctSheet();
-    setTimeout(() => { if (document.visibilityState === 'visible' && document.hasFocus()) cctSheet(); }, 1500);
-  }
+  /* 안드로이드 크롬이 설치 창을 주지 않을 때: 크롬 ⋮ 메뉴로 설치 (다른 앱 · 탭으로 넘기지 않음) */
+  const menuSheet = () => sheet({ title: '크롬 메뉴에서 설치해 주세요', point: '앱 설치 · 홈 화면에 추가', copy: true,
+    text: '오른쪽 위 <b>⋮</b> 메뉴 → <b>[앱 설치]</b>(또는 <b>[홈 화면에 추가]</b>) → <b>[설치]</b> 를 누르세요. 다른 앱(카톡 · 문자 등) 안에서 열린 창이면 먼저 <b>⋮ → [Chrome에서 열기]</b> 를 누르세요.<br><br>메뉴에 <b>[앱 열기]</b> 가 보이면 이미 설치된 것입니다 — 홈 화면의 <b>DPV</b> 아이콘으로 여세요.<br>예전 DPV 앱과 헷갈리면 <b>휴대폰 설정 → 애플리케이션</b>에서 \'DPV\' 를 찾아 옛 앱을 지운 뒤 다시 설치하세요.' });
+  /* 이미 설치된 앱이 있다고 크롬이 알려 줄 때 */
+  const openedSheet = () => sheet({ title: '이미 설치되어 있습니다', point: '앱 열기',
+    text: '홈 화면 · 앱스 화면의 <b>DPV</b> 아이콘으로 여세요. 이 화면에서는 오른쪽 위 <b>⋮</b> → <b>[앱 열기]</b> 를 눌러도 됩니다.' });
   const askInstall = () => sheet({ title: 'DPV 앱 설치', text: '아래 단추를 누르고, 뜨는 창에서 [설치] 를 누르면 끝납니다.', label: '설치', run: async () => { if (!(await install())) note('설치를 취소했습니다. 다시 누르면 언제든 설치할 수 있습니다'); } });
   let starting = false;
   async function start() {
@@ -91,7 +80,7 @@
       if (PWA.prompt) { if (!(await install())) note('설치를 취소했습니다. 다시 누르면 언제든 설치할 수 있습니다'); return; } // 설치되면 appinstalled 가 알림
       if (PWA.installed) return openApp();
       /* 안드로이드인데 설치 창이 안 옴 = 다른 앱 안에서 연 화면(크롬 커스텀 탭 등)이거나 이미 설치됨 → 크롬 앱으로 이 화면을 열어 거기서 마무리 */
-      if (os === 'android') return browser !== 'chrome' ? toChrome() : hopped ? alreadySheet() : toChromeTab(); // 크롬 밖(삼성 인터넷 등)은 크롬 앱으로
+      if (os === 'android') return browser !== 'chrome' ? toChrome() : menuSheet(); // 크롬 밖(삼성 인터넷 등)은 크롬 앱으로, 크롬에서는 ⋮ 메뉴로
       if (os === 'ios') {
         if (browser === 'inapp') return note('이 앱 안 화면에서는 설치할 수 없습니다 — 오른쪽 위 메뉴에서 [Safari 로 열기] 를 눌러 주세요');
         return note(browser === 'safari' ? '아래 가운데 공유 단추(□↑) → [홈 화면에 추가] 를 누르면 설치됩니다' : '주소창 오른쪽 공유 단추(□↑) → [홈 화면에 추가] 를 누르면 설치됩니다', { label: '그림으로 보기', run: () => showGuide('help') });
@@ -208,7 +197,7 @@
     const arrive = async () => {
       if (PWA.prompt) return askInstall();
       if (await waitPrompt(6000)) return askInstall();
-      if (os === 'android') alreadySheet();
+      if (os === 'android') menuSheet();
       else if (PWA.installed) note('이미 설치되어 있습니다 — 바탕화면 · 시작 메뉴의 DPV 아이콘으로 여세요');
     };
     if (document.body) arrive(); else document.addEventListener('DOMContentLoaded', arrive);
