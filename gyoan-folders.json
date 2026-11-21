@@ -1,0 +1,32 @@
+{
+ "about": "교안 목록의 폴더 — 교안 파일 이름 → 폴더. 교안 파일과 따로 저장합니다.",
+ "folders": [
+  {
+   "id": "fmwb7jetv1yg",
+   "name": "AI"
+  },
+  {
+   "id": "fmwb7kdmx5ge",
+   "name": "작업"
+  },
+  {
+   "id": "fmwlvczocky4",
+   "name": "안전원"
+  }
+ ],
+ "decks": {
+  "AI 로 앱 만들기 20장": "fmwb7jetv1yg",
+  "We need PT Tool now": "fmwb7jetv1yg",
+  "소방 용수의 이해 사본": "fmwb7kdmx5ge",
+  "옥내소화전 방수압력과 소화수원 논문 목차판": "fmwb7kdmx5ge",
+  "소방 용수의 이해": "fmwb7kdmx5ge",
+  "소방 교육 훈련": "fmwb7kdmx5ge",
+  "소방 용수": "fmwb7kdmx5ge",
+  "교안 작업장 만들기": "fmwb7kdmx5ge",
+  "SACHIL 지휘역량강화 플랫폼": "fmwb7jetv1yg",
+  "소방 교육 훈련 개선판": "fmwb7kdmx5ge",
+  "2027년도 현장지휘관 자격인증제 운영계획": "fmwb7kdmx5ge",
+  "소방안전관리자 2급 - 소방계획수립 (교재 6편 구성)": "fmwlvczocky4"
+ },
+ "modified": "2026-11-18T08:38:37.432Z"
+}
