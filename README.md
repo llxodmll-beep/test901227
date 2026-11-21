@@ -1,6 +1,6 @@
 # DPV (test0)
 
-**https://llxodmll-beep.github.io/test00/** 첫 화면에서 세 작업장으로 들어갑니다.
+**https://llxodmll-beep.github.io/test901227/** 첫 화면에서 세 작업장으로 들어갑니다.
 첫 화면의 작업장 카드에는 지금 상태(교안 수 · 마지막 저장 · 저장 안 한 문서 · 아직 안 올라간 영상)와 **이어서 편집** 할 것 하나가 보입니다.
 
 | 작업장 | 하는 일 |
@@ -13,7 +13,7 @@
 
 브라우저 탭이 아니라 **전용 앱 창**으로 씁니다 (크롬 또는 엣지).
 
-1. 크롬·엣지에서 https://llxodmll-beep.github.io/test00/ 를 엽니다.
+1. 크롬·엣지에서 https://llxodmll-beep.github.io/test901227/ 를 엽니다.
 2. 첫 화면 아래의 **앱으로 설치** 단추(또는 주소창 오른쪽 설치 아이콘)를 누릅니다. 안내를 닫으면 그 기기에서는 다시 보이지 않습니다.
 3. 바탕화면·시작 메뉴·작업 표시줄에 **DPV** 아이콘이 생깁니다. 이후로는 이 아이콘으로 엽니다.
 
@@ -61,7 +61,7 @@ PowerPoint 처럼 텍스트·이미지·도형을 배치하지만, 설치 프로
 
 `main` 브랜치에 푸시하면 GitHub Actions 가 자동으로 배포합니다 (`.github/workflows/pages.yml`).
 
-**https://llxodmll-beep.github.io/test00/**
+**https://llxodmll-beep.github.io/test901227/**
 
 - 토큰 없이 열면 **보기·발표** 만 됩니다. 강의실 PC 에서 주소만 열고 리모컨으로 발표하면 됩니다.
 - 허브의 **GitHub 연결** 에 토큰을 한 번 등록하면 그 브라우저에서는 **편집·저장** 도 됩니다.

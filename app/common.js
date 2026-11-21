@@ -1121,10 +1121,13 @@ function blobToDataURL(blob) { return new Promise((res, rej) => { const fr = new
 
 /* ---------- GitHub 저장소 직접 읽기/쓰기 (GitHub Pages 에서 열었을 때) ---------- */
 const GH = {
-  KEY: 'gyoan:gh',
+  /* 저장된 연결(토큰 포함)은 저장소마다 따로 둠 — llxodmll-beep.github.io/test00/ 과 /test901227/ 은
+     브라우저 저장 공간을 함께 쓰므로, 한 키를 쓰면 다른 사이트의 저장소로 읽고 저장하게 됨.
+     Pages 밖(내 PC 서버 · 파일)에서는 예전처럼 'gyoan:gh' */
+  get KEY() { const a = this.detect(); return a ? `gyoan:gh@${a.owner}/${a.repo}` : 'gyoan:gh'; },
   cfg: null,
   onPages: false,
-  /* llxodmll-beep.github.io/test00/ → owner=llxodmll-beep, repo=test00 */
+  /* llxodmll-beep.github.io/test901227/ → owner=llxodmll-beep, repo=test901227 */
   detect() {
     const m = location.hostname.match(/^([^.]+)\.github\.io$/i);
     if (!m) return null;
@@ -1234,7 +1237,7 @@ const GH = {
   connect(opts) {
     opts = opts || {};
     return new Promise(done => {
-      const c = this.cfg || this.detect() || { owner: 'llxodmll-beep', repo: 'test00', branch: 'main', token: '' };
+      const c = this.cfg || this.detect() || { owner: 'llxodmll-beep', repo: 'test901227', branch: 'main', token: '' };
       const linked = !!c.token && !opts.expired && !opts.reason; // 이미 이 기기에 토큰이 있음 → 연결 상태를 먼저 보여 주고, 토큰 칸은 '바꾸기' 용
       const bg = document.createElement('div'); bg.className = 'modal-bg';
       bg.innerHTML = `<div class="modal" style="width:560px;max-width:94vw">
@@ -1253,7 +1256,7 @@ const GH = {
         <ol>
           <li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> 를 엽니다.</li>
           <li>Token name 에 <code>gyoan</code>, Expiration 은 넉넉히(예: 1년).</li>
-          <li><b>Repository access</b> → <i>Only select repositories</i> → <code>${esc(c.repo || 'test00')}</code> 선택.</li>
+          <li><b>Repository access</b> → <i>Only select repositories</i> → <code>${esc(c.repo || 'test901227')}</code> 선택.</li>
           <li><b>Permissions</b> → Repository permissions → <b>Contents</b> → <i>Read and write</i>.</li>
           <li><i>Generate token</i> 을 누르고 나온 문자열을 위 칸에 붙여넣습니다.</li>
         </ol>

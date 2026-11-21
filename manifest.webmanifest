@@ -1,5 +1,5 @@
 {
-  "id": "/test00/dpv",
+  "id": "/test901227/dpv",
   "name": "DPV",
   "short_name": "DPV",
   "description": "한글(hwpx) 문서 편집, 강의 교안 작업, 영상 편집을 하는 개인 업무 앱",
@@ -31,6 +31,6 @@
       "application/vnd.ms-powerpoint": [".ppt", ".pps"] } }
   ],
   "launch_handler": { "client_mode": ["navigate-existing", "auto"] },
-  "related_applications": [{ "platform": "webapp", "url": "https://llxodmll-beep.github.io/test00/manifest.webmanifest" }],
+  "related_applications": [{ "platform": "webapp", "url": "https://llxodmll-beep.github.io/test901227/manifest.webmanifest" }],
   "prefer_related_applications": false
 }
