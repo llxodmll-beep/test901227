@@ -4,7 +4,7 @@
  "transition": "fade",
  "decor": "none",
  "created": "2026-11-10T12:00:00.000Z",
- "modified": "2026-11-22T16:30:00.000Z",
+ "modified": "2026-11-22T17:30:00.000Z",
  "footer": {
   "text": "현장지휘관의 두 번째 눈 · 인천소방학교 지휘역량강화센터",
   "num": true,
@@ -10598,7 +10598,7 @@
     "color": "#090D14"
    },
    "transition": "",
-   "notes": "[사례] 2022.9.21. 우리 본부 119특수대응단 드론이 인천공항 관제권에서 사전협의 없이 비행 → 불법 드론 탐지.\n결과: 이륙지연 3대 · 복행 2대 · 착륙지연 5대 (클릭마다 숫자).\n필수 절차: 비행 전 대테러 상황실 보고 → 관제탑 통보(사전 협의) → 비행 후 대테러 상황실 보고. ※ 모든 비행 전·후 반드시 준수.\n\"우리의 작은 실천이 안전한 하늘길을 만듭니다.\"",
+   "notes": "[사례] 2022.9.21. 우리 본부 119특수대응단 드론이 인천공항 관제권에서 사전협의 없이 비행 → 불법 드론 탐지.\n결과: 이륙지연 3대 · 복행 2대 · 착륙지연 5대 (클릭마다 숫자).\n필수 절차: 비행 전 대테러 상황실 보고 → 관제탑 통보(사전 협의) → 비행 후 대테러 상황실 보고. ※ 모든 비행 전·후 반드시 준수.\n\"우리의 작은 실천이 안전한 하늘길을 만듭니다.\"\n[법 근거] 관제권 비행은 운용규정 제13조 비행승인 대상. 긴급 공공비행(제131조의2②)이라도 제127조④에 따라 국가기관등의 장이 사전에 국토부장관에게 알려야 비행승인을 받은 것으로 봄 — 이 사례는 그 사전 통보(관제탑 협의)가 빠진 경우. 대테러상황실 보고는 본부 자체 절차.",
    "elements": [
     {
      "id": "ntpi4zt7o",
@@ -10673,7 +10673,7 @@
      "w": 1500,
      "h": 32,
      "role": "text",
-     "html": "CH.01 // CASE 2022.09.21",
+     "html": "CH.01 // CASE 2022.09.21 — 인천공항 관제권",
      "style": {
       "fontSize": 20,
       "color": "#FF6A13",
@@ -10697,7 +10697,7 @@
      "w": 1700,
      "h": 84,
      "role": "text",
-     "html": "인천공항 관제권 내 불법 드론 운영 사례",
+     "html": "통보 한 번 빠지자, 항공기 10대가 멈췄다",
      "style": {
       "fontSize": 54,
       "color": "#FFFFFF",
@@ -11015,11 +11015,11 @@
      "x": 110,
      "y": 950,
      "w": 960,
-     "h": 80,
+     "h": 90,
      "role": "text",
-     "html": "조치 결과: 119특수대응단 <b style=\"color:#3DDC84\">재발방지 대책 교육</b> 이수 후 원만히 마무리.<br>드론 비행은 사전 협의와 절차 준수가 필수입니다.",
+     "html": "<b style='color:#FF6A13'>관제권 = 비행승인 대상.</b> 긴급비행도 <b style='color:#fff'>기관장 사전 통보</b>가 있어야 승인 간주 <span style='color:#9AA7B8'>(항공안전법 제127조④)</span><br><span style='color:#9AA7B8'>조치 결과: 119특수대응단 재발방지 대책 교육 이수 후 마무리</span>",
      "style": {
-      "fontSize": 23,
+      "fontSize": 20,
       "color": "#C3CDDA",
       "lineHeight": 1.5,
       "align": "left",
@@ -11098,7 +11098,7 @@
     "color": "#090D14"
    },
    "transition": "",
-   "notes": "[참고 1] 비행승인 / 특별비행승인 / 긴급비행승인 / 무인비행장치 적용특례 네 개를 구분.\n정리: 승인 2종은 법령상 절차, 적용특례는 완화 조항, 긴급비행 승인은 법령+소방 훈령 근거의 현장 운용 절차.",
+   "notes": "[참고 1 · 용어] 항공안전법 원문 기준.\n비행승인: 제127조②(비행제한공역) · ③(고도 150m 이상, 관제권 등) — 운용규정 제13조 4가지.\n특별비행승인: 제129조⑤ 야간 비행 등, 국토부 고시 '무인비행장치 특별비행을 위한 안전기준' 검사.\n긴급비행 사전 통보: 제127조④(2025.12.30. 개정) — 비행승인이 필요한 때 제131조의2② 긴급비행이면 국가기관등의 장이 사전에 알리면 비행승인 간주. 현장에서 흔히 '긴급비행승인'이라 부르지만 법 용어는 아님.\n적용특례: 제131조의2② — 화재 예방·진화, 수색·구조, 산림 순찰 등 재해·재난 예방·대응, 응급환자 후송 등 긴급 비행(훈련 포함), 안전관리 방안 마련 시 제129조 ①·④·⑤ 적용 제외. (이전 판의 '비행승인·특별비행승인 적용 예외'는 원문과 달라 고침 — 비행승인은 면제가 아니라 사전 통보 간주.)",
    "elements": [
     {
      "id": "dyh73w7oz",
@@ -11132,7 +11132,7 @@
      "w": 1500,
      "h": 32,
      "role": "text",
-     "html": "CH.01 // REF.1",
+     "html": "CH.01 // REF.1 — 비행 관련 용어",
      "style": {
       "fontSize": 20,
       "color": "#FF6A13",
@@ -11156,7 +11156,7 @@
      "w": 1700,
      "h": 84,
      "role": "text",
-     "html": "비행 관련 용어 비교표",
+     "html": "같은 '승인'이 아니다 — 네 가지를 구분하라",
      "style": {
       "fontSize": 54,
       "color": "#FFFFFF",
@@ -11181,33 +11181,33 @@
      "rows": [
       [
        "구분",
-       "의미",
-       "업무 적용",
-       "필요 절차"
+       "근거",
+       "무엇인가",
+       "소방 현장"
       ],
       [
        "<b>비행승인</b>",
-       "사전 승인",
-       "훈련, 예방 순찰 등 계획된 비행",
-       "사전 신청 원칙"
+       "항공안전법 제127조②③<br>운용규정 제13조",
+       "비행제한공역 · 관제권 · 비행금지구역,<br>150m 이상 등에서 비행하려면 사전 승인",
+       "계획된 훈련 · 순찰"
       ],
       [
        "<b>특별비행승인</b>",
-       "야간 및 비가시권 등<br>특수비행 승인",
-       "야간 및 비가시권 비행",
-       "특별비행승인 검토"
+       "항공안전법 제129조⑤",
+       "야간 · 비가시권 등<br>준수사항을 벗어나는 비행 승인",
+       "비재난 야간 · 비가시권 비행"
       ],
       [
-       "<b>긴급비행승인</b>",
-       "재난현장 즉시 투입을 위한<br>실무 절차",
-       "화재, 구조 등 재난현장",
-       "<b style=\"color:#FF6A13\">긴급비행 승인 절차 이행</b>"
+       "<b>긴급비행<br>사전 통보</b>",
+       "항공안전법 제127조④",
+       "승인이 필요한 곳이라도 기관장이 미리 알리면<br><b style=\"color:#FF6A13\">비행승인을 받은 것으로 본다</b>",
+       "<b style=\"color:#FF6A13\">화재 · 구조 등 재난현장</b>"
       ],
       [
        "<b>무인비행장치<br>적용특례</b>",
-       "비행승인·특별비행승인·조종자<br>준수사항 등에 대한 적용 예외",
-       "국가, 지자체,<br>공공기관 긴급 업무",
-       "적용 특례 여부 검토<br>및 사전 통보·협의"
+       "항공안전법 제131조의2②",
+       "긴급 공공비행(훈련 포함) 시 제129조<br>①준수사항 · ④개인정보 · ⑤특별비행승인 적용 제외",
+       "안전관리 방안 마련 시에 한정"
       ]
      ],
      "header": true,
@@ -11216,10 +11216,10 @@
      "headColor": "#3FD3F2",
      "lineColor": "#253246",
      "cols": [
-      0.2,
-      0.28,
-      0.27,
-      0.25
+      0.16,
+      0.22,
+      0.4,
+      0.22
      ],
      "rh": [
       0.13,
@@ -11230,7 +11230,7 @@
      ],
      "radius": 12,
      "style": {
-      "fontSize": 25,
+      "fontSize": 22,
       "color": "#FFFFFF",
       "lineHeight": 1.4
      }
@@ -11267,11 +11267,11 @@
      "w": 1640,
      "h": 120,
      "role": "text",
-     "html": "“비행승인”과 “특별비행승인”은 <b style=\"color:#fff\">법령상 명시된 비행승인 절차</b>, “무인비행장치 적용 특례”는 이 절차·조종자 준수사항 적용을 <b style=\"color:#fff\">완화해 주는 조항</b>,<br>“긴급비행 승인”은 법령과 소방 훈령의 임무·통제·현장활동 조항을 근거로 만든 <b style=\"color:#fff\">현장 운용 절차</b>로 구분하면 가장 정리가 잘 됩니다.",
+     "html": "특례는 <b style='color:#fff'>비행승인을 면제하지 않는다</b> — <b style='color:#FF6A13'>사전 통보로 갈음</b>(제127조④). 빼 주는 것은 <b style='color:#fff'>제129조 ①·④·⑤</b>뿐, 촬영 특례는 없다.",
      "style": {
-      "fontSize": 22,
+      "fontSize": 24,
       "color": "#C3CDDA",
-      "lineHeight": 1.55,
+      "lineHeight": 1.5,
       "align": "left",
       "valign": "middle"
      }
@@ -11288,7 +11288,7 @@
      "w": 1700,
      "h": 60,
      "role": "text",
-     "html": "정확한 용어 이해와 절차 준수는 <span style=\"color:#FF6A13\">“안전한 비행”</span>과 <span style=\"color:#FF6A13\">“현장 신뢰”</span>의 시작입니다.",
+     "html": "용어가 정확해야 보고와 협의가 빠르다.",
      "style": {
       "fontSize": 30,
       "color": "#FFFFFF",
@@ -11348,7 +11348,7 @@
     "color": "#090D14"
    },
    "transition": "",
-   "notes": "[참고 2] 상황 4가지 → 필요한 절차.\n일반 업무=비행승인 / 야간·비가시권(비재난)=특별비행승인 / 재난 즉시 투입=적용특례+긴급비행 승인 / 고위험 공역=사전 협의 후 승인.",
+   "notes": "[참고 2 · 상황별] 클릭마다 한 줄.\n01 일반 업무(훈련·순찰·홍보): 비행승인 대상이면 사전 신청(운용규정 제13조, 시행규칙 제308조).\n02 야간·비가시권 + 비재난: 특별비행승인(제129조⑤).\n03 재난현장 즉시 투입(야간·비가시권 포함): 제131조의2② 특례(제129조 ①·④·⑤ 적용 제외) + 제127조④ 기관장 사전 통보 → 비행승인 간주. 안전관리 방안 마련 시에 한정.\n04 관제권·비행금지구역: 관제탑·공역관리기관(합참·수방사·공군 등) 사전 협의 — 국방부 항공촬영 지침서 제10조①도 비행금지구역은 공역관리기관 별도 승인 명시.\n마무리: 알려도 공역 안전 협의, 촬영허가·보안처리는 그대로.",
    "elements": [
     {
      "id": "50rwvxbxi",
@@ -11382,7 +11382,7 @@
      "w": 1500,
      "h": 32,
      "role": "text",
-     "html": "CH.01 // REF.2",
+     "html": "CH.01 // REF.2 — 소방업무 상황별 절차",
      "style": {
       "fontSize": 20,
       "color": "#FF6A13",
@@ -11406,7 +11406,7 @@
      "w": 1700,
      "h": 84,
      "role": "text",
-     "html": "소방업무 상황별 적용 절차 예시",
+     "html": "상황이 절차를 정한다",
      "style": {
       "fontSize": 54,
       "color": "#FFFFFF",
@@ -11449,13 +11449,15 @@
      "w": 90,
      "h": 136,
      "role": "text",
-     "html": "📋",
+     "html": "01",
      "style": {
-      "fontSize": 50,
-      "color": "#FFFFFF",
+      "fontSize": 34,
+      "color": "#3FD3F2",
       "lineHeight": 1,
       "align": "center",
-      "valign": "middle"
+      "valign": "middle",
+      "bold": true,
+      "font": "mono"
      }
     },
     {
@@ -11470,9 +11472,9 @@
      "w": 560,
      "h": 136,
      "role": "text",
-     "html": "긴급하지 않은 일반 업무",
+     "html": "긴급하지 않은 일반 업무<br><span style='font-size:20px;color:#9AA7B8'>훈련 · 순찰 · 홍보</span>",
      "style": {
-      "fontSize": 27,
+      "fontSize": 26,
       "color": "#FFFFFF",
       "lineHeight": 1.35,
       "align": "left",
@@ -11512,9 +11514,9 @@
      "w": 950,
      "h": 50,
      "role": "text",
-     "html": "원칙적으로 <b style=\"color:#FF6A13\">비행승인</b> 검토",
+     "html": "<b style='color:#fff'>비행승인</b> 사전 신청",
      "style": {
-      "fontSize": 30,
+      "fontSize": 28,
       "color": "#FFFFFF",
       "lineHeight": 1.3,
       "align": "left",
@@ -11532,12 +11534,12 @@
      "x": 830,
      "y": 282,
      "w": 950,
-     "h": 70,
+     "h": 40,
      "role": "text",
-     "html": "(공공목적 긴급비행 또는 적용 특례가 인정되는 업무·훈련 등의 범위는 관할 행정기관 또는 통제기관과 별도 조율 필요)",
+     "html": "관제권 · 비행금지구역 · 150m 이상이면 국토교통부 승인 (운용규정 제13조)",
      "style": {
       "fontSize": 19,
-      "color": "#7A889C",
+      "color": "#9AA7B8",
       "lineHeight": 1.4,
       "align": "left",
       "valign": "top"
@@ -11575,13 +11577,15 @@
      "w": 90,
      "h": 136,
      "role": "text",
-     "html": "🌙",
+     "html": "02",
      "style": {
-      "fontSize": 50,
-      "color": "#FFFFFF",
+      "fontSize": 34,
+      "color": "#3FD3F2",
       "lineHeight": 1,
       "align": "center",
-      "valign": "middle"
+      "valign": "middle",
+      "bold": true,
+      "font": "mono"
      }
     },
     {
@@ -11596,9 +11600,9 @@
      "w": 560,
      "h": 136,
      "role": "text",
-     "html": "야간 또는 비가시권이나<br>재난 상황 아님",
+     "html": "야간 · 비가시권<br><span style='font-size:20px;color:#9AA7B8'>재난 상황 아님</span>",
      "style": {
-      "fontSize": 27,
+      "fontSize": 26,
       "color": "#FFFFFF",
       "lineHeight": 1.35,
       "align": "left",
@@ -11638,9 +11642,9 @@
      "w": 950,
      "h": 50,
      "role": "text",
-     "html": "원칙적으로 <b style=\"color:#FF6A13\">특별비행승인</b> 검토",
+     "html": "<b style='color:#fff'>특별비행승인</b> 사전 신청",
      "style": {
-      "fontSize": 30,
+      "fontSize": 28,
       "color": "#FFFFFF",
       "lineHeight": 1.3,
       "align": "left",
@@ -11658,12 +11662,12 @@
      "x": 830,
      "y": 432,
      "w": 950,
-     "h": 70,
+     "h": 40,
      "role": "text",
-     "html": "(적용 특례 대상이지만 비행금지구역 및 관제권 등은 사전 협의 필요, 긴급성이 필요한 공공 목적의 업무 범위와 비행승인 절차 조율 포함)",
+     "html": "야간 · 비가시권은 준수사항 밖 — 항공안전법 제129조⑤",
      "style": {
       "fontSize": 19,
-      "color": "#7A889C",
+      "color": "#9AA7B8",
       "lineHeight": 1.4,
       "align": "left",
       "valign": "top"
@@ -11701,13 +11705,15 @@
      "w": 90,
      "h": 136,
      "role": "text",
-     "html": "🚨",
+     "html": "03",
      "style": {
-      "fontSize": 50,
-      "color": "#FFFFFF",
+      "fontSize": 34,
+      "color": "#FF6A13",
       "lineHeight": 1,
       "align": "center",
-      "valign": "middle"
+      "valign": "middle",
+      "bold": true,
+      "font": "mono"
      }
     },
     {
@@ -11722,9 +11728,9 @@
      "w": 560,
      "h": 136,
      "role": "text",
-     "html": "재난 현장에서 드론 즉시 투입 필요<br><small>(야간 또는 비가시권 포함)</small>",
+     "html": "재난현장 즉시 투입<br><span style='font-size:20px;color:#9AA7B8'>야간 · 비가시권 포함</span>",
      "style": {
-      "fontSize": 27,
+      "fontSize": 26,
       "color": "#FFFFFF",
       "lineHeight": 1.35,
       "align": "left",
@@ -11760,17 +11766,17 @@
      "opacity": 1,
      "type": "text",
      "x": 830,
-     "y": 520,
+     "y": 536,
      "w": 950,
-     "h": 136,
+     "h": 50,
      "role": "text",
-     "html": "적용 특례 여부 검토 + <b style=\"color:#FF6A13\">긴급비행</b> 승인 절차",
+     "html": "<b style='color:#FF6A13'>기관장 사전 통보</b> → 승인 간주",
      "style": {
-      "fontSize": 30,
+      "fontSize": 28,
       "color": "#FFFFFF",
       "lineHeight": 1.3,
       "align": "left",
-      "valign": "middle",
+      "valign": "top",
       "bold": true
      }
     },
@@ -11806,13 +11812,15 @@
      "w": 90,
      "h": 136,
      "role": "text",
-     "html": "🤝",
+     "html": "04",
      "style": {
-      "fontSize": 50,
-      "color": "#FFFFFF",
+      "fontSize": 34,
+      "color": "#3FD3F2",
       "lineHeight": 1,
       "align": "center",
-      "valign": "middle"
+      "valign": "middle",
+      "bold": true,
+      "font": "mono"
      }
     },
     {
@@ -11827,9 +11835,9 @@
      "w": 560,
      "h": 136,
      "role": "text",
-     "html": "비행금지구역·관제권 등<br>고위험 공역 포함 시",
+     "html": "공항 관제권 · 비행금지구역<br><span style='font-size:20px;color:#9AA7B8'>고위험 공역</span>",
      "style": {
-      "fontSize": 27,
+      "fontSize": 26,
       "color": "#FFFFFF",
       "lineHeight": 1.35,
       "align": "left",
@@ -11865,17 +11873,17 @@
      "opacity": 1,
      "type": "text",
      "x": 830,
-     "y": 670,
+     "y": 686,
      "w": 950,
-     "h": 136,
+     "h": 50,
      "role": "text",
-     "html": "<b style=\"color:#FF6A13\">사전 협의</b> 후 절차에 따라 승인",
+     "html": "<b style='color:#fff'>관제탑 · 공역관리기관</b> 사전 협의",
      "style": {
-      "fontSize": 30,
+      "fontSize": 28,
       "color": "#FFFFFF",
       "lineHeight": 1.3,
       "align": "left",
-      "valign": "middle",
+      "valign": "top",
       "bold": true
      }
     },
@@ -11889,13 +11897,13 @@
      "x": 110,
      "y": 830,
      "w": 1700,
-     "h": 90,
+     "h": 80,
      "role": "text",
-     "html": "항공 관련 법령상 공공의 긴급한 목적이 있는 경우 관할 기관에 알리는 것만으로도 비행할 수 있다고 돼 있으나,<br>공역에 따라 <b style=\"color:#FF6A13\">항공안전</b>을 위해 협의가 필요할 수 있고, 허용되더라도 그 범위와 절차에 상당한 차이가 있을 수 있습니다.",
+     "html": "긴급 공공비행은 <b style='color:#FF6A13'>“안 받아도 된다”가 아니라 “알리면 된다”</b>. 알려도 <b style='color:#fff'>공역의 항공 안전 협의</b>와 <b style='color:#fff'>촬영허가 · 보안처리</b>는 그대로 남는다.",
      "style": {
-      "fontSize": 22,
+      "fontSize": 24,
       "color": "#C3CDDA",
-      "lineHeight": 1.55,
+      "lineHeight": 1.5,
       "align": "left",
       "valign": "top"
      }
@@ -11909,9 +11917,9 @@
      "type": "shape",
      "shape": "rect",
      "x": 110,
-     "y": 940,
+     "y": 900,
      "w": 1700,
-     "h": 86,
+     "h": 80,
      "fill": "#FF6A13",
      "stroke": "",
      "strokeWidth": 0,
@@ -11928,11 +11936,11 @@
      "opacity": 1,
      "type": "text",
      "x": 110,
-     "y": 940,
+     "y": 900,
      "w": 1700,
-     "h": 86,
+     "h": 80,
      "role": "text",
-     "html": "공역 특성과 임무 목적을 정확히 파악하고, 적절한 절차를 준수하는 것이 안전한 임무 수행의 첫걸음",
+     "html": "공역을 보고, 임무를 보고, 절차를 고른다.",
      "style": {
       "fontSize": 29,
       "color": "#090D14",
@@ -11940,6 +11948,48 @@
       "align": "center",
       "valign": "middle",
       "bold": true
+     }
+    },
+    {
+     "id": "grru8oxj1s",
+     "step": 3,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "role": "text",
+     "x": 830,
+     "y": 586,
+     "w": 950,
+     "h": 40,
+     "html": "제127조④ · 제131조의2② — 안전관리 방안 마련 시. 야간 · 비가시권도 특례로 가능",
+     "style": {
+      "fontSize": 19,
+      "color": "#9AA7B8",
+      "align": "left",
+      "valign": "top",
+      "lineHeight": 1.4
+     }
+    },
+    {
+     "id": "3rzbyb1e3s",
+     "step": 4,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "role": "text",
+     "x": 830,
+     "y": 736,
+     "w": 950,
+     "h": 40,
+     "html": "통보로 승인은 간주돼도 항공기 안전 협의는 별개 — 21페이지 사례",
+     "style": {
+      "fontSize": 19,
+      "color": "#9AA7B8",
+      "align": "left",
+      "valign": "top",
+      "lineHeight": 1.4
      }
     },
     {
@@ -11992,7 +12042,7 @@
     "color": "#090D14"
    },
    "transition": "",
-   "notes": "[역할] 규정 제7조·제8조. 통제관(지시·통제·감독) / 조종자(보고·탐색·영상 송출·안전 비행) / 부조종자(영상 분석·착륙 안전관리·보조).\n→ 지휘관이 반드시 기억할 것: 통제관 지시 아래 3인 체계, 역할 구분이 곧 안전관리.",
+   "notes": "[역할] 운용규정 제6조②: 운용인력은 통제관·조종자·부조종자로 구성. 제2조: 통제관=운용부서의 장(위임자 포함), 조종자=지상통제장비로 조종, 부조종자=조종자 보조 + 수집 정보 분석·처리.\n제8조 통제관: 재난·훈련 현장 비행지시·통제, 헬기 등 항공기 운항 지역 비행 통제, 행정·유지관리 감독, 조종자·부조종자 지도·감독.\n제9조① 조종자·부조종자: 운용 전 비행가능여부 확인 후 통제관 보고, 인명구조·탐색, 영상촬영·송출, 영상정보 분석·처리, 이착륙·비행 안전관리, 기타 지원 ② 부조종자는 조종자 보조.\n지휘관 메시지: 드론 운용팀에 직접 지시하지 말고 통제관을 통해 — 헬기 운항 시 비행 통제도 통제관 임무.",
    "elements": [
     {
      "id": "nyiiuzggj",
@@ -12090,7 +12140,7 @@
      "w": 1500,
      "h": 32,
      "role": "text",
-     "html": "CH.01 // ROLES",
+     "html": "CH.01 // ROLES — 3인 운용 체계",
      "style": {
       "fontSize": 20,
       "color": "#FF6A13",
@@ -12114,7 +12164,7 @@
      "w": 1700,
      "h": 84,
      "role": "text",
-     "html": "소방 무인비행장치 운용 핵심 역할",
+     "html": "드론은 혼자 날리지 않는다",
      "style": {
       "fontSize": 54,
       "color": "#FFFFFF",
@@ -12137,7 +12187,7 @@
      "w": 1700,
      "h": 40,
      "role": "text",
-     "html": "통제관 · 조종자 · 부조종자 — 역할 구분이 곧 안전관리",
+     "html": "<b style='color:#fff'>통제관</b>의 지시 아래 <b style='color:#fff'>조종자</b> · <b style='color:#fff'>부조종자</b> — 역할 구분이 곧 안전관리 <span style='color:#9AA7B8'>(운용규정 제6조②)</span>",
      "style": {
       "fontSize": 26,
       "color": "#7A889C",
@@ -12195,10 +12245,10 @@
      "type": "text",
      "x": 150,
      "y": 300,
-     "w": 300,
+     "w": 800,
      "h": 50,
      "role": "text",
-     "html": "통제관",
+     "html": "통제관 <span style='font-size:20px;color:#9AA7B8;font-weight:400'>운용부서의 장 · 제8조</span>",
      "style": {
       "fontSize": 36,
       "color": "#3FD3F2",
@@ -12278,10 +12328,10 @@
      "type": "text",
      "x": 150,
      "y": 536,
-     "w": 300,
+     "w": 800,
      "h": 50,
      "role": "text",
-     "html": "조종자",
+     "html": "조종자 <span style='font-size:20px;color:#9AA7B8;font-weight:400'>조종자 증명 · 제9조</span>",
      "style": {
       "fontSize": 36,
       "color": "#3DDC84",
@@ -12361,10 +12411,10 @@
      "type": "text",
      "x": 150,
      "y": 772,
-     "w": 300,
+     "w": 800,
      "h": 50,
      "role": "text",
-     "html": "부조종자",
+     "html": "부조종자 <span style='font-size:20px;color:#9AA7B8;font-weight:400'>조종자 보조 · 제9조②</span>",
      "style": {
       "fontSize": 36,
       "color": "#B48CFF",
@@ -12396,90 +12446,6 @@
      }
     },
     {
-     "id": "h2a3ipyd1",
-     "step": 4,
-     "anim": "fade",
-     "rotate": 0,
-     "opacity": 1,
-     "type": "text",
-     "x": 110,
-     "y": 990,
-     "w": 430,
-     "h": 40,
-     "role": "text",
-     "html": "<b style=\"color:#fff\">안전 최우선</b>  <span style=\"color:#7A889C\">사전 점검·위험 관리</span>",
-     "style": {
-      "fontSize": 22,
-      "color": "#C3CDDA",
-      "lineHeight": 1.2,
-      "align": "left",
-      "valign": "top"
-     }
-    },
-    {
-     "id": "zzvqxaao7",
-     "step": 4,
-     "anim": "fade",
-     "rotate": 0,
-     "opacity": 1,
-     "type": "text",
-     "x": 550,
-     "y": 990,
-     "w": 430,
-     "h": 40,
-     "role": "text",
-     "html": "<b style=\"color:#fff\">임무 명확화</b>  <span style=\"color:#7A889C\">역할 분담·절차 준수</span>",
-     "style": {
-      "fontSize": 22,
-      "color": "#C3CDDA",
-      "lineHeight": 1.2,
-      "align": "left",
-      "valign": "top"
-     }
-    },
-    {
-     "id": "c75cg7ymu",
-     "step": 4,
-     "anim": "fade",
-     "rotate": 0,
-     "opacity": 1,
-     "type": "text",
-     "x": 990,
-     "y": 990,
-     "w": 430,
-     "h": 40,
-     "role": "text",
-     "html": "<b style=\"color:#fff\">지속적 교육</b>  <span style=\"color:#7A889C\">전문성 향상·역량 강화</span>",
-     "style": {
-      "fontSize": 22,
-      "color": "#C3CDDA",
-      "lineHeight": 1.2,
-      "align": "left",
-      "valign": "top"
-     }
-    },
-    {
-     "id": "8wxdbrnae",
-     "step": 4,
-     "anim": "fade",
-     "rotate": 0,
-     "opacity": 1,
-     "type": "text",
-     "x": 1430,
-     "y": 990,
-     "w": 430,
-     "h": 40,
-     "role": "text",
-     "html": "<b style=\"color:#fff\">협력과 소통</b>  <span style=\"color:#7A889C\">팀워크·정보 공유</span>",
-     "style": {
-      "fontSize": 22,
-      "color": "#C3CDDA",
-      "lineHeight": 1.2,
-      "align": "left",
-      "valign": "top"
-     }
-    },
-    {
      "id": "ghuiy05j7",
      "step": 0,
      "anim": "fade",
@@ -12487,14 +12453,14 @@
      "opacity": 1,
      "type": "text",
      "x": 110,
-     "y": 1036,
+     "y": 990,
      "w": 1100,
      "h": 30,
      "role": "text",
-     "html": "출처: 소방 무인비행장치 운용규정 제7조(조종자 및 부조종자의 자격), 제8조(통제관의 임무)",
+     "html": "출처: 소방 무인비행장치 운용규정 제2조(정의) · 제6조(운용인력) · 제8조(통제관의 임무) · 제9조(조종자 및 부조종자의 임무)",
      "style": {
       "fontSize": 17,
-      "color": "#7A889C",
+      "color": "#9AA7B8",
       "lineHeight": 1.3,
       "align": "left",
       "valign": "top"
