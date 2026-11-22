@@ -36,5 +36,8 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
+      # 올린 직후에는 GitHub 가 아직 배포 파일을 못 찾을 때가 있음("No artifacts named github-pages") → 잠깐 기다렸다가 배포
+      - name: Wait for artifact to register
+        run: sleep 15
       - id: deployment
         uses: actions/deploy-pages@v4
