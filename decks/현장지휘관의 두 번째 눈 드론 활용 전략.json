@@ -4,7 +4,7 @@
  "transition": "fade",
  "decor": "none",
  "created": "2026-11-10T12:00:00.000Z",
- "modified": "2026-11-22T06:00:00.000Z",
+ "modified": "2026-11-22T06:30:00.000Z",
  "footer": {
   "text": "현장지휘관의 두 번째 눈 · 인천소방학교 지휘역량강화센터",
   "num": true,
@@ -2162,7 +2162,7 @@
    "id": "p99osw5aa",
    "bg": null,
    "transition": "",
-   "notes": "",
+   "notes": "[출처] 실내 드론 영상 — 119특수대응단 촬영·자료 협조(백두남). 화면 왼쪽 아래에 출처 표기, 이 장은 바닥글(쪽번호 포함)을 끔.",
    "elements": [
     {
      "id": "4oydabnal",
@@ -2180,8 +2180,92 @@
      "autoplay": false,
      "posterOf": "bigvideo/llxodmll-beep/test901227/video-mwreinajm3ir/100-4194304-416545863/compose_video_1792823670432-inakni8.mp4",
      "poster": "assets/compose_video_1792823670432-post-inalb1j.jpg"
+    },
+    {
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.62,
+     "id": "vd5lp",
+     "type": "shape",
+     "shape": "rect",
+     "x": 1356,
+     "y": 16,
+     "w": 540,
+     "h": 88,
+     "mk": "ccec-hdr",
+     "fill": "#090D14",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 44,
+     "shadow": false,
+     "html": "",
+     "style": {}
+    },
+    {
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "id": "vd5lt",
+     "type": "text",
+     "role": "text",
+     "x": 1386,
+     "y": 30,
+     "w": 410,
+     "h": 62,
+     "mk": "ccec-hdr",
+     "html": "지휘역량강화센터<br><span style='font-size:13px;letter-spacing:1.6px;font-weight:600;color:#9AA7B8'>INCIDENT COMMAND TRAINING CENTER</span>",
+     "style": {
+      "fontSize": 23,
+      "color": "#FFFFFF",
+      "align": "right",
+      "valign": "middle",
+      "lineHeight": 1.15,
+      "bold": true,
+      "tshadow": true
+     }
+    },
+    {
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "id": "vd5li",
+     "type": "image",
+     "x": 1806,
+     "y": 24,
+     "w": 72,
+     "h": 72,
+     "src": "assets/cpr-center-patch.png",
+     "mk": "ccec-hdr",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false
+    },
+    {
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "id": "vd5ct",
+     "type": "text",
+     "role": "text",
+     "x": 40,
+     "y": 1044,
+     "w": 900,
+     "h": 32,
+     "html": "<span style='color:#FF8A47;font-weight:700'>영상 출처</span>&nbsp; 119특수대응단 &nbsp;<span style='color:#5B6779'>|</span>&nbsp; <span style='color:#FF8A47;font-weight:700'>촬영·자료 협조</span>&nbsp; 백두남",
+     "style": {
+      "fontSize": 18,
+      "color": "#E2E8F0",
+      "align": "left",
+      "valign": "middle",
+      "lineHeight": 1.2
+     }
     }
-   ]
+   ],
+   "noFooter": true
   },
   {
    "id": "duo32imel",
