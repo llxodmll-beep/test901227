@@ -4,7 +4,7 @@
  "transition": "fade",
  "decor": "none",
  "created": "2026-11-10T12:00:00.000Z",
- "modified": "2026-11-23T03:53:19.378Z",
+ "modified": "2026-11-23T03:57:39.013Z",
  "footer": {
   "text": "현장지휘관의 두 번째 눈 · 인천소방학교 지휘역량강화센터",
   "num": true,
@@ -23548,7 +23548,25 @@
    "bg": null,
    "transition": "",
    "notes": "",
-   "elements": []
+   "elements": [
+    {
+     "id": "8d44gluoe",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "embed",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "url": "assets/미디어4-duodu6b.mp4",
+     "radius": 16,
+     "autoplay": false,
+     "posterOf": "assets/미디어4-duodu6b.mp4",
+     "poster": "assets/미디어4-poster-duoef3c.jpg"
+    }
+   ]
   },
   {
    "id": "2nz2pvoy8",
@@ -23991,7 +24009,25 @@
    "bg": null,
    "transition": "",
    "notes": "",
-   "elements": []
+   "elements": [
+    {
+     "id": "yb4gn7kp8",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "embed",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "url": "bigvideo/llxodmll-beep/test901227/video-mwsqekp60oyp/7-4194304-28928143/미디어5-ekp6l78.mp4",
+     "radius": 16,
+     "autoplay": false,
+     "posterOf": "bigvideo/llxodmll-beep/test901227/video-mwsqekp60oyp/7-4194304-28928143/미디어5-ekp6l78.mp4",
+     "poster": "assets/미디어5-poster-ekp7itc.jpg"
+    }
+   ]
   },
   {
    "id": "vizd5bzzz",
@@ -24434,7 +24470,25 @@
    "bg": null,
    "transition": "",
    "notes": "",
-   "elements": []
+   "elements": [
+    {
+     "id": "i7zmzvd1c",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "embed",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "url": "assets/미디어6-fd1bhzy.mp4",
+     "radius": 16,
+     "autoplay": false,
+     "posterOf": "assets/미디어6-fd1bhzy.mp4",
+     "poster": "assets/미디어6-poster-fd1c39s.jpg"
+    }
+   ]
   },
   {
    "id": "75zgn2xws",
@@ -25363,7 +25417,25 @@
    "bg": null,
    "transition": "",
    "notes": "",
-   "elements": []
+   "elements": [
+    {
+     "id": "05p7i5yvy",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "embed",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "url": "bigvideo/llxodmll-beep/test901227/video-mwsqfyvxk5ty/105-4194304-438551613/미디어7-fyvxxqh.mp4",
+     "radius": 16,
+     "autoplay": false,
+     "posterOf": "bigvideo/llxodmll-beep/test901227/video-mwsqfyvxk5ty/105-4194304-438551613/미디어7-fyvxxqh.mp4",
+     "poster": "assets/미디어7-poster-fyvxzhj.jpg"
+    }
+   ]
   },
   {
    "id": "vchmuq7n4",
@@ -29676,7 +29748,25 @@
    "bg": null,
    "transition": "",
    "notes": "",
-   "elements": []
+   "elements": [
+    {
+     "id": "mrzjggp6w",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "embed",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "url": "assets/미디어8-gp6tfbl.mp4",
+     "radius": 16,
+     "autoplay": false,
+     "posterOf": "assets/미디어8-gp6tfbl.mp4",
+     "poster": "assets/미디어8-poster-gp6wym5.jpg"
+    }
+   ]
   },
   {
    "id": "rujsjn44d",
@@ -30113,6 +30203,31 @@
    ],
    "hidden": false,
    "noFooter": true
+  },
+  {
+   "id": "ga9tqa0la",
+   "bg": null,
+   "transition": "",
+   "notes": "",
+   "elements": [
+    {
+     "id": "5rt80zgtt",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "embed",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "url": "bigvideo/llxodmll-beep/test901227/video-mwsqhgts6v3m/115-4194304-478932961/미디어9-hgtscor.mp4",
+     "radius": 16,
+     "autoplay": false,
+     "posterOf": "bigvideo/llxodmll-beep/test901227/video-mwsqhgts6v3m/115-4194304-478932961/미디어9-hgtscor.mp4",
+     "poster": "assets/미디어9-poster-hgtta2q.jpg"
+    }
+   ]
   },
   {
    "id": "pd8xc76vd",
@@ -32439,6 +32554,31 @@
    ],
    "hidden": false,
    "noFooter": true
+  },
+  {
+   "id": "q59d7mtw1",
+   "bg": null,
+   "transition": "",
+   "notes": "",
+   "elements": [
+    {
+     "id": "e33h3cvrz",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "embed",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "url": "bigvideo/llxodmll-beep/test901227/video-mwsqivry1j0l/29-4194304-117834183/미디어10-ivrynzq.mp4",
+     "radius": 16,
+     "autoplay": false,
+     "posterOf": "bigvideo/llxodmll-beep/test901227/video-mwsqivry1j0l/29-4194304-117834183/미디어10-ivrynzq.mp4",
+     "poster": "assets/미디어10-poster-ivrylzs.jpg"
+    }
+   ]
   },
   {
    "id": "s2ct1ff6k",
