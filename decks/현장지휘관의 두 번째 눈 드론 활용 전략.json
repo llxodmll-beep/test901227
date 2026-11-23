@@ -25157,7 +25157,7 @@
     "color": "#090D14"
    },
    "transition": "morph",
-   "notes": "[4장 시작] 드론은 잘 쓰면 눈이 되지만, 잘못 쓰면 위험원이 됩니다.",
+   "notes": "[4장 시작] 드론은 잘 쓰면 눈이 되지만, 잘못 쓰면 위험원이 됩니다.\n[그림] 강사가 ChatGPT로 만든 그림 — 하늘색 지휘관 헬멧 · 노란 방화복 · 강사 얼굴(assets/drone2nd-ch4-kr.jpg). 이전 그림 drone2nd-ch4.jpg 는 그대로 둠.",
    "elements": [
     {
      "id": "4gwk7sm33",
@@ -25170,12 +25170,12 @@
      "y": 0,
      "w": 900,
      "h": 1080,
-     "src": "assets/drone2nd-ch4.jpg",
+     "src": "assets/drone2nd-ch4-kr.jpg",
      "fit": "cover",
      "radius": 0,
      "shadow": false,
      "cropX": 50,
-     "cropY": 50
+     "cropY": 35
     },
     {
      "id": "darqtyxa6",
