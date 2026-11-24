@@ -4,7 +4,7 @@
  "transition": "fade",
  "decor": "none",
  "created": "2026-11-18T22:18:05.000Z",
- "modified": "2026-11-24T20:37:20.000Z",
+ "modified": "2026-11-24T20:41:51.608Z",
  "colors": {
   "bg": "#FFFFFF",
   "fg": "#334155",
@@ -1169,7 +1169,7 @@
      "y": 552,
      "w": 350,
      "h": 150,
-     "html": "<b style=\"color:#0F172A\">드론 실기평가조종자</b><br><b style=\"color:#0F172A\">드론정비사 1급</b><br>육상무선통신사",
+     "html": "<span style=\"color:#0F172A\"><b>드론 실기평가조종자</b></span><br><span style=\"color:#0F172A\">드론정비사 1급</span><br>육상무선통신사",
      "style": {
       "fontSize": 22,
       "color": "#334155",
@@ -1232,7 +1232,7 @@
      "y": 552,
      "w": 350,
      "h": 150,
-     "html": "응급구조사 1급<br>인명구조사 2급<br>수상구조사 1급<br>잠수기능사",
+     "html": "<b><span style=\"background-color: rgb(253, 230, 138)\">응급구조사 1급</span><br>인명구조사 2급<br>수상구조사 1급</b><br><b>잠수기능사</b>",
      "style": {
       "fontSize": 22,
       "color": "#334155",
