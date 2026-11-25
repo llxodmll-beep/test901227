@@ -4,7 +4,7 @@
  "transition": "fade",
  "decor": "none",
  "created": "2026-11-18T22:18:05.000Z",
- "modified": "2026-11-25T03:06:40.380Z",
+ "modified": "2026-11-25T03:08:18.805Z",
  "colors": {
   "bg": "#FFFFFF",
   "fg": "#334155",
@@ -11373,7 +11373,7 @@
      "strokeWidth": 0,
      "radius": 46,
      "shadow": false,
-     "html": "\"제가 119 신고합니다! 스피커폰으로 켭니다!\"",
+     "html": "\"안경쓰신 분 119 신고해주세요! 스피커 폰 켜주세요!\"",
      "style": {
       "fontSize": 34,
       "color": "#1F3864",
