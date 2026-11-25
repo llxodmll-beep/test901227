@@ -4,7 +4,7 @@
  "transition": "fade",
  "decor": "none",
  "created": "2026-11-18T22:18:05.000Z",
- "modified": "2026-11-25T00:38:52.000Z",
+ "modified": "2026-11-25T03:06:40.380Z",
  "colors": {
   "bg": "#FFFFFF",
   "fg": "#334155",
@@ -11175,7 +11175,7 @@
      "strokeWidth": 0,
      "radius": 46,
      "shadow": false,
-     "html": "\"주변 안전합니다!\"",
+     "html": "\"현장 안전확인!\"",
      "style": {
       "fontSize": 34,
       "color": "#1F3864",
@@ -11274,7 +11274,7 @@
      "strokeWidth": 0,
      "radius": 46,
      "shadow": false,
-     "html": "\"여보세요, 괜찮으세요?\"",
+     "html": "\"환자분, 괜찮으세요?\"",
      "style": {
       "fontSize": 34,
       "color": "#1F3864",
@@ -14836,7 +14836,7 @@
      "type": "shape",
      "shape": "rect",
      "x": 880,
-     "y": 643.0,
+     "y": 643,
      "w": 160,
      "h": 80,
      "fill": "#FFFFFF",
