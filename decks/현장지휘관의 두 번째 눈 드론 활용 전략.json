@@ -28712,7 +28712,7 @@
     "color": "#090D14"
    },
    "transition": "",
-   "notes": "[이착륙장] 현장 이착륙 패드와 운용 차량. 다음 장에서 5가지 기준.\n[디자인] 새 그림 전체 화면, 제목은 위쪽 하늘(잘 보이게). 클릭① 콘을 잇는 '안전지대 최소 5m' 고리, 클릭② 다음 장 5가지 기준 예고 칩.\n[그림] 강사가 ChatGPT로 만든 그림(assets/drone2nd-lz-hq.jpg). 원래 사진(assets/drone2nd-lzphoto.jpg)은 그대로 둠.",
+   "notes": "[이착륙장] 현장 이착륙 패드와 운용 차량. 다음 장에서 5가지 기준.\n[디자인] 새 그림 전체 화면, 제목은 위쪽 하늘(잘 보이게). 클릭① 콘을 잇는 '안전지대 최소 5m' 고리, 클릭② 다음 장 5가지 기준 예고 칩.\n[그림] 강사가 ChatGPT로 만든 그림(assets/drone2nd-lz-hq2.jpg). 원래 사진(assets/drone2nd-lzphoto.jpg)은 그대로 둠.",
    "elements": [
     {
      "id": "s50img",
@@ -28725,7 +28725,7 @@
      "y": 0,
      "w": 1920,
      "h": 1080,
-     "src": "assets/drone2nd-lz-hq.jpg",
+     "src": "assets/drone2nd-lz-hq2.jpg",
      "fit": "cover",
      "radius": 0,
      "shadow": false
@@ -28895,8 +28895,8 @@
      "opacity": 0.92,
      "type": "shape",
      "shape": "rect",
-     "x": 1521,
-     "y": 580,
+     "x": 600,
+     "y": 742,
      "w": 250,
      "h": 46,
      "fill": "#090D14",
