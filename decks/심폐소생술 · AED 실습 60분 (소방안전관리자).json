@@ -4,7 +4,7 @@
  "transition": "fade",
  "decor": "none",
  "created": "2026-11-18T22:18:05.000Z",
- "modified": "2026-11-25T03:08:18.805Z",
+ "modified": "2026-11-25T03:08:48.690Z",
  "colors": {
   "bg": "#FFFFFF",
   "fg": "#334155",
@@ -11934,7 +11934,7 @@
      "strokeWidth": 0,
      "radius": 46,
      "shadow": false,
-     "html": "\"AED 왔네요! 가슴압박 이어서 해 주세요!\"",
+     "html": "\"AED 도착! 가슴압박 이어서 해 주세요!\"",
      "style": {
       "fontSize": 34,
       "color": "#1F3864",
