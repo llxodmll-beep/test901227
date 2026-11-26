@@ -5,7 +5,6 @@
 /* ---------- 테마 ---------- */
 .ts-slide {
   --font: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Noto Sans CJK KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
-  --head: 'Noto Serif KR', 'Nanum Myeongjo', 'Batang', serif; /* 제목: 명조 */
   --mono: 'JetBrains Mono', 'SFMono-Regular', ui-monospace, Consolas, 'Noto Sans KR', monospace;
   --bg: #06101E; --bg2: #0B1B33; --fg: #EAF0F8; --title: #FFFFFF; --muted: #93A4BC;
   --line: rgba(255, 255, 255, .14); --card: rgba(11, 27, 51, .58); --card-line: rgba(255, 255, 255, .13);
@@ -65,7 +64,7 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
 .ts-head { flex: none; margin-bottom: 40px; max-width: 1560px; }
 .ts-kicker { display: flex; align-items: center; gap: 16px; font-size: 23px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; }
 .ts-kicker i { display: block; width: 44px; height: 4px; background: var(--accent); border-radius: 2px; }
-.ts-title { font-family: var(--head); font-size: 72px; font-weight: 700; line-height: 1.2; letter-spacing: -.03em; color: var(--title); text-wrap: balance; }
+.ts-title { font-size: 72px; font-weight: 600; line-height: 1.18; letter-spacing: -.035em; color: var(--title); text-wrap: balance; }
 .ts-lead { margin-top: 20px; font-size: 34px; font-weight: 400; color: var(--muted); line-height: 1.45; text-wrap: pretty; }
 .ts-main { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
 .ts-fit { width: 100%; }
@@ -91,7 +90,7 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ---------- 장 구분 ---------- */
 .L-section .ts-body { justify-content: center; }
-.L-section .ts-num { font-family: var(--mono); font-size: 300px; font-weight: 800; line-height: .9; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 3px var(--accent); margin-left: -8px; opacity: .95; }
+.L-section .ts-num { font-family: var(--mono); font-size: 300px; font-weight: 600; line-height: .9; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 3px var(--accent); margin-left: -8px; opacity: .95; }
 .L-section .ts-title { font-size: 112px; margin-top: 26px; max-width: 1400px; }
 .L-section .ts-lead { font-size: 38px; margin-top: 26px; max-width: 1200px; }
 .L-section .ts-stairs { position: absolute; right: 110px; bottom: 150px; width: 520px; height: 360px; color: var(--title); opacity: .38; }
@@ -107,7 +106,7 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
 .L-bullets .ts-item { display: flex; gap: 34px; align-items: baseline; padding: 20px 0; border-top: 1px solid var(--line); }
 .L-bullets .ts-item:last-child { border-bottom: 1px solid var(--line); }
 .L-bullets .ts-item .n { flex: none; width: 84px; font-family: var(--mono); font-size: 32px; font-weight: 700; color: var(--accent); }
-.L-bullets .ts-item .t { font-size: 46px; font-weight: 700; color: var(--title); letter-spacing: -.02em; line-height: 1.25; }
+.L-bullets .ts-item .t { font-size: 46px; font-weight: 600; color: var(--title); letter-spacing: -.02em; line-height: 1.25; }
 .L-bullets .ts-item .d { margin-top: 6px; font-size: 31px; color: var(--muted); }
 
 /* ---------- 숫자 ---------- */
@@ -115,7 +114,7 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
 .L-stat .ts-stat { padding: 46px 40px 44px; min-height: 420px; position: relative; overflow: hidden; }
 .L-stat .ts-stat::before { content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--accent), transparent); }
 .L-stat .ts-stat .k { font-family: var(--mono); font-size: 24px; font-weight: 700; letter-spacing: .16em; color: var(--accent); }
-.L-stat .ts-stat .v { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; font-size: 150px; font-weight: 800; line-height: 1; letter-spacing: -.05em; color: var(--title); font-variant-numeric: tabular-nums; }
+.L-stat .ts-stat .v { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; font-size: 150px; font-weight: 600; line-height: 1; letter-spacing: -.05em; color: var(--title); font-variant-numeric: tabular-nums; }
 .L-stat .ts-stats[style*="--n:4"] .v { font-size: 128px; }
 .L-stat .ts-stats[style*="--n:1"] { grid-template-columns: minmax(0, 1100px); }
 .L-stat .ts-stats[style*="--n:1"] .ts-stat { min-height: 0; padding: 54px 60px; }
@@ -123,14 +122,14 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
 .L-stat .ts-stats[style*="--n:1"] .t { font-size: 44px; }
 .L-stat .ts-stats[style*="--n:1"] .d { font-size: 32px; }
 .L-stat .ts-stat .v small { font-size: .36em; font-weight: 700; letter-spacing: -.01em; color: var(--accent); }
-.L-stat .ts-stat .t { margin-top: 26px; font-size: 38px; line-height: 1.25; font-weight: 700; color: var(--title); }
+.L-stat .ts-stat .t { margin-top: 26px; font-size: 38px; line-height: 1.25; font-weight: 600; color: var(--title); }
 .L-stat .ts-stat .d { margin-top: 10px; font-size: 28px; color: var(--muted); }
 
 /* ---------- 카드 ---------- */
 .L-cards .ts-cards { display: grid; gap: 26px; grid-template-columns: repeat(var(--n, 3), 1fr); }
 .L-cards .ts-cardi { padding: 44px 40px 46px; min-height: 460px; display: flex; flex-direction: column; }
 .L-cards .ts-cardi .k { align-self: flex-start; font-family: var(--mono); font-size: 24px; font-weight: 700; letter-spacing: .04em; color: var(--accent-ink); background: var(--accent); padding: 5px 14px; border-radius: 8px; }
-.L-cards .ts-cardi .t { margin-top: 32px; font-size: 46px; font-weight: 800; color: var(--title); letter-spacing: -.025em; line-height: 1.22; }
+.L-cards .ts-cardi .t { margin-top: 32px; font-size: 46px; font-weight: 600; color: var(--title); letter-spacing: -.025em; line-height: 1.22; }
 .L-cards .ts-cardi .d { margin-top: 20px; font-size: 30px; color: var(--fg); opacity: .86; line-height: 1.5; }
 
 /* ---------- 좌우(글 + 그림) ---------- */
@@ -154,7 +153,7 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
 .L-steps .ts-steps { display: grid; gap: 22px; grid-template-columns: repeat(var(--n, 4), 1fr); align-items: end; }
 .L-steps .ts-step { padding: 32px 30px 36px; min-height: 250px; margin-bottom: calc(var(--idx) * var(--lift, 52px)); position: relative; }
 .L-steps .ts-step .n { font-family: var(--mono); font-size: 24px; font-weight: 700; letter-spacing: .16em; color: var(--accent); }
-.L-steps .ts-step .t { margin-top: 16px; font-size: 40px; font-weight: 800; color: var(--title); letter-spacing: -.02em; line-height: 1.22; }
+.L-steps .ts-step .t { margin-top: 16px; font-size: 40px; font-weight: 600; color: var(--title); letter-spacing: -.02em; line-height: 1.22; }
 .L-steps .ts-step .d { margin-top: 12px; font-size: 28px; color: var(--muted); line-height: 1.45; }
 .L-steps .ts-step.last { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 24px 70px var(--glow); }
 .L-steps .ts-step.last .t { color: var(--accent); }
@@ -163,7 +162,7 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
 .L-compare .ts-cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 .L-compare .ts-side { padding: 50px 52px 56px; min-height: 480px; }
 .L-compare .ts-side .k { font-size: 24px; font-weight: 700; letter-spacing: .12em; color: var(--muted); }
-.L-compare .ts-side .t { margin-top: 12px; font-size: 58px; font-weight: 800; color: var(--title); letter-spacing: -.025em; }
+.L-compare .ts-side .t { margin-top: 12px; font-size: 58px; font-weight: 600; color: var(--title); letter-spacing: -.025em; }
 .L-compare .ts-side ul { margin-top: 26px; display: flex; flex-direction: column; gap: 18px; }
 .L-compare .ts-side li { position: relative; padding-left: 32px; font-size: 34px; line-height: 1.42; }
 .L-compare .ts-side li::before { content: ''; position: absolute; left: 0; top: .6em; width: 14px; height: 3px; background: var(--muted); }
@@ -185,7 +184,7 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
 .L-agenda .ts-row .k { flex: none; width: 170px; font-family: var(--mono); font-size: 34px; font-weight: 700; color: var(--accent); letter-spacing: .04em; }
 .L-agenda .ts-row .dot { flex: none; width: 70px; position: relative; align-self: stretch; }
 .L-agenda .ts-row .dot::before { content: ''; position: absolute; left: 18px; top: .55em; width: 18px; height: 12px; border: 3px solid var(--accent); border-radius: 3px; background: var(--bg); }
-.L-agenda .ts-row .t { font-size: 48px; font-weight: 700; color: var(--title); letter-spacing: -.02em; }
+.L-agenda .ts-row .t { font-size: 48px; font-weight: 600; color: var(--title); letter-spacing: -.02em; }
 .L-agenda .ts-row .d { margin-top: 6px; font-size: 31px; color: var(--muted); }
 
 /* ---------- 표 ---------- */
@@ -263,5 +262,3 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
   .ts-print .ts-card { -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 
-/* 항목 제목도 명조로 (숫자 · 꼬리표 · 설명은 고딕) */
-.L-bullets .ts-item .t, .L-cards .ts-cardi .t, .L-steps .ts-step .t, .L-compare .ts-side .t, .L-agenda .ts-row .t, .L-quote .ts-title { font-family: var(--head); font-weight: 700; }
