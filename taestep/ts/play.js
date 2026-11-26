@@ -6,17 +6,21 @@
 (async () => {
   const $ = id => document.getElementById(id);
   const q = new URLSearchParams(location.search); const id = q.get('deck') || '';
-  const deck = id ? await TSStore.load(id) : null;
+  const ALONE = !!window.TS_DECK, EMBED = !!q.get('embed') && window.parent !== window; // 단독 HTML · 편집 화면 안에서 띄운 발표
+  const deck = window.TS_DECK || (id ? await TSStore.load(id) : null);
   if (!deck || !Array.isArray(deck.slides) || !deck.slides.length) { document.body.innerHTML = '<div class="empty-page"><h1>교안을 찾지 못했습니다</h1><p><a href="./">목록으로 돌아가기</a></p></div>'; return; }
   document.title = deck.title + ' — TAESTEP';
   const S = deck.slides, N = S.length;
-  const ch = 'BroadcastChannel' in window ? new BroadcastChannel('taestep:' + id) : null;
-  const back = () => { location.href = q.get('from') === 'studio' ? `studio.html?deck=${encodeURIComponent(id)}${location.hash}` : './'; };
+  const ch = 'BroadcastChannel' in window && !ALONE ? new BroadcastChannel('taestep:' + id) : null;
+  const back = () => { if (ALONE) return; if (EMBED) return parent.postMessage({ type: 'taestep-play-close', slide: cur + 1 }, location.origin); location.href = q.get('from') === 'studio' ? `studio.html?deck=${encodeURIComponent(id)}${location.hash}` : './'; };
+  let cur = -1, step = 0;
 
   /* ---------- PDF 인쇄 ---------- */
   if (q.get('print')) {
-    document.body.className = 'ts-print'; document.body.innerHTML = '';
-    S.forEach((s, i) => { const el = TS.slideEl(deck, s, i, N); document.body.appendChild(el); TS.fit(el); });
+    const notes = q.get('print') === 'notes'; document.body.className = notes ? 'ts-handout' : 'ts-print'; document.body.innerHTML = '';
+    const st = document.createElement('style'); st.textContent = notes ? '@page { size: A4 portrait; margin: 0; }' : '@page { size: 1920px 1080px; margin: 0; }'; document.head.appendChild(st);
+    if (notes) S.forEach((s, i) => { const pg = document.createElement('section'); pg.className = 'ho-page'; pg.innerHTML = `<header><b>${TS.E(deck.title || '')}</b><span>${i + 1} / ${N}${s.time ? ' · ' + TS.E(s.time) : ''}</span></header><div class="ho-pic"></div><h4>발표 노트</h4><div class="ho-notes">${TS.E(s.notes || '(노트 없음)')}</div>`; document.body.appendChild(pg); const h = pg.querySelector('.ho-pic'); const el = TS.slideEl(deck, s, i, N); h.appendChild(el); TS.fit(el); el.style.zoom = h.clientWidth / 1920; });
+    else S.forEach((s, i) => { const el = TS.slideEl(deck, s, i, N); document.body.appendChild(el); TS.fit(el); });
     const imgs = [...new Set(S.flatMap(s => [s.bg && s.bg.src, s.image && s.image.src]).filter(x => x && !TS.isVideo(x)))];
     await Promise.all(imgs.map(src => new Promise(r => { const im = new Image(); im.onload = im.onerror = r; im.src = src; })));
     if (document.fonts && document.fonts.ready) await document.fonts.ready;
@@ -54,7 +58,6 @@
   const scale = () => { const k = Math.min(innerWidth / 1920, innerHeight / 1080); stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px, ${(innerHeight - 1080 * k) / 2}px) scale(${k})`; };
   scale(); addEventListener('resize', scale);
 
-  let cur = -1, step = 0;
   const stepsOf = el => Math.max(0, ...[...el.querySelectorAll('[data-step]')].map(x => +x.dataset.step));
   const tell = () => { if (ch) ch.postMessage({ type: 'state', cur, step }); };
   function show(n, fromBack) {
@@ -71,6 +74,7 @@
     setTimeout(() => { if (cur === n) TS.countUp(fromBack ? el : { querySelectorAll: s => [...el.querySelectorAll(s)].filter(x => !x.closest('[data-step]')) }); }, 450);
     $('pgNow').textContent = n + 1; $('notesText').textContent = S[n].notes || '(노트 없음)';
     try { history.replaceState(null, '', '#' + (n + 1)); } catch (e) { }
+    if (EMBED) parent.postMessage({ type: 'taestep-play-slide', slide: n + 1 }, location.origin);
     tell();
   }
   function next() {
@@ -113,7 +117,7 @@
     else if (k === 'Home') show(0); else if (k === 'End') show(N - 1);
     else if (k === 'f' || k === 'F') full(); else if (k === 'g' || k === 'G') overview(); else if (k === 'n' || k === 'N') notes();
     else if (k === 'p' || k === 'P') presenter(); else if (k === 'b' || k === 'B' || k === '.') document.body.classList.toggle('blackout');
-    else if (k === 'Escape') { if (!$('notes').hidden) notes(); else if (!document.fullscreenElement) back(); }
+    else if (k === 'Escape') { if (!$('notes').hidden) notes(); else if (!document.fullscreenElement || EMBED) back(); }
   });
   wrap.addEventListener('click', e => { if (e.clientX < innerWidth * .22) prev(); else next(); });
   let tx = 0, ty = 0;

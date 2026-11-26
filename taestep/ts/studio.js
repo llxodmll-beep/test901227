@@ -6,31 +6,66 @@
   const $ = id => document.getElementById(id);
   const E = TS.E;
   const q = new URLSearchParams(location.search); const id = q.get('deck') || '';
-  let deck = id ? await TSStore.load(id) : null;
-  if (!deck) { document.body.innerHTML = '<div class="empty-page"><h1>교안을 찾지 못했습니다</h1><p><a href="./">목록으로 돌아가기</a></p></div>'; return; }
+  /* ---------- 알림 · 창 ---------- */
+  let toastT = 0;
+  const toast = (t, bad, ms) => { const o = $('toast'); o.textContent = t; o.className = 'toast' + (bad ? ' bad' : ''); o.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => { o.hidden = true; }, ms || 3600); };
+  let sticky = false; // 꼭 골라야 하는 창은 바깥을 눌러도 · Esc 로도 닫히지 않음
+  const modal = (html, cls, keep) => { const m = $('modal'); sticky = !!keep; m.innerHTML = `<div class="sheet ${cls || ''}">${html}</div>`; m.hidden = false; m.onclick = e => { if (e.target === m && !sticky) closeModal(); }; return m.firstChild; };
+  const closeModal = () => { sticky = false; $('modal').hidden = true; $('modal').innerHTML = ''; };
+  const whenFull = iso => { const d = new Date(iso); return !iso || isNaN(d) ? '알 수 없음' : d.toLocaleString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' }); };
+  const whenShort = iso => { const d = new Date(iso); if (!iso || isNaN(d)) return ''; return d.toDateString() === new Date().toDateString() ? d.toLocaleTimeString('ko-KR', { hour: 'numeric', minute: '2-digit' }) : d.toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' }); };
+
+  /* ---------- 열기: 저장 안 한 작업본이 남아 있으면 어느 쪽으로 열지 묻는다 (고르지 않은 쪽은 보관함에 30일) ---------- */
+  const opened = id ? await TSStore.open(id) : { repo: null, draft: null };
+  if (!opened.repo && !opened.draft) { document.body.innerHTML = '<div class="empty-page"><h1>교안을 찾지 못했습니다</h1><p><a href="./">목록으로 돌아가기</a></p></div>'; return; }
+  const chooseCopy = (repo, draft) => new Promise(done => {
+    const newer = (draft.modified || '') > (repo.modified || ''); const n = TSStore.diff(repo, draft); const foreign = draft._base !== undefined && (draft._base || '') !== (repo.modified || '');
+    const card = (k, name, sub, lab, t, cnt, btn, rec) => `<div class="cp-card${rec ? ' rec' : ''}"><div class="cp-name">${name}${rec ? '<span>더 최근</span>' : ''}</div><div class="cp-sub">${sub}</div><div class="cp-row"><span>${lab}</span><b>${whenFull(t)}</b></div><div class="cp-row"><span>장 수</span><b>${cnt}장</b></div><div class="cp-pic" data-pic="${k}"></div><button class="btn ${rec ? 'pri' : 'ghost'} wide" data-pick="${k}">${btn}</button></div>`;
+    const sh = modal(`<h3>저장하지 않은 작업본이 이 기기에 남아 있습니다</h3><p>지난번에 이 교안을 고친 뒤 저장하지 않고 나갔습니다. 어느 쪽으로 열지 골라 주세요. <b>어느 쪽을 골라도 다른 쪽은 지워지지 않습니다.</b></p>
+      <div class="cp-cards">${card('draft', '저장하지 않은 작업본', '이 기기에만 있습니다', '마지막으로 고친 때', draft.modified, (draft.slides || []).length, '이 작업본 이어서 하기', newer)}${card('repo', '저장된 교안', 'GitHub 저장소', '저장한 때', repo.modified, (repo.slides || []).length, '저장된 교안으로 열기', !newer)}</div>
+      <p class="muted">두 교안은 <b>${n}장</b>이 다릅니다.${foreign ? ' <b class="warn-t">이 작업본을 만든 뒤에 저장된 교안이 다른 곳에서 바뀌었습니다 — 작업본을 이어서 하고 저장하면 그쪽 내용을 덮어쓸지 다시 묻습니다.</b>' : ''}</p>
+      <p class="muted small">고르지 않은 작업본은 [내보내기] → [저장 이력 · 보관된 작업본] 에 30일 동안 남습니다.</p>`, 'wide', true);
+    [['draft', draft], ['repo', repo]].forEach(([k, d]) => { const h = sh.querySelector(`[data-pic="${k}"]`); const diffAt = (d.slides || []).findIndex((x, i) => JSON.stringify(x) !== JSON.stringify(((k === 'draft' ? repo : draft).slides || [])[i])); const i = Math.max(0, diffAt); if (d.slides && d.slides[i]) TS.thumb(d, d.slides[i], i, d.slides.length, h); });
+    sh.onclick = e => { const b = e.target.closest('[data-pick]'); if (b) { closeModal(); done(b.dataset.pick); } };
+  });
+  let deck, startDirty = false, openNote = '';
+  { const { repo, draft } = opened;
+    if (!draft) deck = repo;
+    else if (!repo) { deck = draft; startDirty = !draft._synced; }
+    else if (draft._synced) deck = draft; // 저장했고 배포를 기다리는 사본
+    else if ((await chooseCopy(repo, draft)) === 'draft') { deck = draft; startDirty = true; if (deck._base === undefined) deck._base = (draft.modified || '') > (repo.modified || '') ? (repo.modified || '') : ''; openNote = '저장하지 않은 작업본을 불러왔습니다 — 확인한 뒤 [저장] 을 눌러 주세요'; }
+    else { await TSStore.keepPut(draft, '다시 열 때 저장된 교안을 고름'); await TSStore.draftDel(id); deck = repo; openNote = '저장된 교안으로 열었습니다 · 작업본은 [내보내기] → [저장 이력 · 보관된 작업본] 에 30일 남습니다'; }
+  }
+  let base = deck._base !== undefined ? deck._base : (opened.repo ? (deck === opened.repo ? opened.repo.modified || '' : deck.modified || '') : ''); // 내가 불러온(마지막으로 저장한) 저장본의 저장 시각
+  if (deck._synced) base = deck.modified || base;
+  const neverSaved = () => !base;
   deck.id = id; deck.slides = Array.isArray(deck.slides) && deck.slides.length ? deck.slides : [TS.blank('cover')];
   deck.slides.forEach(s => { if (!s.id) s.id = TS.uid(); });
   let cur = Math.min(deck.slides.length - 1, Math.max(0, (parseInt(location.hash.slice(1), 10) || 1) - 1));
-  let tab = 'content', dirty = false;
+  let tab = 'content', dirty = false, rev = 0, saving = null, leaving = false, quotaWarned = false, offlinePending = false, autoT = 0;
   let hist = [JSON.stringify(deck)], hi = 0, histT = 0, draftT = 0, viewT = 0, railT = 0;
   const S = () => deck.slides[cur];
-
-  /* ---------- 알림 · 창 ---------- */
-  let toastT = 0;
-  const toast = (t, bad) => { const o = $('toast'); o.textContent = t; o.className = 'toast' + (bad ? ' bad' : ''); o.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => { o.hidden = true; }, 3600); };
-  const modal = (html, cls) => { const m = $('modal'); m.innerHTML = `<div class="sheet ${cls || ''}">${html}</div>`; m.hidden = false; m.onclick = e => { if (e.target === m) closeModal(); }; return m.firstChild; };
-  const closeModal = () => { $('modal').hidden = true; $('modal').innerHTML = ''; };
+  const autoOn = () => { try { return localStorage.getItem('taestep:autosave') === '1'; } catch (e) { return false; } };
 
   /* ---------- 바뀜 처리 · 되돌리기 ---------- */
-  const state = () => { $('state').textContent = dirty ? '저장 안 된 변경 있음 (이 기기에 보관 중)' : '저장됨'; $('state').classList.toggle('warn', dirty); };
+  function state() {
+    const el = $('state'); const c = TSStore.repo();
+    el.textContent = saving ? '저장 중…' : dirty ? (neverSaved() ? '저장 안 됨 · 이 기기에만 있음' : '저장 안 됨') : base ? '저장됨 · ' + whenShort(base) : '저장됨';
+    el.title = dirty ? `저장하지 않은 변경이 있습니다 — [저장] 또는 Ctrl+S\n고친 내용은 이 기기에 작업본으로 보관 중입니다.${base ? `\n마지막 저장: ${whenFull(base)}` : ''}` : `마지막 저장: ${whenFull(base)}\n저장 위치: GitHub 저장소 ${c.owner}/${c.repo} (taestep/decks)`;
+    el.className = 'state' + (saving ? ' busy' : dirty ? ' warn' : ''); $('btSave').classList.toggle('need', dirty && !saving);
+    document.title = (dirty ? '● ' : '') + (deck.title || '') + ' — TAESTEP 편집';
+  }
+  /* 작업본을 이 기기에 남김. 공간이 모자라면 한 번 알림 */
+  const putDraft = () => TSStore.draftPut(deck).then(ok => { if (!ok && !quotaWarned) { quotaWarned = true; toast('이 기기의 보관 공간이 부족해 작업본을 남기지 못했습니다 — 창을 닫기 전에 꼭 [저장] 하거나 [내보내기] → [교안 파일] 로 내려받아 주세요', true, 10000); } return ok; });
   function mark() {
-    dirty = true; deck.modified = new Date().toISOString(); state();
-    clearTimeout(draftT); draftT = setTimeout(() => TSStore.draftPut(deck), 500);
+    dirty = true; rev++; delete deck._synced; deck._base = base; deck.modified = new Date().toISOString(); state();
+    clearTimeout(draftT); draftT = setTimeout(putDraft, 500);
     clearTimeout(histT); histT = setTimeout(snapshot, 450);
+    clearTimeout(autoT); if (autoOn()) autoT = setTimeout(() => { if (dirty && !saving && TSStore.repo().token && navigator.onLine !== false && !TSEdit.editing() && $('modal').hidden) save({ quiet: true }); }, 30000);
   }
   function snapshot() { clearTimeout(histT); const j = JSON.stringify(deck); if (j === hist[hi]) return; hist = hist.slice(0, hi + 1); hist.push(j); if (hist.length > 80) hist.shift(); hi = hist.length - 1; }
   function changed(structure) { mark(); if (structure) { rail(); view(); } else { clearTimeout(viewT); viewT = setTimeout(() => { view(); railOne(cur); }, 120); } }
-  function restore(n) { hi = n; deck = JSON.parse(hist[hi]); deck.id = id; cur = Math.min(cur, deck.slides.length - 1); dirty = true; state(); TSStore.draftPut(deck); $('deckTitle').value = deck.title || ''; TSEdit.select([]); rail(); view(); panel(); }
+  function restore(n) { hi = n; deck = JSON.parse(hist[hi]); deck.id = id; delete deck._synced; deck._base = base; deck.modified = new Date().toISOString(); cur = Math.min(cur, deck.slides.length - 1); dirty = true; rev++; state(); putDraft(); $('deckTitle').value = deck.title || ''; TSEdit.select([]); rail(); view(); panel(); }
   function undo() { snapshot(); if (hi < 1) { toast('되돌릴 내용이 없습니다'); return; } restore(hi - 1); }
   function redo() { if (hi >= hist.length - 1) { toast('다시 실행할 내용이 없습니다'); return; } restore(hi + 1); }
 
@@ -271,13 +306,51 @@
   }
 
   /* ---------- 교안 설정 · 내보내기 ---------- */
-  const loadScript = src => new Promise((res, rej) => { if (document.querySelector(`script[src="${src}"]`)) return res(); const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
-  async function exportPptx() {
-    toast('PPTX 를 만드는 중…');
-    try { await loadScript('ts/vendor/pptxgen.bundle.js'); await loadScript('ts/pptx.js'); await TSPptx.save(deck, t => toast(t)); toast('PPTX 를 내려받았습니다'); }
-    catch (e) { console.error(e); toast('PPTX 를 만들지 못했습니다: ' + (e.message || e), true); }
+  /* 글을 고치는 중이면 그 글부터 확정 (나가기 · 저장 · 내보내기 전에) */
+  const flushEdit = async () => { const a = document.activeElement; if (a && (a.isContentEditable || /^(INPUT|TEXTAREA)$/.test(a.tagName))) { a.blur(); await new Promise(r => setTimeout(r, 40)); } snapshot(); };
+  let busyExport = false;
+  async function doExport(kind) {
+    if (busyExport) return; busyExport = true; await flushEdit();
+    try { if (dirty || kind === 'pdf' || kind === 'handout') await putDraft(); // 인쇄 화면은 이 기기의 작업본을 읽는다 → 지금 화면 그대로
+      toast(TSExport.ITEMS.find(x => x[0] === kind)[1] + ' 만드는 중…', false, 120000);
+      await TSExport.run(kind, deck, t => toast(t, false, 120000)); toast(TSExport.DONE[kind], false, 6000);
+    } catch (e) { console.error(e); toast('내보내지 못했습니다: ' + (e.message || e), true, 9000); }
+    busyExport = false;
   }
-  const printPdf = async () => { await TSStore.draftPut(deck); window.open(`play.html?deck=${encodeURIComponent(id)}&print=1`, '_blank'); };
+  const printPdf = () => doExport('pdf');
+  function importFile() {
+    const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json,application/json';
+    inp.onchange = async () => { const f = inp.files[0]; if (!f) return; try { const d = JSON.parse(await f.text()); if (!Array.isArray(d.slides)) throw 0; await TSStore.keepPut(deck, '파일에서 가져오기 전 모습'); d.id = id; delete d._synced; deck = d; cur = 0; $('deckTitle').value = deck.title || ''; TSEdit.select([]); changed(true); panel(); toast('가져왔습니다 — 이 교안의 내용이 바뀌었습니다. 직전 모습은 보관함에 30일 남고, [되돌리기] 로도 돌아갑니다', false, 8000); } catch (err) { toast('TAESTEP 교안 파일이 아닙니다', true); } };
+    inp.click();
+  }
+  /* [내보내기] 메뉴 */
+  const closeMenu = () => { $('menu').hidden = true; };
+  $('btExport').onclick = e => {
+    e.stopPropagation(); const m = $('menu'); if (!m.hidden) return closeMenu();
+    m.innerHTML = TSExport.ITEMS.map(([k, t, d]) => `<button data-x="${k}"><b>${t}</b><small>${d}</small></button>`).join('') + `<hr><button data-x="import"><b>파일에서 가져오기</b><small>내려받아 둔 교안 파일(.taestep.json)로 이 교안의 내용을 바꿉니다. 지금 모습은 보관함에 남습니다.</small></button><button data-x="history"><b>저장 이력 · 보관된 작업본</b><small>저장할 때마다 남은 이전 판을 미리 보고 되돌리기 · 고르지 않은 작업본 되살리기(30일)</small></button>`;
+    const r = $('btExport').getBoundingClientRect(); m.style.top = r.bottom + 6 + 'px'; m.style.right = Math.max(8, innerWidth - r.right) + 'px'; m.hidden = false;
+  };
+  $('menu').onclick = e => { const b = e.target.closest('button'); if (!b) return; closeMenu(); const k = b.dataset.x; if (k === 'import') importFile(); else if (k === 'history') historyModal(); else doExport(k); };
+  addEventListener('click', e => { if (!$('menu').hidden && !e.target.closest('#menu')) closeMenu(); });
+
+  /* 저장 이력(판) · 보관된 작업본 */
+  async function historyModal() {
+    await flushEdit();
+    const sh = modal(`<h3>저장 이력 · 보관된 작업본</h3><div class="sub-h" style="margin-top:0">보관된 작업본 <small>이 기기 · 30일</small></div><div id="hKept"><p class="muted small">불러오는 중…</p></div><div class="sub-h">저장 이력 <small>저장할 때마다 남은 판 (GitHub 저장소)</small></div><div id="hVer"><p class="muted small">불러오는 중…</p></div><div class="row end"><button class="btn ghost" id="mClose">닫기</button></div>`, 'wide');
+    sh.querySelector('#mClose').onclick = closeModal;
+    const useDeck = async (d, label) => { await TSStore.keepPut(deck, '다른 판을 불러오기 전 모습'); const x = JSON.parse(JSON.stringify(d)); x.id = id; delete x._synced; deck = x; cur = Math.min(cur, deck.slides.length - 1); $('deckTitle').value = deck.title || ''; TSEdit.select([]); closeModal(); changed(true); snapshot(); panel(); toast(`${label} 을(를) 불러왔습니다 — 확인한 뒤 [저장] 을 눌러야 저장소에 반영됩니다. 직전 모습은 보관함에 30일 남습니다`, false, 9000); };
+    const preview = (d, label, onUse) => { const pv = modal(`<h3>미리 보기 — ${E(label)}</h3><p class="muted">${(d.slides || []).length}장 · 지금 교안과 ${TSStore.diff(deck, d)}장이 다릅니다.</p><div class="lay-grid pv">${(d.slides || []).map((x, i) => `<div class="lay-item"><div class="pic"></div><span>${i + 1}</span></div>`).join('')}</div><div class="row end"><button class="btn ghost" id="pvBack">목록으로</button><button class="btn pri" id="pvUse">이 판으로 되돌리기</button></div>`, 'wide'); pv.querySelectorAll('.pic').forEach((h, i) => TS.thumb(d, d.slides[i], i, d.slides.length, h)); pv.querySelector('#pvBack').onclick = historyModal; pv.querySelector('#pvUse').onclick = onUse; };
+    const kept = await TSStore.keepList(id); const kb = sh.querySelector('#hKept'); if (!kb) return;
+    kb.innerHTML = kept.length ? kept.map((k, i) => `<div class="hrow" data-i="${i}"><div><b>${whenFull(k.at)}</b><small>${k.slides}장 · ${E(k.why || '')}</small></div><button class="tb" data-a="pv">미리 보기</button><button class="tb" data-a="use">되살리기</button><button class="tb danger" data-a="del">지우기</button></div>`).join('') : '<p class="muted small">보관된 작업본이 없습니다.</p>';
+    kb.onclick = async e => { const b = e.target.closest('button'); if (!b) return; const k = kept[+b.closest('.hrow').dataset.i]; const label = whenFull(k.at) + ' 작업본';
+      if (b.dataset.a === 'pv') preview(k.deck, label, () => useDeck(k.deck, label)); else if (b.dataset.a === 'use') useDeck(k.deck, label); else if (confirm('이 보관본을 지울까요? 지우면 되살릴 수 없습니다.')) { await TSStore.keepDel(k.key); historyModal(); } };
+    const vb = sh.querySelector('#hVer');
+    try { const vs = await TSStore.history(id); if (!sh.isConnected) return;
+      vb.innerHTML = vs.length ? vs.map((v, i) => `<div class="hrow" data-i="${i}"><div><b>${whenFull(v.at)}</b><small>${i === 0 ? '가장 최근 저장 · ' : ''}${E(v.msg)}</small></div><button class="tb" data-a="pv">미리 보기</button><button class="tb" data-a="use">이 판으로 되돌리기</button></div>`).join('') : '<p class="muted small">아직 저장한 적이 없습니다.</p>';
+      vb.onclick = async e => { const b = e.target.closest('button'); if (!b) return; const v = vs[+b.closest('.hrow').dataset.i]; const label = whenFull(v.at) + ' 저장 판'; b.disabled = true;
+        try { const d = await TSStore.version(id, v.sha); if (b.dataset.a === 'pv') preview(d, label, () => useDeck(d, label)); else useDeck(d, label); } catch (err) { b.disabled = false; toast('그 판을 불러오지 못했습니다: ' + err.message, true); } };
+    } catch (err) { if (vb.isConnected) vb.innerHTML = `<p class="muted small">저장 이력을 불러오지 못했습니다 (${E(err.message)}).</p>`; }
+  }
   $('btMore').onclick = () => {
     const sh = modal(`<h3>교안 설정</h3>
       <div class="grid2"><label class="f"><span>테마</span><select id="sTheme">${Object.entries(TS.THEMES).map(([k, v]) => `<option value="${k}"${(deck.theme || 'midnight') === k ? ' selected' : ''}>${v}</option>`).join('')}</select></label>
@@ -288,7 +361,8 @@
       <label class="f"><span>강의 시간(분)</span><input id="sMin" type="number" min="0" value="${+deck.minutes || ''}"></label></div>
       <label class="f"><span>아래 줄 문구 <small>비우면 교안 제목</small></span><input id="sFoot" value="${E(deck.footer || '')}"></label>
       <div class="f"><span>기본 배경 <small>그림을 고르지 않은 장 전체에 어둡게 깔립니다</small></span><div class="pick"><div class="pick-pic" style="${deck.bg && deck.bg.src ? `background-image:url('${deck.bg.src.replace(/'/g, '%27')}')` : ''}"></div><div class="pick-btn"><button class="btn ghost" id="sBg">그림 고르기</button>${deck.bg && deck.bg.src ? '<button class="btn ghost" id="sBgX">없애기</button>' : ''}</div></div></div>
-      <div class="sub-h">내보내기</div><div class="row"><button class="btn ghost" id="xPptx">PowerPoint(PPTX)</button><button class="btn ghost" id="xPdf">PDF 로 인쇄</button><button class="btn ghost" id="xJson">교안 파일</button><button class="btn ghost" id="xImp">파일에서 가져오기</button><input id="xFile" type="file" accept=".json,application/json" hidden></div>
+      <label class="chk"><input type="checkbox" id="sAuto"${autoOn() ? ' checked' : ''}> 자동 저장 — 손을 멈추고 30초 뒤 GitHub 저장소에 저장 (이 기기 설정)</label>
+      <p class="muted small">내보내기(PPTX · PDF · 단독 HTML · 교안 파일)는 위쪽 [내보내기] 단추에 있습니다.</p>
       <div class="row end"><button class="btn pri" id="mOk">확인</button></div>`);
     const set = (k, v) => { if ((deck[k] || '') !== v) { if (v === '' || v === 0) delete deck[k]; else deck[k] = v; changed(true); } };
     sh.querySelector('#sTheme').onchange = e => { set('theme', e.target.value); panel(); }; sh.querySelector('#sTr').onchange = e => set('transition', e.target.value);
@@ -298,11 +372,7 @@
     };
     sh.querySelector('#sBg').onclick = () => pickImage(src => { deck.bg = Object.assign({ motion: 'zoom-in', dim: .86 }, deck.bg, { src }); changed(true); panel(); toast('기본 배경을 바꿨습니다'); });
     const bx = sh.querySelector('#sBgX'); if (bx) bx.onclick = () => { delete deck.bg; closeModal(); changed(true); panel(); };
-    sh.querySelector('#xPptx').onclick = () => { closeModal(); exportPptx(); };
-    sh.querySelector('#xPdf').onclick = printPdf;
-    sh.querySelector('#xJson').onclick = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(deck, null, 1)], { type: 'application/json' })); a.download = id + '.taestep.json'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 3000); };
-    sh.querySelector('#xImp').onclick = () => sh.querySelector('#xFile').click();
-    sh.querySelector('#xFile').onchange = async e => { const f = e.target.files[0]; if (!f) return; try { const d = JSON.parse(await f.text()); if (!Array.isArray(d.slides)) throw 0; d.id = id; deck = d; cur = 0; $('deckTitle').value = deck.title || ''; closeModal(); changed(true); panel(); toast('가져왔습니다 — 이 교안의 내용이 바뀌었습니다 ([되돌리기] 가능)'); } catch (err) { toast('TAESTEP 교안 파일이 아닙니다', true); } };
+    sh.querySelector('#sAuto').onchange = e => { try { localStorage.setItem('taestep:autosave', e.target.checked ? '1' : '0'); } catch (err) { } toast(e.target.checked ? '자동 저장을 켰습니다 — 고친 뒤 30초 동안 손을 멈추면 저장소에 저장합니다' : '자동 저장을 껐습니다'); };
   };
 
   /* ---------- 저장 · 발표 ---------- */
@@ -310,24 +380,76 @@
     const sh = modal(`<h3>GitHub 연결</h3><p class="muted">[저장] 은 교안을 GitHub 저장소에 올립니다. 이 기기에서 처음이면 토큰을 한 번 넣어 주세요. 토큰은 이 기기에만 보관됩니다.</p>
       <label class="f"><span>토큰</span><input id="tk" type="password" placeholder="github_pat_…" autocomplete="off"></label>
       <p class="muted small">만드는 곳: github.com/settings/personal-access-tokens/new → 저장소 <b>${E(TSStore.repo().repo)}</b> 선택 → Repository permissions 의 <b>Contents: Read and write</b></p>
-      <div class="row end"><button class="btn ghost" id="mClose">취소</button><button class="btn pri" id="mOk">연결하고 저장</button></div>`);
-    sh.querySelector('#mClose').onclick = closeModal;
-    sh.querySelector('#mOk').onclick = () => { const v = sh.querySelector('#tk').value.trim(); if (!v) return; TSStore.setToken(v); closeModal(); then(); };
+      <div class="row end"><button class="btn ghost" id="mClose">취소</button><button class="btn pri" id="mOk">연결하고 저장</button></div>`, '', true);
+    sh.querySelector('#mClose').onclick = () => { closeModal(); then(false); };
+    sh.querySelector('#mOk').onclick = () => { const v = sh.querySelector('#tk').value.trim(); if (!v) return; TSStore.setToken(v); closeModal(); then(true); };
   }
-  let saving = false;
-  async function save() {
-    if (saving) return; saving = true; $('btSave').disabled = true;
-    try { await TSStore.save(deck, t => { $('state').textContent = t; }); dirty = false; state(); view(); panel(); toast('저장했습니다 — 다른 기기에는 1~2분 뒤(배포 후) 보입니다'); }
-    catch (e) { state(); if (e.code === 'notoken' || e.status === 401) { if (e.status === 401) TSStore.setToken(''); askToken(save); } else toast(e.message || '저장하지 못했습니다', true); }
-    saving = false; $('btSave').disabled = false;
+  /* 다른 곳에서 먼저 저장된 경우 */
+  const conflict = (remote, opt) => new Promise(done => {
+    const sh = modal(`<h3>이 교안이 다른 곳에서 먼저 저장되었습니다</h3><p>다른 기기나 다른 탭에서 <b>${whenFull(remote.modified)}</b> 에 저장했습니다. ${base ? `지금 화면은 그 전(${whenFull(base)}) 저장본에서 시작한 것입니다.` : ''} 두 교안은 <b>${TSStore.diff(deck, remote)}장</b>이 다릅니다.</p>
+      <div class="cp-cards"><div class="cp-card"><div class="cp-name">내 것으로 덮어쓰기</div><div class="cp-sub">지금 화면을 저장합니다. 그쪽에서 고친 내용은 저장 이력에 남아 되돌릴 수 있습니다.</div><button class="btn ghost wide" data-c="mine">내 것으로 덮어쓰기</button></div>
+      <div class="cp-card"><div class="cp-name">저장소 것 불러오기</div><div class="cp-sub">그쪽 저장본으로 엽니다. 내 것은 작업본으로 보관함에 30일 남습니다.</div><button class="btn ghost wide" data-c="theirs">저장소 것 불러오기</button></div></div>
+      <div class="row end"><button class="btn pri" data-c="cancel">취소 (저장하지 않음)</button></div>`, 'wide', true);
+    sh.onclick = async e => { const b = e.target.closest('[data-c]'); if (!b) return; closeModal(); const c = b.dataset.c;
+      if (c === 'mine') done(await save1(Object.assign({}, opt, { force: true })));
+      else if (c === 'theirs') { await TSStore.keepPut(deck, '다른 곳의 저장본을 불러오며 보관'); await TSStore.draftDel(id); deck = remote; deck.id = id; base = remote.modified || ''; cur = Math.min(cur, deck.slides.length - 1); dirty = false; rev++; hist = [JSON.stringify(deck)]; hi = 0; $('deckTitle').value = deck.title || ''; TSEdit.select([]); state(); rail(); view(); panel(); toast('저장소의 교안을 불러왔습니다 · 내 것은 [내보내기] → [저장 이력 · 보관된 작업본] 에 남겼습니다', false, 8000); done(true); }
+      else done(false); };
+  });
+  /* 저장: 끝나면 true. 저장 중에 또 고쳤으면 '저장 안 됨' 으로 남긴다 */
+  function save(opt) { if (saving) return saving; saving = (async () => { await flushEdit(); state(); return save1(opt || {}); })().finally(() => { saving = null; $('btSave').disabled = false; state(); }); $('btSave').disabled = true; state(); return saving; }
+  async function save1(opt) {
+    const r0 = rev; deck._base = base;
+    try {
+      await TSStore.save(deck, t => { $('state').textContent = t; }, { force: opt.force });
+      base = deck._base; offlinePending = false;
+      if (rev === r0) { dirty = false; deck._synced = true; await TSStore.draftPut(deck); } else putDraft(); // 배포(1~2분)가 끝날 때까지는 이 기기 사본으로 연다
+      view(); if (!P.contains(document.activeElement)) panel();
+      if (!opt.quiet) toast(rev === r0 ? '저장했습니다 — 다른 기기에는 1~2분 뒤(배포 후) 보입니다' : '저장했습니다 · 저장하는 동안 고친 내용은 아직 저장되지 않았습니다', false, 5000);
+      return true;
+    } catch (e) {
+      if (e.code === 'notoken' || e.status === 401) { if (e.status === 401) TSStore.setToken(''); if (opt.quiet) return false; return new Promise(res => askToken(async ok => res(ok ? await save1(opt) : false))); }
+      if (e.code === 'conflict') { if (opt.quiet) { toast('자동 저장을 멈췄습니다 — 다른 곳에서 먼저 저장되었습니다. [저장] 을 눌러 확인해 주세요', true, 9000); return false; } return conflict(e.remote, opt); }
+      if (e.code === 'offline') { await putDraft(); offlinePending = true; if (!opt.quiet) toast('인터넷에 연결되어 있지 않아 저장소에 올리지 못했습니다 — 고친 내용은 이 기기에 작업본으로 보관했습니다. 연결되면 알려 드립니다', true, 9000); return false; }
+      if (!opt.quiet) toast('저장하지 못했습니다: ' + (e.message || e), true, 9000); return false;
+    }
   }
-  $('btSave').onclick = save; $('btUndo').onclick = undo; $('btRedo').onclick = redo;
-  const play = async () => { await TSStore.draftPut(deck); location.href = `play.html?deck=${encodeURIComponent(id)}&from=studio#${cur + 1}`; };
+  addEventListener('online', () => { if (dirty || offlinePending) { if (autoOn() && TSStore.repo().token) save({ quiet: true }).then(ok => ok && toast('인터넷에 다시 연결되어 자동으로 저장했습니다')); else toast('인터넷에 다시 연결됐습니다 — [저장] 을 눌러 저장소에 올리세요', false, 9000); } });
+  addEventListener('offline', () => toast('인터넷 연결이 끊겼습니다 — 고친 내용은 이 기기에 작업본으로 보관됩니다', true, 6000));
+  $('btSave').onclick = () => save(); $('btUndo').onclick = undo; $('btRedo').onclick = redo;
+
+  /* ---------- 나갈 때: 저장 안 한 변경이 있으면 묻는다 ---------- */
+  const go = url => { leaving = true; location.href = url; };
+  async function leave(url) {
+    await flushEdit(); if (!dirty) return go(url); await putDraft();
+    const has = !!TSStore.repo().token;
+    const sh = modal(`<h3>저장하지 않은 변경이 있습니다</h3><p>저장하지 않고 나가도 고친 내용은 <b>이 기기에 작업본으로 남아</b>, 다음에 이 교안을 열 때 이어서 할지 묻습니다. 다만 다른 기기에서는 보이지 않습니다.</p>
+      ${has ? '' : '<p class="warn-t">이 기기는 GitHub 에 연결되어 있지 않아 저장소에 저장할 수 없습니다. 연결한 뒤 저장하거나, 교안 파일로 내려받아 두세요.</p>'}
+      <div class="row end leave">${has ? '<button class="btn pri" data-l="save">저장하고 나가기</button>' : '<button class="btn pri" data-l="save">GitHub 연결하고 저장</button><button class="btn ghost" data-l="file">교안 파일로 내려받고 나가기</button>'}<button class="btn ghost" data-l="go">저장하지 않고 나가기</button><button class="btn ghost" data-l="stay">계속 편집</button></div>`, '', true);
+    sh.onclick = async e => { const b = e.target.closest('[data-l]'); if (!b) return; const k = b.dataset.l; closeModal();
+      if (k === 'save') { const ok = await save(); if (ok && !dirty) go(url); else if (!ok) toast('저장하지 못해 나가지 않았습니다 — 위 알림을 확인해 주세요', true, 7000); }
+      else if (k === 'file') { await TSExport.run('json', deck); setTimeout(() => go(url), 600); }
+      else if (k === 'go') go(url); };
+  }
+  document.querySelectorAll('a.brand, #btHome').forEach(a => a.addEventListener('click', e => { e.preventDefault(); leave('./'); }));
+  addEventListener('beforeunload', e => { if (dirty && !leaving) { putDraft(); e.preventDefault(); e.returnValue = ''; } }); // 창 닫기 · 새로고침 · 뒤로가기 · 주소 입력
+  document.addEventListener('visibilitychange', () => { if (document.hidden && dirty) putDraft(); });
+  /* 같은 교안을 다른 탭에서도 열었는지 */
+  if ('BroadcastChannel' in window) { const bc = new BroadcastChannel('taestep:edit:' + id); let told = false; const warn = () => { if (told) return; told = true; toast('이 교안이 다른 탭에서도 열려 있습니다 — 한쪽에서만 고쳐 주세요. 양쪽에서 저장하면 나중에 저장하는 쪽에서 덮어쓸지 묻습니다', true, 12000); $('state').classList.add('twin'); };
+    bc.onmessage = e => { if (e.data === 'hello') { bc.postMessage('here'); warn(); } else if (e.data === 'here') warn(); }; bc.postMessage('hello'); }
+
+  /* ---------- 발표: 편집 화면 위에 띄운다 → 닫으면 편집하던 상태(되돌리기 기록 포함) 그대로 ---------- */
+  async function play() {
+    if (document.querySelector('.play-frame')) return; await flushEdit(); if (dirty) await putDraft(); TSEdit.select([]);
+    const f = document.createElement('iframe'); f.className = 'play-frame'; f.allow = 'fullscreen'; f.setAttribute('allowfullscreen', ''); f.src = `play.html?deck=${encodeURIComponent(id)}&embed=1#${cur + 1}`; document.body.appendChild(f); f.onload = () => { try { f.contentWindow.focus(); } catch (e) { } };
+  }
+  addEventListener('message', e => { if (e.origin !== location.origin || !e.data) return; if (e.data.type === 'taestep-play-close') { const f = document.querySelector('.play-frame'); if (f) f.remove(); window.focus(); if (e.data.slide && e.data.slide - 1 !== cur) select(e.data.slide - 1); } });
   $('btPlay').onclick = play;
-  $('deckTitle').value = deck.title || ''; $('deckTitle').oninput = e => { deck.title = e.target.value; document.title = deck.title + ' — TAESTEP 편집'; changed(); };
+  $('deckTitle').value = deck.title || ''; $('deckTitle').oninput = e => { deck.title = e.target.value; changed(); };
   addEventListener('keydown', e => {
     const c = e.ctrlKey || e.metaKey, k = e.key.toLowerCase(), ty = typing(e);
-    if (!$('modal').hidden) { if (e.key === 'Escape') closeModal(); return; }
+    if (document.querySelector('.play-frame')) return;
+    if (!$('menu').hidden && e.key === 'Escape') return closeMenu();
+    if (!$('modal').hidden) { if (e.key === 'Escape' && !sticky) closeModal(); return; }
     if (c && k === 's') { e.preventDefault(); return save(); }
     if (c && k === 'p') { e.preventDefault(); return printPdf(); }
     if (e.key === 'F5') { e.preventDefault(); return play(); }
@@ -343,9 +465,7 @@
     if (c && k === 'c') { try { localStorage.setItem('taestep:slide', JSON.stringify({ slide: S() })); localStorage.removeItem('taestep:clip'); navigator.clipboard.writeText('taestep-clip'); } catch (err) { } toast('이 장을 복사했습니다 — Ctrl+V 로 붙여넣기 (다른 교안에도)'); return; }
     if (e.key === 'PageDown') { e.preventDefault(); select(cur + 1); } else if (e.key === 'PageUp') { e.preventDefault(); select(cur - 1); }
   });
-  addEventListener('beforeunload', () => { if (dirty) TSStore.draftPut(deck); });
-  document.title = (deck.title || '') + ' — TAESTEP 편집';
-  const d0 = await TSStore.draftGet(id); dirty = !!d0 && !(await TSStore.repoDeck(id).then(r => r && (r.modified || '') >= (d0.modified || '')));
-  state(); rail(); view(); panel(); markTools();
+  dirty = startDirty; if (dirty) putDraft();
+  state(); rail(); view(); panel(); markTools(); if (openNote) toast(openNote, false, 9000);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { rail(); view(); });
 })();

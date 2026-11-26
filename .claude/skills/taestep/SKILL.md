@@ -67,6 +67,8 @@ DPV(`app/` · `decks/`)와는 따로 만든 앱이다. 코드를 서로 섞지 �
 ## 4. 앱을 고칠 때
 - 슬라이드 디자인 = `ts/engine.css`, 그리기 = `ts/engine.js`, 저장 = `ts/store.js`, 화면 = `ts/home.js · studio.js · play.js`, 앱 화면 꾸밈 = `ts/app.css`.
 - 화면 위 직접 편집 = `ts/edit.js`(고르기 · 옮기기 · 크기 · 회전 · 자석 · 자르기 · 복사), PPTX 내보내기 = `ts/pptx.js`(+ `ts/vendor/pptxgen.bundle.js`), 아이콘 = `ts/icons.js`.
+- 저장 · 작업본 · 보관함(30일) · 덮어쓰기 확인 · 저장 이력 = `ts/store.js`, 내보내기(PPTX · PDF · 유인물 · 단독 HTML · 교안 파일) = `ts/export.js`. 사용자가 고르지 않은 내용은 지우지 않는다(보관함으로).
+- 교안 파일에는 `_base` · `_synced` 를 넣지 않는다(이 기기의 작업본에만 쓰는 표시).
 - 고친 뒤에는 편집 화면을 실제로 띄워 넣기 · 옮기기 · 되돌리기 · 발표 화면 · PPTX 까지 확인한다.
 - 장 유형을 더할 때: `LAYOUTS` 에 칸 정의 → `R` 에 그리는 함수 → `engine.css` 에 `.L-<이름>` → 이 표에 한 줄.
 - 화면 파일을 더하면 `taestep/sw.js` 의 `CORE` 와 `CACHE` 번호를 함께 고친다.
