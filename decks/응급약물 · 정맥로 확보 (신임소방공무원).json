@@ -29,7 +29,7 @@
     "color": "#0A1324"
    },
    "transition": "",
-   "notes": "[1분]\n안녕하십니까. 오늘 100분 동안 구급 현장의 응급약물과 정맥로 확보를 함께 보겠습니다.\n1교시는 정맥로 확보와 투약 안전, 2교시는 약물별 투여와 심정지 리듬을 다룹니다.\n[진행] 1교시 50분(1~17장) · 휴식 · 2교시 50분(18~52장)\n[디자인 메모] 배경 사진은 초안 표지 사진(assets/emd-img01.jpg). 아래 심전도 선은 움직이는 그림(assets/emd-fx-ecg.svg) — 발표 화면에서 천천히 흐름.\n[그림 교체 예정] AI 배경을 만들면 assets/emd-ai-cover.jpg 로 저장 후 첫 그림 요소의 src 를 바꿈.",
+   "notes": "[1분]\n안녕하십니까. 오늘 100분 동안 구급 현장의 응급약물과 정맥로 확보를 함께 보겠습니다.\n1교시는 정맥로 확보와 투약 안전, 2교시는 약물별 투여와 심정지 리듬을 다룹니다.\n[진행] 1교시 50분(1~17장) · 휴식 · 2교시 50분(18~52장)\n[디자인 메모] 아래 심전도 선은 움직이는 그림(assets/emd-fx-ecg.svg) — 발표 화면에서 천천히 흐름.\n[그림] ChatGPT 생성 배경(assets/emd-ai-cover.jpg) — 밤의 구급차 실내와 수액 백. 초안 표지 사진(assets/emd-img01.jpg)은 그대로 둠.",
    "elements": [
     {
      "id": "emd0001",
@@ -42,14 +42,14 @@
      "y": 0,
      "w": 1920,
      "h": 1080,
-     "src": "assets/emd-img01.jpg",
+     "src": "assets/emd-ai-cover.jpg",
      "fit": "cover",
      "radius": 0,
      "shadow": false,
      "border": 0,
      "borderColor": "#ffffff",
      "fx": {
-      "b": 70
+      "b": 90
      },
      "locked": true
     },
@@ -2708,13 +2708,13 @@
    ]
   },
   {
-   "id": "emd0123",
+   "id": "emd0125",
    "bg": {
     "image": "assets/emd-bg-section.svg",
     "color": "#0A1324"
    },
    "transition": "zoom",
-   "notes": "[30초]\nPART 1, 정맥로 확보입니다. 확인 → 안전 → 계산 순서로 갑니다.",
+   "notes": "[30초]\nPART 1, 정맥로 확보입니다. 확인 → 안전 → 계산 순서로 갑니다.\n[그림] ChatGPT 생성 배경(assets/emd-ai-p1.jpg) — 수액 점적통에서 떨어지는 한 방울.",
    "elements": [
     {
      "id": "emd0116",
@@ -2722,6 +2722,58 @@
      "anim": "fade",
      "rotate": 0,
      "opacity": 1,
+     "type": "image",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "src": "assets/emd-ai-p1.jpg",
+     "fit": "cover",
+     "radius": 0,
+     "shadow": false,
+     "border": 0,
+     "borderColor": "#ffffff",
+     "fx": {
+      "b": 75
+     },
+     "locked": true
+    },
+    {
+     "id": "emd0117",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "shape",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "shape": "rect",
+     "fill": "#070D19",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 0,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     },
+     "fill2": "#070D19",
+     "fill2Op": 0.15,
+     "gAngle": 0
+    },
+    {
+     "id": "emd0118",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.14,
      "type": "text",
      "x": 1100,
      "y": 150,
@@ -2731,7 +2783,7 @@
      "html": "01",
      "style": {
       "fontSize": 360,
-      "color": "#22395F",
+      "color": "#FFFFFF",
       "bold": true,
       "align": "right",
       "valign": "top",
@@ -2739,7 +2791,7 @@
      }
     },
     {
-     "id": "emd0117",
+     "id": "emd0119",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -2762,7 +2814,7 @@
      }
     },
     {
-     "id": "emd0118",
+     "id": "emd0120",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -2784,7 +2836,7 @@
      }
     },
     {
-     "id": "emd0119",
+     "id": "emd0121",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -2806,7 +2858,7 @@
      }
     },
     {
-     "id": "emd0120",
+     "id": "emd0122",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -2833,7 +2885,7 @@
      }
     },
     {
-     "id": "emd0121",
+     "id": "emd0123",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -2855,7 +2907,7 @@
      }
     },
     {
-     "id": "emd0122",
+     "id": "emd0124",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -2885,7 +2937,7 @@
    "noFooter": true
   },
   {
-   "id": "emd0148",
+   "id": "emd0150",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -2893,7 +2945,7 @@
    "notes": "[6분]\n바늘을 꺼내기 전에 네 가지를 먼저 확인합니다.\n클릭① 투여 목적에 맞는 크기 — 예를 들어 CPR 이나 저혈당 환자처럼 목적에 따라 카테터 크기가 달라집니다.\n클릭② ARM SAVE — 투석용 AV fistula·graft 가 있는 팔, 유방암·액와림프절 수술력이 있는 팔, 림프부종이나 보호 팔 표식이 있는 팔은 피합니다.\n클릭③ 감염·화상·손상·부종 부위는 피하고, 촉지되는 적절한 정맥을 고릅니다.\n클릭④ 환자 확인과 설명, 손위생과 장갑, 포장과 유효기간, 그리고 소독 후 완전히 마를 때까지 기다립니다.\n클릭⑤ 수액 선택 — Hartmann, Plasma solution 에는 칼륨이 들어 있다는 점도 기억해 두세요.\n[확인 필요] \"ARM SAVE\" 는 초안의 기억법 — 출처 문헌 확인 필요.",
    "elements": [
     {
-     "id": "emd0124",
+     "id": "emd0126",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -2920,7 +2972,7 @@
      }
     },
     {
-     "id": "emd0125",
+     "id": "emd0127",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -2943,7 +2995,7 @@
      }
     },
     {
-     "id": "emd0126",
+     "id": "emd0128",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -2968,7 +3020,7 @@
      }
     },
     {
-     "id": "emd0127",
+     "id": "emd0129",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -2995,7 +3047,7 @@
      }
     },
     {
-     "id": "emd0128",
+     "id": "emd0130",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -3022,7 +3074,7 @@
      }
     },
     {
-     "id": "emd0129",
+     "id": "emd0131",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -3049,7 +3101,7 @@
      }
     },
     {
-     "id": "emd0130",
+     "id": "emd0132",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -3071,7 +3123,7 @@
      }
     },
     {
-     "id": "emd0131",
+     "id": "emd0133",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -3098,7 +3150,7 @@
      }
     },
     {
-     "id": "emd0132",
+     "id": "emd0134",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -3120,7 +3172,7 @@
      }
     },
     {
-     "id": "emd0133",
+     "id": "emd0135",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -3142,7 +3194,7 @@
      }
     },
     {
-     "id": "emd0134",
+     "id": "emd0136",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -3164,7 +3216,7 @@
      }
     },
     {
-     "id": "emd0135",
+     "id": "emd0137",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -3191,7 +3243,7 @@
      }
     },
     {
-     "id": "emd0136",
+     "id": "emd0138",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -3213,7 +3265,7 @@
      }
     },
     {
-     "id": "emd0137",
+     "id": "emd0139",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -3235,7 +3287,7 @@
      }
     },
     {
-     "id": "emd0138",
+     "id": "emd0140",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -3257,7 +3309,7 @@
      }
     },
     {
-     "id": "emd0139",
+     "id": "emd0141",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -3284,7 +3336,7 @@
      }
     },
     {
-     "id": "emd0140",
+     "id": "emd0142",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -3306,7 +3358,7 @@
      }
     },
     {
-     "id": "emd0141",
+     "id": "emd0143",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -3328,7 +3380,7 @@
      }
     },
     {
-     "id": "emd0142",
+     "id": "emd0144",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -3350,7 +3402,7 @@
      }
     },
     {
-     "id": "emd0143",
+     "id": "emd0145",
      "step": 4,
      "anim": "up",
      "rotate": 0,
@@ -3377,7 +3429,7 @@
      }
     },
     {
-     "id": "emd0144",
+     "id": "emd0146",
      "step": 4,
      "anim": "up",
      "rotate": 0,
@@ -3399,7 +3451,7 @@
      }
     },
     {
-     "id": "emd0145",
+     "id": "emd0147",
      "step": 4,
      "anim": "up",
      "rotate": 0,
@@ -3421,7 +3473,7 @@
      }
     },
     {
-     "id": "emd0146",
+     "id": "emd0148",
      "step": 4,
      "anim": "up",
      "rotate": 0,
@@ -3443,7 +3495,7 @@
      }
     },
     {
-     "id": "emd0147",
+     "id": "emd0149",
      "step": 5,
      "anim": "up",
      "rotate": 0,
@@ -3470,7 +3522,7 @@
    ]
   },
   {
-   "id": "emd0168",
+   "id": "emd0170",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -3478,7 +3530,7 @@
    "notes": "[3분]\n흔들리는 차 안에서 가장 위험한 것은 바늘입니다.\n클릭① 사용 직후 바로 손상성 폐기물 용기에 버립니다. 뚜껑을 다시 닫지 않습니다 — 다시 닫다가 찔리는 경우가 많습니다.\n클릭② 구급차는 계속 흔들립니다. 바늘을 든 상태로 움직이지 않습니다.\n클릭③ 찔리면 혈액매개 감염질환에 노출될 수 있습니다.",
    "elements": [
     {
-     "id": "emd0149",
+     "id": "emd0151",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -3505,7 +3557,7 @@
      }
     },
     {
-     "id": "emd0150",
+     "id": "emd0152",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -3528,7 +3580,7 @@
      }
     },
     {
-     "id": "emd0151",
+     "id": "emd0153",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -3553,7 +3605,7 @@
      }
     },
     {
-     "id": "emd0152",
+     "id": "emd0154",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -3580,7 +3632,7 @@
      }
     },
     {
-     "id": "emd0153",
+     "id": "emd0155",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -3607,7 +3659,7 @@
      }
     },
     {
-     "id": "emd0154",
+     "id": "emd0156",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -3634,7 +3686,7 @@
      }
     },
     {
-     "id": "emd0155",
+     "id": "emd0157",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -3656,7 +3708,7 @@
      }
     },
     {
-     "id": "emd0156",
+     "id": "emd0158",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -3683,7 +3735,7 @@
      }
     },
     {
-     "id": "emd0157",
+     "id": "emd0159",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -3705,7 +3757,7 @@
      }
     },
     {
-     "id": "emd0158",
+     "id": "emd0160",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -3727,7 +3779,7 @@
      }
     },
     {
-     "id": "emd0159",
+     "id": "emd0161",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -3749,7 +3801,7 @@
      }
     },
     {
-     "id": "emd0160",
+     "id": "emd0162",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -3774,7 +3826,7 @@
      }
     },
     {
-     "id": "emd0161",
+     "id": "emd0163",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -3796,7 +3848,7 @@
      }
     },
     {
-     "id": "emd0162",
+     "id": "emd0164",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -3823,7 +3875,7 @@
      }
     },
     {
-     "id": "emd0163",
+     "id": "emd0165",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -3845,7 +3897,7 @@
      }
     },
     {
-     "id": "emd0164",
+     "id": "emd0166",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -3867,7 +3919,7 @@
      }
     },
     {
-     "id": "emd0165",
+     "id": "emd0167",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -3889,7 +3941,7 @@
      }
     },
     {
-     "id": "emd0166",
+     "id": "emd0168",
      "step": 3,
      "anim": "fade",
      "rotate": 0,
@@ -3907,7 +3959,7 @@
      "borderColor": "#ffffff"
     },
     {
-     "id": "emd0167",
+     "id": "emd0169",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -3934,7 +3986,7 @@
    ]
   },
   {
-   "id": "emd0187",
+   "id": "emd0189",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -3942,7 +3994,7 @@
    "notes": "[5분]\n점적속도 계산입니다. 20 gtt/mL 수액세트라면 분당 방울 수는 시간당 주입량을 3으로 나누면 됩니다.\n왜 3일까요? 1 mL 이 20방울이고 1시간이 60분이니, mL/hr × 20 ÷ 60 = mL/hr ÷ 3 입니다.\n클릭① 100 mL/hr 라면 33 gtt/min.\n클릭② 60초를 33으로 나누면 1.8초에 한 방울, 약 2초입니다. 오른쪽 그림이 실제 1.8초 간격으로 떨어집니다.\n클릭③ 미세점적(60 gtt/mL) 세트라면 mL/hr 가 그대로 gtt/min 입니다. 세트 포장에 적힌 gtt/mL 을 먼저 보세요.\n클릭④ 다만 중증 출혈, 중증 화상처럼 체액 보충이 급한 환자는 계산하느라 시간을 쓰지 않습니다.\n[보완] ÷3 공식이 20 gtt/mL 세트 기준임을 명시하고 미세점적 세트 경우를 더함(계산 원리: gtt/min = mL/hr × gtt/mL ÷ 60).\n[확인 필요] 우리 구급차에 실린 수액세트 규격(20 gtt/mL 여부).\n[디자인 메모] 방울 그림 assets/emd-fx-drip.svg — 1.8초마다 한 방울 떨어지는 움직이는 그림.",
    "elements": [
     {
-     "id": "emd0169",
+     "id": "emd0171",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -3969,7 +4021,7 @@
      }
     },
     {
-     "id": "emd0170",
+     "id": "emd0172",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -3992,7 +4044,7 @@
      }
     },
     {
-     "id": "emd0171",
+     "id": "emd0173",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4017,7 +4069,7 @@
      }
     },
     {
-     "id": "emd0172",
+     "id": "emd0174",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4044,7 +4096,7 @@
      }
     },
     {
-     "id": "emd0173",
+     "id": "emd0175",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4071,7 +4123,7 @@
      }
     },
     {
-     "id": "emd0174",
+     "id": "emd0176",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4098,7 +4150,7 @@
      }
     },
     {
-     "id": "emd0175",
+     "id": "emd0177",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4120,7 +4172,7 @@
      }
     },
     {
-     "id": "emd0176",
+     "id": "emd0178",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4147,7 +4199,7 @@
      }
     },
     {
-     "id": "emd0177",
+     "id": "emd0179",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4169,7 +4221,7 @@
      }
     },
     {
-     "id": "emd0178",
+     "id": "emd0180",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4191,7 +4243,7 @@
      }
     },
     {
-     "id": "emd0179",
+     "id": "emd0181",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -4213,7 +4265,7 @@
      }
     },
     {
-     "id": "emd0180",
+     "id": "emd0182",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -4235,7 +4287,7 @@
      }
     },
     {
-     "id": "emd0181",
+     "id": "emd0183",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -4262,7 +4314,7 @@
      }
     },
     {
-     "id": "emd0182",
+     "id": "emd0184",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -4284,7 +4336,7 @@
      }
     },
     {
-     "id": "emd0183",
+     "id": "emd0185",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4302,7 +4354,7 @@
      "borderColor": "#ffffff"
     },
     {
-     "id": "emd0184",
+     "id": "emd0186",
      "step": 2,
      "anim": "fade",
      "rotate": 0,
@@ -4320,7 +4372,7 @@
      "borderColor": "#ffffff"
     },
     {
-     "id": "emd0185",
+     "id": "emd0187",
      "step": 2,
      "anim": "fade",
      "rotate": 0,
@@ -4342,7 +4394,7 @@
      }
     },
     {
-     "id": "emd0186",
+     "id": "emd0188",
      "step": 4,
      "anim": "up",
      "rotate": 0,
@@ -4369,7 +4421,7 @@
    ]
   },
   {
-   "id": "emd0204",
+   "id": "emd0206",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -4377,7 +4429,7 @@
    "notes": "[3분]\n60 mL/hr 입니다. 30초 드리겠습니다. 계산해 보세요.\n클릭① 60 ÷ 3 = 20 gtt/min, 60초 ÷ 20 = 3초에 한 방울.\n클릭② 정답 20 gtt/min, 3초에 한 방울.",
    "elements": [
     {
-     "id": "emd0188",
+     "id": "emd0190",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4404,7 +4456,7 @@
      }
     },
     {
-     "id": "emd0189",
+     "id": "emd0191",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4427,7 +4479,7 @@
      }
     },
     {
-     "id": "emd0190",
+     "id": "emd0192",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4452,7 +4504,7 @@
      }
     },
     {
-     "id": "emd0191",
+     "id": "emd0193",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4479,7 +4531,7 @@
      }
     },
     {
-     "id": "emd0192",
+     "id": "emd0194",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4506,7 +4558,7 @@
      }
     },
     {
-     "id": "emd0193",
+     "id": "emd0195",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4533,7 +4585,7 @@
      }
     },
     {
-     "id": "emd0194",
+     "id": "emd0196",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4556,7 +4608,7 @@
      "mk": "cq-title"
     },
     {
-     "id": "emd0195",
+     "id": "emd0197",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4584,7 +4636,7 @@
      "mk": "cq-card"
     },
     {
-     "id": "emd0196",
+     "id": "emd0198",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4607,7 +4659,7 @@
      "mk": "cq-lab"
     },
     {
-     "id": "emd0197",
+     "id": "emd0199",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4629,7 +4681,7 @@
      }
     },
     {
-     "id": "emd0198",
+     "id": "emd0200",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4655,7 +4707,7 @@
      "mk": "cq-q"
     },
     {
-     "id": "emd0199",
+     "id": "emd0201",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4683,7 +4735,7 @@
      "mk": "cq-panel"
     },
     {
-     "id": "emd0200",
+     "id": "emd0202",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4706,7 +4758,7 @@
      "outStep": 1
     },
     {
-     "id": "emd0201",
+     "id": "emd0203",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -4728,7 +4780,7 @@
      }
     },
     {
-     "id": "emd0202",
+     "id": "emd0204",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -4750,7 +4802,7 @@
      }
     },
     {
-     "id": "emd0203",
+     "id": "emd0205",
      "step": 2,
      "anim": "pop",
      "rotate": 0,
@@ -4781,7 +4833,7 @@
    ]
   },
   {
-   "id": "emd0221",
+   "id": "emd0223",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -4789,7 +4841,7 @@
    "notes": "[3분]\n이번에는 총량과 시간이 주어졌습니다. 먼저 시간당 주입량으로 바꿉니다.\n클릭① 300 mL ÷ 2시간 = 150 mL/hr, 150 ÷ 3 = 50 gtt/min.\n클릭② 정답 50 gtt/min(약 1.2초에 한 방울).\n[보완] 초안 문구 \"gtts수는?\" → \"분당 몇 방울?\"로 명확히 함.",
    "elements": [
     {
-     "id": "emd0205",
+     "id": "emd0207",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4816,7 +4868,7 @@
      }
     },
     {
-     "id": "emd0206",
+     "id": "emd0208",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4839,7 +4891,7 @@
      }
     },
     {
-     "id": "emd0207",
+     "id": "emd0209",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4864,7 +4916,7 @@
      }
     },
     {
-     "id": "emd0208",
+     "id": "emd0210",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4891,7 +4943,7 @@
      }
     },
     {
-     "id": "emd0209",
+     "id": "emd0211",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4918,7 +4970,7 @@
      }
     },
     {
-     "id": "emd0210",
+     "id": "emd0212",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4945,7 +4997,7 @@
      }
     },
     {
-     "id": "emd0211",
+     "id": "emd0213",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4968,7 +5020,7 @@
      "mk": "cq-title"
     },
     {
-     "id": "emd0212",
+     "id": "emd0214",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -4996,7 +5048,7 @@
      "mk": "cq-card"
     },
     {
-     "id": "emd0213",
+     "id": "emd0215",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5019,7 +5071,7 @@
      "mk": "cq-lab"
     },
     {
-     "id": "emd0214",
+     "id": "emd0216",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5041,7 +5093,7 @@
      }
     },
     {
-     "id": "emd0215",
+     "id": "emd0217",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5067,7 +5119,7 @@
      "mk": "cq-q"
     },
     {
-     "id": "emd0216",
+     "id": "emd0218",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5095,7 +5147,7 @@
      "mk": "cq-panel"
     },
     {
-     "id": "emd0217",
+     "id": "emd0219",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5118,7 +5170,7 @@
      "outStep": 1
     },
     {
-     "id": "emd0218",
+     "id": "emd0220",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -5140,7 +5192,7 @@
      }
     },
     {
-     "id": "emd0219",
+     "id": "emd0221",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -5162,7 +5214,7 @@
      }
     },
     {
-     "id": "emd0220",
+     "id": "emd0222",
      "step": 2,
      "anim": "pop",
      "rotate": 0,
@@ -5193,7 +5245,7 @@
    ]
   },
   {
-   "id": "emd0238",
+   "id": "emd0240",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -5201,7 +5253,7 @@
    "notes": "[3분]\n마지막 90 mL/hr 입니다.\n클릭① 90 ÷ 3 = 30 gtt/min, 60초 ÷ 30 = 2초에 한 방울.\n클릭② 정답 30 gtt/min, 2초에 한 방울.\n세 문제 모두 20 gtt/mL 세트 기준입니다.",
    "elements": [
     {
-     "id": "emd0222",
+     "id": "emd0224",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5228,7 +5280,7 @@
      }
     },
     {
-     "id": "emd0223",
+     "id": "emd0225",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5251,7 +5303,7 @@
      }
     },
     {
-     "id": "emd0224",
+     "id": "emd0226",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5276,7 +5328,7 @@
      }
     },
     {
-     "id": "emd0225",
+     "id": "emd0227",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5303,7 +5355,7 @@
      }
     },
     {
-     "id": "emd0226",
+     "id": "emd0228",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5330,7 +5382,7 @@
      }
     },
     {
-     "id": "emd0227",
+     "id": "emd0229",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5357,7 +5409,7 @@
      }
     },
     {
-     "id": "emd0228",
+     "id": "emd0230",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5380,7 +5432,7 @@
      "mk": "cq-title"
     },
     {
-     "id": "emd0229",
+     "id": "emd0231",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5408,7 +5460,7 @@
      "mk": "cq-card"
     },
     {
-     "id": "emd0230",
+     "id": "emd0232",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5431,7 +5483,7 @@
      "mk": "cq-lab"
     },
     {
-     "id": "emd0231",
+     "id": "emd0233",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5453,7 +5505,7 @@
      }
     },
     {
-     "id": "emd0232",
+     "id": "emd0234",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5479,7 +5531,7 @@
      "mk": "cq-q"
     },
     {
-     "id": "emd0233",
+     "id": "emd0235",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5507,7 +5559,7 @@
      "mk": "cq-panel"
     },
     {
-     "id": "emd0234",
+     "id": "emd0236",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5530,7 +5582,7 @@
      "outStep": 1
     },
     {
-     "id": "emd0235",
+     "id": "emd0237",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -5552,7 +5604,7 @@
      }
     },
     {
-     "id": "emd0236",
+     "id": "emd0238",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -5574,7 +5626,7 @@
      }
     },
     {
-     "id": "emd0237",
+     "id": "emd0239",
      "step": 2,
      "anim": "pop",
      "rotate": 0,
@@ -5605,20 +5657,72 @@
    ]
   },
   {
-   "id": "emd0246",
+   "id": "emd0250",
    "bg": {
     "image": "assets/emd-bg-section.svg",
     "color": "#0A1324"
    },
    "transition": "zoom",
-   "notes": "[30초]\nPART 2, 투약 안전입니다. 약물 이름보다 먼저 익혀야 할 순서입니다.",
+   "notes": "[30초]\nPART 2, 투약 안전입니다. 약물 이름보다 먼저 익혀야 할 순서입니다.\n[그림] ChatGPT 생성 배경(assets/emd-ai-p2.jpg) — 앰플과 주사기를 함께 확인하는 손.",
    "elements": [
     {
-     "id": "emd0239",
+     "id": "emd0241",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
      "opacity": 1,
+     "type": "image",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "src": "assets/emd-ai-p2.jpg",
+     "fit": "cover",
+     "radius": 0,
+     "shadow": false,
+     "border": 0,
+     "borderColor": "#ffffff",
+     "fx": {
+      "b": 75
+     },
+     "locked": true
+    },
+    {
+     "id": "emd0242",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "shape",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "shape": "rect",
+     "fill": "#070D19",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 0,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     },
+     "fill2": "#070D19",
+     "fill2Op": 0.15,
+     "gAngle": 0
+    },
+    {
+     "id": "emd0243",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.14,
      "type": "text",
      "x": 1100,
      "y": 150,
@@ -5628,7 +5732,7 @@
      "html": "02",
      "style": {
       "fontSize": 360,
-      "color": "#22395F",
+      "color": "#FFFFFF",
       "bold": true,
       "align": "right",
       "valign": "top",
@@ -5636,7 +5740,7 @@
      }
     },
     {
-     "id": "emd0240",
+     "id": "emd0244",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5659,7 +5763,7 @@
      }
     },
     {
-     "id": "emd0241",
+     "id": "emd0245",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5681,7 +5785,7 @@
      }
     },
     {
-     "id": "emd0242",
+     "id": "emd0246",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5703,7 +5807,7 @@
      }
     },
     {
-     "id": "emd0243",
+     "id": "emd0247",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5730,7 +5834,7 @@
      }
     },
     {
-     "id": "emd0244",
+     "id": "emd0248",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5752,7 +5856,7 @@
      }
     },
     {
-     "id": "emd0245",
+     "id": "emd0249",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5782,7 +5886,7 @@
    "noFooter": true
   },
   {
-   "id": "emd0262",
+   "id": "emd0266",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -5790,7 +5894,7 @@
    "notes": "[4분]\n투약 전에는 5 Right — 환자, 약물, 용량, 경로, 시간을 확인합니다. 화면처럼 세 묶음으로 기억하면 쉽습니다.\n클릭① 환자 — 맞는 환자인가, 적응증이 맞는가.\n클릭② 약물 — 약물 이름, 농도, 용량.\n클릭③ 투여 — 경로, 속도, 금기.\n클릭④ 급할수록 순서를 건너뛰고 싶어집니다. 그래서 급할수록 같은 순서로 확인합니다.",
    "elements": [
     {
-     "id": "emd0247",
+     "id": "emd0251",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5817,7 +5921,7 @@
      }
     },
     {
-     "id": "emd0248",
+     "id": "emd0252",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5840,7 +5944,7 @@
      }
     },
     {
-     "id": "emd0249",
+     "id": "emd0253",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5867,7 +5971,7 @@
      }
     },
     {
-     "id": "emd0250",
+     "id": "emd0254",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5892,7 +5996,7 @@
      }
     },
     {
-     "id": "emd0251",
+     "id": "emd0255",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5919,7 +6023,7 @@
      }
     },
     {
-     "id": "emd0252",
+     "id": "emd0256",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5946,7 +6050,7 @@
      }
     },
     {
-     "id": "emd0253",
+     "id": "emd0257",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -5968,7 +6072,7 @@
      }
     },
     {
-     "id": "emd0254",
+     "id": "emd0258",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -5993,7 +6097,7 @@
      }
     },
     {
-     "id": "emd0255",
+     "id": "emd0259",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -6020,7 +6124,7 @@
      }
     },
     {
-     "id": "emd0256",
+     "id": "emd0260",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -6045,7 +6149,7 @@
      }
     },
     {
-     "id": "emd0257",
+     "id": "emd0261",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -6072,7 +6176,7 @@
      }
     },
     {
-     "id": "emd0258",
+     "id": "emd0262",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -6097,7 +6201,7 @@
      }
     },
     {
-     "id": "emd0259",
+     "id": "emd0263",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -6124,7 +6228,7 @@
      }
     },
     {
-     "id": "emd0261",
+     "id": "emd0265",
      "step": 4,
      "anim": "up",
      "rotate": 0,
@@ -6151,7 +6255,7 @@
    ]
   },
   {
-   "id": "emd0278",
+   "id": "emd0282",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -6159,7 +6263,7 @@
    "notes": "[4분]\n투여 직전에는 소리 내어 복창합니다. \"에피네프린 1mg, 정맥 투여.\"\n클릭① 복창을 들은 사람은 농도와 부피를 확인한 뒤 시행합니다.\n클릭② 투여 시각과 환자 반응을 팀에 공유하고 기록합니다.\n클릭③ 준비한 사람과 투여하는 사람이 함께 확인합니다. 혼자 준비하고 혼자 투여하지 않습니다.\n[진행] 1교시 끝 → 휴식 10분. 2교시는 PART 3 부터.",
    "elements": [
     {
-     "id": "emd0263",
+     "id": "emd0267",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6186,7 +6290,7 @@
      }
     },
     {
-     "id": "emd0264",
+     "id": "emd0268",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6209,7 +6313,7 @@
      }
     },
     {
-     "id": "emd0265",
+     "id": "emd0269",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6236,7 +6340,7 @@
      }
     },
     {
-     "id": "emd0266",
+     "id": "emd0270",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6261,7 +6365,7 @@
      }
     },
     {
-     "id": "emd0267",
+     "id": "emd0271",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6288,7 +6392,7 @@
      }
     },
     {
-     "id": "emd0268",
+     "id": "emd0272",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6315,7 +6419,7 @@
      }
     },
     {
-     "id": "emd0269",
+     "id": "emd0273",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6337,7 +6441,7 @@
      }
     },
     {
-     "id": "emd0270",
+     "id": "emd0274",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6362,7 +6466,7 @@
      }
     },
     {
-     "id": "emd0271",
+     "id": "emd0275",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -6389,7 +6493,7 @@
      }
     },
     {
-     "id": "emd0272",
+     "id": "emd0276",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -6411,7 +6515,7 @@
      }
     },
     {
-     "id": "emd0273",
+     "id": "emd0277",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -6433,7 +6537,7 @@
      }
     },
     {
-     "id": "emd0274",
+     "id": "emd0278",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -6460,7 +6564,7 @@
      }
     },
     {
-     "id": "emd0275",
+     "id": "emd0279",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -6482,7 +6586,7 @@
      }
     },
     {
-     "id": "emd0276",
+     "id": "emd0280",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -6504,7 +6608,7 @@
      }
     },
     {
-     "id": "emd0277",
+     "id": "emd0281",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -6531,20 +6635,72 @@
    ]
   },
   {
-   "id": "emd0286",
+   "id": "emd0292",
    "bg": {
     "image": "assets/emd-bg-section.svg",
     "color": "#0A1324"
    },
    "transition": "zoom",
-   "notes": "[30초]\n2교시를 시작합니다. PART 3 은 약물별로 적응증, 금기, 투여 후 다시 볼 것을 정리합니다.",
+   "notes": "[30초]\n2교시를 시작합니다. PART 3 은 약물별로 적응증, 금기, 투여 후 다시 볼 것을 정리합니다.\n[그림] ChatGPT 생성 배경(assets/emd-ai-p3.jpg) — 응급 약물 키트.",
    "elements": [
     {
-     "id": "emd0279",
+     "id": "emd0283",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
      "opacity": 1,
+     "type": "image",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "src": "assets/emd-ai-p3.jpg",
+     "fit": "cover",
+     "radius": 0,
+     "shadow": false,
+     "border": 0,
+     "borderColor": "#ffffff",
+     "fx": {
+      "b": 75
+     },
+     "locked": true
+    },
+    {
+     "id": "emd0284",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "shape",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "shape": "rect",
+     "fill": "#070D19",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 0,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     },
+     "fill2": "#070D19",
+     "fill2Op": 0.15,
+     "gAngle": 0
+    },
+    {
+     "id": "emd0285",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.14,
      "type": "text",
      "x": 1100,
      "y": 150,
@@ -6554,7 +6710,7 @@
      "html": "03",
      "style": {
       "fontSize": 360,
-      "color": "#22395F",
+      "color": "#FFFFFF",
       "bold": true,
       "align": "right",
       "valign": "top",
@@ -6562,7 +6718,7 @@
      }
     },
     {
-     "id": "emd0280",
+     "id": "emd0286",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6585,7 +6741,7 @@
      }
     },
     {
-     "id": "emd0281",
+     "id": "emd0287",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6607,7 +6763,7 @@
      }
     },
     {
-     "id": "emd0282",
+     "id": "emd0288",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6629,7 +6785,7 @@
      }
     },
     {
-     "id": "emd0283",
+     "id": "emd0289",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6656,7 +6812,7 @@
      }
     },
     {
-     "id": "emd0284",
+     "id": "emd0290",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6678,7 +6834,7 @@
      }
     },
     {
-     "id": "emd0285",
+     "id": "emd0291",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6708,7 +6864,7 @@
    "noFooter": true
   },
   {
-   "id": "emd0311",
+   "id": "emd0317",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -6716,7 +6872,7 @@
    "notes": "[3분 30초]\n의식이 떨어진 환자, BST 가 38 mg/dL 입니다.\n50% 포도당 50 mL 를 투여합니다. 의식이 있어 삼킬 수 있으면 경구로 먹입니다.\n클릭① 1BT(병)에 100 mL.\n클릭② 고농도 제제라 혈관 자극이 크고, 혈관 밖으로 새면 조직이 손상됩니다.\n클릭③ 그래서 투여 전 NS flushing 으로 라인이 열려 있는지 먼저 확인하고,\n클릭④ 굵은 혈관에 굵은 바늘(18G)을 씁니다.\n클릭⑤ 50% 50 mL 는 포도당 25 g 입니다.\n클릭⑥ 투여 후 BST 와 활력징후를 다시 보고, 마지막 식사 시각과 인슐린 투약 여부를 확인합니다.\n[확인 필요] \"1BT에 100ml\" — 초안 문구 그대로. 1병 용량(100 mL)인지, 50 mL 투여와의 관계 확인 필요.\n[보완] 50% × 50 mL = 25 g (계산).",
    "elements": [
     {
-     "id": "emd0287",
+     "id": "emd0293",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6743,7 +6899,7 @@
      }
     },
     {
-     "id": "emd0288",
+     "id": "emd0294",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6766,7 +6922,7 @@
      }
     },
     {
-     "id": "emd0289",
+     "id": "emd0295",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6793,7 +6949,7 @@
      }
     },
     {
-     "id": "emd0290",
+     "id": "emd0296",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6820,7 +6976,7 @@
      }
     },
     {
-     "id": "emd0291",
+     "id": "emd0297",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6845,7 +7001,7 @@
      }
     },
     {
-     "id": "emd0292",
+     "id": "emd0298",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6872,7 +7028,7 @@
      }
     },
     {
-     "id": "emd0293",
+     "id": "emd0299",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6894,7 +7050,7 @@
      }
     },
     {
-     "id": "emd0294",
+     "id": "emd0300",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6921,7 +7077,7 @@
      }
     },
     {
-     "id": "emd0295",
+     "id": "emd0301",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6943,7 +7099,7 @@
      }
     },
     {
-     "id": "emd0296",
+     "id": "emd0302",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6965,7 +7121,7 @@
      }
     },
     {
-     "id": "emd0297",
+     "id": "emd0303",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -6987,7 +7143,7 @@
      }
     },
     {
-     "id": "emd0298",
+     "id": "emd0304",
      "step": 5,
      "anim": "up",
      "rotate": 0,
@@ -7012,7 +7168,7 @@
      }
     },
     {
-     "id": "emd0299",
+     "id": "emd0305",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7034,7 +7190,7 @@
      }
     },
     {
-     "id": "emd0300",
+     "id": "emd0306",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7056,7 +7212,7 @@
      }
     },
     {
-     "id": "emd0301",
+     "id": "emd0307",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -7083,7 +7239,7 @@
      }
     },
     {
-     "id": "emd0302",
+     "id": "emd0308",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -7105,7 +7261,7 @@
      }
     },
     {
-     "id": "emd0303",
+     "id": "emd0309",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -7132,7 +7288,7 @@
      }
     },
     {
-     "id": "emd0304",
+     "id": "emd0310",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -7154,7 +7310,7 @@
      }
     },
     {
-     "id": "emd0305",
+     "id": "emd0311",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -7181,7 +7337,7 @@
      }
     },
     {
-     "id": "emd0306",
+     "id": "emd0312",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -7203,7 +7359,7 @@
      }
     },
     {
-     "id": "emd0307",
+     "id": "emd0313",
      "step": 4,
      "anim": "left",
      "rotate": 0,
@@ -7230,7 +7386,7 @@
      }
     },
     {
-     "id": "emd0308",
+     "id": "emd0314",
      "step": 4,
      "anim": "left",
      "rotate": 0,
@@ -7252,7 +7408,7 @@
      }
     },
     {
-     "id": "emd0309",
+     "id": "emd0315",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7270,7 +7426,7 @@
      "borderColor": "#ffffff"
     },
     {
-     "id": "emd0310",
+     "id": "emd0316",
      "step": 6,
      "anim": "up",
      "rotate": 0,
@@ -7297,7 +7453,7 @@
    ]
   },
   {
-   "id": "emd0328",
+   "id": "emd0334",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -7305,7 +7461,7 @@
    "notes": "[2분]\n10% 100 mL 와 50% 20 mL. 어느 쪽 포도당이 더 많을까요? (잠깐 묻기)\n클릭① 둘 다 10 g 으로 같습니다. 농도와 부피를 따로 보지 말고, 총량으로 확인하는 습관을 들입니다.\n클릭② (강조)",
    "elements": [
     {
-     "id": "emd0312",
+     "id": "emd0318",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7332,7 +7488,7 @@
      }
     },
     {
-     "id": "emd0313",
+     "id": "emd0319",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7355,7 +7511,7 @@
      }
     },
     {
-     "id": "emd0314",
+     "id": "emd0320",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7382,7 +7538,7 @@
      }
     },
     {
-     "id": "emd0315",
+     "id": "emd0321",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7409,7 +7565,7 @@
      }
     },
     {
-     "id": "emd0316",
+     "id": "emd0322",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7434,7 +7590,7 @@
      }
     },
     {
-     "id": "emd0317",
+     "id": "emd0323",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7461,7 +7617,7 @@
      }
     },
     {
-     "id": "emd0318",
+     "id": "emd0324",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7483,7 +7639,7 @@
      }
     },
     {
-     "id": "emd0319",
+     "id": "emd0325",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7510,7 +7666,7 @@
      }
     },
     {
-     "id": "emd0320",
+     "id": "emd0326",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7532,7 +7688,7 @@
      }
     },
     {
-     "id": "emd0321",
+     "id": "emd0327",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7554,7 +7710,7 @@
      }
     },
     {
-     "id": "emd0322",
+     "id": "emd0328",
      "step": 1,
      "anim": "zoom",
      "rotate": 0,
@@ -7576,7 +7732,7 @@
      }
     },
     {
-     "id": "emd0323",
+     "id": "emd0329",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7603,7 +7759,7 @@
      }
     },
     {
-     "id": "emd0324",
+     "id": "emd0330",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7625,7 +7781,7 @@
      }
     },
     {
-     "id": "emd0325",
+     "id": "emd0331",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7647,7 +7803,7 @@
      }
     },
     {
-     "id": "emd0326",
+     "id": "emd0332",
      "step": 1,
      "anim": "zoom",
      "rotate": 0,
@@ -7671,7 +7827,7 @@
      "emAnim": "pulse"
     },
     {
-     "id": "emd0327",
+     "id": "emd0333",
      "step": 1,
      "anim": "fade",
      "rotate": 0,
@@ -7695,7 +7851,7 @@
    ]
   },
   {
-   "id": "emd0342",
+   "id": "emd0348",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -7703,7 +7859,7 @@
    "notes": "[3분]\nNTG 는 혀 밑에 녹여 투여합니다.\n클릭① 정맥을 넓혀 심장으로 돌아오는 혈액(전부하)을 줄이고, 흉통을 완화합니다.\n클릭② 그래서 혈압을 떨어뜨릴 수 있습니다 — 금기사항을 반드시 확인해야 합니다. 다음 장에서 봅니다.\n클릭③ 투여 전과 후에 혈압을 꼭 잽니다.",
    "elements": [
     {
-     "id": "emd0329",
+     "id": "emd0335",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7730,7 +7886,7 @@
      }
     },
     {
-     "id": "emd0330",
+     "id": "emd0336",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7753,7 +7909,7 @@
      }
     },
     {
-     "id": "emd0331",
+     "id": "emd0337",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7780,7 +7936,7 @@
      }
     },
     {
-     "id": "emd0332",
+     "id": "emd0338",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7807,7 +7963,7 @@
      }
     },
     {
-     "id": "emd0333",
+     "id": "emd0339",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7832,7 +7988,7 @@
      }
     },
     {
-     "id": "emd0334",
+     "id": "emd0340",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7859,7 +8015,7 @@
      }
     },
     {
-     "id": "emd0335",
+     "id": "emd0341",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7881,7 +8037,7 @@
      }
     },
     {
-     "id": "emd0336",
+     "id": "emd0342",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7908,7 +8064,7 @@
      }
     },
     {
-     "id": "emd0337",
+     "id": "emd0343",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7930,7 +8086,7 @@
      }
     },
     {
-     "id": "emd0338",
+     "id": "emd0344",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -7952,7 +8108,7 @@
      }
     },
     {
-     "id": "emd0339",
+     "id": "emd0345",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -7979,7 +8135,7 @@
      }
     },
     {
-     "id": "emd0340",
+     "id": "emd0346",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -8006,7 +8162,7 @@
      }
     },
     {
-     "id": "emd0341",
+     "id": "emd0347",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -8033,7 +8189,7 @@
    ]
   },
   {
-   "id": "emd0357",
+   "id": "emd0363",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -8041,7 +8197,7 @@
    "notes": "[3분]\nNTG 를 주면 안 되는 경우 세 가지입니다.\n클릭① 혈압 — 수축기 혈압 90 mmHg 이하.\n클릭② 복용력 — 최근 발기부전 치료제(PDE5 억제제)를 먹었다면: 비아그라는 24시간, 시알리스는 48시간 안. 같이 쓰면 혈압이 크게 떨어질 수 있습니다. 환자에게 직접, 구체적으로 물어봐야 합니다.\n클릭③ 심전도 — 우심실경색이 의심되면 금기입니다.\n클릭④ 혈압이 정상이어도 복용력과 심전도를 봐야 합니다. 혈압만으로 결정하지 않습니다.\n[확인 필요] 금기 혈압 기준(평소보다 30 mmHg 이상 저하 포함 여부)과 심박수 기준은 구급대원 표준 프로토콜 원문 확인 필요 — 화면은 초안 기준(SBP 90 이하)만 표시.",
    "elements": [
     {
-     "id": "emd0343",
+     "id": "emd0349",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8068,7 +8224,7 @@
      }
     },
     {
-     "id": "emd0344",
+     "id": "emd0350",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8091,7 +8247,7 @@
      }
     },
     {
-     "id": "emd0345",
+     "id": "emd0351",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8118,7 +8274,7 @@
      }
     },
     {
-     "id": "emd0346",
+     "id": "emd0352",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8145,7 +8301,7 @@
      }
     },
     {
-     "id": "emd0347",
+     "id": "emd0353",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8170,7 +8326,7 @@
      }
     },
     {
-     "id": "emd0348",
+     "id": "emd0354",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8197,7 +8353,7 @@
      }
     },
     {
-     "id": "emd0349",
+     "id": "emd0355",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8219,7 +8375,7 @@
      }
     },
     {
-     "id": "emd0350",
+     "id": "emd0356",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -8245,7 +8401,7 @@
      "mk": "ntg0"
     },
     {
-     "id": "emd0351",
+     "id": "emd0357",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -8272,7 +8428,7 @@
      }
     },
     {
-     "id": "emd0352",
+     "id": "emd0358",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -8298,7 +8454,7 @@
      "mk": "ntg1"
     },
     {
-     "id": "emd0353",
+     "id": "emd0359",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -8325,7 +8481,7 @@
      }
     },
     {
-     "id": "emd0354",
+     "id": "emd0360",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -8351,7 +8507,7 @@
      "mk": "ntg2"
     },
     {
-     "id": "emd0355",
+     "id": "emd0361",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -8378,7 +8534,7 @@
      }
     },
     {
-     "id": "emd0356",
+     "id": "emd0362",
      "step": 4,
      "anim": "up",
      "rotate": 0,
@@ -8405,7 +8561,7 @@
    ]
   },
   {
-   "id": "emd0369",
+   "id": "emd0375",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -8413,7 +8569,7 @@
    "notes": "[2분]\n심전도에서 하벽(Ⅱ, Ⅲ, aVF) ST 상승이 보입니다. 그리고 Ⅱ보다 Ⅲ에서 더 높습니다.\n하벽 경색이면 우심실까지 침범했는지 확인해야 합니다 → 다음 장.\n[디자인 메모] 앞 장의 세 칸(혈압 · 복용력 · 심전도)이 위로 모이며(모핑) 심전도 칸만 강조됨.",
    "elements": [
     {
-     "id": "emd0358",
+     "id": "emd0364",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8440,7 +8596,7 @@
      }
     },
     {
-     "id": "emd0359",
+     "id": "emd0365",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8463,7 +8619,7 @@
      }
     },
     {
-     "id": "emd0360",
+     "id": "emd0366",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8490,7 +8646,7 @@
      }
     },
     {
-     "id": "emd0361",
+     "id": "emd0367",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8517,7 +8673,7 @@
      }
     },
     {
-     "id": "emd0362",
+     "id": "emd0368",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8542,7 +8698,7 @@
      }
     },
     {
-     "id": "emd0363",
+     "id": "emd0369",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8569,7 +8725,7 @@
      }
     },
     {
-     "id": "emd0364",
+     "id": "emd0370",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8591,7 +8747,7 @@
      }
     },
     {
-     "id": "emd0365",
+     "id": "emd0371",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8617,7 +8773,7 @@
      "mk": "ntg0"
     },
     {
-     "id": "emd0366",
+     "id": "emd0372",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8643,7 +8799,7 @@
      "mk": "ntg1"
     },
     {
-     "id": "emd0367",
+     "id": "emd0373",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8669,7 +8825,7 @@
      "mk": "ntg2"
     },
     {
-     "id": "emd0368",
+     "id": "emd0374",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8690,7 +8846,7 @@
    ]
   },
   {
-   "id": "emd0381",
+   "id": "emd0387",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -8698,7 +8854,7 @@
    "notes": "[2분]\n전극을 오른쪽 가슴에 거울처럼 붙인 V4R 에서 ST 상승 — 우심실경색(RVMI)입니다.\n우심실경색 환자는 전부하에 의존하기 때문에 NTG 로 전부하를 줄이면 혈압이 크게 떨어질 수 있습니다. 그래서 금기입니다.",
    "elements": [
     {
-     "id": "emd0370",
+     "id": "emd0376",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8725,7 +8881,7 @@
      }
     },
     {
-     "id": "emd0371",
+     "id": "emd0377",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8748,7 +8904,7 @@
      }
     },
     {
-     "id": "emd0372",
+     "id": "emd0378",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8775,7 +8931,7 @@
      }
     },
     {
-     "id": "emd0373",
+     "id": "emd0379",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8802,7 +8958,7 @@
      }
     },
     {
-     "id": "emd0374",
+     "id": "emd0380",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8827,7 +8983,7 @@
      }
     },
     {
-     "id": "emd0375",
+     "id": "emd0381",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8854,7 +9010,7 @@
      }
     },
     {
-     "id": "emd0376",
+     "id": "emd0382",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8876,7 +9032,7 @@
      }
     },
     {
-     "id": "emd0377",
+     "id": "emd0383",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8902,7 +9058,7 @@
      "mk": "ntg0"
     },
     {
-     "id": "emd0378",
+     "id": "emd0384",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8928,7 +9084,7 @@
      "mk": "ntg1"
     },
     {
-     "id": "emd0379",
+     "id": "emd0385",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8954,7 +9110,7 @@
      "mk": "ntg2"
     },
     {
-     "id": "emd0380",
+     "id": "emd0386",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -8975,7 +9131,7 @@
    ]
   },
   {
-   "id": "emd0396",
+   "id": "emd0402",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -8983,7 +9139,7 @@
    "notes": "[2분 30초]\n흡입용 기관지확장제입니다.\n클릭① 기관지경련으로 천명음(쌕쌕거림)이 들리는 환자.\n클릭② 가장 흔한 실수는 약이 실제로 폐까지 들어가지 않는 것입니다. 환자가 제대로 들이마시고 있는지 눈으로 확인합니다.\n클릭③ 투여 후 호흡 노력과 심박수를 다시 봅니다 — 기관지확장제는 심박수를 올릴 수 있습니다.\n클릭④ 흡입 여부와 호흡 반응, 두 가지를 확인합니다.",
    "elements": [
     {
-     "id": "emd0382",
+     "id": "emd0388",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9010,7 +9166,7 @@
      }
     },
     {
-     "id": "emd0383",
+     "id": "emd0389",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9033,7 +9189,7 @@
      }
     },
     {
-     "id": "emd0384",
+     "id": "emd0390",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9060,7 +9216,7 @@
      }
     },
     {
-     "id": "emd0385",
+     "id": "emd0391",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9087,7 +9243,7 @@
      }
     },
     {
-     "id": "emd0386",
+     "id": "emd0392",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9112,7 +9268,7 @@
      }
     },
     {
-     "id": "emd0387",
+     "id": "emd0393",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9139,7 +9295,7 @@
      }
     },
     {
-     "id": "emd0388",
+     "id": "emd0394",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9161,7 +9317,7 @@
      }
     },
     {
-     "id": "emd0389",
+     "id": "emd0395",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9188,7 +9344,7 @@
      }
     },
     {
-     "id": "emd0390",
+     "id": "emd0396",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9210,7 +9366,7 @@
      }
     },
     {
-     "id": "emd0391",
+     "id": "emd0397",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9232,7 +9388,7 @@
      }
     },
     {
-     "id": "emd0392",
+     "id": "emd0398",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -9259,7 +9415,7 @@
      }
     },
     {
-     "id": "emd0393",
+     "id": "emd0399",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -9286,7 +9442,7 @@
      }
     },
     {
-     "id": "emd0394",
+     "id": "emd0400",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -9311,7 +9467,7 @@
      }
     },
     {
-     "id": "emd0395",
+     "id": "emd0401",
      "step": 4,
      "anim": "up",
      "rotate": 0,
@@ -9338,7 +9494,7 @@
    ]
   },
   {
-   "id": "emd0411",
+   "id": "emd0417",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -9346,7 +9502,7 @@
    "notes": "[2분]\n투여로 끝이 아닙니다. 약물마다 다시 볼 지표가 다릅니다.\n클릭① 포도당 — 혈당과 의식.\n클릭② NTG — 혈압과 흉통.\n클릭③ 기관지확장제 — 호흡과 심박수.\n클릭④ 이 지표가 그대로 인계 내용이 됩니다(마지막 정리에서 다시 봅니다).",
    "elements": [
     {
-     "id": "emd0397",
+     "id": "emd0403",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9373,7 +9529,7 @@
      }
     },
     {
-     "id": "emd0398",
+     "id": "emd0404",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9396,7 +9552,7 @@
      }
     },
     {
-     "id": "emd0399",
+     "id": "emd0405",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9423,7 +9579,7 @@
      }
     },
     {
-     "id": "emd0400",
+     "id": "emd0406",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9450,7 +9606,7 @@
      }
     },
     {
-     "id": "emd0401",
+     "id": "emd0407",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9475,7 +9631,7 @@
      }
     },
     {
-     "id": "emd0402",
+     "id": "emd0408",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9502,7 +9658,7 @@
      }
     },
     {
-     "id": "emd0403",
+     "id": "emd0409",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9524,7 +9680,7 @@
      }
     },
     {
-     "id": "emd0404",
+     "id": "emd0410",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -9549,7 +9705,7 @@
      }
     },
     {
-     "id": "emd0405",
+     "id": "emd0411",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -9576,7 +9732,7 @@
      }
     },
     {
-     "id": "emd0406",
+     "id": "emd0412",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -9601,7 +9757,7 @@
      }
     },
     {
-     "id": "emd0407",
+     "id": "emd0413",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -9628,7 +9784,7 @@
      }
     },
     {
-     "id": "emd0408",
+     "id": "emd0414",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -9653,7 +9809,7 @@
      }
     },
     {
-     "id": "emd0409",
+     "id": "emd0415",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -9680,7 +9836,7 @@
      }
     },
     {
-     "id": "emd0410",
+     "id": "emd0416",
      "step": 4,
      "anim": "up",
      "rotate": 0,
@@ -9707,7 +9863,7 @@
    ]
   },
   {
-   "id": "emd0431",
+   "id": "emd0437",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -9715,7 +9871,7 @@
    "notes": "[3분]\n아나필락시스에서 첫 약은 에피네프린 근육주사입니다. 부위는 허벅지 바깥쪽 앞(대퇴부 전외측)입니다.\n젝스트 펜은 체중으로 고릅니다.\n클릭① 30 kg 초과는 300 μg(0.3 mg).\n클릭② 15–30 kg 은 150 μg(0.15 mg).\n클릭③ 항히스타민제는 에피네프린을 대신하지 못합니다.\n클릭④ 정맥로를 잡느라 에피네프린을 늦추지 않습니다.\n[출처] Jext 제품 정보(SmPC, 영국 eMC medicines.org.uk) — 15~30 kg: 150 μg, 30 kg 초과: 300 μg. 2026-11-26 검색 확인.\n[확인 필요] 국내 허가사항(젝스트프리필드펜주) 문구 대조.",
    "elements": [
     {
-     "id": "emd0412",
+     "id": "emd0418",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9742,7 +9898,7 @@
      }
     },
     {
-     "id": "emd0413",
+     "id": "emd0419",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9765,7 +9921,7 @@
      }
     },
     {
-     "id": "emd0414",
+     "id": "emd0420",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9792,7 +9948,7 @@
      }
     },
     {
-     "id": "emd0415",
+     "id": "emd0421",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9819,7 +9975,7 @@
      }
     },
     {
-     "id": "emd0416",
+     "id": "emd0422",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9844,7 +10000,7 @@
      }
     },
     {
-     "id": "emd0417",
+     "id": "emd0423",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9871,7 +10027,7 @@
      }
     },
     {
-     "id": "emd0418",
+     "id": "emd0424",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9893,7 +10049,7 @@
      }
     },
     {
-     "id": "emd0419",
+     "id": "emd0425",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9920,7 +10076,7 @@
      }
     },
     {
-     "id": "emd0420",
+     "id": "emd0426",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9942,7 +10098,7 @@
      }
     },
     {
-     "id": "emd0421",
+     "id": "emd0427",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9964,7 +10120,7 @@
      }
     },
     {
-     "id": "emd0422",
+     "id": "emd0428",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -9986,7 +10142,7 @@
      }
     },
     {
-     "id": "emd0423",
+     "id": "emd0429",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -10013,7 +10169,7 @@
      }
     },
     {
-     "id": "emd0424",
+     "id": "emd0430",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -10035,7 +10191,7 @@
      }
     },
     {
-     "id": "emd0425",
+     "id": "emd0431",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -10057,7 +10213,7 @@
      }
     },
     {
-     "id": "emd0426",
+     "id": "emd0432",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -10084,7 +10240,7 @@
      }
     },
     {
-     "id": "emd0427",
+     "id": "emd0433",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -10106,7 +10262,7 @@
      }
     },
     {
-     "id": "emd0428",
+     "id": "emd0434",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -10128,7 +10284,7 @@
      }
     },
     {
-     "id": "emd0429",
+     "id": "emd0435",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -10155,7 +10311,7 @@
      }
     },
     {
-     "id": "emd0430",
+     "id": "emd0436",
      "step": 4,
      "anim": "up",
      "rotate": 0,
@@ -10182,7 +10338,7 @@
    ]
   },
   {
-   "id": "emd0452",
+   "id": "emd0458",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -10190,7 +10346,7 @@
    "notes": "[3분]\n영상(약 1분)을 보고 세 단계를 확인합니다.\n클릭① 노란 안전캡을 뽑습니다.\n클릭② 검은 끝을 허벅지 바깥쪽 앞에 90°로 댑니다. 옷 위로도 가능합니다.\n클릭③ \"딸깍\" 소리가 나면 누른 채로 10초 유지합니다.\n[실습 준비] 연습용 트레이너 펜으로 2인 1조 — 한 명 시행, 한 명은 세 단계를 소리 내어 확인.\n[확인 필요] \"옷 위로도 가능\" 과 10초 유지 시간 — 국내 제품 사용설명서로 확인 후 멘트 사용.\n[영상] 초안 40장 영상(assets/emd-video3.mp4).",
    "elements": [
     {
-     "id": "emd0432",
+     "id": "emd0438",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10217,7 +10373,7 @@
      }
     },
     {
-     "id": "emd0433",
+     "id": "emd0439",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10240,7 +10396,7 @@
      }
     },
     {
-     "id": "emd0434",
+     "id": "emd0440",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10267,7 +10423,7 @@
      }
     },
     {
-     "id": "emd0435",
+     "id": "emd0441",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10294,7 +10450,7 @@
      }
     },
     {
-     "id": "emd0436",
+     "id": "emd0442",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10319,7 +10475,7 @@
      }
     },
     {
-     "id": "emd0437",
+     "id": "emd0443",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10346,7 +10502,7 @@
      }
     },
     {
-     "id": "emd0438",
+     "id": "emd0444",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10368,7 +10524,7 @@
      }
     },
     {
-     "id": "emd0439",
+     "id": "emd0445",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -10395,7 +10551,7 @@
      }
     },
     {
-     "id": "emd0440",
+     "id": "emd0446",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -10417,7 +10573,7 @@
      }
     },
     {
-     "id": "emd0441",
+     "id": "emd0447",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -10439,7 +10595,7 @@
      }
     },
     {
-     "id": "emd0442",
+     "id": "emd0448",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -10461,7 +10617,7 @@
      }
     },
     {
-     "id": "emd0443",
+     "id": "emd0449",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -10488,7 +10644,7 @@
      }
     },
     {
-     "id": "emd0444",
+     "id": "emd0450",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -10510,7 +10666,7 @@
      }
     },
     {
-     "id": "emd0445",
+     "id": "emd0451",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -10532,7 +10688,7 @@
      }
     },
     {
-     "id": "emd0446",
+     "id": "emd0452",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -10554,7 +10710,7 @@
      }
     },
     {
-     "id": "emd0447",
+     "id": "emd0453",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -10581,7 +10737,7 @@
      }
     },
     {
-     "id": "emd0448",
+     "id": "emd0454",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -10603,7 +10759,7 @@
      }
     },
     {
-     "id": "emd0449",
+     "id": "emd0455",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -10625,7 +10781,7 @@
      }
     },
     {
-     "id": "emd0450",
+     "id": "emd0456",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -10647,7 +10803,7 @@
      }
     },
     {
-     "id": "emd0451",
+     "id": "emd0457",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10667,7 +10823,7 @@
    ]
   },
   {
-   "id": "emd0462",
+   "id": "emd0468",
    "bg": {
     "image": "assets/emd-bg-section.svg",
     "color": "#0A1324"
@@ -10676,7 +10832,7 @@
    "notes": "[30초]\nPART 4, 심정지입니다. 리듬 퀴즈 일곱 문제를 풀고 약물로 넘어갑니다.\n[디자인 메모] 배경은 모니터 화면처럼 심전도와 스윕이 흐르는 움직이는 그림(assets/emd-fx-monitor.svg).",
    "elements": [
     {
-     "id": "emd0453",
+     "id": "emd0459",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10695,7 +10851,7 @@
      "locked": true
     },
     {
-     "id": "emd0454",
+     "id": "emd0460",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10725,7 +10881,7 @@
      "gAngle": 0
     },
     {
-     "id": "emd0455",
+     "id": "emd0461",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10747,7 +10903,7 @@
      }
     },
     {
-     "id": "emd0456",
+     "id": "emd0462",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10770,7 +10926,7 @@
      }
     },
     {
-     "id": "emd0457",
+     "id": "emd0463",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10792,7 +10948,7 @@
      }
     },
     {
-     "id": "emd0458",
+     "id": "emd0464",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10814,7 +10970,7 @@
      }
     },
     {
-     "id": "emd0459",
+     "id": "emd0465",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10841,7 +10997,7 @@
      }
     },
     {
-     "id": "emd0460",
+     "id": "emd0466",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10863,7 +11019,7 @@
      }
     },
     {
-     "id": "emd0461",
+     "id": "emd0467",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10893,7 +11049,7 @@
    "noFooter": true
   },
   {
-   "id": "emd0475",
+   "id": "emd0481",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -10901,7 +11057,7 @@
    "notes": "[30초]\n첫 번째 리듬입니다. 의식이 명료하고 맥박이 있습니다. 제세동할까요? O 또는 X 로 손을 들어 주세요.",
    "elements": [
     {
-     "id": "emd0465",
+     "id": "emd0471",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10928,7 +11084,7 @@
      }
     },
     {
-     "id": "emd0466",
+     "id": "emd0472",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10951,7 +11107,7 @@
      }
     },
     {
-     "id": "emd0467",
+     "id": "emd0473",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -10978,7 +11134,7 @@
      }
     },
     {
-     "id": "emd0468",
+     "id": "emd0474",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11005,7 +11161,7 @@
      }
     },
     {
-     "id": "emd0469",
+     "id": "emd0475",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11032,7 +11188,7 @@
      }
     },
     {
-     "id": "emd0470",
+     "id": "emd0476",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11057,7 +11213,7 @@
      }
     },
     {
-     "id": "emd0471",
+     "id": "emd0477",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11080,7 +11236,7 @@
      "mk": "rq0t"
     },
     {
-     "id": "emd0464",
+     "id": "emd0470",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11108,7 +11264,7 @@
      "mk": "rq0p"
     },
     {
-     "id": "emd0463",
+     "id": "emd0469",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11127,7 +11283,7 @@
      "mk": "rq0i"
     },
     {
-     "id": "emd0472",
+     "id": "emd0478",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11149,7 +11305,7 @@
      }
     },
     {
-     "id": "emd0473",
+     "id": "emd0479",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11171,7 +11327,7 @@
      }
     },
     {
-     "id": "emd0474",
+     "id": "emd0480",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11199,7 +11355,7 @@
    ]
   },
   {
-   "id": "emd0486",
+   "id": "emd0492",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -11207,7 +11363,7 @@
    "notes": "[1분]\nNSR, 정상 동리듬입니다. 답은 X — 제세동 대상도, 심정지 약물 대상도 아닙니다. 리듬보다 환자를 먼저 봅니다.",
    "elements": [
     {
-     "id": "emd0476",
+     "id": "emd0482",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11234,7 +11390,7 @@
      }
     },
     {
-     "id": "emd0477",
+     "id": "emd0483",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11257,7 +11413,7 @@
      }
     },
     {
-     "id": "emd0478",
+     "id": "emd0484",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11284,7 +11440,7 @@
      }
     },
     {
-     "id": "emd0479",
+     "id": "emd0485",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11311,7 +11467,7 @@
      }
     },
     {
-     "id": "emd0480",
+     "id": "emd0486",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11338,7 +11494,7 @@
      }
     },
     {
-     "id": "emd0481",
+     "id": "emd0487",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11363,7 +11519,7 @@
      }
     },
     {
-     "id": "emd0482",
+     "id": "emd0488",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11386,7 +11542,7 @@
      "mk": "rq0t"
     },
     {
-     "id": "emd0464",
+     "id": "emd0470",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11414,7 +11570,7 @@
      "mk": "rq0p"
     },
     {
-     "id": "emd0463",
+     "id": "emd0469",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11433,7 +11589,7 @@
      "mk": "rq0i"
     },
     {
-     "id": "emd0483",
+     "id": "emd0489",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11461,7 +11617,7 @@
      "mk": "rq0ox"
     },
     {
-     "id": "emd0484",
+     "id": "emd0490",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11483,7 +11639,7 @@
      }
     },
     {
-     "id": "emd0485",
+     "id": "emd0491",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11507,7 +11663,7 @@
    ]
   },
   {
-   "id": "emd0499",
+   "id": "emd0505",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -11515,7 +11671,7 @@
    "notes": "[30초]\n같은 모양의 리듬인데 이번에는 무반응, 호흡 없음, 맥박 없음입니다. 제세동할까요?",
    "elements": [
     {
-     "id": "emd0489",
+     "id": "emd0495",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11542,7 +11698,7 @@
      }
     },
     {
-     "id": "emd0490",
+     "id": "emd0496",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11565,7 +11721,7 @@
      }
     },
     {
-     "id": "emd0491",
+     "id": "emd0497",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11592,7 +11748,7 @@
      }
     },
     {
-     "id": "emd0492",
+     "id": "emd0498",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11619,7 +11775,7 @@
      }
     },
     {
-     "id": "emd0493",
+     "id": "emd0499",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11646,7 +11802,7 @@
      }
     },
     {
-     "id": "emd0494",
+     "id": "emd0500",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11671,7 +11827,7 @@
      }
     },
     {
-     "id": "emd0495",
+     "id": "emd0501",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11694,7 +11850,7 @@
      "mk": "rq1t"
     },
     {
-     "id": "emd0488",
+     "id": "emd0494",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11722,7 +11878,7 @@
      "mk": "rq1p"
     },
     {
-     "id": "emd0487",
+     "id": "emd0493",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11741,7 +11897,7 @@
      "mk": "rq1i"
     },
     {
-     "id": "emd0496",
+     "id": "emd0502",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11763,7 +11919,7 @@
      }
     },
     {
-     "id": "emd0497",
+     "id": "emd0503",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11785,7 +11941,7 @@
      }
     },
     {
-     "id": "emd0498",
+     "id": "emd0504",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11813,7 +11969,7 @@
    ]
   },
   {
-   "id": "emd0510",
+   "id": "emd0516",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -11821,7 +11977,7 @@
    "notes": "[1분]\nPEA, 무맥성 전기활동입니다. 답은 X. 모니터에 전기활동이 보여도 맥박은 없을 수 있습니다.\nCPR 을 이어 가고 에피네프린을 투여합니다(초안 해설 문구 보완: 비충격 리듬 처치).\n[디자인 메모] 앞 문제와 같은 그림 — \"모양이 같아도 환자 상태가 다르면 답이 다르다\"를 보여 주는 의도(초안 그대로).",
    "elements": [
     {
-     "id": "emd0500",
+     "id": "emd0506",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11848,7 +12004,7 @@
      }
     },
     {
-     "id": "emd0501",
+     "id": "emd0507",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11871,7 +12027,7 @@
      }
     },
     {
-     "id": "emd0502",
+     "id": "emd0508",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11898,7 +12054,7 @@
      }
     },
     {
-     "id": "emd0503",
+     "id": "emd0509",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11925,7 +12081,7 @@
      }
     },
     {
-     "id": "emd0504",
+     "id": "emd0510",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11952,7 +12108,7 @@
      }
     },
     {
-     "id": "emd0505",
+     "id": "emd0511",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -11977,7 +12133,7 @@
      }
     },
     {
-     "id": "emd0506",
+     "id": "emd0512",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12000,7 +12156,7 @@
      "mk": "rq1t"
     },
     {
-     "id": "emd0488",
+     "id": "emd0494",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12028,7 +12184,7 @@
      "mk": "rq1p"
     },
     {
-     "id": "emd0487",
+     "id": "emd0493",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12047,7 +12203,7 @@
      "mk": "rq1i"
     },
     {
-     "id": "emd0507",
+     "id": "emd0513",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12075,7 +12231,7 @@
      "mk": "rq1ox"
     },
     {
-     "id": "emd0508",
+     "id": "emd0514",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12097,7 +12253,7 @@
      }
     },
     {
-     "id": "emd0509",
+     "id": "emd0515",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12121,7 +12277,7 @@
    ]
   },
   {
-   "id": "emd0523",
+   "id": "emd0529",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -12129,7 +12285,7 @@
    "notes": "[30초]\n무반응, 호흡 없음, 맥박 없음. 전극 연결과 유도를 확인한 뒤에도 무수축입니다. 지금 비동기 제세동할까요?",
    "elements": [
     {
-     "id": "emd0513",
+     "id": "emd0519",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12156,7 +12312,7 @@
      }
     },
     {
-     "id": "emd0514",
+     "id": "emd0520",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12179,7 +12335,7 @@
      }
     },
     {
-     "id": "emd0515",
+     "id": "emd0521",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12206,7 +12362,7 @@
      }
     },
     {
-     "id": "emd0516",
+     "id": "emd0522",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12233,7 +12389,7 @@
      }
     },
     {
-     "id": "emd0517",
+     "id": "emd0523",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12260,7 +12416,7 @@
      }
     },
     {
-     "id": "emd0518",
+     "id": "emd0524",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12285,7 +12441,7 @@
      }
     },
     {
-     "id": "emd0519",
+     "id": "emd0525",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12308,7 +12464,7 @@
      "mk": "rq2t"
     },
     {
-     "id": "emd0512",
+     "id": "emd0518",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12336,7 +12492,7 @@
      "mk": "rq2p"
     },
     {
-     "id": "emd0511",
+     "id": "emd0517",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12355,7 +12511,7 @@
      "mk": "rq2i"
     },
     {
-     "id": "emd0520",
+     "id": "emd0526",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12377,7 +12533,7 @@
      }
     },
     {
-     "id": "emd0521",
+     "id": "emd0527",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12399,7 +12555,7 @@
      }
     },
     {
-     "id": "emd0522",
+     "id": "emd0528",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12427,7 +12583,7 @@
    ]
   },
   {
-   "id": "emd0534",
+   "id": "emd0540",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -12435,7 +12591,7 @@
    "notes": "[1분]\nAsystole, 무수축입니다. 답은 X. 제세동 대상이 아닙니다.\nCPR 과 에피네프린, 그리고 환자 상태에 맞는 처치를 합니다. 무수축으로 보이면 먼저 전극 연결과 유도를 확인합니다.",
    "elements": [
     {
-     "id": "emd0524",
+     "id": "emd0530",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12462,7 +12618,7 @@
      }
     },
     {
-     "id": "emd0525",
+     "id": "emd0531",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12485,7 +12641,7 @@
      }
     },
     {
-     "id": "emd0526",
+     "id": "emd0532",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12512,7 +12668,7 @@
      }
     },
     {
-     "id": "emd0527",
+     "id": "emd0533",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12539,7 +12695,7 @@
      }
     },
     {
-     "id": "emd0528",
+     "id": "emd0534",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12566,7 +12722,7 @@
      }
     },
     {
-     "id": "emd0529",
+     "id": "emd0535",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12591,7 +12747,7 @@
      }
     },
     {
-     "id": "emd0530",
+     "id": "emd0536",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12614,7 +12770,7 @@
      "mk": "rq2t"
     },
     {
-     "id": "emd0512",
+     "id": "emd0518",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12642,7 +12798,7 @@
      "mk": "rq2p"
     },
     {
-     "id": "emd0511",
+     "id": "emd0517",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12661,7 +12817,7 @@
      "mk": "rq2i"
     },
     {
-     "id": "emd0531",
+     "id": "emd0537",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12689,7 +12845,7 @@
      "mk": "rq2ox"
     },
     {
-     "id": "emd0532",
+     "id": "emd0538",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12711,7 +12867,7 @@
      }
     },
     {
-     "id": "emd0533",
+     "id": "emd0539",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12735,7 +12891,7 @@
    ]
   },
   {
-   "id": "emd0547",
+   "id": "emd0553",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -12743,7 +12899,7 @@
    "notes": "[30초]\n무반응, 호흡 없음, 맥박 없음. 큰 파형이 불규칙합니다. 제세동할까요?",
    "elements": [
     {
-     "id": "emd0537",
+     "id": "emd0543",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12770,7 +12926,7 @@
      }
     },
     {
-     "id": "emd0538",
+     "id": "emd0544",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12793,7 +12949,7 @@
      }
     },
     {
-     "id": "emd0539",
+     "id": "emd0545",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12820,7 +12976,7 @@
      }
     },
     {
-     "id": "emd0540",
+     "id": "emd0546",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12847,7 +13003,7 @@
      }
     },
     {
-     "id": "emd0541",
+     "id": "emd0547",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12874,7 +13030,7 @@
      }
     },
     {
-     "id": "emd0542",
+     "id": "emd0548",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12899,7 +13055,7 @@
      }
     },
     {
-     "id": "emd0543",
+     "id": "emd0549",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12922,7 +13078,7 @@
      "mk": "rq3t"
     },
     {
-     "id": "emd0536",
+     "id": "emd0542",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12950,7 +13106,7 @@
      "mk": "rq3p"
     },
     {
-     "id": "emd0535",
+     "id": "emd0541",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12969,7 +13125,7 @@
      "mk": "rq3i"
     },
     {
-     "id": "emd0544",
+     "id": "emd0550",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -12991,7 +13147,7 @@
      }
     },
     {
-     "id": "emd0545",
+     "id": "emd0551",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13013,7 +13169,7 @@
      }
     },
     {
-     "id": "emd0546",
+     "id": "emd0552",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13041,7 +13197,7 @@
    ]
   },
   {
-   "id": "emd0558",
+   "id": "emd0564",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -13049,7 +13205,7 @@
    "notes": "[1분]\nCoarse VF, 진폭이 큰 심실세동입니다. 답은 O. 제세동하고, 리듬 확인 없이 바로 CPR 을 다시 시작합니다.\n[보완] 초안 \"Shock 친 후 즉시 CPR\" → \"제세동 후 즉시 CPR\" 로 용어 통일.",
    "elements": [
     {
-     "id": "emd0548",
+     "id": "emd0554",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13076,7 +13232,7 @@
      }
     },
     {
-     "id": "emd0549",
+     "id": "emd0555",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13099,7 +13255,7 @@
      }
     },
     {
-     "id": "emd0550",
+     "id": "emd0556",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13126,7 +13282,7 @@
      }
     },
     {
-     "id": "emd0551",
+     "id": "emd0557",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13153,7 +13309,7 @@
      }
     },
     {
-     "id": "emd0552",
+     "id": "emd0558",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13180,7 +13336,7 @@
      }
     },
     {
-     "id": "emd0553",
+     "id": "emd0559",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13205,7 +13361,7 @@
      }
     },
     {
-     "id": "emd0554",
+     "id": "emd0560",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13228,7 +13384,7 @@
      "mk": "rq3t"
     },
     {
-     "id": "emd0536",
+     "id": "emd0542",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13256,7 +13412,7 @@
      "mk": "rq3p"
     },
     {
-     "id": "emd0535",
+     "id": "emd0541",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13275,7 +13431,7 @@
      "mk": "rq3i"
     },
     {
-     "id": "emd0555",
+     "id": "emd0561",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13303,7 +13459,7 @@
      "mk": "rq3ox"
     },
     {
-     "id": "emd0556",
+     "id": "emd0562",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13327,7 +13483,7 @@
    ]
   },
   {
-   "id": "emd0571",
+   "id": "emd0577",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -13335,7 +13491,7 @@
    "notes": "[30초]\n무반응, 호흡 없음, 경동맥 맥박 없음. 넓고 빠른 규칙적 파형입니다. 제세동할까요?",
    "elements": [
     {
-     "id": "emd0561",
+     "id": "emd0567",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13362,7 +13518,7 @@
      }
     },
     {
-     "id": "emd0562",
+     "id": "emd0568",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13385,7 +13541,7 @@
      }
     },
     {
-     "id": "emd0563",
+     "id": "emd0569",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13412,7 +13568,7 @@
      }
     },
     {
-     "id": "emd0564",
+     "id": "emd0570",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13439,7 +13595,7 @@
      }
     },
     {
-     "id": "emd0565",
+     "id": "emd0571",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13466,7 +13622,7 @@
      }
     },
     {
-     "id": "emd0566",
+     "id": "emd0572",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13491,7 +13647,7 @@
      }
     },
     {
-     "id": "emd0567",
+     "id": "emd0573",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13514,7 +13670,7 @@
      "mk": "rq4t"
     },
     {
-     "id": "emd0560",
+     "id": "emd0566",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13542,7 +13698,7 @@
      "mk": "rq4p"
     },
     {
-     "id": "emd0559",
+     "id": "emd0565",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13561,7 +13717,7 @@
      "mk": "rq4i"
     },
     {
-     "id": "emd0568",
+     "id": "emd0574",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13583,7 +13739,7 @@
      }
     },
     {
-     "id": "emd0569",
+     "id": "emd0575",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13605,7 +13761,7 @@
      }
     },
     {
-     "id": "emd0570",
+     "id": "emd0576",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13633,7 +13789,7 @@
    ]
   },
   {
-   "id": "emd0582",
+   "id": "emd0588",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -13641,7 +13797,7 @@
    "notes": "[1분]\nPulseless VT, 무맥성 심실빈맥입니다. 답은 O. 즉시 제세동하고 바로 CPR 을 이어 갑니다.\n맥박이 있는 VT 와는 처치가 다릅니다 — 맥박 확인이 먼저입니다.",
    "elements": [
     {
-     "id": "emd0572",
+     "id": "emd0578",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13668,7 +13824,7 @@
      }
     },
     {
-     "id": "emd0573",
+     "id": "emd0579",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13691,7 +13847,7 @@
      }
     },
     {
-     "id": "emd0574",
+     "id": "emd0580",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13718,7 +13874,7 @@
      }
     },
     {
-     "id": "emd0575",
+     "id": "emd0581",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13745,7 +13901,7 @@
      }
     },
     {
-     "id": "emd0576",
+     "id": "emd0582",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13772,7 +13928,7 @@
      }
     },
     {
-     "id": "emd0577",
+     "id": "emd0583",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13797,7 +13953,7 @@
      }
     },
     {
-     "id": "emd0578",
+     "id": "emd0584",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13820,7 +13976,7 @@
      "mk": "rq4t"
     },
     {
-     "id": "emd0560",
+     "id": "emd0566",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13848,7 +14004,7 @@
      "mk": "rq4p"
     },
     {
-     "id": "emd0559",
+     "id": "emd0565",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13867,7 +14023,7 @@
      "mk": "rq4i"
     },
     {
-     "id": "emd0579",
+     "id": "emd0585",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13895,7 +14051,7 @@
      "mk": "rq4ox"
     },
     {
-     "id": "emd0580",
+     "id": "emd0586",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13917,7 +14073,7 @@
      }
     },
     {
-     "id": "emd0581",
+     "id": "emd0587",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13941,7 +14097,7 @@
    ]
   },
   {
-   "id": "emd0595",
+   "id": "emd0601",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -13949,7 +14105,7 @@
    "notes": "[30초]\n무반응, 호흡 없음. 다른 모양의 불규칙한 파형입니다. 지금 비동기 제세동할까요?",
    "elements": [
     {
-     "id": "emd0585",
+     "id": "emd0591",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13976,7 +14132,7 @@
      }
     },
     {
-     "id": "emd0586",
+     "id": "emd0592",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -13999,7 +14155,7 @@
      }
     },
     {
-     "id": "emd0587",
+     "id": "emd0593",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14026,7 +14182,7 @@
      }
     },
     {
-     "id": "emd0588",
+     "id": "emd0594",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14053,7 +14209,7 @@
      }
     },
     {
-     "id": "emd0589",
+     "id": "emd0595",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14080,7 +14236,7 @@
      }
     },
     {
-     "id": "emd0590",
+     "id": "emd0596",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14105,7 +14261,7 @@
      }
     },
     {
-     "id": "emd0591",
+     "id": "emd0597",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14128,7 +14284,7 @@
      "mk": "rq5t"
     },
     {
-     "id": "emd0584",
+     "id": "emd0590",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14156,7 +14312,7 @@
      "mk": "rq5p"
     },
     {
-     "id": "emd0583",
+     "id": "emd0589",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14175,7 +14331,7 @@
      "mk": "rq5i"
     },
     {
-     "id": "emd0592",
+     "id": "emd0598",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14197,7 +14353,7 @@
      }
     },
     {
-     "id": "emd0593",
+     "id": "emd0599",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14219,7 +14375,7 @@
      }
     },
     {
-     "id": "emd0594",
+     "id": "emd0600",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14247,7 +14403,7 @@
    ]
   },
   {
-   "id": "emd0606",
+   "id": "emd0612",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -14255,7 +14411,7 @@
    "notes": "[1분]\nVF 의 또 다른 예시입니다. 답은 O. 제세동 후 즉시 CPR.\n모양이 달라 보여도 불규칙하고 조직화되지 않은 파형이면 VF 입니다.",
    "elements": [
     {
-     "id": "emd0596",
+     "id": "emd0602",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14282,7 +14438,7 @@
      }
     },
     {
-     "id": "emd0597",
+     "id": "emd0603",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14305,7 +14461,7 @@
      }
     },
     {
-     "id": "emd0598",
+     "id": "emd0604",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14332,7 +14488,7 @@
      }
     },
     {
-     "id": "emd0599",
+     "id": "emd0605",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14359,7 +14515,7 @@
      }
     },
     {
-     "id": "emd0600",
+     "id": "emd0606",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14386,7 +14542,7 @@
      }
     },
     {
-     "id": "emd0601",
+     "id": "emd0607",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14411,7 +14567,7 @@
      }
     },
     {
-     "id": "emd0602",
+     "id": "emd0608",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14434,7 +14590,7 @@
      "mk": "rq5t"
     },
     {
-     "id": "emd0584",
+     "id": "emd0590",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14462,7 +14618,7 @@
      "mk": "rq5p"
     },
     {
-     "id": "emd0583",
+     "id": "emd0589",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14481,7 +14637,7 @@
      "mk": "rq5i"
     },
     {
-     "id": "emd0603",
+     "id": "emd0609",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14509,7 +14665,7 @@
      "mk": "rq5ox"
     },
     {
-     "id": "emd0604",
+     "id": "emd0610",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14533,7 +14689,7 @@
    ]
   },
   {
-   "id": "emd0619",
+   "id": "emd0625",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -14541,7 +14697,7 @@
    "notes": "[30초]\n마지막입니다. 무반응, 호흡 없음. 진폭이 작은 VF 로 확인됐습니다. 지금 비동기 제세동할까요?",
    "elements": [
     {
-     "id": "emd0609",
+     "id": "emd0615",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14568,7 +14724,7 @@
      }
     },
     {
-     "id": "emd0610",
+     "id": "emd0616",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14591,7 +14747,7 @@
      }
     },
     {
-     "id": "emd0611",
+     "id": "emd0617",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14618,7 +14774,7 @@
      }
     },
     {
-     "id": "emd0612",
+     "id": "emd0618",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14645,7 +14801,7 @@
      }
     },
     {
-     "id": "emd0613",
+     "id": "emd0619",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14672,7 +14828,7 @@
      }
     },
     {
-     "id": "emd0614",
+     "id": "emd0620",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14697,7 +14853,7 @@
      }
     },
     {
-     "id": "emd0615",
+     "id": "emd0621",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14720,7 +14876,7 @@
      "mk": "rq6t"
     },
     {
-     "id": "emd0608",
+     "id": "emd0614",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14748,7 +14904,7 @@
      "mk": "rq6p"
     },
     {
-     "id": "emd0607",
+     "id": "emd0613",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14769,7 +14925,7 @@
      "cropY": 50
     },
     {
-     "id": "emd0616",
+     "id": "emd0622",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14791,7 +14947,7 @@
      }
     },
     {
-     "id": "emd0617",
+     "id": "emd0623",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14813,7 +14969,7 @@
      }
     },
     {
-     "id": "emd0618",
+     "id": "emd0624",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14841,7 +14997,7 @@
    ]
   },
   {
-   "id": "emd0630",
+   "id": "emd0636",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -14849,7 +15005,7 @@
    "notes": "[1분]\nFine VF, 진폭이 작은 심실세동입니다. 답은 O. 확인된 VF 는 진폭과 관계없이 제세동하고, 바로 CPR 을 이어 갑니다.\n작아서 무수축으로 오인하기 쉽습니다 — 유도와 감도를 확인합니다.\n[디자인 메모] 그림은 Coarse VF 그림(Coarse → Fine 으로 진폭이 줄어드는 한 줄)의 오른쪽 절반, 실제 Fine VF 구간만 잘라 보여 줌. 초안은 같은 그림을 세로로 눌러 표시했었음.",
    "elements": [
     {
-     "id": "emd0620",
+     "id": "emd0626",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14876,7 +15032,7 @@
      }
     },
     {
-     "id": "emd0621",
+     "id": "emd0627",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14899,7 +15055,7 @@
      }
     },
     {
-     "id": "emd0622",
+     "id": "emd0628",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14926,7 +15082,7 @@
      }
     },
     {
-     "id": "emd0623",
+     "id": "emd0629",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14953,7 +15109,7 @@
      }
     },
     {
-     "id": "emd0624",
+     "id": "emd0630",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -14980,7 +15136,7 @@
      }
     },
     {
-     "id": "emd0625",
+     "id": "emd0631",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15005,7 +15161,7 @@
      }
     },
     {
-     "id": "emd0626",
+     "id": "emd0632",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15028,7 +15184,7 @@
      "mk": "rq6t"
     },
     {
-     "id": "emd0608",
+     "id": "emd0614",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15056,7 +15212,7 @@
      "mk": "rq6p"
     },
     {
-     "id": "emd0607",
+     "id": "emd0613",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15077,7 +15233,7 @@
      "cropY": 50
     },
     {
-     "id": "emd0627",
+     "id": "emd0633",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15105,7 +15261,7 @@
      "mk": "rq6ox"
     },
     {
-     "id": "emd0628",
+     "id": "emd0634",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15127,7 +15283,7 @@
      }
     },
     {
-     "id": "emd0629",
+     "id": "emd0635",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15151,7 +15307,7 @@
    ]
   },
   {
-   "id": "emd0654",
+   "id": "emd0660",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -15159,7 +15315,7 @@
    "notes": "[1분 30초]\n에피네프린은 심장이 멈춘 환자의 관류압을 빠르게 높여 심장과 뇌로 피를 보내기 위해 씁니다.\n클릭① 알파 — 혈관을 조여 혈압을 올리고, 베타1 — 심근 수축력을 높이고, 베타2 — 말초혈관과 기관지를 넓힙니다.\n클릭② 앰플은 1 mg/1 mL(1:1,000). 3~5분 간격, 보통 2사이클마다 1회. 적응 리듬은 Asystole, PEA, VF, pVT 모두입니다.\nTIP — 3-way 를 두 개 연결해 하나는 에피네프린, 하나는 NS flushing 용으로 쓰면 빠릅니다.",
    "elements": [
     {
-     "id": "emd0631",
+     "id": "emd0637",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15186,7 +15342,7 @@
      }
     },
     {
-     "id": "emd0632",
+     "id": "emd0638",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15209,7 +15365,7 @@
      }
     },
     {
-     "id": "emd0633",
+     "id": "emd0639",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15236,7 +15392,7 @@
      }
     },
     {
-     "id": "emd0634",
+     "id": "emd0640",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15263,7 +15419,7 @@
      }
     },
     {
-     "id": "emd0635",
+     "id": "emd0641",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15290,7 +15446,7 @@
      }
     },
     {
-     "id": "emd0636",
+     "id": "emd0642",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15315,7 +15471,7 @@
      }
     },
     {
-     "id": "emd0637",
+     "id": "emd0643",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15337,7 +15493,7 @@
      }
     },
     {
-     "id": "emd0638",
+     "id": "emd0644",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15355,7 +15511,7 @@
      "borderColor": "#ffffff"
     },
     {
-     "id": "emd0639",
+     "id": "emd0645",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15377,7 +15533,7 @@
      }
     },
     {
-     "id": "emd0640",
+     "id": "emd0646",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -15402,7 +15558,7 @@
      }
     },
     {
-     "id": "emd0641",
+     "id": "emd0647",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -15424,7 +15580,7 @@
      }
     },
     {
-     "id": "emd0642",
+     "id": "emd0648",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -15449,7 +15605,7 @@
      }
     },
     {
-     "id": "emd0643",
+     "id": "emd0649",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -15471,7 +15627,7 @@
      }
     },
     {
-     "id": "emd0644",
+     "id": "emd0650",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -15496,7 +15652,7 @@
      }
     },
     {
-     "id": "emd0645",
+     "id": "emd0651",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -15518,7 +15674,7 @@
      }
     },
     {
-     "id": "emd0646",
+     "id": "emd0652",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -15545,7 +15701,7 @@
      }
     },
     {
-     "id": "emd0647",
+     "id": "emd0653",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -15567,7 +15723,7 @@
      }
     },
     {
-     "id": "emd0648",
+     "id": "emd0654",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -15589,7 +15745,7 @@
      }
     },
     {
-     "id": "emd0649",
+     "id": "emd0655",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -15616,7 +15772,7 @@
      }
     },
     {
-     "id": "emd0650",
+     "id": "emd0656",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -15638,7 +15794,7 @@
      }
     },
     {
-     "id": "emd0651",
+     "id": "emd0657",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -15665,7 +15821,7 @@
      }
     },
     {
-     "id": "emd0652",
+     "id": "emd0658",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -15687,7 +15843,7 @@
      }
     },
     {
-     "id": "emd0653",
+     "id": "emd0659",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -15716,7 +15872,7 @@
    ]
   },
   {
-   "id": "emd0670",
+   "id": "emd0676",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -15724,7 +15880,7 @@
    "notes": "[1분]\n성인 심정지 에피네프린은 1 mg, 3~5분마다 반복합니다.\n클릭① 몇 번 줬는지(총용량)와 어떤 농도를 썼는지는 따로 기록하고 확인합니다. 인계 때 반드시 묻는 내용입니다.\n[출처] 질병관리청 · 대한심폐소생협회 「2025년 한국 심폐소생술 가이드라인」 발표(2026-01-29, 질병관리청 보도자료).\n[확인 필요] 가이드라인 제4장(전문소생술) 원문에서 용량 · 간격 문구 대조.",
    "elements": [
     {
-     "id": "emd0655",
+     "id": "emd0661",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15751,7 +15907,7 @@
      }
     },
     {
-     "id": "emd0656",
+     "id": "emd0662",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15774,7 +15930,7 @@
      }
     },
     {
-     "id": "emd0657",
+     "id": "emd0663",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15801,7 +15957,7 @@
      }
     },
     {
-     "id": "emd0658",
+     "id": "emd0664",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15828,7 +15984,7 @@
      }
     },
     {
-     "id": "emd0659",
+     "id": "emd0665",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15855,7 +16011,7 @@
      }
     },
     {
-     "id": "emd0660",
+     "id": "emd0666",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15880,7 +16036,7 @@
      }
     },
     {
-     "id": "emd0661",
+     "id": "emd0667",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15902,7 +16058,7 @@
      }
     },
     {
-     "id": "emd0662",
+     "id": "emd0668",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15929,7 +16085,7 @@
      }
     },
     {
-     "id": "emd0663",
+     "id": "emd0669",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15951,7 +16107,7 @@
      }
     },
     {
-     "id": "emd0664",
+     "id": "emd0670",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -15973,7 +16129,7 @@
      }
     },
     {
-     "id": "emd0665",
+     "id": "emd0671",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16000,7 +16156,7 @@
      }
     },
     {
-     "id": "emd0666",
+     "id": "emd0672",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16022,7 +16178,7 @@
      }
     },
     {
-     "id": "emd0667",
+     "id": "emd0673",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16044,7 +16200,7 @@
      }
     },
     {
-     "id": "emd0668",
+     "id": "emd0674",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -16069,7 +16225,7 @@
      }
     },
     {
-     "id": "emd0669",
+     "id": "emd0675",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16093,7 +16249,7 @@
    ]
   },
   {
-   "id": "emd0679",
+   "id": "emd0685",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -16101,7 +16257,7 @@
    "notes": "[1분]\n말초정맥으로 투여한 뒤에는 세 가지를 합니다.\n01 에피네프린 IV 투여 → 02 NS 20 mL 플러싱(0.9% 생리식염수) → 03 가능하면 투여한 팔을 들어 중심순환으로 전달을 돕습니다.\n그리고 이 모든 과정에서 가슴압박과 제세동을 지연하지 않습니다.\n[그림] 초안 37장 인포그래픽(assets/emd-img18.jpg) — 그림 안 근거 표기: 2025 한국 심폐소생술 가이드라인 · 성인 전문소생술.\n[보완] 초안 37장을 \"용량 장\"과 \"인포그래픽 장\" 두 장으로 나눔(정보량 유지).",
    "elements": [
     {
-     "id": "emd0671",
+     "id": "emd0677",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16128,7 +16284,7 @@
      }
     },
     {
-     "id": "emd0672",
+     "id": "emd0678",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16151,7 +16307,7 @@
      }
     },
     {
-     "id": "emd0673",
+     "id": "emd0679",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16178,7 +16334,7 @@
      }
     },
     {
-     "id": "emd0674",
+     "id": "emd0680",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16205,7 +16361,7 @@
      }
     },
     {
-     "id": "emd0675",
+     "id": "emd0681",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16232,7 +16388,7 @@
      }
     },
     {
-     "id": "emd0676",
+     "id": "emd0682",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16257,7 +16413,7 @@
      }
     },
     {
-     "id": "emd0677",
+     "id": "emd0683",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16279,7 +16435,7 @@
      }
     },
     {
-     "id": "emd0678",
+     "id": "emd0684",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16299,7 +16455,7 @@
    ]
   },
   {
-   "id": "emd0688",
+   "id": "emd0694",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -16307,7 +16463,7 @@
    "notes": "[1분 30초]\n제세동에 반응하지 않는 VF 나 pVT 에는 아미오다론을 씁니다.\n1차 300 mg(150 mg/3 mL 앰플 2개) — 3차 제세동 후 CPR 중, D5W 20~30 mL 에 희석, IV bolus.\n2차 150 mg(1앰플) — VF/pVT 가 지속되면, 추가 1회.\n현재 리듬이 PEA 나 Asystole 이면 아미오다론을 추가로 주지 않습니다. CPR 과 제세동은 지연하지 않습니다.\n[그림] 초안 41장 인포그래픽(assets/emd-img20.jpg) — 그림 안 근거 표기: 2025 한국 심폐소생술 가이드라인, 2017 대한내과학회 교육자료.\n[확인 필요] 초안 41장의 화면 글자는 \"150 mg\" 하나뿐 — 위 멘트는 인포그래픽 내용을 옮긴 것. 가이드라인 원문으로 용량 · 시점 대조.\n[보완] 순서 변경: 젝스트 뒤 → PART 4 에피네프린 옆.",
    "elements": [
     {
-     "id": "emd0680",
+     "id": "emd0686",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16334,7 +16490,7 @@
      }
     },
     {
-     "id": "emd0681",
+     "id": "emd0687",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16357,7 +16513,7 @@
      }
     },
     {
-     "id": "emd0682",
+     "id": "emd0688",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16384,7 +16540,7 @@
      }
     },
     {
-     "id": "emd0683",
+     "id": "emd0689",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16411,7 +16567,7 @@
      }
     },
     {
-     "id": "emd0684",
+     "id": "emd0690",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16438,7 +16594,7 @@
      }
     },
     {
-     "id": "emd0685",
+     "id": "emd0691",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16463,7 +16619,7 @@
      }
     },
     {
-     "id": "emd0686",
+     "id": "emd0692",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16485,7 +16641,7 @@
      }
     },
     {
-     "id": "emd0687",
+     "id": "emd0693",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16505,7 +16661,7 @@
    ]
   },
   {
-   "id": "emd0708",
+   "id": "emd0714",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -16513,7 +16669,7 @@
    "notes": "[1분 30초]\n마지막은 인계입니다. 우리가 한 처치는 병원에서 이어져야 의미가 있습니다.\n클릭① 무엇을, 얼마나, 어떤 경로로 — 예) 에피네프린 1 mg 정맥.\n클릭② 언제 투여했는가 — 시각.\n클릭③ 환자가 어떻게 변했는가 — 앞에서 본 재평가 지표(혈당 · 혈압 · 호흡 · 리듬).\n클릭④ 다음 의료진이 처치를 이어갈 수 있도록 전달합니다.\n[보완] 순서 변경: 포도당 뒤 → 정리 구역.",
    "elements": [
     {
-     "id": "emd0689",
+     "id": "emd0695",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16540,7 +16696,7 @@
      }
     },
     {
-     "id": "emd0690",
+     "id": "emd0696",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16563,7 +16719,7 @@
      }
     },
     {
-     "id": "emd0691",
+     "id": "emd0697",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16590,7 +16746,7 @@
      }
     },
     {
-     "id": "emd0692",
+     "id": "emd0698",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16617,7 +16773,7 @@
      }
     },
     {
-     "id": "emd0693",
+     "id": "emd0699",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16644,7 +16800,7 @@
      }
     },
     {
-     "id": "emd0694",
+     "id": "emd0700",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16671,7 +16827,7 @@
      }
     },
     {
-     "id": "emd0695",
+     "id": "emd0701",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16693,7 +16849,7 @@
      }
     },
     {
-     "id": "emd0696",
+     "id": "emd0702",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -16720,7 +16876,7 @@
      }
     },
     {
-     "id": "emd0697",
+     "id": "emd0703",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -16742,7 +16898,7 @@
      }
     },
     {
-     "id": "emd0698",
+     "id": "emd0704",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -16764,7 +16920,7 @@
      }
     },
     {
-     "id": "emd0699",
+     "id": "emd0705",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -16786,7 +16942,7 @@
      }
     },
     {
-     "id": "emd0700",
+     "id": "emd0706",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -16813,7 +16969,7 @@
      }
     },
     {
-     "id": "emd0701",
+     "id": "emd0707",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -16835,7 +16991,7 @@
      }
     },
     {
-     "id": "emd0702",
+     "id": "emd0708",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -16857,7 +17013,7 @@
      }
     },
     {
-     "id": "emd0703",
+     "id": "emd0709",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -16879,7 +17035,7 @@
      }
     },
     {
-     "id": "emd0704",
+     "id": "emd0710",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -16906,7 +17062,7 @@
      }
     },
     {
-     "id": "emd0705",
+     "id": "emd0711",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -16928,7 +17084,7 @@
      }
     },
     {
-     "id": "emd0706",
+     "id": "emd0712",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -16950,7 +17106,7 @@
      }
     },
     {
-     "id": "emd0707",
+     "id": "emd0713",
      "step": 4,
      "anim": "up",
      "rotate": 0,
@@ -16977,7 +17133,7 @@
    ]
   },
   {
-   "id": "emd0728",
+   "id": "emd0734",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -16985,7 +17141,7 @@
    "notes": "[1분]\n오늘 핵심 세 가지입니다.\n클릭① 확인 — 투여 전 5 Right, ARM SAVE, 복창.\n클릭② 판단 — 리듬을 보고 제세동과 약물을 결정합니다. VF 와 pVT 는 제세동 후 바로 CPR.\n클릭③ 재평가와 인계 — 약물마다 다른 지표를 다시 보고, 무엇을 · 언제 · 어떻게 변했는지 전달합니다.\n[보완] 새로 넣은 장.",
    "elements": [
     {
-     "id": "emd0709",
+     "id": "emd0715",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17012,7 +17168,7 @@
      }
     },
     {
-     "id": "emd0710",
+     "id": "emd0716",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17035,7 +17191,7 @@
      }
     },
     {
-     "id": "emd0711",
+     "id": "emd0717",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17062,7 +17218,7 @@
      }
     },
     {
-     "id": "emd0712",
+     "id": "emd0718",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17089,7 +17245,7 @@
      }
     },
     {
-     "id": "emd0713",
+     "id": "emd0719",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17116,7 +17272,7 @@
      }
     },
     {
-     "id": "emd0714",
+     "id": "emd0720",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17143,7 +17299,7 @@
      }
     },
     {
-     "id": "emd0715",
+     "id": "emd0721",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17165,7 +17321,7 @@
      }
     },
     {
-     "id": "emd0716",
+     "id": "emd0722",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -17192,7 +17348,7 @@
      }
     },
     {
-     "id": "emd0717",
+     "id": "emd0723",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -17214,7 +17370,7 @@
      }
     },
     {
-     "id": "emd0718",
+     "id": "emd0724",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -17236,7 +17392,7 @@
      }
     },
     {
-     "id": "emd0719",
+     "id": "emd0725",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -17258,7 +17414,7 @@
      }
     },
     {
-     "id": "emd0720",
+     "id": "emd0726",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -17285,7 +17441,7 @@
      }
     },
     {
-     "id": "emd0721",
+     "id": "emd0727",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -17307,7 +17463,7 @@
      }
     },
     {
-     "id": "emd0722",
+     "id": "emd0728",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -17329,7 +17485,7 @@
      }
     },
     {
-     "id": "emd0723",
+     "id": "emd0729",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -17351,7 +17507,7 @@
      }
     },
     {
-     "id": "emd0724",
+     "id": "emd0730",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -17378,7 +17534,7 @@
      }
     },
     {
-     "id": "emd0725",
+     "id": "emd0731",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -17400,7 +17556,7 @@
      }
     },
     {
-     "id": "emd0726",
+     "id": "emd0732",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -17422,7 +17578,7 @@
      }
     },
     {
-     "id": "emd0727",
+     "id": "emd0733",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -17446,7 +17602,7 @@
    ]
   },
   {
-   "id": "emd0748",
+   "id": "emd0754",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -17454,7 +17610,7 @@
    "notes": "[2분]\n세 문제로 확인하겠습니다. 문제를 읽고 잠시 기다린 뒤 클릭해서 답을 보여 줍니다.\n클릭① Q1 — 120 ÷ 3 = 40 gtt/min, 60 ÷ 40 = 1.5초에 한 방울.\n클릭② Q2 — X. SBP 90 mmHg 이하는 NTG 금기.\n클릭③ Q3 — O. 확인된 VF 는 진폭과 관계없이 제세동, 바로 CPR.\n[보완] 새로 넣은 장. 문제는 초안 내용(점적 계산 · NTG 금기 · Fine VF)에서 출제.",
    "elements": [
     {
-     "id": "emd0729",
+     "id": "emd0735",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17481,7 +17637,7 @@
      }
     },
     {
-     "id": "emd0730",
+     "id": "emd0736",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17504,7 +17660,7 @@
      }
     },
     {
-     "id": "emd0731",
+     "id": "emd0737",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17531,7 +17687,7 @@
      }
     },
     {
-     "id": "emd0732",
+     "id": "emd0738",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17558,7 +17714,7 @@
      }
     },
     {
-     "id": "emd0733",
+     "id": "emd0739",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17585,7 +17741,7 @@
      }
     },
     {
-     "id": "emd0734",
+     "id": "emd0740",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17612,7 +17768,7 @@
      }
     },
     {
-     "id": "emd0735",
+     "id": "emd0741",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17634,7 +17790,7 @@
      }
     },
     {
-     "id": "emd0736",
+     "id": "emd0742",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17661,7 +17817,7 @@
      }
     },
     {
-     "id": "emd0737",
+     "id": "emd0743",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17683,7 +17839,7 @@
      }
     },
     {
-     "id": "emd0738",
+     "id": "emd0744",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17705,7 +17861,7 @@
      }
     },
     {
-     "id": "emd0739",
+     "id": "emd0745",
      "step": 1,
      "anim": "pop",
      "rotate": 0,
@@ -17730,7 +17886,7 @@
      }
     },
     {
-     "id": "emd0740",
+     "id": "emd0746",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17757,7 +17913,7 @@
      }
     },
     {
-     "id": "emd0741",
+     "id": "emd0747",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17779,7 +17935,7 @@
      }
     },
     {
-     "id": "emd0742",
+     "id": "emd0748",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17801,7 +17957,7 @@
      }
     },
     {
-     "id": "emd0743",
+     "id": "emd0749",
      "step": 2,
      "anim": "pop",
      "rotate": 0,
@@ -17826,7 +17982,7 @@
      }
     },
     {
-     "id": "emd0744",
+     "id": "emd0750",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17853,7 +18009,7 @@
      }
     },
     {
-     "id": "emd0745",
+     "id": "emd0751",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17875,7 +18031,7 @@
      }
     },
     {
-     "id": "emd0746",
+     "id": "emd0752",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17897,7 +18053,7 @@
      }
     },
     {
-     "id": "emd0747",
+     "id": "emd0753",
      "step": 3,
      "anim": "pop",
      "rotate": 0,
@@ -17924,7 +18080,7 @@
    ]
   },
   {
-   "id": "emd0757",
+   "id": "emd0763",
    "bg": {
     "image": "assets/emd-bg-section.svg",
     "color": "#0A1324"
@@ -17933,7 +18089,7 @@
    "notes": "[2분 30초]\n마지막으로 2019년 10월 31일 독도에서 환자를 이송하다 순직한 분들을 기억하겠습니다.\n(영상 약 2분 · 영상이 끝나면 잠시 멈춤 후 다음 장)\n[결정] 실명 유지(사용자 결정, 2026-11-26).\n[영상] 초안 42장 영상(assets/emd-video4.mp4).",
    "elements": [
     {
-     "id": "emd0749",
+     "id": "emd0755",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17960,7 +18116,7 @@
      }
     },
     {
-     "id": "emd0750",
+     "id": "emd0756",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17983,7 +18139,7 @@
      }
     },
     {
-     "id": "emd0751",
+     "id": "emd0757",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18005,7 +18161,7 @@
      }
     },
     {
-     "id": "emd0752",
+     "id": "emd0758",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18027,7 +18183,7 @@
      }
     },
     {
-     "id": "emd0753",
+     "id": "emd0759",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18049,7 +18205,7 @@
      }
     },
     {
-     "id": "emd0754",
+     "id": "emd0760",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18071,7 +18227,7 @@
      }
     },
     {
-     "id": "emd0755",
+     "id": "emd0761",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18093,7 +18249,7 @@
      }
     },
     {
-     "id": "emd0756",
+     "id": "emd0762",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18114,15 +18270,15 @@
    "noFooter": true
   },
   {
-   "id": "emd0762",
+   "id": "emd0769",
    "bg": {
     "color": "#0A1324"
    },
    "transition": "",
-   "notes": "[남은 시간 · 질의응답]\n감사합니다. 질문 받겠습니다.\n[디자인 메모] 배경은 천천히 움직이는 그라데이션(assets/emd-fx-aurora.svg).",
+   "notes": "[남은 시간 · 질의응답]\n감사합니다. 질문 받겠습니다.\n[그림] ChatGPT 생성 배경(assets/emd-ai-end.jpg) — 새벽 빛 속에 선 구급차. 이전 배경(assets/emd-fx-aurora.svg)은 그대로 둠.",
    "elements": [
     {
-     "id": "emd0758",
+     "id": "emd0764",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18132,24 +18288,57 @@
      "y": 0,
      "w": 1920,
      "h": 1080,
-     "src": "assets/emd-fx-aurora.svg",
+     "src": "assets/emd-ai-end.jpg",
      "fit": "cover",
      "radius": 0,
      "shadow": false,
      "border": 0,
      "borderColor": "#ffffff",
+     "fx": {
+      "b": 95
+     },
      "locked": true
     },
     {
-     "id": "emd0759",
+     "id": "emd0765",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 0.7,
+     "type": "shape",
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080,
+     "shape": "rect",
+     "fill": "#0A1324",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 0,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     },
+     "fill2": "#0A1324",
+     "fill2Op": 0,
+     "gAngle": 0
+    },
+    {
+     "id": "emd0766",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
      "opacity": 1,
      "type": "text",
      "x": 120,
-     "y": 330,
-     "w": 1680,
+     "y": 250,
+     "w": 1100,
      "h": 60,
      "role": "text",
      "html": "Q&A",
@@ -18157,22 +18346,22 @@
       "fontSize": 40,
       "color": "#FF6B7D",
       "bold": true,
-      "align": "center",
+      "align": "left",
       "valign": "top",
       "lineHeight": 1.4,
       "letterSpacing": 10
      }
     },
     {
-     "id": "emd0760",
+     "id": "emd0767",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
      "opacity": 1,
      "type": "text",
      "x": 120,
-     "y": 410,
-     "w": 1680,
+     "y": 330,
+     "w": 1100,
      "h": 160,
      "role": "text",
      "html": "감사합니다",
@@ -18180,31 +18369,31 @@
       "fontSize": 130,
       "color": "#FFFFFF",
       "bold": true,
-      "align": "center",
+      "align": "left",
       "valign": "middle",
       "lineHeight": 1.1
      }
     },
     {
-     "id": "emd0761",
+     "id": "emd0768",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
      "opacity": 1,
      "type": "text",
      "x": 120,
-     "y": 610,
-     "w": 1680,
-     "h": 70,
+     "y": 520,
+     "w": 1000,
+     "h": 130,
      "role": "text",
-     "html": "누군가의 내일을 지켜갈 28기 여러분을 응원합니다",
+     "html": "누군가의 내일을 지켜갈<br>28기 여러분을 응원합니다",
      "style": {
       "fontSize": 42,
       "color": "#C9D3E3",
       "bold": false,
-      "align": "center",
+      "align": "left",
       "valign": "top",
-      "lineHeight": 1.4
+      "lineHeight": 1.45
      }
     }
    ],
