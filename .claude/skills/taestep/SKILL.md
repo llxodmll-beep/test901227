@@ -15,7 +15,7 @@ DPV(`app/` · `decks/`)와는 따로 만든 앱이다. 코드를 서로 섞지 �
 
 ```json
 { "app": "taestep", "v": 1, "id": "파일 이름", "title": "", "audience": "", "minutes": 60,
-  "theme": "midnight | ember | paper", "transition": "fade | slide | zoom | none", "accent": "#색(선택)",
+  "theme": "paper(기본 · 밝음) | midnight | ember", "transition": "fade | slide | zoom | none", "accent": "#색(선택)",
   "org": "표지 왼쪽 위 기관 이름", "footer": "아래 줄 문구(선택)",
   "bg": { "src": "media/….jpg", "motion": "zoom-in", "dim": 0.86 },
   "slides": [ { "id": "", "layout": "", "kicker": "", "title": "", "subtitle": "", "body": "", "items": [], "image": {}, "bg": {}, "source": "", "notes": "", "time": "", "build": true } ] }
@@ -52,11 +52,15 @@ DPV(`app/` · `decks/`)와는 따로 만든 앱이다. 코드를 서로 섞지 �
 - shape: { shape(rect·round·ellipse·card·triangle·diamond·hexagon·pentagon·star·arrow·chevron·speech), fill, stroke, sw, radius, dash, op, html(도형 안 글), fs, color }
 - line: { stroke, sw, arrow(none·end·both), dash, flip, rev } · icon: { name(`ts/icons.js` 의 이름), color, sw }
 - table: { rows[[칸]], head, stripe, plain, fs } · chart: { kind(bar·hbar·line·pie·donut), data[[항목, 값]], unit, values, pct, fs, color }
+- 모션(요소마다): { step(0 = 장이 열릴 때, 1~ = 그 클릭에 등장), anim(rise · fade · drop · left · right · zoom · pop · wipe · blur · flip · none), dur(초), delay(초), emph(pulse · shake · glow · blink), emphAt(강조할 클릭 · 없으면 등장 직후), exit(사라질 클릭), exitAnim(fade · fall · zoom · none) }. 클릭 번호는 1부터 빈 번호 없이.
+- 장 넘김: 교안 `transition` 이 기본, 장의 `tr` 이 그 장으로 넘어올 때의 효과(fade · slide · up · cover · wipe · zoom · blur · morph · none). morph 는 앞 장과 id 가 같은 요소를 이어 움직인다(장을 복제해서 만들면 id 가 같다).
+- 배경 움직임: 장의 `bg.motion`(zoom-in · zoom-out · pan-left · pan-right · rise · fall · none) + `bg.speed`(1 = 기본, 2 = 두 배 빠르게) + `bg.amt`(움직임 크기).
 - 장 유형으로 만든 장을 요소로 풀 때는 `TS.explode(deck, slide, i, total)` (편집 화면의 [요소로 풀기], PPTX 내보내기가 같이 씀).
 - 배경 · 글+그림 장의 그림도 `zoom · px · py` 로 자른다.
 
 ## 3. 품질 규칙 (어떤 주제든 같은 수준이 나오게)
 - 흐름: 표지 → 첫 질문(statement) → 순서(agenda) → [장 구분(section) → 내용 3~6장] 반복 → 핵심 정리(closing) → 마무리. 같은 유형을 세 장 넘게 잇지 않는다.
+- 기본 테마는 밝은 `paper` 다(사용자 결정, 2026-11). 글자 쪽은 흰 면으로 덮이고 반대쪽에서 사진이 드러나므로, 사진의 주제는 오른쪽(또는 글 반대쪽)에 오게 고른다.
 - 표지 · 장 구분 · 한 문장 · 사진 장에는 장마다 다른 전면 배경을 넣는다. 내용 장은 `deck.bg` 기본 배경으로 통일한다.
 - 배경 그림: `gpt-image` 스킬로 만든다(가로 1536x1024, `--jpg`, 글자 · 로고 없이, 글자 놓을 어두운 여백을 두라고 적는다). 크레딧이 없으면(429) 사용자에게 알리고 기존 그림 · 사용자 사진을 쓴다. 가로 1400 미만 그림은 전면 배경으로 쓰지 않는다.
 - 정확해야 하는 도식(응급처치 손 위치 등)은 생성 그림으로 그리지 않는다.

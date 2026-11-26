@@ -44,6 +44,14 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
 .ts-bg-shade.tone-right { background: linear-gradient(270deg, rgba(var(--shade), calc(var(--dim) + .25)) 0%, rgba(var(--shade), var(--dim)) 38%, rgba(var(--shade), calc(var(--dim) * .25)) 72%, rgba(var(--shade), 0) 100%); }
 .ts-bg-shade.tone-bottom { background: linear-gradient(0deg, rgba(var(--shade), calc(var(--dim) + .25)) 0%, rgba(var(--shade), var(--dim)) 30%, rgba(var(--shade), calc(var(--dim) * .2)) 62%, rgba(var(--shade), 0) 100%); }
 .ts-bg-shade.tone-none { background: none; }
+/* 밝은 테마(페이퍼): 글자 쪽은 거의 흰 면으로 덮고 반대쪽에서 사진이 또렷하게 드러난다 (어두운 글자가 사진 위에 직접 놓이지 않게) */
+.ts-slide.T-paper .ts-bg-shade.tone-full { background: rgba(var(--shade), max(var(--dim), .9)); }
+.ts-slide.T-paper .ts-bg-shade.tone-left { background: linear-gradient(90deg, rgba(var(--shade), .98) 0%, rgba(var(--shade), .96) 46%, rgba(var(--shade), .62) 64%, rgba(var(--shade), .14) 86%, rgba(var(--shade), 0) 100%); }
+.ts-slide.T-paper .ts-bg-shade.tone-right { background: linear-gradient(270deg, rgba(var(--shade), .98) 0%, rgba(var(--shade), .96) 46%, rgba(var(--shade), .62) 64%, rgba(var(--shade), .14) 86%, rgba(var(--shade), 0) 100%); }
+.ts-slide.T-paper .ts-bg-shade.tone-bottom { background: linear-gradient(0deg, rgba(var(--shade), .98) 0%, rgba(var(--shade), .95) 30%, rgba(var(--shade), .55) 48%, rgba(var(--shade), 0) 74%); }
+.ts-slide.T-paper .ts-card { box-shadow: 0 1px 2px rgba(11, 27, 51, .05), 0 14px 36px rgba(11, 27, 51, .09); }
+.ts-slide.T-paper .ts-prog { box-shadow: none; }
+.ts-slide.T-paper .ts-lead { color: #46566E; }
 /* 그림이 없어도 밋밋하지 않게: 천천히 움직이는 빛 + 가는 격자 + 가장자리 어둡게 */
 .ts-bg-fx { pointer-events: none; }
 .ts-bg-fx::before {
@@ -239,38 +247,109 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
 @keyframes ts-rise { from { opacity: 0; transform: translate3d(0, 34px, 0); filter: blur(10px); } to { opacity: 1; transform: none; filter: blur(0); } }
 @keyframes ts-pop { from { opacity: 0; transform: translate3d(0, 26px, 0) scale(.97); } to { opacity: 1; transform: none; } }
 @keyframes ts-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-@keyframes kb-zoom-in { from { transform: scale(1.02); } to { transform: scale(1.16); } }
-@keyframes kb-zoom-out { from { transform: scale(1.18); } to { transform: scale(1.02); } }
-@keyframes kb-pan-left { from { transform: scale(1.14) translate3d(3.5%, 0, 0); } to { transform: scale(1.14) translate3d(-3.5%, 0, 0); } }
-@keyframes kb-pan-right { from { transform: scale(1.14) translate3d(-3.5%, 0, 0); } to { transform: scale(1.14) translate3d(3.5%, 0, 0); } }
-@keyframes kb-rise { from { transform: scale(1.14) translate3d(0, 3%, 0); } to { transform: scale(1.14) translate3d(0, -3%, 0); } }
+@keyframes kb-zoom-in { from { transform: scale(1.02); } to { transform: scale(calc(1.02 + .14 * var(--kb-amt, 1))); } }
+@keyframes kb-zoom-out { from { transform: scale(calc(1.02 + .16 * var(--kb-amt, 1))); } to { transform: scale(1.02); } }
+@keyframes kb-pan-left { from { transform: scale(calc(1.04 + .1 * var(--kb-amt, 1))) translate3d(calc(3.5% * var(--kb-amt, 1)), 0, 0); } to { transform: scale(calc(1.04 + .1 * var(--kb-amt, 1))) translate3d(calc(-3.5% * var(--kb-amt, 1)), 0, 0); } }
+@keyframes kb-pan-right { from { transform: scale(calc(1.04 + .1 * var(--kb-amt, 1))) translate3d(calc(-3.5% * var(--kb-amt, 1)), 0, 0); } to { transform: scale(calc(1.04 + .1 * var(--kb-amt, 1))) translate3d(calc(3.5% * var(--kb-amt, 1)), 0, 0); } }
+@keyframes kb-rise { from { transform: scale(calc(1.04 + .1 * var(--kb-amt, 1))) translate3d(0, calc(3% * var(--kb-amt, 1)), 0); } to { transform: scale(calc(1.04 + .1 * var(--kb-amt, 1))) translate3d(0, calc(-3% * var(--kb-amt, 1)), 0); } }
+@keyframes kb-fall { from { transform: scale(calc(1.04 + .1 * var(--kb-amt, 1))) translate3d(0, calc(-3% * var(--kb-amt, 1)), 0); } to { transform: scale(calc(1.04 + .1 * var(--kb-amt, 1))) translate3d(0, calc(3% * var(--kb-amt, 1)), 0); } }
 @keyframes fx-drift { from { transform: translate3d(-3%, -2%, 0) rotate(0deg); } to { transform: translate3d(3%, 2%, 0) rotate(6deg); } }
 @keyframes ts-leave { from { opacity: 1; } to { opacity: 0; } }
-@keyframes ts-enter-fade { from { opacity: 0; } to { opacity: 1; } }
-@keyframes ts-enter-slide { from { opacity: 0; transform: translate3d(80px, 0, 0); } to { opacity: 1; transform: none; } }
-@keyframes ts-enter-zoom { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
+@keyframes t-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes t-hold { from { opacity: 1; } to { opacity: 1; } }
+@keyframes t-from-right { from { transform: translate3d(100%, 0, 0); } to { transform: none; } }
+@keyframes t-from-left { from { transform: translate3d(-100%, 0, 0); } to { transform: none; } }
+@keyframes t-to-left { from { transform: none; } to { transform: translate3d(-100%, 0, 0); } }
+@keyframes t-to-right { from { transform: none; } to { transform: translate3d(100%, 0, 0); } }
+@keyframes t-from-bottom { from { transform: translate3d(0, 100%, 0); } to { transform: none; } }
+@keyframes t-from-top { from { transform: translate3d(0, -100%, 0); } to { transform: none; } }
+@keyframes t-to-top { from { transform: none; } to { transform: translate3d(0, -100%, 0); } }
+@keyframes t-to-bottom { from { transform: none; } to { transform: translate3d(0, 100%, 0); } }
+@keyframes t-wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes t-wipe-back { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
+@keyframes t-zoom-in { from { opacity: 0; transform: scale(1.12); } to { opacity: 1; transform: none; } }
+@keyframes t-zoom-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: scale(.94); } }
+@keyframes t-blur-in { from { opacity: 0; filter: blur(26px); } to { opacity: 1; filter: blur(0); } }
+@keyframes t-blur-out { from { opacity: 1; filter: blur(0); } to { opacity: 0; filter: blur(26px); } }
+/* 요소 등장 */
+@keyframes a-rise { from { opacity: 0; transform: translate3d(0, 46px, 0); } to { opacity: 1; transform: none; } }
+@keyframes a-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes a-drop { from { opacity: 0; transform: translate3d(0, -60px, 0); } to { opacity: 1; transform: none; } }
+@keyframes a-left { from { opacity: 0; transform: translate3d(-120px, 0, 0); } to { opacity: 1; transform: none; } }
+@keyframes a-right { from { opacity: 0; transform: translate3d(120px, 0, 0); } to { opacity: 1; transform: none; } }
+@keyframes a-zoom { from { opacity: 0; transform: scale(.72); } to { opacity: 1; transform: none; } }
+@keyframes a-pop { 0% { opacity: 0; transform: scale(.5); } 62% { opacity: 1; transform: scale(1.08); } 100% { opacity: 1; transform: none; } }
+@keyframes a-wipe { from { opacity: 1; clip-path: inset(0 100% 0 0); } to { opacity: 1; clip-path: inset(0 -20% 0 0); } }
+@keyframes a-blur { from { opacity: 0; filter: blur(22px); } to { opacity: 1; filter: blur(0); } }
+@keyframes a-flip { from { opacity: 0; transform: perspective(1400px) rotateX(78deg); } to { opacity: 1; transform: perspective(1400px) rotateX(0); } }
+/* 강조 · 사라지기 */
+@keyframes e-pulse { 0%, 100% { transform: none; } 50% { transform: scale(1.09); } }
+@keyframes e-shake { 0%, 100% { transform: none; } 20%, 60% { transform: translate3d(-14px, 0, 0); } 40%, 80% { transform: translate3d(14px, 0, 0); } }
+@keyframes e-glow { 0%, 100% { filter: none; } 50% { filter: drop-shadow(0 0 26px var(--accent)) brightness(1.25); } }
+@keyframes e-blink { 0%, 100% { opacity: 1; } 50% { opacity: .15; } }
+@keyframes x-fade { from { opacity: 1; } to { opacity: 0; } }
+@keyframes x-fall { from { opacity: 1; transform: none; } to { opacity: 0; transform: translate3d(0, 90px, 0) rotate(4deg); } }
+@keyframes x-zoom { from { opacity: 1; transform: none; } to { opacity: 0; transform: scale(.6); } }
 
 /* 발표 화면: 지금 장만 보이고, 들어올 때 요소가 차례로 올라온다 */
 .ts-live .ts-slide { visibility: hidden; opacity: 0; }
-.ts-live .ts-slide.is-active { visibility: visible; opacity: 1; z-index: 2; animation: ts-enter-fade .7s ease both; }
-.ts-live.tr-slide .ts-slide.is-active { animation-name: ts-enter-slide; animation-timing-function: cubic-bezier(.2, .7, .2, 1); }
-.ts-live.tr-zoom .ts-slide.is-active { animation-name: ts-enter-zoom; }
-.ts-live.tr-none .ts-slide.is-active { animation: none; }
+.ts-live .ts-slide.is-active { visibility: visible; opacity: 1; z-index: 2; animation: t-fade-in .7s ease both; }
 .ts-live .ts-slide.is-leaving { visibility: visible; z-index: 1; animation: ts-leave .7s ease both; }
+/* 장 넘김 효과 (data-tr = 들어오는 장, data-leave = 나가는 장, .back = 뒤로 갈 때) */
+.ts-live .ts-slide.is-active[data-tr="none"], .ts-live .ts-slide.is-active[data-tr="morph"] { animation: none; }
+.ts-live .ts-slide.is-leaving[data-leave="none"] { animation: none; visibility: hidden; }
+.ts-live .ts-slide.is-active[data-tr="slide"] { animation: t-from-right .85s cubic-bezier(.3, .7, .2, 1) both; } .ts-live .ts-slide.is-active.back[data-tr="slide"] { animation-name: t-from-left; }
+.ts-live .ts-slide.is-leaving[data-leave="slide"] { animation: t-to-left .85s cubic-bezier(.3, .7, .2, 1) both; } .ts-live .ts-slide.is-leaving.back[data-leave="slide"] { animation-name: t-to-right; }
+.ts-live .ts-slide.is-active[data-tr="up"] { animation: t-from-bottom .85s cubic-bezier(.3, .7, .2, 1) both; } .ts-live .ts-slide.is-active.back[data-tr="up"] { animation-name: t-from-top; }
+.ts-live .ts-slide.is-leaving[data-leave="up"] { animation: t-to-top .85s cubic-bezier(.3, .7, .2, 1) both; } .ts-live .ts-slide.is-leaving.back[data-leave="up"] { animation-name: t-to-bottom; }
+.ts-live .ts-slide.is-active[data-tr="cover"] { animation: t-from-right .8s cubic-bezier(.3, .7, .2, 1) both; box-shadow: -40px 0 80px rgba(0, 0, 0, .5); } .ts-live .ts-slide.is-active.back[data-tr="cover"] { animation-name: t-from-left; }
+.ts-live .ts-slide.is-active[data-tr="wipe"] { animation: t-wipe .9s cubic-bezier(.4, .6, .2, 1) both; } .ts-live .ts-slide.is-active.back[data-tr="wipe"] { animation-name: t-wipe-back; }
+.ts-live .ts-slide.is-leaving[data-leave="cover"], .ts-live .ts-slide.is-leaving[data-leave="wipe"] { animation: t-hold .9s linear both; }
+.ts-live .ts-slide.is-active[data-tr="zoom"] { animation: t-zoom-in .8s cubic-bezier(.3, .7, .2, 1) both; } .ts-live .ts-slide.is-leaving[data-leave="zoom"] { animation: t-zoom-out .8s ease both; }
+.ts-live .ts-slide.is-active[data-tr="blur"] { animation: t-blur-in .9s ease both; } .ts-live .ts-slide.is-leaving[data-leave="blur"] { animation: t-blur-out .9s ease both; }
+/* 모핑: 앞 장은 배경만 남아 흐려지고, 같은 요소는 자리 · 크기가 이어진다 */
+.ts-live .ts-slide.is-leaving[data-leave="morph"] > :not(.ts-bg) { visibility: hidden; }
+.ts-live .ts-slide.is-active.morphing > .ts-bg { animation: t-fade-in .7s ease both; }
 .ts-live .ts-slide .in, .ts-live .ts-slide [data-step] { opacity: 0; }
 .ts-live .ts-slide.is-active .in { animation: ts-rise .95s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i, 0) * 95ms + 220ms); }
+/* 요소별 모션: 효과(data-anim) · 속도(--dur) · 지연(--delay) */
+.ts-live .ts-slide.is-active .ts-el.in { animation-duration: var(--dur, .8s); animation-delay: calc(var(--i, 0) * 95ms + 220ms + var(--delay, 0s)); }
+.ts-live .ts-slide.is-active .ts-el[data-step].on { animation-duration: var(--dur, .8s); animation-delay: var(--delay, 0s); }
+.ts-live .ts-slide.is-active .ts-el[data-anim="rise"].in, .ts-live .ts-slide.is-active .ts-el[data-anim="rise"].on { animation-name: a-rise; }
+.ts-live .ts-slide.is-active .ts-el[data-anim="fade"].in, .ts-live .ts-slide.is-active .ts-el[data-anim="fade"].on { animation-name: a-fade; animation-timing-function: ease; }
+.ts-live .ts-slide.is-active .ts-el[data-anim="drop"].in, .ts-live .ts-slide.is-active .ts-el[data-anim="drop"].on { animation-name: a-drop; }
+.ts-live .ts-slide.is-active .ts-el[data-anim="left"].in, .ts-live .ts-slide.is-active .ts-el[data-anim="left"].on { animation-name: a-left; }
+.ts-live .ts-slide.is-active .ts-el[data-anim="right"].in, .ts-live .ts-slide.is-active .ts-el[data-anim="right"].on { animation-name: a-right; }
+.ts-live .ts-slide.is-active .ts-el[data-anim="zoom"].in, .ts-live .ts-slide.is-active .ts-el[data-anim="zoom"].on { animation-name: a-zoom; }
+.ts-live .ts-slide.is-active .ts-el[data-anim="pop"].in, .ts-live .ts-slide.is-active .ts-el[data-anim="pop"].on { animation-name: a-pop; animation-timing-function: ease-out; }
+.ts-live .ts-slide.is-active .ts-el[data-anim="wipe"].in, .ts-live .ts-slide.is-active .ts-el[data-anim="wipe"].on { animation-name: a-wipe; animation-timing-function: cubic-bezier(.4, .6, .2, 1); }
+.ts-live .ts-slide.is-active .ts-el[data-anim="blur"].in, .ts-live .ts-slide.is-active .ts-el[data-anim="blur"].on { animation-name: a-blur; animation-timing-function: ease; }
+.ts-live .ts-slide.is-active .ts-el[data-anim="flip"].in, .ts-live .ts-slide.is-active .ts-el[data-anim="flip"].on { animation-name: a-flip; }
+.ts-live .ts-slide.is-active .ts-el[data-anim="none"].in, .ts-live .ts-slide.is-active .ts-el[data-anim="none"].on { animation-name: a-fade; animation-duration: 1ms; animation-delay: var(--delay, 0s); }
+.ts-live .ts-slide .ts-el.done { opacity: 1; }
+.ts-live .ts-slide.is-active .ts-el.done { animation: none; }
+.ts-live .ts-slide.is-active .ts-el.done.em[data-emph="pulse"] { animation: e-pulse .7s ease-in-out 2; }
+.ts-live .ts-slide.is-active .ts-el.done.em[data-emph="shake"] { animation: e-shake .6s ease-in-out 1; }
+.ts-live .ts-slide.is-active .ts-el.done.em[data-emph="glow"] { animation: e-glow 1s ease-in-out 2; }
+.ts-live .ts-slide.is-active .ts-el.done.em[data-emph="blink"] { animation: e-blink .5s ease-in-out 3; }
+.ts-live .ts-slide.is-active .ts-el.out { animation: x-fade .5s ease both; }
+.ts-live .ts-slide.is-active .ts-el.out[data-exit-anim="fall"] { animation: x-fall .6s ease-in both; }
+.ts-live .ts-slide.is-active .ts-el.out[data-exit-anim="zoom"] { animation: x-zoom .5s ease-in both; }
+.ts-live .ts-slide.is-active .ts-el.out[data-exit-anim="none"], .ts-live .ts-slide.is-active .ts-el.out.quick { animation: none; opacity: 0; }
 .ts-live .ts-slide.is-active [data-step].on { animation: ts-pop .7s cubic-bezier(.2, .7, .2, 1) both; }
 .ts-live .ts-slide.is-active [data-step].on.quick { animation: none; opacity: 1; }
 .ts-live .ts-slide.is-active .ts-kicker i { transform-origin: 0 50%; animation: ts-grow .8s cubic-bezier(.2, .7, .2, 1) .35s both; }
-.ts-live .ts-slide.is-active .kb-zoom-in { animation: kb-zoom-in 30s ease-out both; }
-.ts-live .ts-slide.is-active .kb-zoom-out { animation: kb-zoom-out 30s ease-out both; }
-.ts-live .ts-slide.is-active .kb-pan-left { animation: kb-pan-left 34s ease-in-out both; }
-.ts-live .ts-slide.is-active .kb-pan-right { animation: kb-pan-right 34s ease-in-out both; }
-.ts-live .ts-slide.is-active .kb-rise { animation: kb-rise 34s ease-in-out both; }
+.ts-live .ts-slide.is-active .kb-zoom-in { animation: kb-zoom-in var(--kb-dur, 30s) ease-out both; }
+.ts-live .ts-slide.is-active .kb-zoom-out { animation: kb-zoom-out var(--kb-dur, 30s) ease-out both; }
+.ts-live .ts-slide.is-active .kb-pan-left { animation: kb-pan-left var(--kb-dur, 30s) ease-in-out both; }
+.ts-live .ts-slide.is-active .kb-pan-right { animation: kb-pan-right var(--kb-dur, 30s) ease-in-out both; }
+.ts-live .ts-slide.is-active .kb-rise { animation: kb-rise var(--kb-dur, 30s) ease-in-out both; }
+.ts-live .ts-slide.is-active .kb-fall { animation: kb-fall var(--kb-dur, 30s) ease-in-out both; }
 .ts-live .ts-slide.is-active .ts-bg-fx::before { animation: fx-drift 16s ease-in-out infinite alternate; }
 .ts-live .ts-prog { transition: width .6s ease; }
 .ts-live.no-motion .ts-slide.is-active *, .ts-live.no-motion .ts-slide.is-active { animation: none !important; }
 .ts-live.no-motion .ts-slide .in, .ts-live.no-motion .ts-slide [data-step].on { opacity: 1; }
+.ts-live.no-motion .ts-slide .ts-el.out { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
   .ts-live .ts-slide.is-active .ts-bg-img, .ts-live .ts-slide.is-active .ts-bg-fx::before { animation: none !important; }
 }

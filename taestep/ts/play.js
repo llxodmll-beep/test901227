@@ -50,7 +50,6 @@
 
   /* ---------- 발표 ---------- */
   const stage = $('stage'), wrap = $('wrap');
-  stage.classList.add('tr-' + (deck.transition || 'fade'));
   if (q.get('motion') === '0') stage.classList.add('no-motion');
   const els = S.map((s, i) => { const el = TS.slideEl(deck, s, i, N); stage.appendChild(el); return el; });
   const fitAll = () => els.forEach(TS.fit);
@@ -58,35 +57,26 @@
   const scale = () => { const k = Math.min(innerWidth / 1920, innerHeight / 1080); stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px, ${(innerHeight - 1080 * k) / 2}px) scale(${k})`; };
   scale(); addEventListener('resize', scale);
 
-  const stepsOf = el => Math.max(0, ...[...el.querySelectorAll('[data-step]')].map(x => +x.dataset.step));
   const tell = () => { if (ch) ch.postMessage({ type: 'state', cur, step }); };
+  /* 장 넘김: 앞으로 갈 때는 들어오는 장의 효과, 뒤로 갈 때는 방금 있던 장의 효과를 거꾸로 */
   function show(n, fromBack) {
     n = Math.max(0, Math.min(N - 1, n)); if (n === cur) return;
-    const old = els[cur], el = els[n];
-    if (old) { old.classList.remove('is-active'); old.classList.add('is-leaving'); setTimeout(() => old.classList.remove('is-leaving'), 720); const v = old.querySelector('video'); if (v) v.pause(); }
-    el.classList.remove('is-leaving');
-    el.querySelectorAll('[data-step]').forEach(x => x.classList.remove('on', 'quick'));
-    el.querySelectorAll('[data-count]').forEach(x => { x._done = false; });
-    cur = n; step = 0;
-    if (fromBack) { step = stepsOf(el); el.querySelectorAll('[data-step]').forEach(x => x.classList.add('on', 'quick')); }
-    void el.offsetWidth; el.classList.add('is-active');
+    const old = els[cur], el = els[n]; const still = stage.classList.contains('no-motion');
+    const tr = !old || still ? 'none' : TS.trOf(deck, fromBack ? S[cur] : S[n]);
+    if (old) { old.classList.remove('is-active', 'morphing'); old.dataset.leave = tr; old.classList.toggle('back', !!fromBack); old.classList.add('is-leaving'); clearTimeout(old._lt); old._lt = setTimeout(() => old.classList.remove('is-leaving'), 920); const v = old.querySelector('video'); if (v) v.pause(); }
+    el.classList.remove('is-leaving'); clearTimeout(el._lt); el.dataset.tr = tr; el.classList.toggle('back', !!fromBack);
+    const c = TS.live(el); c.reset(!!fromBack); cur = n; step = c.step;
+    const mo = tr === 'morph' && old ? TS.morph(old, el) : null; // 같은 요소의 자리를 재 둔다 (장을 바꾸기 전에)
+    el.classList.toggle('morphing', !!mo); void el.offsetWidth; el.classList.add('is-active'); if (mo) mo.run();
     const v = el.querySelector('video'); if (v) { try { v.currentTime = 0; v.play(); } catch (e) { } }
-    setTimeout(() => { if (cur === n) TS.countUp(fromBack ? el : { querySelectorAll: s => [...el.querySelectorAll(s)].filter(x => !x.closest('[data-step]')) }); }, 450);
+    setTimeout(() => { if (cur === n) TS.countUp(fromBack ? el : { querySelectorAll: q2 => [...el.querySelectorAll(q2)].filter(x => !x.closest('[data-step]')) }); }, 450);
     $('pgNow').textContent = n + 1; $('notesText').textContent = S[n].notes || '(노트 없음)';
     try { history.replaceState(null, '', '#' + (n + 1)); } catch (e) { }
     if (EMBED) parent.postMessage({ type: 'taestep-play-slide', slide: n + 1 }, location.origin);
     tell();
   }
-  function next() {
-    const el = els[cur];
-    if (step < stepsOf(el)) { step++; el.querySelectorAll(`[data-step="${step}"]`).forEach(x => { x.classList.add('on'); TS.countUp(x); }); tell(); }
-    else if (cur < N - 1) show(cur + 1);
-  }
-  function prev() {
-    const el = els[cur];
-    if (step > 0) { el.querySelectorAll(`[data-step="${step}"]`).forEach(x => x.classList.remove('on', 'quick')); step--; tell(); }
-    else if (cur > 0) show(cur - 1, true);
-  }
+  function next() { const c = TS.live(els[cur]); if (c.next()) { step = c.step; tell(); } else if (cur < N - 1) show(cur + 1); }
+  function prev() { const c = TS.live(els[cur]); if (c.prev()) { step = c.step; tell(); } else if (cur > 0) show(cur - 1, true); }
   $('pgAll').textContent = N;
   show(Math.max(1, parseInt(location.hash.slice(1), 10) || 1) - 1);
 

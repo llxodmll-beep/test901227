@@ -70,7 +70,7 @@
   function redo() { if (hi >= hist.length - 1) { toast('다시 실행할 내용이 없습니다'); return; } restore(hi + 1); }
 
   /* ---------- 그리기 ---------- */
-  function view() { const el = TS.thumb(deck, S(), cur, deck.slides.length, $('view'), { edit: true }); TSEdit.refresh(); return el; }
+  function view() { if (typeof pv !== 'undefined' && pv) stopPreview(true); const el = TS.thumb(deck, S(), cur, deck.slides.length, $('view'), { edit: true }); TSEdit.refresh(); return el; }
   function railOne(i) { const host = $('rail').children[i]; if (host) { TS.thumb(deck, deck.slides[i], i, deck.slides.length, host.querySelector('.pic')); host.querySelector('.lay').textContent = (TS.LAYOUTS[deck.slides[i].layout] || {}).name || ''; } }
   function rail() {
     const r = $('rail'); r.innerHTML = '';
@@ -108,10 +108,11 @@
   const range = (attr, label, v, min, max, step, unit) => `<label class="f"><span>${label} <small>${v}${unit || ''}</small></span><input type="range" ${attr} min="${min}" max="${max}" step="${step || 1}" value="${v}"></label>`;
   const cropUi = (attr, o) => range(`${attr}="zoom"`, '확대', Math.round((+o.zoom || 1) * 100), 100, 400, 5, '%') + `<div class="grid2">${range(`${attr}="px"`, '좌우 위치', o.px == null ? 50 : +o.px, 0, 100)}${range(`${attr}="py"`, '위아래 위치', o.py == null ? 50 : +o.py, 0, 100)}</div>`;
   function panel() {
-    const picked = TSEdit.picked(); const show = picked.length ? 'el' : tab;
+    const picked = TSEdit.picked(); const show = tab === 'motion' ? 'motion' : picked.length ? 'el' : tab;
     document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === show));
     const p = $('panel'); const s = S(); const L = TS.LAYOUTS[s.layout] || TS.LAYOUTS.bullets;
     if (show === 'el') { p.innerHTML = picked.length ? elPanel(picked) : listPanel(); return; }
+    if (show === 'motion') { p.innerHTML = motionPanel(picked); return; }
     if (show === 'content') {
       let h = `<label class="f"><span>장 유형</span><select id="fLayout">${Object.entries(TS.LAYOUTS).map(([k, v]) => `<option value="${k}"${k === s.layout ? ' selected' : ''}>${v.name}</option>`).join('')}</select></label>`;
       if (s.layout === 'free') h += '<p class="muted small">빈 장입니다. 위의 도구(글상자 · 그림 · 도형 …)로 넣고, 화면에서 직접 옮기고 고칩니다.</p>';
@@ -135,6 +136,7 @@
       p.innerHTML = `<div class="f"><span>전면 배경</span><div class="pick big"><div class="pick-pic" style="${b.src ? `background-image:url('${b.src.replace(/'/g, '%27')}')` : ''}">${b.src ? '' : '<i>배경 그림 없음<br>(빛 · 격자 배경으로 나옵니다)</i>'}</div></div><div class="pick-btn"><button class="btn ghost" data-pick="bg">그림 고르기</button>${b.src ? '<button class="btn ghost" data-clear="bg">없애기</button>' : ''}</div></div>
         ${b.src ? '<div class="sub-h">배경 자르기 (보여 줄 곳)</div>' + cropUi('data-bgn', b) : ''}
         <label class="f"><span>배경 움직임</span><select data-bg="motion">${Object.entries(TS.MOTIONS).map(([k, v]) => `<option value="${k}"${(b.motion || 'zoom-in') === k ? ' selected' : ''}>${v}</option>`).join('')}</select></label>
+        ${b.src && (b.motion || 'zoom-in') !== 'none' ? `<div class="grid2">${range('data-bgn="speed"', '움직임 속도', Math.round((+b.speed || 1) * 100), 25, 300, 5, '%')}${range('data-bgn="amt"', '움직임 크기', Math.round((+b.amt || 1) * 100), 20, 250, 5, '%')}</div>` : ''}
         <label class="f"><span>글자가 읽히게 덮는 방식</span><select data-bg="tone">${Object.entries(TS.TONES).map(([k, v]) => `<option value="${k}"${(b.tone || L.tone) === k ? ' selected' : ''}>${v}</option>`).join('')}</select></label>
         ${range('data-bgn="dim"', '덮는 세기', Math.round((b.dim == null ? L.dim : b.dim) * 100), 0, 95, 1, '%')}
         ${!b.src && deck.bg && deck.bg.src ? `<label class="chk"><input type="checkbox" id="bgOff"${b.off ? ' checked' : ''}> 이 장에는 교안 기본 배경도 깔지 않음</label>` : ''}
@@ -175,6 +177,54 @@
       <div class="sub-h">순서 · 잠금</div>${btns([['front', '맨 앞'], ['forward', '앞으로'], ['backward', '뒤로'], ['back', '맨 뒤']])}${btns([['lock', list.every(x => x.lock) ? '잠금 풀기' : '잠금'], ['hide', list.every(x => x.hide) ? '보이기' : '숨기기']])}`;
     return h;
   }
+  /* ---------- 모션: 등장 순서(타임라인) · 효과 · 장 넘김 ---------- */
+  const layoutSteps = () => { const el = $('view').querySelector(':scope > .ts-slide'); return el ? Math.max(0, ...[...el.querySelectorAll('[data-step]:not(.ts-el)')].map(x => +x.dataset.step)) : 0; };
+  const maxStep = () => Math.max(layoutSteps(), 0, ...TSEdit.els().flatMap(e => [+e.step || 0, +e.emphAt || 0, +e.exit || 0]));
+  /* 빈 클릭 번호를 없애고(1, 2, 4 → 1, 2, 3), 등장보다 앞선 강조 · 사라짐은 지운다 */
+  function normSteps() {
+    const a = TSEdit.els(); const used = new Set(); for (let i = 1; i <= layoutSteps(); i++) used.add(i);
+    a.forEach(e => ['step', 'emphAt', 'exit'].forEach(k => { if (+e[k] > 0) used.add(Math.round(+e[k])); }));
+    const map = {}; [...used].sort((x, y) => x - y).forEach((v, i) => { map[v] = i + 1; });
+    a.forEach(e => { ['step', 'emphAt', 'exit'].forEach(k => { if (+e[k] > 0) e[k] = map[Math.round(+e[k])]; else delete e[k]; }); if (e.exit && e.exit <= (e.step || 0)) delete e.exit; if (e.emphAt && e.emphAt <= (e.step || 0)) delete e.emphAt; });
+  }
+  const elName = e => `${TYPE[e.type] || e.type}${e.type === 'text' || e.type === 'shape' ? ' · ' + E(String(new DOMParser().parseFromString(e.html || '', 'text/html').body.textContent || '').slice(0, 14)) : e.name ? ' · ' + E(e.name) : ''}`;
+  function motionPanel(picked) {
+    const s = S(); const a = TSEdit.els(); const n = layoutSteps(); const max = maxStep(); const one = picked[0];
+    const row = (e, kind) => `<div class="tl-r k-${kind}${picked.includes(e) ? ' cur' : ''}" draggable="true" data-id="${e.id}" data-kind="${kind}"><b>${kind === 'in' ? '등장' : kind === 'em' ? '강조' : '사라짐'}</b><span>${elName(e)}</span><small>${kind === 'in' ? TS.ANIMS[TS.ANIMS[e.anim] ? e.anim : 'rise'] : kind === 'em' ? TS.EMPHS[e.emph] : TS.EXITS[TS.EXITS[e.exitAnim] ? e.exitAnim : 'fade']}</small></div>`;
+    let h = `<label class="f"><span>이 장으로 넘어올 때 (장 넘김)</span><select id="mTr"><option value="">교안 기본값 — ${TS.TRANSITIONS[TS.trOf(deck, {})]}</option>${Object.entries(TS.TRANSITIONS).map(([k, v]) => `<option value="${k}"${s.tr === k ? ' selected' : ''}>${v}</option>`).join('')}</select><small>모핑: 장을 복제(Ctrl+Shift+D)한 뒤 요소를 옮기거나 크기를 바꾸면, 넘어올 때 같은 요소가 부드럽게 이동합니다. 발표(▶)에서 확인하세요.</small></label>
+      <div class="bar"><button class="tb" data-mp="play">▶ 처음부터 재생</button><button class="tb" data-mp="step">한 단계 ▶</button><button class="tb" data-mp="stop">■ 멈춤</button></div>
+      <div class="sub-h">등장 순서 <small>줄을 끌어 다른 클릭으로 옮깁니다 · 같은 클릭 안의 것은 함께 나옵니다</small></div><div id="tl" class="tl">`;
+    for (let st = 0; st <= max; st++) {
+      h += `<div class="tl-g" data-st="${st}"><div class="tl-h">${st ? '클릭 ' + st : '장이 열릴 때'}</div>${st && st <= n ? `<div class="tl-r fixed"><b>등장</b><span>장 유형의 항목 ${st}</span><small>내용 칸의 항목</small></div>` : ''}`
+        + a.filter(e => (+e.step || 0) === st).map(e => row(e, 'in')).join('') + a.filter(e => +e.emphAt === st && TS.EMPHS[e.emph]).map(e => row(e, 'em')).join('') + a.filter(e => +e.exit === st).map(e => row(e, 'out')).join('')
+        + (st === 0 && !a.some(e => !(+e.step)) ? '<div class="tl-e">제목 등 장 유형의 글은 장이 열릴 때 차례로 나옵니다</div>' : '') + '</div>';
+    }
+    h += `<div class="tl-g new" data-st="${max + 1}"><div class="tl-h">+ 새 클릭 — 여기로 끌어다 놓기</div></div></div>`;
+    if (!a.length) h += '<p class="muted small">글상자 · 그림 · 도형 같은 요소를 넣으면 여기에 줄이 생깁니다. 장 유형의 항목은 [내용] 탭의 "클릭할 때마다 하나씩 등장"으로 켜고 끕니다.</p>';
+    if (one) {
+      const st = +one.step || 0; const opts = (from, first) => `<option value="">${first}</option>` + Array.from({ length: Math.max(0, max + 1 - from + 1) }, (_, i) => from + i).map(v => `<option value="${v}">클릭 ${v}${v === max + 1 ? ' (새로)' : ''}</option>`).join('');
+      const pick = (html, v) => html.replace(`value="${v}"`, `value="${v}" selected`);
+      h += `<div class="sub-h">고른 요소의 모션 <small>${picked.length > 1 ? picked.length + '개에 함께 적용' : elName(one)}</small></div>
+        <div class="grid2"><label class="f"><span>등장 시점</span><select data-ps="step">${pick(`<option value="0">장이 열릴 때</option>` + Array.from({ length: max + 1 }, (_, i) => `<option value="${i + 1}">클릭 ${i + 1}${i === max ? ' (새로)' : ''}</option>`).join(''), st)}</select></label>
+        <label class="f"><span>등장 효과</span><select data-ps="anim">${Object.entries(TS.ANIMS).map(([k, v]) => `<option value="${k}"${(TS.ANIMS[one.anim] ? one.anim : 'rise') === k ? ' selected' : ''}>${v}</option>`).join('')}</select></label>
+        <label class="f"><span>속도 (초)</span><input type="number" data-p="dur" min="0.1" max="6" step="0.1" value="${+one.dur > 0 ? +one.dur : .8}"></label><label class="f"><span>지연 (초)</span><input type="number" data-p="delay" min="0" max="10" step="0.1" value="${+one.delay || 0}"></label>
+        <label class="f"><span>강조</span><select data-ps="emph"><option value="">없음</option>${Object.entries(TS.EMPHS).map(([k, v]) => `<option value="${k}"${one.emph === k ? ' selected' : ''}>${v}</option>`).join('')}</select></label>
+        <label class="f"><span>강조 시점</span><select data-ps="emphAt"${one.emph ? '' : ' disabled'}>${pick(opts(st + 1, '등장 직후'), +one.emphAt || '')}</select></label>
+        <label class="f"><span>사라지기</span><select data-ps="exit">${pick(opts(st + 1, '사라지지 않음'), +one.exit || '')}</select></label>
+        <label class="f"><span>사라지는 효과</span><select data-ps="exitAnim"${one.exit ? '' : ' disabled'}>${Object.entries(TS.EXITS).map(([k, v]) => `<option value="${k}"${(TS.EXITS[one.exitAnim] ? one.exitAnim : 'fade') === k ? ' selected' : ''}>${v}</option>`).join('')}</select></label></div>`;
+    } else if (a.length) h += '<p class="muted small">줄이나 화면의 요소를 누르면 효과 · 속도 · 지연 · 강조 · 사라지기를 정할 수 있습니다.</p>';
+    return h;
+  }
+  /* 그 자리에서 미리 재생 */
+  let pv = null;
+  function stopPreview(quiet) { if (!pv) return; clearTimeout(pv.t); pv = null; $('view').classList.remove('ts-live'); if (!quiet) view(); }
+  function startPreview(auto) {
+    if (!pv) { const host = $('view'); const el = view(); el.dataset.tr = 'none'; host.classList.add('ts-live'); const c = TS.live(el); c.reset(false); void el.offsetWidth; el.classList.add('is-active'); pv = { el, c, t: 0 };
+      setTimeout(() => pv && TS.countUp({ querySelectorAll: q2 => [...el.querySelectorAll(q2)].filter(x => !x.closest('[data-step]')) }), 450); if (!auto) return; }
+    else if (!auto) { clearTimeout(pv.t); if (!pv.c.next()) stopPreview(); return; }
+    const tick = () => { if (!pv) return; if (pv.c.next()) pv.t = setTimeout(tick, 1400); else pv.t = setTimeout(() => stopPreview(), 3000); };
+    clearTimeout(pv.t); pv.t = setTimeout(tick, 1700);
+  }
   function listPanel() {
     const a = TSEdit.els();
     return `<div class="sub-h" style="margin-top:0">이 장의 요소 <small>${a.length}개 · 위가 앞쪽</small></div>${a.length ? `<div class="olist">${[...a].reverse().map(e => `<div class="orow${e.hide ? ' off' : ''}" data-id="${e.id}"><button class="oname">${TYPE[e.type] || e.type} <small>${E(String(e.type === 'text' || e.type === 'shape' ? (new DOMParser().parseFromString(e.html || '', 'text/html').body.textContent || '') : e.name || e.kind || '').slice(0, 18))}</small></button><button class="tb" data-o="hide" title="숨기기/보이기">${e.hide ? '숨김' : '보임'}</button><button class="tb" data-o="lock" title="잠금/풀기">${e.lock ? '잠김' : '잠금'}</button></div>`).join('')}</div>` : '<p class="muted small">아직 없습니다. 미리보기 위의 도구로 글상자 · 그림 · 도형 · 선 · 아이콘 · 표 · 차트를 넣으세요.</p>'}
@@ -188,8 +238,8 @@
     else if (t.dataset.f) { const i = +t.closest('.item').dataset.i; s.items[i][t.dataset.f] = t.value; changed(); }
     else if (t.dataset.img) { s.image = s.image || {}; s.image[t.dataset.img] = t.value; changed(); }
     else if (t.dataset.imgn) { s.image = s.image || {}; s.image[t.dataset.imgn] = t.dataset.imgn === 'zoom' ? t.value / 100 : +t.value; if (lab) lab.textContent = t.value + (t.dataset.imgn === 'zoom' ? '%' : ''); changed(); }
-    else if (t.dataset.bg) { s.bg = s.bg || {}; s.bg[t.dataset.bg] = t.value; changed(); }
-    else if (t.dataset.bgn) { s.bg = s.bg || {}; const k = t.dataset.bgn; s.bg[k] = k === 'dim' || k === 'zoom' ? t.value / 100 : +t.value; if (lab) lab.textContent = t.value + (k === 'px' || k === 'py' ? '' : '%'); changed(); }
+    else if (t.dataset.bg) { s.bg = s.bg || {}; s.bg[t.dataset.bg] = t.value; changed(); if (t.dataset.bg === 'motion') setTimeout(panel, 0); }
+    else if (t.dataset.bgn) { s.bg = s.bg || {}; const k = t.dataset.bgn; s.bg[k] = /^(dim|zoom|speed|amt)$/.test(k) ? t.value / 100 : +t.value; if (lab) lab.textContent = t.value + (k === 'px' || k === 'py' ? '' : '%'); changed(); }
     else if (t.dataset.p) { if (t.value === '' || isNaN(+t.value)) return; TSEdit.setProp({ [t.dataset.p]: +t.value }); }
     else if (t.dataset.pn) { const k = t.dataset.pn; TSEdit.setProp({ [k]: k === 'zoom' || k === 'op' ? t.value / 100 : +t.value }); if (lab) lab.textContent = t.value + (k === 'px' || k === 'py' ? '' : '%'); }
     else if (t.dataset.pt) TSEdit.setProp({ [t.dataset.pt]: t.value });
@@ -201,12 +251,15 @@
     if (t.id === 'fLayout') { s.layout = t.value; const L = TS.LAYOUTS[s.layout]; if (L.it && !(s.items || []).length) s.items = TS.blank(s.layout).items; if (s.layout !== 'free' && !s.title && L.f.includes('title')) s.title = '제목을 입력하세요'; if (L.max && (s.items || []).length > L.max) toast(`이 유형은 항목을 ${L.max}개까지만 보여 줍니다 (나머지는 그대로 보관)`); if (s.bg) { delete s.bg.tone; delete s.bg.dim; } changed(true); panel(); }
     else if (t.id === 'fBuild') { s.build = t.checked; changed(); }
     else if (t.id === 'bgOff') { s.bg = s.bg || {}; if (t.checked) s.bg.off = true; else delete s.bg.off; changed(); }
-    else if (t.dataset.ps) { const k = t.dataset.ps; TSEdit.setProp({ [k]: k === 'weight' ? +t.value : t.value }); panel(); }
+    else if (t.id === 'mTr') { if (t.value) s.tr = t.value; else delete s.tr; changed(); }
+    else if (t.dataset.ps) { const k = t.dataset.ps; const num = /^(weight|step|emphAt|exit)$/.test(k); TSEdit.setProp({ [k]: t.value === '' ? undefined : num ? +t.value : t.value }); if (/^(step|emphAt|exit)$/.test(k)) { normSteps(); commit(true); } panel(); }
     else if (t.dataset.pb) { const k = t.dataset.pb; TSEdit.setProp({ [k]: ['head', 'values'].includes(k) ? t.checked : (t.checked ? true : undefined) }); panel(); }
     else if (t.dataset.cc) panel();
   });
   P.addEventListener('click', e => {
+    const tr = e.target.closest('.tl-r[data-id]'); if (tr) { TSEdit.select([tr.dataset.id]); return; }
     const t = e.target.closest('button'); if (!t) return; const s = S(); const one = TSEdit.picked()[0];
+    if (t.dataset.mp) { if (t.dataset.mp === 'stop') stopPreview(); else { if (t.dataset.mp === 'play') stopPreview(true); startPreview(t.dataset.mp === 'play'); } return; }
     if (t.id === 'itemAdd') { const L = TS.LAYOUTS[s.layout]; const o = {}; L.it.forEach(k => o[k] = ''); o.t = '새 항목'; (s.items = s.items || []).push(o); changed(); panel(); }
     else if (t.dataset.act) { const i = +t.closest('.item').dataset.i; const a = s.items; if (t.dataset.act === 'del') a.splice(i, 1); else { const j = i + (t.dataset.act === 'up' ? -1 : 1); if (j < 0 || j >= a.length) return; [a[i], a[j]] = [a[j], a[i]]; } changed(); panel(); }
     else if (t.dataset.pick) pickImage(src => { const k = t.dataset.pick; s[k] = Object.assign({}, s[k], { src }); changed(); panel(); });
@@ -226,7 +279,18 @@
       panel();
     }
   });
-  document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => { tab = b.dataset.tab; TSEdit.select([]); panel(); });
+  document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => { tab = b.dataset.tab; if (tab !== 'motion') TSEdit.select([]); panel(); });
+  /* 타임라인: 줄을 끌어 다른 클릭으로 */
+  let dragRow = null;
+  P.addEventListener('dragstart', e => { const r = e.target.closest && e.target.closest('.tl-r[data-id]'); if (!r) return; dragRow = { id: r.dataset.id, kind: r.dataset.kind }; e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', r.dataset.id); } catch (err) { } });
+  P.addEventListener('dragover', e => { const g = dragRow && e.target.closest && e.target.closest('.tl-g'); if (!g) return; e.preventDefault(); P.querySelectorAll('.tl-g.over').forEach(x => x !== g && x.classList.remove('over')); g.classList.add('over'); });
+  P.addEventListener('dragend', () => { dragRow = null; P.querySelectorAll('.tl-g.over').forEach(x => x.classList.remove('over')); });
+  P.addEventListener('drop', e => { const g = dragRow && e.target.closest && e.target.closest('.tl-g'); if (!g) return; e.preventDefault(); moveRow(dragRow.id, dragRow.kind, +g.dataset.st); dragRow = null; });
+  function moveRow(id2, kind, st) {
+    const x = TSEdit.byId(id2); if (!x) return;
+    if (kind === 'in') { if (st) x.step = st; else delete x.step; } else if (kind === 'em') { if (st > (+x.step || 0)) x.emphAt = st; else delete x.emphAt; } else { if (st > (+x.step || 0)) x.exit = st; else { toast('사라지는 시점은 등장한 뒤여야 합니다'); return; } }
+    normSteps(); commit(true); panel();
+  }
 
   /* ---------- 화면 위 편집 연결 ---------- */
   function commit(render, soft) { mark(); if (!soft) snapshot(); if (render) view(); clearTimeout(railT); railT = setTimeout(() => railOne(cur), 200); if (!P.contains(document.activeElement)) panel(); }
@@ -240,7 +304,7 @@
   }
   function pickShape(done) {
     const c = { i: 0 };
-    const sh = modal(`<h3>도형</h3><div class="ico-grid shp">${Object.entries(TS.SHAPES).map(([k, v]) => `<button data-n="${k}"><div class="ts-slide T-${deck.theme || 'midnight'}" style="position:relative;width:96px;height:64px;background:none;font-size:10px"><div class="ts-el ts-el-shape" style="left:8px;top:6px;width:80px;height:52px">${TS.elInner({ type: 'shape', shape: k, fill: 'accent', html: '' })}</div></div><span>${v}</span></button>`).join('')}</div><div class="row end"><button class="btn ghost" id="mClose">닫기</button></div>`, 'wide');
+    const sh = modal(`<h3>도형</h3><div class="ico-grid shp">${Object.entries(TS.SHAPES).map(([k, v]) => `<button data-n="${k}"><div class="ts-slide T-${TS.themeOf(deck)}" style="position:relative;width:96px;height:64px;background:none;font-size:10px"><div class="ts-el ts-el-shape" style="left:8px;top:6px;width:80px;height:52px">${TS.elInner({ type: 'shape', shape: k, fill: 'accent', html: '' })}</div></div><span>${v}</span></button>`).join('')}</div><div class="row end"><button class="btn ghost" id="mClose">닫기</button></div>`, 'wide');
     sh.querySelector('#mClose').onclick = closeModal; sh.querySelector('.ico-grid').onclick = e => { const b = e.target.closest('button'); if (b) { closeModal(); done(b.dataset.n); } };
   }
   const markTools = () => { const t = TSEdit.tool(); document.querySelectorAll('#tools [data-tool]').forEach(b => b.classList.toggle('on', !!t && (b.dataset.tool === t.type + (t.more && t.more.arrow === 'end' ? ':arrow' : '')))); $('tGrid').classList.toggle('on', TSEdit.grid); $('tSnap').classList.toggle('on', TSEdit.snap); };
@@ -257,7 +321,7 @@
   });
   function explode() {
     const s = S(); if (s.layout === 'free') { toast('이미 자유 배치 장입니다'); return; }
-    const sh = modal(`<h3>이 장을 요소로 풀기</h3><p>지금 보이는 글 · 카드 · 그림 · 선을 하나하나 따로 움직일 수 있는 요소로 바꿉니다.</p><p class="muted">풀고 나면 오른쪽 [내용] 칸 대신 화면에서 직접 고칩니다. 클릭마다 하나씩 나오던 순서는 없어집니다(모션 순서는 2단계에서 요소별로 지정). [되돌리기] 로 되돌릴 수 있습니다.</p><div class="row end"><button class="btn ghost" id="mClose">취소</button><button class="btn pri" id="mOk">요소로 풀기</button></div>`);
+    const sh = modal(`<h3>이 장을 요소로 풀기</h3><p>지금 보이는 글 · 카드 · 그림 · 선을 하나하나 따로 움직일 수 있는 요소로 바꿉니다.</p><p class="muted">풀고 나면 오른쪽 [내용] 칸 대신 화면에서 직접 고칩니다. 클릭마다 하나씩 나오던 순서는 요소의 등장 순서로 이어지고, [모션] 탭에서 바꿀 수 있습니다. [되돌리기] 로 되돌릴 수 있습니다.</p><div class="row end"><button class="btn ghost" id="mClose">취소</button><button class="btn pri" id="mOk">요소로 풀기</button></div>`);
     sh.querySelector('#mClose').onclick = closeModal;
     sh.querySelector('#mOk').onclick = () => { const out = TS.explode(deck, s, cur, deck.slides.length); const keep = { id: s.id, layout: 'free', bg: s.bg, notes: s.notes, time: s.time, source: s.source, els: [...out, ...(s.els || [])] }; Object.keys(keep).forEach(k => keep[k] === undefined && delete keep[k]); deck.slides[cur] = keep; closeModal(); changed(true); panel(); toast(`요소 ${out.length}개로 풀었습니다`); };
   }
@@ -291,12 +355,7 @@
   $('btDup').onclick = dupSlide; $('btDel').onclick = delSlide;
   const move = d => { const j = cur + d; if (j < 0 || j >= deck.slides.length) return; const a = deck.slides;[a[cur], a[j]] = [a[j], a[cur]]; cur = j; changed(true); };
   $('btUp').onclick = () => move(-1); $('btDown').onclick = () => move(1);
-  $('btMotion').onclick = () => {
-    TSEdit.select([]); const host = $('view'); const el = view(); host.classList.add('ts-live'); void el.offsetWidth; el.classList.add('is-active');
-    setTimeout(() => TS.countUp({ querySelectorAll: s => [...el.querySelectorAll(s)].filter(x => !x.closest('[data-step]')) }), 450);
-    const st = [...el.querySelectorAll('[data-step]')]; st.forEach((x, i) => setTimeout(() => { x.classList.add('on'); TS.countUp(x); }, 1300 + i * 650));
-    clearTimeout(host._mt); host._mt = setTimeout(() => { host.classList.remove('ts-live'); view(); }, 9000 + st.length * 650);
-  };
+  $('btMotion').onclick = () => { stopPreview(true); startPreview(true); };
 
   /* ---------- 도움말 (단축키) ---------- */
   function help() {
@@ -353,8 +412,8 @@
   }
   $('btMore').onclick = () => {
     const sh = modal(`<h3>교안 설정</h3>
-      <div class="grid2"><label class="f"><span>테마</span><select id="sTheme">${Object.entries(TS.THEMES).map(([k, v]) => `<option value="${k}"${(deck.theme || 'midnight') === k ? ' selected' : ''}>${v}</option>`).join('')}</select></label>
-      <label class="f"><span>장 넘김</span><select id="sTr">${[['fade', '부드럽게 겹치기'], ['slide', '옆에서 들어오기'], ['zoom', '다가오며 나타나기'], ['none', '효과 없음']].map(([k, v]) => `<option value="${k}"${(deck.transition || 'fade') === k ? ' selected' : ''}>${v}</option>`).join('')}</select></label>
+      <div class="grid2"><label class="f"><span>테마</span><select id="sTheme">${Object.entries(TS.THEMES).map(([k, v]) => `<option value="${k}"${TS.themeOf(deck) === k ? ' selected' : ''}>${v}</option>`).join('')}</select></label>
+      <label class="f"><span>장 넘김 (기본값)</span><select id="sTr">${Object.entries(TS.TRANSITIONS).map(([k, v]) => `<option value="${k}"${(deck.transition || 'fade') === k ? ' selected' : ''}>${v}</option>`).join('')}</select></label>
       <label class="f"><span>강조색 <small>비우면 테마 색</small></span><input id="sAccent" value="${E(deck.accent || '')}" placeholder="#4DEBFF"></label>
       <label class="f"><span>기관 이름 (표지 왼쪽 위)</span><input id="sOrg" value="${E(deck.org || '')}"></label>
       <label class="f"><span>대상</span><input id="sAud" value="${E(deck.audience || '')}" placeholder="예: 현장지휘관(소방령)"></label>

@@ -30,16 +30,22 @@ const TS = (() => {
   };
   const FIELD_LABEL = { k: '번호', kicker: '머리말(작은 글)', title: '제목', subtitle: '부제 · 설명', body: '본문', meta: '아래 정보', items: '항목', image: '그림', side: '그림 위치', source: '출처' };
   const ITEM_LABEL = { k: '꼬리표', v: '숫자', u: '단위', t: '제목', d: '설명' };
-  const MOTIONS = { 'zoom-in': '천천히 다가가기', 'zoom-out': '천천히 물러나기', 'pan-left': '왼쪽으로 흐르기', 'pan-right': '오른쪽으로 흐르기', rise: '위로 떠오르기', none: '움직임 없음' };
+  const MOTIONS = { 'zoom-in': '천천히 다가가기', 'zoom-out': '천천히 물러나기', 'pan-left': '왼쪽으로 흐르기', 'pan-right': '오른쪽으로 흐르기', rise: '위로 떠오르기', fall: '아래로 내려가기', none: '움직임 없음' };
+  /* 모션: 요소가 나타나는 효과 · 강조 · 사라지는 효과 · 장 넘김 */
+  const ANIMS = { rise: '아래에서 떠오르기', fade: '서서히 나타나기', drop: '위에서 내려오기', left: '왼쪽에서', right: '오른쪽에서', zoom: '커지며 나타나기', pop: '튀어나오기', wipe: '닦아내듯', blur: '흐림에서 선명하게', flip: '넘기듯', none: '효과 없이 바로' };
+  const EMPHS = { pulse: '두근(커졌다 돌아옴)', shake: '흔들기', glow: '빛나기', blink: '깜빡임' };
+  const EXITS = { fade: '서서히 사라지기', fall: '아래로 떨어지기', zoom: '작아지며 사라지기', none: '바로 사라지기' };
+  const TRANSITIONS = { fade: '부드럽게 겹치기', slide: '옆으로 밀어내기', up: '위로 밀어 올리기', cover: '옆에서 덮기', wipe: '닦아내기', zoom: '다가오며 나타나기', blur: '흐려졌다 선명하게', morph: '모핑 (같은 요소가 이동 · 변형)', none: '효과 없음' };
   const TONES = { left: '왼쪽을 어둡게', right: '오른쪽을 어둡게', bottom: '아래를 어둡게', full: '전체를 고르게', none: '덮지 않음' };
-  const THEMES = { midnight: '미드나잇 (남색 · 청록)', ember: '엠버 (검정 · 주황)', paper: '페이퍼 (흰색 · 남색)' };
+  const THEMES = { paper: '페이퍼 (흰색 · 남색) — 기본', midnight: '미드나잇 (남색 · 청록)', ember: '엠버 (검정 · 주황)' };
+  const themeOf = deck => THEMES[deck && deck.theme] ? deck.theme : 'paper'; // 테마를 정하지 않은 교안은 밝은 테마
   /* 테마 색(engine.css 와 같은 값) — PPTX 내보내기처럼 CSS 를 못 쓰는 곳에서 쓴다 */
   const PALETTE = {
     midnight: { title: '#FFFFFF', fg: '#EAF0F8', muted: '#93A4BC', accent: '#4DEBFF', ink: '#04121F', bg: '#06101E', bg2: '#0B1B33', shade: [6, 16, 30] },
     ember: { title: '#FFFFFF', fg: '#F2ECE6', muted: '#A99C92', accent: '#FF7A29', ink: '#1A0B02', bg: '#0A0A0D', bg2: '#18110E', shade: [10, 10, 13] },
     paper: { title: '#0B1B33', fg: '#1B2A41', muted: '#5C6C84', accent: '#0E5FD8', ink: '#FFFFFF', bg: '#F4F6FA', bg2: '#FFFFFF', shade: [244, 246, 250] },
   };
-  const palette = deck => Object.assign({}, PALETTE[deck.theme] || PALETTE.midnight, deck.accent ? { accent: deck.accent } : {});
+  const palette = deck => Object.assign({}, PALETTE[themeOf(deck)], deck.accent ? { accent: deck.accent } : {});
   const TOKENS = { title: '--title', fg: '--fg', muted: '--muted', accent: '--accent', ink: '--accent-ink', bg2: '--bg2', bg: '--bg', card: '--card', line: '--line' };
   const col = v => !v || v === 'none' ? 'transparent' : TOKENS[v] ? `var(${TOKENS[v]})` : /^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\))$/i.test(v) ? v : 'transparent';
 
@@ -52,12 +58,12 @@ const TS = (() => {
   function bgOf(s, L, deck) {
     const own = s.bg || {}; const base = (deck && deck.bg) || {}; const fall = !own.src && !!base.src && !own.off;
     const b = fall ? Object.assign({}, base, { tone: 'full', dim: Math.max(base.dim == null ? .86 : base.dim, L.dim) }) : own;
-    return { src: b.src || '', tone: b.src ? (b.tone || L.tone) : 'none', dim: b.dim == null ? L.dim : +b.dim, motion: b.motion || 'zoom-in', pos: bgPos(b), zoom: Math.max(1, +b.zoom || 1) };
+    return { src: b.src || '', tone: b.src ? (b.tone || L.tone) : 'none', dim: b.dim == null ? L.dim : +b.dim, motion: b.motion || 'zoom-in', pos: bgPos(b), zoom: Math.max(1, +b.zoom || 1), speed: Math.max(.25, Math.min(4, +b.speed || 1)), amt: Math.max(.2, Math.min(2.5, +b.amt || 1)) };
   }
   function bgHtml(s, L, deck) {
     const g = bgOf(s, L, deck); let img = '';
     if (g.src && isVideo(g.src)) img = `<video class="ts-bg-img" src="${E(g.src)}" muted loop playsinline preload="metadata"></video>`;
-    else if (g.src) img = `<div class="ts-bg-zoom" style="transform:scale(${g.zoom});transform-origin:${g.pos}"><div class="ts-bg-img kb-${E(g.motion)}" style="background-image:url('${cssUrl(g.src)}');background-position:${g.pos}"></div></div>`;
+    else if (g.src) img = `<div class="ts-bg-zoom" style="transform:scale(${g.zoom});transform-origin:${g.pos}"><div class="ts-bg-img kb-${E(g.motion)}" style="background-image:url('${cssUrl(g.src)}');background-position:${g.pos};--kb-dur:${Math.round(300 / g.speed) / 10}s;--kb-amt:${g.amt}"></div></div>`;
     return `<div class="ts-bg">${img}<div class="ts-bg-shade tone-${E(g.tone)}" style="--dim:${g.dim}"></div><div class="ts-bg-fx"></div></div>`;
   }
   /* data-f = 이 글이 교안의 어느 칸인지 (편집 화면에서 더블클릭하면 그 자리에서 고침) · data-fp = 오른쪽 칸에서 고치는 것 */
@@ -225,18 +231,20 @@ const TS = (() => {
     if (e.type === 'chart') return chartSvg(e);
     return '';
   }
-  const elStyle = e => `left:${+e.x || 0}px;top:${+e.y || 0}px;width:${Math.max(0, +e.w || 0)}px;height:${Math.max(0, +e.h || 0)}px;${e.rot ? `transform:rotate(${+e.rot}deg);` : ''}${e.shadow ? 'filter:drop-shadow(0 18px 34px rgba(0,0,0,.45));' : ''}`;
+  const elStyle = e => `left:${+e.x || 0}px;top:${+e.y || 0}px;width:${Math.max(0, +e.w || 0)}px;height:${Math.max(0, +e.h || 0)}px;${e.rot ? `rotate:${+e.rot}deg;` : ''}${e.shadow ? 'filter:drop-shadow(0 18px 34px rgba(0,0,0,.45));' : ''}`;
   function elHtml(e, c, opts) {
     if (e.hide && !(opts && opts.edit)) return '';
-    return `<div class="ts-el ts-el-${E(e.type)} in${e.hide ? ' is-hidden' : ''}${e.lock ? ' is-locked' : ''}" data-el="${E(e.id)}" style="${elStyle(e)}--i:${c.i++}">${elInner(e)}</div>`;
+    const step = Math.max(0, Math.round(+e.step || 0)); const an = ANIMS[e.anim] ? e.anim : 'rise';
+    const at = `${step ? ` data-step="${step}"` : ''} data-anim="${an}"${EMPHS[e.emph] ? ` data-emph="${e.emph}"${+e.emphAt > step ? ` data-emph-at="${Math.round(+e.emphAt)}"` : ''}` : ''}${+e.exit > step ? ` data-exit="${Math.round(+e.exit)}" data-exit-anim="${EXITS[e.exitAnim] ? e.exitAnim : 'fade'}"` : ''}`;
+    return `<div class="ts-el ts-el-${E(e.type)}${step ? '' : ' in'}${e.hide ? ' is-hidden' : ''}${e.lock ? ' is-locked' : ''}" data-el="${E(e.id)}"${at} style="${elStyle(e)}--dur:${+e.dur > 0 ? +e.dur : .8}s;--delay:${+e.delay > 0 ? +e.delay : 0}s;--i:${c.i++}">${elInner(e)}</div>`;
   }
 
   function slideEl(deck, s, i, total, opts) {
     const lay = R[s.layout] ? s.layout : 'bullets'; const L = LAYOUTS[lay];
     const el = document.createElement('section');
     const hasImg = !!((s.bg && s.bg.src) || (deck.bg && deck.bg.src && !(s.bg && s.bg.off)));
-    el.className = `ts-slide L-${lay} T-${THEMES[deck.theme] ? deck.theme : 'midnight'}${hasImg ? ' has-img' : ''}${lay === 'split' && s.side === 'left' ? ' side-left' : ''}`;
-    el.dataset.id = s.id || ''; el.dataset.index = i;
+    el.className = `ts-slide L-${lay} T-${themeOf(deck)}${hasImg ? ' has-img' : ''}${lay === 'split' && s.side === 'left' ? ' side-left' : ''}`;
+    el.dataset.id = s.id || ''; el.dataset.index = i; el.dataset.tr = trOf(deck, s);
     if (deck.accent) el.style.setProperty('--accent', deck.accent);
     const c = { i: 0 };
     el.innerHTML = bgHtml(s, L, deck) + `<div class="ts-body">${R[lay](s, c, deck, L)}</div>`
@@ -269,6 +277,34 @@ const TS = (() => {
       const tick = t => { const p = Math.min(1, (t - t0) / dur); n.textContent = fmt(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); else n.textContent = raw; };
       requestAnimationFrame(tick);
     });
+  }
+  const trOf = (deck, s) => TRANSITIONS[s && s.tr] ? s.tr : TRANSITIONS[deck && deck.transition] ? deck.transition : 'fade';
+  /* 한 장의 클릭 단계를 다룬다 (발표 화면과 편집 화면의 미리 재생이 함께 씀)
+     data-step = 그 클릭에 나타남 · data-emph-at = 그 클릭에 강조 · data-exit = 그 클릭에 사라짐
+     .done = 등장이 끝난 요소(그대로 보임) · .em = 강조 중 · .out = 사라짐 */
+  function live(el) {
+    if (el._live) return el._live;
+    const q = s => [...el.querySelectorAll(s)]; const nums = (sel, k) => q(sel).map(x => +x.dataset[k] || 0);
+    const total = Math.max(0, ...nums('[data-step]', 'step'), ...nums('[data-emph-at]', 'emphAt'), ...nums('[data-exit]', 'exit'));
+    let step = 0; const still = () => !!el.closest('.no-motion');
+    el.addEventListener('animationend', ev => { const x = ev.target; if (!x.classList || !x.classList.contains('ts-el') || ev.target !== x) return;
+      if (/^(a-|ts-rise|ts-pop)/.test(ev.animationName)) { x.classList.add('done'); if (x.dataset.emph && !x.dataset.emphAt) x.classList.add('em'); } else if (/^e-/.test(ev.animationName)) x.classList.remove('em'); });
+    const apply = (n, quick) => { q(`[data-step="${n}"]`).forEach(x => { x.classList.add('on'); if (quick || still()) x.classList.add('quick', 'done'); countUp(x); });
+      q(`[data-emph-at="${n}"]`).forEach(x => { if (quick) return; x.classList.remove('em'); void x.offsetWidth; x.classList.add('done', 'em'); });
+      q(`[data-exit="${n}"]`).forEach(x => { x.classList.add('out'); if (quick || still()) x.classList.add('quick'); }); };
+    const undo = n => { q(`[data-step="${n}"]`).forEach(x => x.classList.remove('on', 'quick', 'done', 'em')); q(`[data-emph-at="${n}"]`).forEach(x => x.classList.remove('em')); q(`[data-exit="${n}"]`).forEach(x => x.classList.remove('out', 'quick')); };
+    return (el._live = { total, get step() { return step; },
+      reset(all) { q('[data-step]').forEach(x => x.classList.remove('on', 'quick')); q('.ts-el').forEach(x => x.classList.remove('done', 'em', 'out', 'quick')); q('[data-count]').forEach(x => { x._done = false; }); step = 0;
+        if (still()) q('.ts-el.in').forEach(x => x.classList.add('done')); if (all) { q('.ts-el.in').forEach(x => x.classList.add('done')); for (let n = 1; n <= total; n++) apply(n, true); step = total; } },
+      next() { if (step >= total) return false; step++; apply(step); return true; }, prev() { if (step <= 0) return false; undo(step); step--; return true; } });
+  }
+  /* 모핑: 앞 장(a)과 지금 장(b)에 같은 요소(같은 id)가 있으면 앞 장의 자리 · 크기 · 기울기에서 지금 자리로 부드럽게 옮긴다 */
+  function morph(a, b) {
+    const pairs = [];
+    b.querySelectorAll('.ts-el.in, .ts-el.on').forEach(y => { const x = a.querySelector(`.ts-el[data-el="${y.dataset.el}"]`); if (!x || !y.offsetWidth || !y.offsetHeight || getComputedStyle(x).opacity === '0' || x.classList.contains('out')) return;
+      const dx = (x.offsetLeft + x.offsetWidth / 2) - (y.offsetLeft + y.offsetWidth / 2), dy = (x.offsetTop + x.offsetHeight / 2) - (y.offsetTop + y.offsetHeight / 2);
+      pairs.push({ y, from: { transform: `translate(${dx}px, ${dy}px) scale(${x.offsetWidth / y.offsetWidth}, ${x.offsetHeight / y.offsetHeight})`, rotate: x.style.rotate || '0deg' }, to: { transform: 'translate(0px, 0px) scale(1, 1)', rotate: y.style.rotate || '0deg' } }); });
+    return { count: pairs.length, run(ms) { pairs.forEach(p => { p.y.classList.add('done'); if (p.y.animate) p.y.animate([p.from, p.to], { duration: ms || 900, easing: 'cubic-bezier(.3, .7, .2, 1)' }); }); } };
   }
   const uid = () => Math.random().toString(36).slice(2, 10);
   const blank = (layout) => {
@@ -317,7 +353,7 @@ const TS = (() => {
       if (n.classList.contains('ts-pic')) { const im = s.image || {}; if (im.src) out.push(Object.assign(newEl('image', b.x, b.y, b.w, b.h), { src: im.src, zoom: im.zoom, px: im.px, py: im.py, mask: 'round', radius: 26, shadow: true })); if (im.caption) out.push(Object.assign(newEl('text', b.x + 30, b.y + b.h - 56, b.w - 60, 40), { html: F(im.caption), fs: 22, color: '#FFFFFF' })); return; }
       if (n.tagName === 'TABLE') { out.push(Object.assign(newEl('table', b.x, b.y, b.w, b.h), { rows: [...n.rows].map(r => [...r.cells].map(c => c.textContent)), head: true, fs: Math.round(parseFloat(cs.fontSize) * z) })); return; }
       if (n.tagName === 'I') { if (b.w > 8 && alpha(cs.backgroundColor)) out.push(Object.assign(newEl('shape', b.x, b.y, b.w, b.h), { shape: 'rect', fill: token(cs.backgroundColor), html: '' })); return; }
-      if (card) out.push(Object.assign(newEl('shape', b.x, b.y, b.w, b.h), { shape: 'card', radius: Math.round(parseFloat(cs.borderTopLeftRadius) * z), html: '' }, n.matches('.last, .b') ? { stroke: 'accent', sw: 2 } : {}));
+      if (card) out.push(Object.assign(newEl('shape', b.x, b.y, b.w, b.h), { shape: 'card', radius: Math.round(parseFloat(cs.borderTopLeftRadius) * z), html: '' }, n.matches('.last, .b') ? { stroke: 'accent', sw: 2 } : {}, n.closest('[data-step]') ? { step: +n.closest('[data-step]').dataset.step, anim: 'rise' } : {}));
       else {
         if (parseFloat(cs.borderTopWidth) >= 1 && b.w > 40) out.push(Object.assign(newEl('line', b.x, b.y, b.w, 0), { h: 0, stroke: 'line', sw: 2 }));
         if (parseFloat(cs.borderBottomWidth) >= 1 && b.w > 40) out.push(Object.assign(newEl('line', b.x, b.y + b.h, b.w, 0), { h: 0, stroke: 'line', sw: 2 }));
@@ -327,7 +363,8 @@ const TS = (() => {
         const outline = parseFloat(cs.webkitTextStrokeWidth) > 0; const pl = card ? parseFloat(cs.paddingLeft) * z : 0, pt = card ? parseFloat(cs.paddingTop) * z : 0;
         const e = Object.assign(newEl('text', b.x + pl, b.y + pt, b.w - pl * 2 + 12, b.h - pt * 2), { h: Math.max(10, Math.round(b.h - pt * 2)), html: (n.tagName === 'LI' ? '– ' : '') + ser(n, cs), fs: Math.round(fs * 10) / 10, color: outline ? 'accent' : token(cs.color), align: al, lh: Math.round(parseFloat(cs.lineHeight) / parseFloat(cs.fontSize) * 100) / 100 || 1.4, weight: +cs.fontWeight || 400 });
         if (/mono/i.test(cs.fontFamily.split(',')[0])) e.font = 'mono'; const ls = parseFloat(cs.letterSpacing) / parseFloat(cs.fontSize); if (ls && Math.abs(ls) > .005) e.ls = Math.round(ls * 1000) / 1000;
-        if (outline) e.outline = true; if (cs.textTransform === 'uppercase') e.html = e.html.replace(/>[^<]+|^[^<]+/g, m => m.toUpperCase());
+        if (outline) e.outline = true; const sp = n.closest('[data-step]'); if (sp) { e.step = +sp.dataset.step; e.anim = 'rise'; }
+        if (cs.textTransform === 'uppercase') e.html = e.html.replace(/>[^<]+|^[^<]+/g, m => m.toUpperCase());
         if (!card && alpha(cs.backgroundColor) > .5) Object.assign(e, { fill: token(cs.backgroundColor), radius: Math.round(parseFloat(cs.borderTopLeftRadius) * z), valign: 'middle', align: 'center', x: b.x, w: b.w, lh: 1.2 });
         out.push(e); return;
       }
@@ -336,5 +373,5 @@ const TS = (() => {
     visit(el.querySelector('.ts-body')); host.remove();
     return out;
   }
-  return { E, F, pad, MARK, LAYOUTS, FIELD_LABEL, ITEM_LABEL, MOTIONS, TONES, THEMES, PALETTE, palette, TOKENS, col, SHAPES, MASKS, CHARTS, slideEl, fit, thumb, countUp, uid, blank, isVideo, newEl, elInner, elStyle, elHtml, clean, explode, bgOf, cssUrl };
+  return { E, F, pad, MARK, LAYOUTS, FIELD_LABEL, ITEM_LABEL, MOTIONS, TONES, THEMES, themeOf, ANIMS, EMPHS, EXITS, TRANSITIONS, trOf, live, morph, PALETTE, palette, TOKENS, col, SHAPES, MASKS, CHARTS, slideEl, fit, thumb, countUp, uid, blank, isVideo, newEl, elInner, elStyle, elHtml, clean, explode, bgOf, cssUrl };
 })();

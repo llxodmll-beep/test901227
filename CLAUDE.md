@@ -46,6 +46,7 @@ GitHub 로그인이나 `gh` 설치를 사용자에게 부탁하지 않는다.
 - `taestep/` 는 DPV 와 따로 처음부터 만든 사용자 전용 앱이다(첫 화면 · 편집 · 발표). 주소: `https://llxodmll-beep.github.io/test901227/taestep/`. DPV(`app/` · `decks/`) 코드와 섞지 않는다.
 - 교안은 `taestep/decks/<이름>.json` + `taestep/decks/index.json`, 그림은 `taestep/media/` + `taestep/media/index.json`. 웹 편집기에서도 저장되므로(`TAESTEP 교안 저장: …`) 최신 `main` 에서 고친다.
 - 교안을 만들거나 앱을 고칠 때는 `taestep` 스킬(`.claude/skills/taestep/SKILL.md`)의 장 유형 · 품질 규칙을 따른다.
+- TAESTEP 의 앱 화면과 슬라이드 기본 테마는 밝은 바탕이다(사용자 결정). 어두운 테마는 사용자가 원할 때만 쓴다.
 - 새 교안 요청은 따로 말이 없으면 TAESTEP 으로 만든다. 기존 DPV 교안(심폐소생술 · 드론)은 사용자가 옮기라고 할 때만 옮긴다.
 
 ## 소방 기동복 그림 (고정 복장)
