@@ -180,3 +180,24 @@ body.presenter { overflow: hidden; }
 .ico-grid button:hover { border-color: var(--a-accent); color: var(--a-fg); } .ico-grid svg { width: 30px; height: 30px; color: var(--a-fg); } .ico-grid.shp { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
 .keys { width: 100%; border-collapse: collapse; font-size: 14px; } .keys td { padding: 7px 8px; border-bottom: 1px solid var(--a-line); } .keys td:first-child { color: var(--a-muted); white-space: nowrap; }
 @media (max-width: 760px) { .tools { padding: 6px 10px; } }
+
+/* ---------- 저장 상태 · 나가기 · 내보내기 ---------- */
+.state { cursor: help; } .state.busy { color: var(--a-accent); } .state.twin::after { content: ' · 다른 탭에서도 열림'; color: var(--a-danger); }
+.btn.need { position: relative; } .btn.need::after { content: ''; position: absolute; right: -4px; top: -4px; width: 11px; height: 11px; border-radius: 50%; background: var(--a-warn); border: 2px solid var(--a-bg); }
+.menu { position: fixed; z-index: 60; width: min(430px, calc(100vw - 16px)); max-height: calc(100vh - 80px); overflow: auto; padding: 6px; border-radius: 14px; background: var(--a-panel); border: 1px solid var(--a-line); box-shadow: 0 24px 60px rgba(0, 0, 0, .55); }
+.menu button, .xlist button { display: block; width: 100%; text-align: left; padding: 10px 12px; border: 0; border-radius: 9px; background: none; cursor: pointer; }
+.menu button:hover, .xlist button:hover { background: rgba(255, 255, 255, .08); }
+.menu b, .xlist b { display: block; font-size: 14.5px; } .menu small, .xlist small { display: block; margin-top: 2px; font-size: 12.5px; line-height: 1.45; color: var(--a-muted); }
+.menu hr { border: 0; border-top: 1px solid var(--a-line); margin: 6px 4px; }
+.xlist { display: flex; flex-direction: column; gap: 2px; margin-bottom: 10px; }
+.cp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
+.cp-card { padding: 16px; border-radius: 14px; border: 1px solid var(--a-line); background: rgba(0, 0, 0, .18); display: flex; flex-direction: column; gap: 8px; } .cp-card.rec { border-color: rgba(77, 235, 255, .55); }
+.cp-name { font-size: 16px; font-weight: 700; } .cp-name span { margin-left: 8px; padding: 1px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; color: var(--a-accent-ink); background: var(--a-accent); }
+.cp-sub { font-size: 13px; color: var(--a-muted); flex: 1; } .cp-row { display: flex; justify-content: space-between; gap: 10px; font-size: 13.5px; } .cp-row span { color: var(--a-muted); }
+.cp-pic { border-radius: 8px; overflow: hidden; border: 1px solid var(--a-line); pointer-events: none; }
+.warn-t { color: var(--a-warn); } .row.leave { gap: 8px; }
+.hrow { display: flex; align-items: center; gap: 6px; padding: 8px 4px; border-bottom: 1px solid var(--a-line); } .hrow > div { flex: 1; min-width: 0; } .hrow b { display: block; font-size: 14px; } .hrow small { display: block; font-size: 12.5px; color: var(--a-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lay-grid.pv { max-height: 56vh; overflow: auto; } .lay-grid.pv .lay-item { cursor: default; }
+.play-frame { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; z-index: 300; background: #000; }
+body.standalone #btPres, body.standalone #btExit { display: none; }
+@media (max-width: 760px) { .cp-cards { grid-template-columns: 1fr; } }

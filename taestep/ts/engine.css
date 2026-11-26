@@ -281,9 +281,18 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
 
 /* 인쇄(PDF): 한 장이 한 쪽 */
 @media print {
-  @page { size: 1920px 1080px; margin: 0; }
   html, body { margin: 0 !important; background: #fff !important; }
   .ts-print .ts-slide { position: relative; break-after: page; page-break-after: always; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .ts-print .ts-card { -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 
+
+/* 유인물(노트 포함) 인쇄 — A4 세로 한 쪽에 슬라이드 + 노트 */
+body.ts-handout { margin: 0; background: #fff; color: #111; font-family: 'Pretendard Variable', Pretendard, 'Malgun Gothic', sans-serif; }
+.ho-page { width: 210mm; height: 297mm; padding: 14mm 14mm 12mm; box-sizing: border-box; overflow: hidden; break-after: page; page-break-after: always; display: flex; flex-direction: column; }
+.ho-page > header { display: flex; justify-content: space-between; font-size: 10pt; color: #555; padding-bottom: 3mm; margin-bottom: 5mm; border-bottom: 1px solid #ccc; } .ho-page > header b { color: #111; }
+.ho-pic { width: 182mm; height: 102.375mm; overflow: hidden; outline: 1px solid #bbb; flex: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.ho-pic .ts-slide { position: relative; }
+.ho-pic .ts-card { -webkit-backdrop-filter: none; backdrop-filter: none; }
+.ho-page > h4 { margin: 7mm 0 2mm; font-size: 10pt; letter-spacing: .08em; color: #0E5FD8; }
+.ho-notes { flex: 1; overflow: hidden; white-space: pre-wrap; font-size: 11pt; line-height: 1.65; }

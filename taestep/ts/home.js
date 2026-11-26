@@ -4,6 +4,7 @@
   const $ = id => document.getElementById(id); const E = TS.E;
   const modal = html => { const m = $('modal'); m.innerHTML = `<div class="sheet">${html}</div>`; m.hidden = false; m.onclick = e => { if (e.target === m) close(); }; return m.firstChild; };
   const close = () => { $('modal').hidden = true; $('modal').innerHTML = ''; };
+  let toastT = 0; const toast = (t, bad, ms) => { const o = $('toast'); o.textContent = t; o.className = 'toast' + (bad ? ' bad' : ''); o.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => { o.hidden = true; }, ms || 3600); };
   const when = iso => { if (!iso) return ''; const d = new Date(iso); return isNaN(d) ? '' : `${d.getFullYear()}.${TS.pad(d.getMonth() + 1)}.${TS.pad(d.getDate())}`; };
 
   async function draw() {
@@ -11,13 +12,18 @@
     $('count').textContent = items.length ? `${items.length}개` : '';
     if (!items.length) { box.innerHTML = '<p class="muted">아직 교안이 없습니다. [+ 새 교안] 으로 시작하세요.</p>'; return; }
     box.innerHTML = items.map(x => `<article class="deck" data-id="${E(x.id)}"><a class="pic" href="play.html?deck=${encodeURIComponent(x.id)}" title="발표"></a>
-      <div class="info"><h3>${E(x.title)}</h3><p>${[x.audience, x.minutes ? x.minutes + '분' : '', x.slides + '장', when(x.modified)].filter(Boolean).map(E).join(' · ')}${x.where !== 'repo' ? ` <span class="tag">${x.where === 'device' ? '이 기기에만 있음' : '저장 안 된 변경'}</span>` : ''}</p>
-      <div class="row"><a class="btn pri" href="play.html?deck=${encodeURIComponent(x.id)}">▶ 발표</a><a class="btn ghost" href="studio.html?deck=${encodeURIComponent(x.id)}">편집</a><button class="btn ghost" data-act="copy">복제</button>${x.where === 'device' ? '<button class="btn ghost danger" data-act="del">지우기</button>' : ''}</div></div></article>`).join('');
+      <div class="info"><h3>${E(x.title)}</h3><p>${[x.audience, x.minutes ? x.minutes + '분' : '', x.slides + '장', when(x.modified)].filter(Boolean).map(E).join(' · ')}${x.where !== 'repo' ? ` <span class="tag">${x.where === 'device' ? '저장 안 됨 · 이 기기에만 있음' : '저장 안 한 변경 있음'}</span>` : ''}</p>
+      <div class="row"><a class="btn pri" href="play.html?deck=${encodeURIComponent(x.id)}">▶ 발표</a><a class="btn ${x.where !== 'repo' ? 'pri' : 'ghost'}" href="studio.html?deck=${encodeURIComponent(x.id)}">${x.where !== 'repo' ? '이어서 편집' : '편집'}</a><button class="btn ghost" data-act="export">내보내기</button><button class="btn ghost" data-act="copy">복제</button>${x.where === 'device' ? '<button class="btn ghost danger" data-act="del">지우기</button>' : ''}</div></div></article>`).join('');
     for (const a of box.querySelectorAll('.deck')) { const d = await TSStore.load(a.dataset.id); if (d && d.slides && d.slides[0]) TS.thumb(d, d.slides[0], 0, d.slides.length, a.querySelector('.pic')); }
   }
   $('decks').addEventListener('click', async e => {
     const b = e.target.closest('button[data-act]'); if (!b) return; const id = b.closest('.deck').dataset.id;
-    if (b.dataset.act === 'copy') { const d = await TSStore.load(id); if (!d) return; const c = JSON.parse(JSON.stringify(d)); c.title = d.title + ' 사본'; c.id = await freeId(c.title); c.modified = new Date().toISOString(); await TSStore.draftPut(c); location.href = 'studio.html?deck=' + encodeURIComponent(c.id); }
+    if (b.dataset.act === 'export') { const d = await TSStore.load(id); if (!d) return;
+      const sh = modal(`<h3>내보내기 — ${E(d.title || id)}</h3><div class="xlist">${TSExport.ITEMS.map(([k, t, s]) => `<button data-x="${k}"><b>${t}</b><small>${s}</small></button>`).join('')}</div><p class="muted small">이 기기에 저장 안 한 작업본이 있으면 그 내용으로 내보냅니다.</p><div class="row end"><button class="btn ghost" id="mClose">닫기</button></div>`);
+      sh.querySelector('#mClose').onclick = close;
+      sh.querySelector('.xlist').onclick = async ev => { const x = ev.target.closest('[data-x]'); if (!x) return; close(); const k = x.dataset.x; try { toast(TSExport.ITEMS.find(i => i[0] === k)[1] + ' 만드는 중…', false, 120000); await TSExport.run(k, d, t => toast(t, false, 120000)); toast(TSExport.DONE[k], false, 6000); } catch (err) { toast('내보내지 못했습니다: ' + (err.message || err), true, 9000); } };
+      return; }
+    if (b.dataset.act === 'copy') { const d = await TSStore.load(id); if (!d) return; const c = JSON.parse(JSON.stringify(d)); c.title = d.title + ' 사본'; c.id = await freeId(c.title); c.modified = new Date().toISOString(); delete c._synced; delete c._base; await TSStore.draftPut(c); location.href = 'studio.html?deck=' + encodeURIComponent(c.id); }
     else if (b.dataset.act === 'del') { if (!confirm('이 기기에만 있는 교안입니다. 지우면 되살릴 수 없습니다. 지울까요?')) return; await TSStore.draftDel(id); draw(); }
   });
   async function freeId(title) { const have = new Set((await TSStore.list()).map(x => x.id)); let id = TSStore.fileId(title), n = 2; while (have.has(id)) id = TSStore.fileId(title) + ' ' + n++; return id; }
