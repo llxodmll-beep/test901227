@@ -212,7 +212,7 @@
     else if (t.dataset.pick) pickImage(src => { const k = t.dataset.pick; s[k] = Object.assign({}, s[k], { src }); changed(); panel(); });
     else if (t.dataset.clear) { const k = t.dataset.clear; if (s[k]) delete s[k].src; changed(); panel(); }
     else if (t.dataset.cv != null) { TSEdit.setProp({ [t.closest('.sws').dataset.ck]: t.dataset.cv || undefined }); panel(); }
-    else if (t.dataset.fmt) { const f = t.dataset.fmt; if (f === 'hilite') TSEdit.fmt('hiliteColor', pal().accent); else if (f === 'accent') TSEdit.fmt('foreColor', pal().accent); else TSEdit.fmt(f); }
+    else if (t.dataset.fmt) { const f = t.dataset.fmt; if (f === 'hilite') { TSEdit.fmt('hiliteColor', pal().accent); TSEdit.fmt('foreColor', pal().ink); } else if (f === 'accent') TSEdit.fmt('foreColor', pal().accent); else TSEdit.fmt(f); }
     else if (t.dataset.o) { const x = TSEdit.byId(t.closest('.orow').dataset.id); if (!x) return; if (x[t.dataset.o]) delete x[t.dataset.o]; else x[t.dataset.o] = true; commit(true); panel(); }
     else if (t.classList.contains('oname')) { const x = TSEdit.byId(t.closest('.orow').dataset.id); if (x) { delete x.lock; delete x.hide; view(); TSEdit.select([x.id]); } }
     else if (t.dataset.op) {
@@ -462,7 +462,7 @@
     if (c && e.key === 'Delete') { e.preventDefault(); return delSlide(); }
     if (c && k === 'v') return; // 붙여넣기는 paste 에서
     if (TSEdit.key(e)) { e.preventDefault(); return; }
-    if (c && k === 'c') { try { localStorage.setItem('taestep:slide', JSON.stringify({ slide: S() })); localStorage.removeItem('taestep:clip'); navigator.clipboard.writeText('taestep-clip'); } catch (err) { } toast('이 장을 복사했습니다 — Ctrl+V 로 붙여넣기 (다른 교안에도)'); return; }
+    if (c && k === 'c') { try { localStorage.setItem('taestep:slide', JSON.stringify({ slide: S() })); localStorage.removeItem('taestep:clip'); navigator.clipboard.writeText('taestep-clip').catch(() => { }); } catch (err) { } toast('이 장을 복사했습니다 — Ctrl+V 로 붙여넣기 (다른 교안에도)'); return; }
     if (e.key === 'PageDown') { e.preventDefault(); select(cur + 1); } else if (e.key === 'PageUp') { e.preventDefault(); select(cur - 1); }
   });
   dirty = startDirty; if (dirty) putDraft();
