@@ -269,3 +269,12 @@ body.play .toast, body.presenter .toast { background: #17325C; }
   .ed-h { width: 18px; height: 18px; margin: -9px 0 0 -9px; } .h-rot { top: -34px; }
   .f input, .f select, .f textarea { font-size: 16px; } .tb { height: 36px; } .sheet { padding: 18px; }
 }
+
+/* ---------- 마무리: 터치 끌기 · 달라진 곳 · 전체 장 보기의 구역 ---------- */
+.rail-item.dragging { pointer-events: none; z-index: 20; opacity: .9; box-shadow: 0 14px 34px rgba(15, 27, 45, .35); } .rail-item { -webkit-touch-callout: none; }
+.pvdiff:empty { display: none; } .pvdiff { margin-top: 12px; border: 1px solid var(--a-line); border-radius: 11px; max-height: 34vh; overflow: auto; }
+.drow { display: grid; grid-template-columns: 170px 1fr 1fr; gap: 10px; padding: 8px 12px; border-top: 1px solid var(--a-line); font-size: 13.5px; align-items: start; } .drow:first-child { border-top: 0; } .drow.head { background: var(--a-sunken); font-weight: 600; position: sticky; top: 0; }
+.drow b { font-weight: 600; } .drow span { min-width: 0; overflow-wrap: anywhere; } .drow .d-old { color: var(--a-muted); } .drow .d-old mark { background: #FFD9D4; color: #7A1710; text-decoration: line-through; border-radius: 3px; } .drow .d-new mark { background: #CFF5DC; color: #0B4A22; border-radius: 3px; } .drow i { color: var(--a-muted); }
+.lay-item.diff { cursor: pointer; } .lay-item.sel { box-shadow: 0 0 0 3px var(--a-accent-soft); border-color: var(--a-accent); }
+.ov-sec { grid-column: 1 / -1; margin: 10px 0 -4px; padding: 6px 2px; font-size: 15px; font-weight: 700; color: #E6EDF7; border-bottom: 1px solid rgba(255, 255, 255, .16); } .ov-item.hid { opacity: .45; }
+@media (max-width: 760px) { .drow { grid-template-columns: 1fr; gap: 2px; } }

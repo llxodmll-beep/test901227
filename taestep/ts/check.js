@@ -10,6 +10,15 @@ const TSCheck = (() => {
   const NAME = { text: '글상자', image: '그림', shape: '도형', line: '선', icon: '아이콘', table: '표', chart: '차트' };
   const load = src => new Promise((res, rej) => { if (document.querySelector(`script[src="${src}"]`)) return res(); const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
   const MIN_RATIO = 3, K = .1;
+  const clone = o => JSON.parse(JSON.stringify(o));
+  /* 한 장을 여러 장으로 나눈다: 항목(또는 표의 줄)을 size 개씩. 둘째 장부터 제목에 (계속) */
+  function split(deck, s, size) {
+    const at = deck.slides.indexOf(s); if (at < 0) return; const tail = t => String(t || '').replace(/\s*\(계속\)$/, '') + ' (계속)';
+    if (s.layout === 'table') { const rows = String(s.body || '').split('\n').filter(l => l.trim()); const head = rows.shift(); const parts = []; for (let i = 0; i < rows.length; i += size) parts.push(rows.slice(i, i + size)); if (parts.length < 2) return;
+      s.body = [head, ...parts[0]].join('\n'); parts.slice(1).forEach((r, n) => { const c = clone(s); c.id = TS.uid(); c.title = tail(s.title); c.body = [head, ...r].join('\n'); delete c.els; delete c.section; c.notes = ''; deck.slides.splice(at + 1 + n, 0, c); }); return; }
+    const all = (s.items || []).filter(x => x && (x.t || x.d || x.v || x.k)); const parts = []; for (let i = 0; i < all.length; i += size) parts.push(all.slice(i, i + size)); if (parts.length < 2) return;
+    s.items = parts[0]; parts.slice(1).forEach((it, n) => { const c = clone(s); c.id = TS.uid(); c.title = tail(s.title); c.subtitle = ''; c.items = it; delete c.els; delete c.section; c.notes = ''; deck.slides.splice(at + 1 + n, 0, c); });
+  }
 
   async function run(deck, say) {
     await load('ts/pptx.js'); const out = []; const N = deck.slides.length; const pal = TS.palette(deck);
@@ -20,11 +29,20 @@ const TSCheck = (() => {
       const add = (kind, msg, fix) => out.push({ slide: i, id: s.id, kind, msg, fix: fix || null });
       /* 넘침 */
       const box = el.querySelector('.ts-fit'), main = el.querySelector('.ts-main'); const z = box ? parseFloat(box.style.zoom) || 1 : 1;
-      if (box && box.scrollHeight * z > main.clientHeight + 8) add('넘침', '내용이 장 밖으로 넘칩니다 — 항목이나 글을 줄여 주세요');
-      else if (z < .8) add('넘침', `내용이 많아 ${Math.round(z * 100)}% 크기로 줄여 넣었습니다 — 뒷자리에서 글자가 작게 보입니다`);
-      const body = el.querySelector('.ts-body'); if (!box && body && body.scrollHeight > 1086) add('넘침', '글이 길어 장 아래로 넘칩니다 — 제목이나 설명을 줄여 주세요');
-      const title = el.querySelector('.ts-body .ts-title'); if (title) { const n = Math.round(title.offsetHeight / parseFloat(getComputedStyle(title).lineHeight)); if (n > 3) add('넘침', `제목이 ${n}줄입니다 — 2줄 안쪽이 읽기 좋습니다`); }
-      const filled = (s.items || []).filter(x => x && (x.t || x.d || x.v || x.k)).length; if (L.max && filled > L.max) add('넘침', `항목 ${filled}개 가운데 ${L.max}개만 보입니다 — 장을 나누거나 유형을 바꿔 주세요`);
+      const filled0 = (s.items || []).filter(x => x && (x.t || x.d || x.v || x.k)).length; const rows0 = s.layout === 'table' ? String(s.body || '').split('\n').filter(l => l.trim()).length - 1 : 0;
+      const half = filled0 >= 2 && filled0 <= (L.max || 99) && s.layout !== 'compare' ? () => split(deck, s, Math.ceil(filled0 / 2)) : rows0 >= 2 ? () => split(deck, s, Math.ceil(rows0 / 2)) : null; // 둘로 나누면 글자가 다시 커진다
+      if (box && box.scrollHeight * z > main.clientHeight + 8) add('넘침', `내용이 장 밖으로 넘칩니다${half ? ' — 두 장으로 나눌 수 있습니다' : ' — 글을 줄여 주세요'}`, half);
+      else if (z < .8) add('넘침', `내용이 많아 ${Math.round(z * 100)}% 크기로 줄여 넣었습니다 — 뒷자리에서 글자가 작게 보입니다${half ? ' (두 장으로 나눌 수 있음)' : ''}`, half);
+      const body = el.querySelector('.ts-body'); const title = el.querySelector('.ts-body .ts-title');
+      const lines = () => title ? Math.round(title.offsetHeight / parseFloat(getComputedStyle(title).lineHeight)) : 0; const spill = () => !box && body && body.scrollHeight > 1086;
+      const n0 = lines(), sp0 = spill();
+      if (title && (n0 > 3 || sp0)) { /* 제목 글자를 줄여 3줄 안에(그리고 장 안에) 들어가는 배율을 찾는다 */
+        let zt = null; const cur0 = +s.titleScale > .3 && +s.titleScale < 1 ? +s.titleScale : 1;
+        for (let v = Math.round((cur0 - .1) * 10) / 10; v >= .45; v = Math.round((v - .1) * 10) / 10) { title.style.setProperty('--tz', v); if (lines() <= 3 && !spill()) { zt = v; break; } }
+        if (cur0 < 1) title.style.setProperty('--tz', cur0); else title.style.removeProperty('--tz');
+        add('넘침', sp0 ? '글이 길어 장 아래로 넘칩니다' + (zt ? ' — 제목 글자를 줄여 넣을 수 있습니다' : ' — 제목이나 설명을 줄여 주세요') : `제목이 ${n0}줄입니다 — 2줄 안쪽이 읽기 좋습니다${zt ? ' (글자를 줄여 3줄 안에 넣을 수 있음)' : ''}`, zt ? () => { s.titleScale = zt; } : null);
+      }
+      const filled = filled0; if (L.max && filled > L.max) add('넘침', `항목 ${filled}개 가운데 ${L.max}개만 보입니다 — ${Math.ceil(filled / L.max)}장으로 나눌 수 있습니다`, () => split(deck, s, L.max));
       if (s.layout !== 'free' && L.f.includes('title') && !String(s.title || '').trim()) add('내용', '제목이 비어 있습니다');
       /* 자유 요소 */
       const els = (s.els || []).filter(e => !e.hide);

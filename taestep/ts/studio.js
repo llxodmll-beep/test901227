@@ -71,7 +71,7 @@
   function redo() { if (hi >= hist.length - 1) { toast('다시 실행할 내용이 없습니다'); return; } restore(hi + 1); }
 
   /* ---------- 그리기 ---------- */
-  function view() { if (typeof pv !== 'undefined' && pv) stopPreview(true); const el = TS.thumb(deck, S(), cur, deck.slides.length, $('view'), { edit: true }); TSEdit.refresh(); return el; }
+  function view() { if (typeof pv !== 'undefined' && pv) stopPreview(true); if (typeof trPv !== 'undefined' && trPv) stopTr(); const el = TS.thumb(deck, S(), cur, deck.slides.length, $('view'), { edit: true }); TSEdit.refresh(); return el; }
   let issues = [], folded = new Set(); // 디자인 점검 결과 · 접어 둔 구역(이 화면에서만)
   const railItem = i => $('rail').querySelector(`.rail-item[data-i="${i}"]`);
   function railOne(i) { const host = railItem(i); if (!host) return; const s = deck.slides[i]; TS.thumb(deck, s, i, deck.slides.length, host.querySelector('.pic')); host.querySelector('.lay').textContent = (TS.LAYOUTS[s.layout] || {}).name || ''; host.classList.toggle('hid', !!s.hidden);
@@ -135,6 +135,7 @@
         } else {
           const ph = k === 'body' && s.layout === 'table' ? '첫 줄은 머리글 · 칸은 | 로 나눕니다\n구분 | 내용 | 비고' : '';
           h += `<label class="f"><span>${TS.FIELD_LABEL[k]}</span>${ta(k, s[k], k === 'body' && s.layout === 'table' ? 8 : ROWS[k] || 1, ph)}${HINT[k] ? `<small>${HINT[k]}</small>` : ''}</label>`;
+          if (k === 'title') h += range('data-ksz="titleScale"', '제목 글자 크기', Math.round((+s.titleScale > .3 && +s.titleScale < 1 ? +s.titleScale : 1) * 100), 50, 100, 5, '%');
         }
       });
       p.innerHTML = h;
@@ -200,7 +201,7 @@
     const s = S(); const a = TSEdit.els(); const n = layoutSteps(); const max = maxStep(); const one = picked[0];
     const row = (e, kind) => `<div class="tl-r k-${kind}${picked.includes(e) ? ' cur' : ''}" draggable="true" data-id="${e.id}" data-kind="${kind}"><b>${kind === 'in' ? '등장' : kind === 'em' ? '강조' : '사라짐'}</b><span>${elName(e)}</span><small>${kind === 'in' ? TS.ANIMS[TS.ANIMS[e.anim] ? e.anim : 'rise'] : kind === 'em' ? TS.EMPHS[e.emph] : TS.EXITS[TS.EXITS[e.exitAnim] ? e.exitAnim : 'fade']}</small></div>`;
     let h = `<label class="f"><span>이 장으로 넘어올 때 (장 넘김)</span><select id="mTr"><option value="">교안 기본값 — ${TS.TRANSITIONS[TS.trOf(deck, {})]}</option>${Object.entries(TS.TRANSITIONS).map(([k, v]) => `<option value="${k}"${s.tr === k ? ' selected' : ''}>${v}</option>`).join('')}</select><small>모핑: 장을 복제(Ctrl+Shift+D)한 뒤 요소를 옮기거나 크기를 바꾸면, 넘어올 때 같은 요소가 부드럽게 이동합니다. 발표(▶)에서 확인하세요.</small></label>
-      <div class="bar"><button class="tb" data-mp="play">▶ 처음부터 재생</button><button class="tb" data-mp="step">한 단계 ▶</button><button class="tb" data-mp="stop">■ 멈춤</button></div>
+      <div class="bar"><button class="tb" data-mp="play">▶ 처음부터 재생</button><button class="tb" data-mp="step">한 단계 ▶</button><button class="tb" data-mp="stop">■ 멈춤</button><button class="tb" data-mp="tr" title="앞 장에서 이 장으로 넘어오는 모습을 그 자리에서 봅니다">장 넘김 보기</button></div>
       <div class="sub-h">등장 순서 <small>줄을 끌어 다른 클릭으로 옮깁니다 · 같은 클릭 안의 것은 함께 나옵니다</small></div><div id="tl" class="tl">`;
     for (let st = 0; st <= max; st++) {
       h += `<div class="tl-g" data-st="${st}"><div class="tl-h">${st ? '클릭 ' + st : '장이 열릴 때'}</div>${st && st <= n ? `<div class="tl-r fixed"><b>등장</b><span>장 유형의 항목 ${st}</span><small>내용 칸의 항목</small></div>` : ''}`
@@ -233,6 +234,16 @@
     const tick = () => { if (!pv) return; if (pv.c.next()) pv.t = setTimeout(tick, 1400); else pv.t = setTimeout(() => stopPreview(), 3000); };
     clearTimeout(pv.t); pv.t = setTimeout(tick, 1700);
   }
+  /* 장 넘김을 그 자리에서: 미리보기 위에 작은 무대를 얹어 앞 장 → 지금 장을 실제 발표와 같은 방식으로 넘긴다 */
+  let trPv = null;
+  function stopTr() { if (!trPv) return; clearTimeout(trPv.t); trPv.st.remove(); trPv = null; }
+  function previewTr() {
+    if (cur < 1) { toast('첫 장은 앞 장이 없어 넘김 효과가 없습니다'); return; } stopPreview(true); stopTr(); TSEdit.select([]);
+    const host = $('view'); const N = deck.slides.length; const st = document.createElement('div'); st.className = 'ts-stage ts-live tr-stage'; st.style.cssText = `position:absolute;left:0;top:0;transform:scale(${host.clientWidth / 1920});transform-origin:0 0;z-index:6`;
+    const a = TS.slideEl(deck, deck.slides[cur - 1], cur - 1, N), b2 = TS.slideEl(deck, S(), cur, N); st.append(a, b2); host.appendChild(st); TS.fit(a); TS.fit(b2);
+    a.dataset.tr = 'none'; TS.live(a).reset(true); a.classList.add('is-active'); const tr = TS.trOf(deck, S());
+    trPv = { st, t: setTimeout(() => { a.classList.remove('is-active'); a.dataset.leave = tr; a.classList.add('is-leaving'); b2.dataset.tr = tr; TS.live(b2).reset(false); const mo = tr === 'morph' ? TS.morph(a, b2) : null; b2.classList.toggle('morphing', !!mo); void b2.offsetWidth; b2.classList.add('is-active'); if (mo) mo.run(); trPv.t = setTimeout(stopTr, 2800); }, 900) };
+  }
   function listPanel() {
     const a = TSEdit.els();
     return `<div class="sub-h" style="margin-top:0">이 장의 요소 <small>${a.length}개 · 위가 앞쪽</small></div>${a.length ? `<div class="olist">${[...a].reverse().map(e => `<div class="orow${e.hide ? ' off' : ''}" data-id="${e.id}"><button class="oname">${TYPE[e.type] || e.type} <small>${E(String(e.type === 'text' || e.type === 'shape' ? (new DOMParser().parseFromString(e.html || '', 'text/html').body.textContent || '') : e.name || e.kind || '').slice(0, 18))}</small></button><button class="tb" data-o="hide" title="숨기기/보이기">${e.hide ? '숨김' : '보임'}</button><button class="tb" data-o="lock" title="잠금/풀기">${e.lock ? '잠김' : '잠금'}</button></div>`).join('')}</div>` : '<p class="muted small">아직 없습니다. 미리보기 위의 도구로 글상자 · 그림 · 도형 · 선 · 아이콘 · 표 · 차트를 넣으세요.</p>'}
@@ -242,7 +253,8 @@
   P.addEventListener('mousedown', e => { if (e.target.closest('[data-fmt]')) e.preventDefault(); }); // 글 고치는 중에 누르면 고른 글자가 풀리지 않게
   P.addEventListener('input', e => {
     const t = e.target, s = S(); const lab = t.closest('.f') && t.closest('.f').querySelector('span small');
-    if (t.dataset.k) { s[t.dataset.k] = t.value; changed(); }
+    if (t.dataset.ksz) { const v = t.value / 100; if (v >= 1) delete s[t.dataset.ksz]; else s[t.dataset.ksz] = v; if (lab) lab.textContent = t.value + '%'; changed(); }
+    else if (t.dataset.k) { s[t.dataset.k] = t.value; changed(); }
     else if (t.dataset.f) { const i = +t.closest('.item').dataset.i; s.items[i][t.dataset.f] = t.value; changed(); }
     else if (t.dataset.img) { s.image = s.image || {}; s.image[t.dataset.img] = t.value; changed(); }
     else if (t.dataset.imgn) { s.image = s.image || {}; s.image[t.dataset.imgn] = t.dataset.imgn === 'zoom' ? t.value / 100 : +t.value; if (lab) lab.textContent = t.value + (t.dataset.imgn === 'zoom' ? '%' : ''); changed(); }
@@ -267,7 +279,8 @@
   P.addEventListener('click', e => {
     const tr = e.target.closest('.tl-r[data-id]'); if (tr) { TSEdit.select([tr.dataset.id]); return; }
     const t = e.target.closest('button'); if (!t) return; const s = S(); const one = TSEdit.picked()[0];
-    if (t.dataset.mp) { if (t.dataset.mp === 'stop') stopPreview(); else { if (t.dataset.mp === 'play') stopPreview(true); startPreview(t.dataset.mp === 'play'); } return; }
+    if (t.dataset.mp === 'tr') return previewTr();
+    if (t.dataset.mp) { stopTr(); if (t.dataset.mp === 'stop') stopPreview(); else { if (t.dataset.mp === 'play') stopPreview(true); startPreview(t.dataset.mp === 'play'); } return; }
     if (t.id === 'fSwap') return swapLayout();
     if (t.id === 'itemAdd') { const L = TS.LAYOUTS[s.layout]; const o = {}; L.it.forEach(k => o[k] = ''); o.t = '새 항목'; (s.items = s.items || []).push(o); changed(); panel(); }
     else if (t.dataset.act) { const i = +t.closest('.item').dataset.i; const a = s.items; if (t.dataset.act === 'del') a.splice(i, 1); else { const j = i + (t.dataset.act === 'up' ? -1 : 1); if (j < 0 || j >= a.length) return; [a[i], a[j]] = [a[j], a[i]]; } changed(); panel(); }
@@ -366,6 +379,18 @@
   const move = d => { const j = cur + d; if (j < 0 || j >= deck.slides.length) return; const a = deck.slides;[a[cur], a[j]] = [a[j], a[cur]]; cur = j; changed(true); };
   $('btUp').onclick = () => move(-1); $('btDown').onclick = () => move(1);
   $('btMotion').onclick = () => { stopPreview(true); startPreview(true); };
+
+  /* ---------- 터치로 장 순서 바꾸기: 장을 꾹 눌렀다가 끌어 놓는다 (터치에서는 브라우저의 끌어 놓기가 듣지 않아 따로 만든다) ---------- */
+  { const R = $('rail'); let td = null, block = 0;
+    const end = () => { if (!td) return; clearTimeout(td.timer); td.it.classList.remove('dragging'); td.it.style.transform = ''; R.querySelectorAll('.over').forEach(x => x.classList.remove('over')); td = null; };
+    R.addEventListener('touchstart', e => { const it = e.target.closest('.rail-item'); if (!it || e.touches.length !== 1) return; const t = e.touches[0]; td = { it, i: +it.dataset.i, x: t.clientX, y: t.clientY, on: false, to: null, timer: setTimeout(() => { if (!td) return; td.on = true; it.classList.add('dragging'); try { navigator.vibrate && navigator.vibrate(12); } catch (err) { } toast('끌어서 놓을 자리로 옮기세요'); }, 380) }; }, { passive: true });
+    R.addEventListener('touchmove', e => { if (!td) return; const t = e.touches[0]; if (!td.on) { if (Math.hypot(t.clientX - td.x, t.clientY - td.y) > 10) end(); return; } e.preventDefault(); td.it.style.transform = `translate(${t.clientX - td.x}px, ${t.clientY - td.y}px) scale(1.04)`;
+      const o = document.elementFromPoint(t.clientX, t.clientY); const over = o && o.closest('.rail-item'); R.querySelectorAll('.over').forEach(x => x !== over && x.classList.remove('over')); if (over && over !== td.it) { over.classList.add('over'); td.to = +over.dataset.i; } else td.to = null;
+      const r = R.getBoundingClientRect(); if (t.clientX > r.right - 40) R.scrollLeft += 12; else if (t.clientX < r.left + 40) R.scrollLeft -= 12; if (t.clientY > r.bottom - 40) R.scrollTop += 12; else if (t.clientY < r.top + 40) R.scrollTop -= 12; }, { passive: false });
+    const drop = () => { if (!td) return; const { on, i, to } = td; end(); if (!on) return; block = Date.now(); if (to == null || to === i) return; const [m] = deck.slides.splice(i, 1); deck.slides.splice(to, 0, m); cur = to; changed(true); panel(); toast(`${i + 1}장을 ${to + 1}번째로 옮겼습니다`); };
+    R.addEventListener('touchend', drop); R.addEventListener('touchcancel', end);
+    R.addEventListener('click', e => { if (Date.now() - block < 500) { e.stopPropagation(); e.preventDefault(); } }, true); R.addEventListener('contextmenu', e => { if (td) e.preventDefault(); });
+  }
 
   /* ---------- 숨긴 장 · 구역 ---------- */
   $('btHide').onclick = () => { const s = S(); if (s.hidden) delete s.hidden; else s.hidden = true; changed(); railOne(cur); markBar(); toast(s.hidden ? '이 장을 숨겼습니다 — 발표와 인쇄에서 건너뜁니다 (번호를 눌러 직접 갈 수는 있음)' : '숨김을 풀었습니다'); };
@@ -493,7 +518,17 @@
     const sh = modal(`<h3>저장 이력 · 보관된 작업본</h3><div class="sub-h" style="margin-top:0">보관된 작업본 <small>이 기기 · 30일</small></div><div id="hKept"><p class="muted small">불러오는 중…</p></div><div class="sub-h">저장 이력 <small>저장할 때마다 남은 판 (GitHub 저장소)</small></div><div id="hVer"><p class="muted small">불러오는 중…</p></div><div class="row end"><button class="btn ghost" id="mClose">닫기</button></div>`, 'wide');
     sh.querySelector('#mClose').onclick = closeModal;
     const useDeck = async (d, label) => { await TSStore.keepPut(deck, '다른 판을 불러오기 전 모습'); const x = JSON.parse(JSON.stringify(d)); x.id = id; delete x._synced; deck = x; cur = Math.min(cur, deck.slides.length - 1); $('deckTitle').value = deck.title || ''; TSEdit.select([]); closeModal(); changed(true); snapshot(); panel(); toast(`${label} 을(를) 불러왔습니다 — 확인한 뒤 [저장] 을 눌러야 저장소에 반영됩니다. 직전 모습은 보관함에 30일 남습니다`, false, 9000); };
-    const preview = (d, label, onUse) => { const pv = modal(`<h3>미리 보기 — ${E(label)}</h3><p class="muted">${(d.slides || []).length}장 · 지금 교안과 ${TSStore.diff(deck, d)}장이 다릅니다.</p><div class="lay-grid pv">${(d.slides || []).map((x, i) => { const df = JSON.stringify(x) !== JSON.stringify(deck.slides[i]); return `<div class="lay-item${df ? ' diff' : ''}"><div class="pic"></div><span>${i + 1}${df ? ' · 지금과 다름' : ''}</span></div>`; }).join('')}</div><div class="row end"><button class="btn ghost" id="pvBack">목록으로</button><button class="btn pri" id="pvUse">이 판으로 되돌리기</button></div>`, 'wide'); pv.querySelectorAll('.pic').forEach((h, i) => TS.thumb(d, d.slides[i], i, d.slides.length, h)); pv.querySelector('#pvBack').onclick = historyModal; pv.querySelector('#pvUse').onclick = onUse; };
+    /* 한 장을 "어디: 글" 목록으로 편다 → 두 판을 나란히 놓고 달라진 곳만 뽑는다 */
+    const flat = x => { const m = {}; if (!x) return m; const put = (k, v) => { if (v != null && String(v) !== '') m[k] = String(v); };
+      put('장 유형', (TS.LAYOUTS[x.layout] || {}).name); Object.keys(WHERE).forEach(k => put(WHERE[k], x[k])); (x.items || []).forEach((it, n) => it && ['k', 't', 'd', 'v', 'u'].forEach(k => put(`항목 ${n + 1} · ${TS.ITEM_LABEL[k]}`, it[k])));
+      if (x.image) { put('그림', x.image.src && x.image.src.slice(-40)); put('그림 설명', x.image.caption); } if (x.bg) put('배경', [x.bg.src ? x.bg.src.slice(-40) : '그림 없음', TS.MOTIONS[x.bg.motion], TS.TONES[x.bg.tone], x.bg.dim != null ? '덮기 ' + Math.round(x.bg.dim * 100) + '%' : ''].filter(Boolean).join(' · '));
+      put('장 넘김', TS.TRANSITIONS[x.tr]); put('숨김', x.hidden ? '숨긴 장' : ''); put('구역', x.section); put('제목 글자 크기', x.titleScale ? Math.round(x.titleScale * 100) + '%' : '');
+      (x.els || []).forEach(e => { const nm = `${TYPE[e.type] || '요소'} (${String(e.id).slice(0, 4)})`; put(nm + ' 내용', e.html ? new DOMParser().parseFromString(e.html, 'text/html').body.textContent : e.type === 'table' ? (e.rows || []).map(r => r.join(' | ')).join(' / ') : e.type === 'chart' ? (e.data || []).map(r => r.join(' ')).join(', ') : e.name || e.shape || (e.src || '').slice(-40)); put(nm + ' 자리 · 크기', `가로 ${e.x} · 세로 ${e.y} · ${e.w}×${e.h}${e.rot ? ' · ' + e.rot + '도' : ''}`); put(nm + ' 모션', [(+e.step ? '클릭 ' + e.step : ''), TS.ANIMS[e.anim], TS.EMPHS[e.emph], e.exit ? '클릭 ' + e.exit + '에 사라짐' : ''].filter(Boolean).join(' · ')); });
+      return m; };
+    const hl = (a, b) => { let i = 0; while (i < a.length && i < b.length && a[i] === b[i]) i++; let j = 0; while (j < a.length - i && j < b.length - i && a[a.length - 1 - j] === b[b.length - 1 - j]) j++; const cut = t => (i > 24 ? '…' : '') + E(t.slice(Math.max(0, i - 24), i)) + '<mark>' + E(t.slice(i, t.length - j)) + '</mark>' + E(t.slice(t.length - j, t.length - j + 24)) + (j > 24 ? '…' : ''); return [cut(a), cut(b)]; };
+    const diffRows = (old, now) => { const A = flat(old), B = flat(now); return [...new Set([...Object.keys(A), ...Object.keys(B)])].filter(k => A[k] !== B[k]).map(k => { const [x, y] = A[k] != null && B[k] != null ? hl(A[k], B[k]) : [A[k] != null ? E(A[k].slice(0, 80)) : '<i>(없음)</i>', B[k] != null ? E(B[k].slice(0, 80)) : '<i>(없음)</i>']; return `<div class="drow"><b>${E(k)}</b><span class="d-old">${x}</span><span class="d-new">${y}</span></div>`; }).join(''); };
+    const preview = (d, label, onUse) => { const pv = modal(`<h3>미리 보기 — ${E(label)}</h3><p class="muted">${(d.slides || []).length}장 · 지금 교안과 ${TSStore.diff(deck, d)}장이 다릅니다.</p><div class="lay-grid pv">${(d.slides || []).map((x, i) => { const df = JSON.stringify(x) !== JSON.stringify(deck.slides[i]); return `<div class="lay-item${df ? ' diff' : ''}" data-i="${i}"><div class="pic"></div><span>${i + 1}${df ? ' · 지금과 다름 (눌러서 보기)' : ''}</span></div>`; }).join('')}</div><div id="pvDiff" class="pvdiff"></div><div class="row end"><button class="btn ghost" id="pvBack">목록으로</button><button class="btn pri" id="pvUse">이 판으로 되돌리기</button></div>`, 'wide'); pv.querySelectorAll('.pic').forEach((h, i) => TS.thumb(d, d.slides[i], i, d.slides.length, h)); pv.querySelector('.lay-grid').onclick = e => { const it = e.target.closest('.lay-item.diff'); if (!it) return; const i = +it.dataset.i; pv.querySelectorAll('.lay-item.sel').forEach(x => x.classList.remove('sel')); it.classList.add('sel'); const rows = diffRows(d.slides[i], deck.slides[i]); const box = pv.querySelector('#pvDiff'); box.innerHTML = `<div class="drow head"><b>${i + 1}장 — 달라진 곳</b><span>그 판</span><span>지금</span></div>` + (rows || '<div class="drow"><b>겉으로 드러나는 차이 없음</b><span></span><span></span></div>'); box.scrollIntoView({ block: 'nearest' }); }; if ((d.slides || []).length !== deck.slides.length) pv.querySelector('#pvDiff').innerHTML = `<div class="drow head"><b>장 수</b><span>그 판 ${(d.slides || []).length}장</span><span>지금 ${deck.slides.length}장</span></div>`;
+      pv.querySelector('#pvBack').onclick = historyModal; pv.querySelector('#pvUse').onclick = onUse; };
     const kept = await TSStore.keepList(id); const kb = sh.querySelector('#hKept'); if (!kb) return;
     kb.innerHTML = kept.length ? kept.map((k, i) => `<div class="hrow" data-i="${i}"><div><b>${whenFull(k.at)}</b><small>${k.slides}장 · ${E(k.why || '')}</small></div><button class="tb" data-a="pv">미리 보기</button><button class="tb" data-a="use">되살리기</button><button class="tb danger" data-a="del">지우기</button></div>`).join('') : '<p class="muted small">보관된 작업본이 없습니다.</p>';
     kb.onclick = async e => { const b = e.target.closest('button'); if (!b) return; const k = kept[+b.closest('.hrow').dataset.i]; const label = whenFull(k.at) + ' 작업본';
