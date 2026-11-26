@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 320" width="240" height="320">
+<defs><linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9CC3F0" stop-opacity=".55"/><stop offset="1" stop-color="#5E8FD0" stop-opacity=".75"/></linearGradient>
+<style>.d{animation:fall 1.8s cubic-bezier(.55,0,1,.45) infinite;transform-origin:120px 70px}.h{animation:hang 1.8s ease-in infinite;transform-origin:120px 58px}.w{animation:ring 1.8s ease-out infinite;transform-origin:120px 236px}
+@keyframes hang{0%{transform:scale(.3)}70%{transform:scale(1)}71%,100%{transform:scale(.25)}}
+@keyframes fall{0%,70%{transform:translateY(0);opacity:0}71%{opacity:1}96%{transform:translateY(160px);opacity:1}100%{transform:translateY(166px);opacity:0}}
+@keyframes ring{0%,95%{transform:scale(.2);opacity:0}96%{opacity:.9}100%{transform:scale(1.4);opacity:0}}</style></defs>
+<rect x="100" y="0" width="40" height="40" rx="6" fill="#D0D5DD"/>
+<rect x="112" y="36" width="16" height="18" fill="#98A2B3"/>
+<rect x="60" y="50" width="120" height="230" rx="34" fill="#F8FAFC" stroke="#98A2B3" stroke-width="4"/>
+<path d="M64 236 H176 V246 Q176 276 146 276 H94 Q64 276 64 246 Z" fill="url(#f)"/>
+<ellipse class="w" cx="120" cy="236" rx="30" ry="6" fill="none" stroke="#2F6DB5" stroke-width="3"/>
+<path class="h" d="M120 54 C 108 70 110 82 120 82 C 130 82 132 70 120 54 Z" fill="#2F6DB5"/>
+<path class="d" d="M120 58 C 108 74 110 86 120 86 C 130 86 132 74 120 58 Z" fill="#2F6DB5"/>
+<rect x="112" y="280" width="16" height="40" fill="#98A2B3"/>
+</svg>

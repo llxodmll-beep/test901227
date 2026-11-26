@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" preserveAspectRatio="xMidYMid slice">
+<defs>
+<radialGradient id="a"><stop offset="0" stop-color="#2B4C86" stop-opacity=".75"/><stop offset="1" stop-color="#2B4C86" stop-opacity="0"/></radialGradient>
+<radialGradient id="b"><stop offset="0" stop-color="#D7263D" stop-opacity=".40"/><stop offset="1" stop-color="#D7263D" stop-opacity="0"/></radialGradient>
+<radialGradient id="c"><stop offset="0" stop-color="#3E6FB8" stop-opacity=".45"/><stop offset="1" stop-color="#3E6FB8" stop-opacity="0"/></radialGradient>
+<style>.p{animation:m1 26s ease-in-out infinite alternate}.q{animation:m2 32s ease-in-out infinite alternate}.r{animation:m3 22s ease-in-out infinite alternate}
+@keyframes m1{from{transform:translate(0,0)}to{transform:translate(260px,120px)}}@keyframes m2{from{transform:translate(0,0)}to{transform:translate(-320px,-90px)}}@keyframes m3{from{transform:translate(0,0)}to{transform:translate(160px,-160px)}}</style></defs>
+<rect width="1920" height="1080" fill="#0A1324"/>
+<circle class="p" cx="420" cy="300" r="720" fill="url(#a)"/>
+<circle class="q" cx="1560" cy="820" r="640" fill="url(#b)"/>
+<circle class="r" cx="1300" cy="200" r="560" fill="url(#c)"/>
+<rect width="1920" height="1080" fill="#0A1324" fill-opacity=".25"/>
+</svg>
