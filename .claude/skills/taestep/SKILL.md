@@ -55,6 +55,7 @@ DPV(`app/` · `decks/`)와는 따로 만든 앱이다. 코드를 서로 섞지 �
 - 모션(요소마다): { step(0 = 장이 열릴 때, 1~ = 그 클릭에 등장), anim(rise · fade · drop · left · right · zoom · pop · wipe · blur · flip · none), dur(초), delay(초), emph(pulse · shake · glow · blink), emphAt(강조할 클릭 · 없으면 등장 직후), exit(사라질 클릭), exitAnim(fade · fall · zoom · none) }. 클릭 번호는 1부터 빈 번호 없이.
 - 장 넘김: 교안 `transition` 이 기본, 장의 `tr` 이 그 장으로 넘어올 때의 효과(fade · slide · up · cover · wipe · zoom · blur · morph · none). morph 는 앞 장과 id 가 같은 요소를 이어 움직인다(장을 복제해서 만들면 id 가 같다).
 - 배경 움직임: 장의 `bg.motion`(zoom-in · zoom-out · pan-left · pan-right · rise · fall · none) + `bg.speed`(1 = 기본, 2 = 두 배 빠르게) + `bg.amt`(움직임 크기).
+- 장에 붙는 표시: `hidden`(발표 · 인쇄에서 건너뜀), `section`(이 장에서 시작하는 구역 이름), `memo`(작성자만 보는 메모 — 발표 화면 · 유인물에 안 나옴).
 - 장 유형으로 만든 장을 요소로 풀 때는 `TS.explode(deck, slide, i, total)` (편집 화면의 [요소로 풀기], PPTX 내보내기가 같이 씀).
 - 배경 · 글+그림 장의 그림도 `zoom · px · py` 로 자른다.
 
@@ -73,6 +74,8 @@ DPV(`app/` · `decks/`)와는 따로 만든 앱이다. 코드를 서로 섞지 �
 - 화면 위 직접 편집 = `ts/edit.js`(고르기 · 옮기기 · 크기 · 회전 · 자석 · 자르기 · 복사), PPTX 내보내기 = `ts/pptx.js`(+ `ts/vendor/pptxgen.bundle.js`), 아이콘 = `ts/icons.js`.
 - 저장 · 작업본 · 보관함(30일) · 덮어쓰기 확인 · 저장 이력 = `ts/store.js`, 내보내기(PPTX · PDF · 유인물 · 단독 HTML · 교안 파일) = `ts/export.js`. 사용자가 고르지 않은 내용은 지우지 않는다(보관함으로).
 - 교안 파일에는 `_base` · `_synced` 를 넣지 않는다(이 기기의 작업본에만 쓰는 표시).
+- 디자인 점검 = `ts/check.js`(넘침 · 대비 · 작은 글자 · 여백, 고칠 수 있는 것은 fix), 개요 → 장 = `ts/outline.js`. 교안을 만든 뒤에는 편집 화면의 [디자인 점검]을 돌려 0건인지 본다.
+- 편집 모듈에서 교안을 읽기만 하는 함수가 교안을 바꾸면 안 된다(되돌리기 기록이 어긋난다).
 - 고친 뒤에는 편집 화면을 실제로 띄워 넣기 · 옮기기 · 되돌리기 · 발표 화면 · PPTX 까지 확인한다.
 - 장 유형을 더할 때: `LAYOUTS` 에 칸 정의 → `R` 에 그리는 함수 → `engine.css` 에 `.L-<이름>` → 이 표에 한 줄.
 - 화면 파일을 더하면 `taestep/sw.js` 의 `CORE` 와 `CACHE` 번호를 함께 고친다.

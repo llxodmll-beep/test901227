@@ -6,7 +6,8 @@ const TSEdit = (() => {
   let host, ov, api, sel = [], tool = null, mode = null, grid = false, snapOn = true, fmtClip = null;
   const K = () => host.clientWidth / 1920;
   const S = () => api.slide();
-  const els = () => (S().els = Array.isArray(S().els) ? S().els : []);
+  const els = () => (Array.isArray(S().els) ? S().els : []);                 // 읽기만 — 보는 것만으로 교안이 바뀌면 안 된다
+  const own = () => (S().els = Array.isArray(S().els) ? S().els : []);       // 요소를 넣을 때만 목록을 만든다
   const byId = id => els().find(e => e.id === id);
   const picked = () => sel.map(byId).filter(Boolean);
   const dom = id => host.querySelector(`.ts-el[data-el="${id}"]`);
@@ -51,8 +52,10 @@ const TSEdit = (() => {
   }
 
   /* ---------- 마우스 ---------- */
+  let tap = { t: 0, x: 0, y: 0 };
   function down(ev) {
     if (ev.button !== 0 || editing()) return;
+    if (ev.pointerType === 'touch' || ev.pointerType === 'pen') { const now = Date.now(); if (now - tap.t < 380 && Math.hypot(ev.clientX - tap.x, ev.clientY - tap.y) < 28) { tap.t = 0; ev.preventDefault(); return dbl(ev); } tap = { t: now, x: ev.clientX, y: ev.clientY }; } // 터치는 두 번 톡 = 더블클릭
     const p0 = pt(ev);
     if (tool) { ev.preventDefault(); return drawNew(ev, p0); }
     const hd = ev.target.closest('.ed-h'); const one = picked()[0];
@@ -75,7 +78,7 @@ const TSEdit = (() => {
     const list = picked(); const st = list.map(e => ({ e, x: e.x, y: e.y })); const b0 = bbox(list); let moved = false, dup = false;
     track(m => {
       const p = pt(m); let dx = p.x - p0.x, dy = p.y - p0.y; if (!moved && Math.hypot(dx, dy) * K() < 3) return;
-      if (!moved && m.ctrlKey) { dup = true; const cp = list.map(e => Object.assign(JSON.parse(JSON.stringify(e)), { id: TS.uid() })); els().push(...cp); api.render(); } // Ctrl+끌기 = 복제해 두고 원본을 옮김
+      if (!moved && m.ctrlKey) { dup = true; const cp = list.map(e => Object.assign(JSON.parse(JSON.stringify(e)), { id: TS.uid() })); own().push(...cp); api.render(); } // Ctrl+끌기 = 복제해 두고 원본을 옮김
       moved = true; if (m.shiftKey) { if (Math.abs(dx) > Math.abs(dy)) dy = 0; else dx = 0; }
       const s = snap({ x: b0.x + dx, y: b0.y + dy, w: b0.w, h: b0.h }, sel, m); dx += s.dx; dy += s.dy;
       st.forEach(o => { o.e.x = Math.round(o.x + dx); o.e.y = Math.round(o.y + dy); paint(o.e); }); draw(s.g);
@@ -119,7 +122,7 @@ const TSEdit = (() => {
       tool = null; add([e]); if (e.type === 'text') setTimeout(() => editText(e.id, true), 30);
     });
   }
-  function add(list, keepPos) { els().push(...list); sel = list.map(e => e.id); api.commit(true); draw(); api.onSelect(); return list; }
+  function add(list, keepPos) { own().push(...list); sel = list.map(e => e.id); api.commit(true); draw(); api.onSelect(); return list; }
   const setTool = (type, more) => { tool = type ? { type, more } : null; if (tool) sel = []; draw(); api.onSelect(); };
 
   /* ---------- 그 자리에서 글 고치기 ---------- */
@@ -138,7 +141,7 @@ const TSEdit = (() => {
   function caretAll(n) { const r = document.createRange(); r.selectNodeContents(n); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
   function editText(id, all) {
     const e = byId(id), d = dom(id); if (!e || !d) return; const n = d.querySelector('.tx-in'); if (!n) return;
-    select([id]); n.contentEditable = 'true'; d.classList.add('editing'); n.focus(); if (all || !n.textContent.trim()) caretAll(n);
+    select([id]); n.contentEditable = 'true'; d.classList.add('editing'); n.focus(); if (all || !n.textContent.trim()) caretAll(n); else { const r = document.createRange(); r.selectNodeContents(n); r.collapse(false); const sl = getSelection(); sl.removeAllRanges(); sl.addRange(r); } // 커서는 글 끝에
     const done = () => { n.removeEventListener('blur', done); n.contentEditable = 'false'; d.classList.remove('editing'); const html = TS.clean(n.innerHTML); const hh = Math.ceil(n.offsetHeight + (e.fill ? (+e.pad || 0) * 2 : 0));
       if (html !== e.html || (e.type === 'text' && hh > e.h)) { e.html = html; if (e.type === 'text' && hh > e.h) e.h = hh; api.commit(true); } else draw(); api.onSelect(); };
     n.addEventListener('blur', done);

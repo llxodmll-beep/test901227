@@ -19,8 +19,9 @@
   if (q.get('print')) {
     const notes = q.get('print') === 'notes'; document.body.className = notes ? 'ts-handout' : 'ts-print'; document.body.innerHTML = '';
     const st = document.createElement('style'); st.textContent = notes ? '@page { size: A4 portrait; margin: 0; }' : '@page { size: 1920px 1080px; margin: 0; }'; document.head.appendChild(st);
-    if (notes) S.forEach((s, i) => { const pg = document.createElement('section'); pg.className = 'ho-page'; pg.innerHTML = `<header><b>${TS.E(deck.title || '')}</b><span>${i + 1} / ${N}${s.time ? ' · ' + TS.E(s.time) : ''}</span></header><div class="ho-pic"></div><h4>발표 노트</h4><div class="ho-notes">${TS.E(s.notes || '(노트 없음)')}</div>`; document.body.appendChild(pg); const h = pg.querySelector('.ho-pic'); const el = TS.slideEl(deck, s, i, N); h.appendChild(el); TS.fit(el); el.style.zoom = h.clientWidth / 1920; });
-    else S.forEach((s, i) => { const el = TS.slideEl(deck, s, i, N); document.body.appendChild(el); TS.fit(el); });
+    const P = S.map((s, i) => ({ s, i })).filter(o => !o.s.hidden); // 숨긴 장은 인쇄하지 않는다
+    if (notes) P.forEach(({ s, i }) => { const pg = document.createElement('section'); pg.className = 'ho-page'; pg.innerHTML = `<header><b>${TS.E(deck.title || '')}</b><span>${i + 1} / ${N}${s.time ? ' · ' + TS.E(s.time) : ''}</span></header><div class="ho-pic"></div><h4>발표 노트</h4><div class="ho-notes">${TS.E(s.notes || '(노트 없음)')}</div>`; document.body.appendChild(pg); const h = pg.querySelector('.ho-pic'); const el = TS.slideEl(deck, s, i, N); h.appendChild(el); TS.fit(el); el.style.zoom = h.clientWidth / 1920; });
+    else P.forEach(({ s, i }) => { const el = TS.slideEl(deck, s, i, N); document.body.appendChild(el); TS.fit(el); });
     const imgs = [...new Set(S.flatMap(s => [s.bg && s.bg.src, s.image && s.image.src]).filter(x => x && !TS.isVideo(x)))];
     await Promise.all(imgs.map(src => new Promise(r => { const im = new Image(); im.onload = im.onerror = r; im.src = src; })));
     if (document.fonts && document.fonts.ready) await document.fonts.ready;
@@ -75,8 +76,10 @@
     if (EMBED) parent.postMessage({ type: 'taestep-play-slide', slide: n + 1 }, location.origin);
     tell();
   }
-  function next() { const c = TS.live(els[cur]); if (c.next()) { step = c.step; tell(); } else if (cur < N - 1) show(cur + 1); }
-  function prev() { const c = TS.live(els[cur]); if (c.prev()) { step = c.step; tell(); } else if (cur > 0) show(cur - 1, true); }
+  /* 숨긴 장은 넘길 때 건너뛴다 (번호를 눌러 직접 갈 수는 있음) */
+  const seek = (from, d) => { let n = from + d; while (n >= 0 && n < N && S[n].hidden) n += d; return n >= 0 && n < N ? n : -1; };
+  function next() { const c = TS.live(els[cur]); if (c.next()) { step = c.step; tell(); } else { const n = seek(cur, 1); if (n >= 0) show(n); } }
+  function prev() { const c = TS.live(els[cur]); if (c.prev()) { step = c.step; tell(); } else { const n = seek(cur, -1); if (n >= 0) show(n, true); } }
   $('pgAll').textContent = N;
   show(Math.max(1, parseInt(location.hash.slice(1), 10) || 1) - 1);
 
@@ -84,7 +87,7 @@
   const full = () => { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(() => { }); };
   const overview = on => {
     const o = $('overview'); const want = on == null ? o.hidden : on; o.hidden = !want; if (!want) return;
-    if (!o.dataset.ready) { o.dataset.ready = '1'; S.forEach((s, i) => { const b = document.createElement('button'); b.className = 'ov-item'; b.innerHTML = `<div class="ov-pic"></div><span>${i + 1}</span>`; b.onclick = () => { overview(false); show(i); }; o.querySelector('.ov-grid').appendChild(b); TS.thumb(deck, s, i, N, b.firstChild); }); }
+    if (!o.dataset.ready) { o.dataset.ready = '1'; S.forEach((s, i) => { const b = document.createElement('button'); b.className = 'ov-item'; b.innerHTML = `<div class="ov-pic"></div><span>${i + 1}${s.hidden ? ' · 숨김' : ''}</span>`; if (s.hidden) b.classList.add('hid'); b.onclick = () => { overview(false); show(i); }; o.querySelector('.ov-grid').appendChild(b); TS.thumb(deck, s, i, N, b.firstChild); }); }
     o.querySelectorAll('.ov-item').forEach((b, i) => b.classList.toggle('cur', i === cur));
     const c = o.querySelector('.ov-item.cur'); if (c) c.scrollIntoView({ block: 'center' });
   };

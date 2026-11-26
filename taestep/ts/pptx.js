@@ -22,9 +22,10 @@ const TSPptx = (() => {
   const solve = (svg, pal) => svg.replace(/var\(--[\w-]+(?:,[^)]*)?\)/g, m => cssColor(m, pal)).replace(/currentColor/g, pal.title);
 
   /* 배경: 바탕색 → 그림(자르기 반영) → 어둡게 덮기 를 한 장으로 굽는다 */
-  async function background(deck, s, pal) {
-    const L = TS.LAYOUTS[s.layout] || TS.LAYOUTS.bullets; const g = TS.bgOf(s, L, deck);
-    const c = document.createElement('canvas'); c.width = 1920; c.height = 1080; const x = c.getContext('2d');
+  /* 배경 한 장을 그림으로 (scale = 축소 배율 · 디자인 점검이 글자 밑의 밝기를 잴 때도 쓴다) */
+  async function bgCanvas(deck, s, scale) {
+    const pal = TS.palette(deck); const L = TS.LAYOUTS[s.layout] || TS.LAYOUTS.bullets; const g = TS.bgOf(s, L, deck); const k = scale || 1;
+    const c = document.createElement('canvas'); c.width = Math.round(1920 * k); c.height = Math.round(1080 * k); const x = c.getContext('2d'); x.scale(k, k);
     const gr = x.createLinearGradient(0, 0, 1920, 1080); gr.addColorStop(0, pal.bg2); gr.addColorStop(.62, pal.bg); x.fillStyle = gr; x.fillRect(0, 0, 1920, 1080);
     const im = g.src && !TS.isVideo(g.src) ? await img(g.src) : null;
     if (im) {
@@ -37,8 +38,9 @@ const TSPptx = (() => {
         stops.forEach(([o, a]) => k.addColorStop(o, sh(a))); x.fillStyle = k; x.fillRect(0, 0, 1920, 1080);
       }
     }
-    return c.toDataURL('image/jpeg', .82);
+    return c;
   }
+  const background = async (deck, s) => (await bgCanvas(deck, s, 1)).toDataURL('image/jpeg', .82);
   function cover(x, im, w, h, z, px, py) {
     const s0 = Math.max(w / im.width, h / im.height); const bw = im.width * s0, bh = im.height * s0; const bx = (w - bw) * px / 100, by = (h - bh) * py / 100; const ox = w * px / 100, oy = h * py / 100;
     x.drawImage(im, ox + (bx - ox) * z, oy + (by - oy) * z, bw * z, bh * z);
@@ -121,8 +123,9 @@ const TSPptx = (() => {
         sl.addShape(p.ShapeType.rect, { x: 0, y: 1075 / IN, w: 1920 / IN * (i + 1) / N, h: 5 / IN, fill: { color: pal.accent.slice(1) }, line: { type: 'none' } });
       }
       if (s.notes) sl.addNotes(String(s.notes));
+      if (s.hidden) sl.hidden = true;
     }
     return p;
   }
-  return { build, async save(deck, say) { const p = await build(deck, say); await p.writeFile({ fileName: (deck.id || deck.title || 'TAESTEP') + '.pptx' }); }, async blob(deck) { return (await build(deck)).write({ outputType: 'blob' }); } };
+  return { build, bgCanvas, async save(deck, say) { const p = await build(deck, say); await p.writeFile({ fileName: (deck.id || deck.title || 'TAESTEP') + '.pptx' }); }, async blob(deck) { return (await build(deck)).write({ outputType: 'blob' }); } };
 })();

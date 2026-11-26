@@ -43,7 +43,8 @@
   deck.slides.forEach(s => { if (!s.id) s.id = TS.uid(); });
   let cur = Math.min(deck.slides.length - 1, Math.max(0, (parseInt(location.hash.slice(1), 10) || 1) - 1));
   let tab = 'content', dirty = false, rev = 0, saving = null, leaving = false, quotaWarned = false, offlinePending = false, autoT = 0;
-  let hist = [JSON.stringify(deck)], hi = 0, histT = 0, draftT = 0, viewT = 0, railT = 0;
+  const snapOf = () => JSON.stringify(Object.assign({}, deck, { modified: '' })); // 되돌리기 기록은 내용만 본다 (고친 시각만 다른 것은 같은 것)
+  let hist = [snapOf()], hi = 0, histT = 0, draftT = 0, viewT = 0, railT = 0;
   const S = () => deck.slides[cur];
   const autoOn = () => { try { return localStorage.getItem('taestep:autosave') === '1'; } catch (e) { return false; } };
 
@@ -63,7 +64,7 @@
     clearTimeout(histT); histT = setTimeout(snapshot, 450);
     clearTimeout(autoT); if (autoOn()) autoT = setTimeout(() => { if (dirty && !saving && TSStore.repo().token && navigator.onLine !== false && !TSEdit.editing() && $('modal').hidden) save({ quiet: true }); }, 30000);
   }
-  function snapshot() { clearTimeout(histT); const j = JSON.stringify(deck); if (j === hist[hi]) return; hist = hist.slice(0, hi + 1); hist.push(j); if (hist.length > 80) hist.shift(); hi = hist.length - 1; }
+  function snapshot() { clearTimeout(histT); const j = snapOf(); if (j === hist[hi]) return; hist = hist.slice(0, hi + 1); hist.push(j); if (hist.length > 80) hist.shift(); hi = hist.length - 1; }
   function changed(structure) { mark(); if (structure) { rail(); view(); } else { clearTimeout(viewT); viewT = setTimeout(() => { view(); railOne(cur); }, 120); } }
   function restore(n) { hi = n; deck = JSON.parse(hist[hi]); deck.id = id; delete deck._synced; deck._base = base; deck.modified = new Date().toISOString(); cur = Math.min(cur, deck.slides.length - 1); dirty = true; rev++; state(); putDraft(); $('deckTitle').value = deck.title || ''; TSEdit.select([]); rail(); view(); panel(); }
   function undo() { snapshot(); if (hi < 1) { toast('되돌릴 내용이 없습니다'); return; } restore(hi - 1); }
@@ -71,21 +72,26 @@
 
   /* ---------- 그리기 ---------- */
   function view() { if (typeof pv !== 'undefined' && pv) stopPreview(true); const el = TS.thumb(deck, S(), cur, deck.slides.length, $('view'), { edit: true }); TSEdit.refresh(); return el; }
-  function railOne(i) { const host = $('rail').children[i]; if (host) { TS.thumb(deck, deck.slides[i], i, deck.slides.length, host.querySelector('.pic')); host.querySelector('.lay').textContent = (TS.LAYOUTS[deck.slides[i].layout] || {}).name || ''; } }
+  let issues = [], folded = new Set(); // 디자인 점검 결과 · 접어 둔 구역(이 화면에서만)
+  const railItem = i => $('rail').querySelector(`.rail-item[data-i="${i}"]`);
+  function railOne(i) { const host = railItem(i); if (!host) return; const s = deck.slides[i]; TS.thumb(deck, s, i, deck.slides.length, host.querySelector('.pic')); host.querySelector('.lay').textContent = (TS.LAYOUTS[s.layout] || {}).name || ''; host.classList.toggle('hid', !!s.hidden);
+    const n = issues.filter(x => x.id === s.id).length; host.querySelector('.flags').innerHTML = (s.hidden ? '<b class="f-h">숨김</b>' : '') + (s.memo ? '<b class="f-m" title="메모 있음">메모</b>' : '') + (n ? `<b class="f-w" title="디자인 점검에서 찾은 것">점검 ${n}</b>` : ''); }
   function rail() {
-    const r = $('rail'); r.innerHTML = '';
+    const r = $('rail'); r.innerHTML = ''; let sec = null;
     deck.slides.forEach((s, i) => {
-      const d = document.createElement('div'); d.className = 'rail-item' + (i === cur ? ' cur' : ''); d.draggable = true;
-      d.innerHTML = `<span class="no">${i + 1}</span><div class="pic"></div><span class="lay"></span>`;
+      if (s.section) { sec = s.id; const h = document.createElement('button'); h.className = 'rail-sec' + (folded.has(sec) ? ' folded' : ''); const cnt = (() => { let n = 1; for (let k = i + 1; k < deck.slides.length && !deck.slides[k].section; k++) n++; return n; })(); h.innerHTML = `<span>${folded.has(sec) ? '▸' : '▾'} ${E(s.section)}</span><small>${cnt}장</small>`; h.title = '눌러서 접기 · 펴기'; const key = sec; h.onclick = () => { if (folded.has(key)) folded.delete(key); else folded.add(key); rail(); }; r.appendChild(h); }
+      const d = document.createElement('div'); d.className = 'rail-item' + (i === cur ? ' cur' : ''); d.draggable = true; d.dataset.i = i; if (sec && folded.has(sec) && i !== cur) d.hidden = true;
+      d.innerHTML = `<span class="no">${i + 1}</span><div class="pic"></div><span class="flags"></span><span class="lay"></span>`;
       d.onclick = () => select(i);
       d.ondragstart = e => { e.dataTransfer.setData('text/plain', String(i)); e.dataTransfer.effectAllowed = 'move'; };
       d.ondragover = e => { e.preventDefault(); d.classList.add('over'); }; d.ondragleave = () => d.classList.remove('over');
       d.ondrop = e => { e.preventDefault(); d.classList.remove('over'); const from = +e.dataTransfer.getData('text/plain'); if (isNaN(from) || from === i) return; const [m] = deck.slides.splice(from, 1); deck.slides.splice(i, 0, m); cur = i; changed(true); panel(); };
-      r.appendChild(d); railOne(i);
+      r.appendChild(d); if (!d.hidden) railOne(i);
     });
-    const c = r.querySelector('.cur'); if (c) c.scrollIntoView({ block: 'nearest' });
+    const c = r.querySelector('.cur'); if (c) c.scrollIntoView({ block: 'nearest' }); markBar();
   }
-  function select(i) { cur = Math.max(0, Math.min(deck.slides.length - 1, i)); TSEdit.select([]); [...$('rail').children].forEach((d, k) => d.classList.toggle('cur', k === cur)); const c = $('rail').children[cur]; if (c) c.scrollIntoView({ block: 'nearest' }); view(); panel(); try { history.replaceState(null, '', '#' + (cur + 1)); } catch (e) { } }
+  const markBar = () => { const s = S(); $('btHide').textContent = s.hidden ? '숨김 풀기' : '숨기기'; $('btHide').classList.toggle('on', !!s.hidden); $('btSec').classList.toggle('on', !!s.section); };
+  function select(i) { cur = Math.max(0, Math.min(deck.slides.length - 1, i)); TSEdit.select([]); const it = railItem(cur); if (it && it.hidden) { rail(); } else { $('rail').querySelectorAll('.rail-item').forEach(d => d.classList.toggle('cur', +d.dataset.i === cur)); if (it) it.scrollIntoView({ block: 'nearest' }); } markBar(); view(); panel(); try { history.replaceState(null, '', '#' + (cur + 1)); } catch (e) { } }
 
   /* ---------- 그림 고르기 ---------- */
   const shrink = file => new Promise((res, rej) => { const im = new Image(); const u = URL.createObjectURL(file); im.onload = () => { const k = Math.min(1, 1920 / im.width); const c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); const png = /png|svg|gif|webp/.test(file.type); const x = c.getContext('2d'); x.drawImage(im, 0, 0, c.width, c.height); URL.revokeObjectURL(u); res({ src: png ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', .86), w: c.width, h: c.height }); }; im.onerror = rej; im.src = u; });
@@ -115,6 +121,7 @@
     if (show === 'motion') { p.innerHTML = motionPanel(picked); return; }
     if (show === 'content') {
       let h = `<label class="f"><span>장 유형</span><select id="fLayout">${Object.entries(TS.LAYOUTS).map(([k, v]) => `<option value="${k}"${k === s.layout ? ' selected' : ''}>${v.name}</option>`).join('')}</select></label>`;
+      if (s.layout !== 'free') h += '<button id="fSwap" class="btn ghost wide" style="margin:-4px 0 14px">같은 내용, 다른 유형으로 보기</button>';
       if (s.layout === 'free') h += '<p class="muted small">빈 장입니다. 위의 도구(글상자 · 그림 · 도형 …)로 넣고, 화면에서 직접 옮기고 고칩니다.</p>';
       L.f.forEach(k => {
         if (k === 'items') {
@@ -143,7 +150,8 @@
         <p class="muted small">그림을 고르지 않은 장에는 [교안 설정] 의 기본 배경이 어둡게 깔립니다.</p>`;
     } else {
       p.innerHTML = `<label class="f"><span>이 장의 시간</span><input data-k="time" value="${E(s.time || '')}" placeholder="예: 3분"></label>
-        <label class="f grow"><span>발표 노트</span><textarea data-k="notes" rows="18" placeholder="말할 내용 · 출처 · 클릭 순서를 적어 둡니다. 발표자 화면(P)에 보입니다.">${E(s.notes || '')}</textarea></label>`;
+        <label class="f grow"><span>발표 노트</span><textarea data-k="notes" rows="12" placeholder="말할 내용 · 출처 · 클릭 순서를 적어 둡니다. 발표자 화면(P)에 보입니다.">${E(s.notes || '')}</textarea></label>
+        <label class="f"><span>장 메모 <small>나만 보는 메모 · 발표 화면과 유인물에는 나오지 않습니다</small></span><textarea data-k="memo" rows="4" placeholder="고칠 것 · 확인할 것 · 출처를 찾아야 하는 것">${E(s.memo || '')}</textarea></label>`;
     }
   }
   /* 요소 칸 */
@@ -158,7 +166,7 @@
     const e = list[0]; const one = list.length === 1; const t = e.type; const same = list.every(x => x.type === t);
     let h = `<div class="el-head"><b>${one ? TYPE[t] : `요소 ${list.length}개`}</b><span class="sp"></span><button class="tb" data-op="dup" title="복제 (Ctrl+D)">복제</button><button class="tb danger" data-op="del" title="지우기 (Delete)">지우기</button></div>`;
     if (same && (t === 'text' || t === 'shape')) {
-      h += `<div class="sub-h">글</div><div class="bar fmt"><button class="tb" data-fmt="bold" title="굵게 (Ctrl+B)"><b>가</b></button><button class="tb" data-fmt="italic" title="기울임 (Ctrl+I)"><i>가</i></button><button class="tb" data-fmt="underline" title="밑줄 (Ctrl+U)"><u>가</u></button><button class="tb" data-fmt="hilite" title="형광펜">형광</button><button class="tb" data-fmt="accent" title="강조색으로">강조</button><button class="tb" data-fmt="insertUnorderedList" title="글머리">•</button><button class="tb" data-fmt="insertOrderedList" title="번호">1.</button><button class="tb" data-fmt="removeFormat" title="서식 지우기">지움</button></div>
+      h += `<div class="sub-h">글</div>${one ? '<button class="btn ghost wide" data-op="editText" style="margin-bottom:8px">글 고치기 (더블클릭 · 두 번 톡)</button>' : ''}<div class="bar fmt"><button class="tb" data-fmt="bold" title="굵게 (Ctrl+B)"><b>가</b></button><button class="tb" data-fmt="italic" title="기울임 (Ctrl+I)"><i>가</i></button><button class="tb" data-fmt="underline" title="밑줄 (Ctrl+U)"><u>가</u></button><button class="tb" data-fmt="hilite" title="형광펜">형광</button><button class="tb" data-fmt="accent" title="강조색으로">강조</button><button class="tb" data-fmt="insertUnorderedList" title="글머리">•</button><button class="tb" data-fmt="insertOrderedList" title="번호">1.</button><button class="tb" data-fmt="removeFormat" title="서식 지우기">지움</button></div>
         <p class="muted small">글을 더블클릭해 고치는 중에는 고른 글자에만, 아니면 전체에 적용됩니다.</p>
         <div class="grid2">${numIn('fs', '글자 크기', e.fs || 32)}${sel('weight', '굵기', { 400: '보통', 500: '중간', 600: '굵게', 700: '아주 굵게' }, e.weight || (t === 'shape' ? 600 : 400))}
         ${sel('align', '정렬', { left: '왼쪽', center: '가운데', right: '오른쪽', justify: '양쪽' }, e.align || (t === 'shape' ? 'center' : 'left'))}${numIn('lh', '줄간격', e.lh || 1.4, .05)}</div>${swatch('color', '글자색', e.color || 'fg')}`;
@@ -260,6 +268,7 @@
     const tr = e.target.closest('.tl-r[data-id]'); if (tr) { TSEdit.select([tr.dataset.id]); return; }
     const t = e.target.closest('button'); if (!t) return; const s = S(); const one = TSEdit.picked()[0];
     if (t.dataset.mp) { if (t.dataset.mp === 'stop') stopPreview(); else { if (t.dataset.mp === 'play') stopPreview(true); startPreview(t.dataset.mp === 'play'); } return; }
+    if (t.id === 'fSwap') return swapLayout();
     if (t.id === 'itemAdd') { const L = TS.LAYOUTS[s.layout]; const o = {}; L.it.forEach(k => o[k] = ''); o.t = '새 항목'; (s.items = s.items || []).push(o); changed(); panel(); }
     else if (t.dataset.act) { const i = +t.closest('.item').dataset.i; const a = s.items; if (t.dataset.act === 'del') a.splice(i, 1); else { const j = i + (t.dataset.act === 'up' ? -1 : 1); if (j < 0 || j >= a.length) return; [a[i], a[j]] = [a[j], a[i]]; } changed(); panel(); }
     else if (t.dataset.pick) pickImage(src => { const k = t.dataset.pick; s[k] = Object.assign({}, s[k], { src }); changed(); panel(); });
@@ -273,6 +282,7 @@
       if (a === 'al') TSEdit.align(b); else if (a === 'di') TSEdit.distribute(b); else if (a === 'sm') TSEdit.same(b);
       else if (op === 'imgPick') return pickImage(src => { TSEdit.setProp({ src }); panel(); });
       else if (op === 'crop') TSEdit.crop(!TSEdit.cropping());
+      else if (op === 'editText' && one) { TSEdit.editText(one.id, true); return; }
       else if (op === 'iconPick') return pickIcon(name => { TSEdit.setProp({ name }); panel(); });
       else if (/^(row|col)(Add|Del)$/.test(op) && one) { const r = one.rows; if (op === 'rowAdd') r.push(r[0].map(() => '')); if (op === 'rowDel' && r.length > 1) r.pop(); if (op === 'colAdd') r.forEach(x => x.push('')); if (op === 'colDel' && r[0].length > 1) r.forEach(x => x.pop()); commit(true); }
       else if (TSEdit.OPS[op]) TSEdit.OPS[op]();
@@ -316,7 +326,7 @@
     else if (t === 'icon') pickIcon(name => { TSEdit.setTool('icon', { name }); markTools(); });
     else if (t === 'image') pickImage((src, size) => addImage(src, size));
     else if (b.id === 'tGrid') TSEdit.grid = !TSEdit.grid; else if (b.id === 'tSnap') TSEdit.snap = !TSEdit.snap;
-    else if (b.id === 'tExplode') explode(); else if (b.id === 'tHelp') help();
+    else if (b.id === 'tExplode') explode(); else if (b.id === 'tHelp') help(); else if (/^t(Check|Outline|Find)$/.test(b.id)) return;
     markTools();
   });
   function explode() {
@@ -357,9 +367,94 @@
   $('btUp').onclick = () => move(-1); $('btDown').onclick = () => move(1);
   $('btMotion').onclick = () => { stopPreview(true); startPreview(true); };
 
+  /* ---------- 숨긴 장 · 구역 ---------- */
+  $('btHide').onclick = () => { const s = S(); if (s.hidden) delete s.hidden; else s.hidden = true; changed(); railOne(cur); markBar(); toast(s.hidden ? '이 장을 숨겼습니다 — 발표와 인쇄에서 건너뜁니다 (번호를 눌러 직접 갈 수는 있음)' : '숨김을 풀었습니다'); };
+  $('btSec').onclick = () => {
+    const s = S(); const sh = modal(`<h3>구역(챕터)</h3><p class="muted">이 장부터 다음 구역 전까지를 한 구역으로 묶습니다. 왼쪽 장 목록에 구역 이름이 생기고, 눌러서 접고 펼 수 있습니다.</p>
+      <label class="f"><span>이 장에서 시작하는 구역 이름</span><input id="secName" value="${E(s.section || '')}" placeholder="예: 1장 · 개념과 법규"></label>
+      <div class="row end"><button class="btn ghost" id="secAuto">장 구분 장마다 자동으로</button>${s.section ? '<button class="btn ghost danger" id="secDel">이 구역 없애기</button>' : ''}<button class="btn ghost" id="mClose">취소</button><button class="btn pri" id="mOk">확인</button></div>`);
+    sh.querySelector('#mClose').onclick = closeModal;
+    sh.querySelector('#mOk').onclick = () => { const v = sh.querySelector('#secName').value.trim(); if (v) s.section = v; else delete s.section; closeModal(); changed(true); };
+    const del = sh.querySelector('#secDel'); if (del) del.onclick = () => { delete s.section; closeModal(); changed(true); };
+    sh.querySelector('#secAuto').onclick = () => { let n = 0; deck.slides.forEach((x, i) => { if (x.layout === 'section') { x.section = String(x.title || '구역').replace(/\*/g, '').replace(/\n/g, ' '); n++; } else if (i === 0 && !x.section) x.section = '시작'; }); closeModal(); changed(true); toast(n ? `장 구분 ${n}곳을 구역으로 묶었습니다` : '장 구분 장이 없습니다 — [+ 장 추가] 에서 "장 구분"을 넣어 보세요'); };
+  };
+
+  /* ---------- 같은 내용, 다른 유형 ---------- */
+  function swapLayout() {
+    const s = S(); const n = (s.items || []).filter(x => x && (x.t || x.d || x.v || x.k)).length; const hasV = (s.items || []).some(x => x && String(x.v || '').trim());
+    const c = n ? ['bullets', 'cards', 'steps', 'agenda', ...(n === 2 ? ['compare'] : []), ...(hasV ? ['stat'] : []), 'closing'] : ['statement', 'quote', 'photo', 'section', 'cover'];
+    const list = c.filter(k => k !== s.layout).slice(0, 6);
+    const sh = modal(`<h3>같은 내용, 다른 유형</h3><p class="muted">내용은 그대로 두고 유형만 바꾼 모습입니다. 마음에 드는 것을 누르면 바뀝니다 ([되돌리기] 가능).</p><div class="lay-grid swap">${[s.layout, ...list].map((k, i) => `<button class="lay-item${i ? '' : ' now'}" data-l="${k}"><div class="pic"></div><span>${TS.LAYOUTS[k].name}${i ? '' : ' · 지금'}${TS.LAYOUTS[k].max && n > TS.LAYOUTS[k].max ? ` <small class="warn-t">항목 ${n}개 중 ${TS.LAYOUTS[k].max}개만</small>` : ''}</span></button>`).join('')}</div><div class="row end"><button class="btn ghost" id="mClose">닫기</button></div>`, 'wide');
+    sh.querySelector('#mClose').onclick = closeModal;
+    sh.querySelectorAll('.lay-item').forEach(b => { const k = b.dataset.l; const t = Object.assign({}, s, { layout: k, bg: s.bg ? Object.assign({}, s.bg, { tone: undefined, dim: undefined }) : s.bg }); TS.thumb(deck, t, cur, deck.slides.length, b.querySelector('.pic')); b.onclick = () => { if (k !== s.layout) { s.layout = k; if (s.bg) { delete s.bg.tone; delete s.bg.dim; } changed(true); panel(); } closeModal(); }; });
+  }
+
+  /* ---------- 개요로 장 만들기 ---------- */
+  function outlineModal() {
+    const sh = modal(`<h3>개요로 장 만들기</h3><p class="muted">한글 · 워드 · 메모장에서 쓴 개요를 붙여넣으세요. 항목의 모양을 보고 장 유형을 고릅니다.</p>
+      <p class="muted small"><b># 제목</b> 표지(둘째부터는 장 구분) · <b>## 장 제목</b> 한 장 · <b>- 항목</b> ("- 제목: 설명") · <b>&gt; 노트</b> · <b>| 가 | 나 |</b> 표</p>
+      <textarea id="olText" rows="14" class="mono-ta" placeholder="${E(TSOutline.SAMPLE)}"></textarea><p id="olSum" class="muted small">&nbsp;</p>
+      <label class="chk"><input type="radio" name="olMode" value="add" checked> 지금 장 뒤에 추가</label><label class="chk"><input type="radio" name="olMode" value="all"> 교안 전체를 이것으로 바꾸기 <small class="muted">(지금 교안은 보관함에 30일 남습니다)</small></label>
+      <div class="row end"><button class="btn ghost" id="olSample">예시 넣기</button><button class="btn ghost" id="mClose">취소</button><button class="btn pri" id="mOk">만들기</button></div>`, 'wide');
+    const ta = sh.querySelector('#olText'); let parsed = { slides: [] };
+    const sum = () => { parsed = TSOutline.parse(ta.value); const m = {}; parsed.slides.forEach(x => { m[x.layout] = (m[x.layout] || 0) + 1; }); sh.querySelector('#olSum').textContent = parsed.slides.length ? `${parsed.slides.length}장이 만들어집니다 — ` + Object.entries(m).map(([k, v]) => `${TS.LAYOUTS[k].name} ${v}`).join(' · ') : ' '; };
+    ta.oninput = sum; sh.querySelector('#olSample').onclick = () => { ta.value = TSOutline.SAMPLE; sum(); }; sh.querySelector('#mClose').onclick = closeModal;
+    sh.querySelector('#mOk').onclick = async () => { sum(); if (!parsed.slides.length) { toast('만들 장이 없습니다 — "## 장 제목" 으로 시작하는 줄을 넣어 주세요', true); return; }
+      if (sh.querySelector('[name="olMode"]:checked').value === 'all') { await TSStore.keepPut(deck, '개요로 교안 전체를 바꾸기 전 모습'); deck.slides = parsed.slides; if (parsed.title) { deck.title = parsed.title; $('deckTitle').value = deck.title; } cur = 0; }
+      else { deck.slides.splice(cur + 1, 0, ...parsed.slides); cur++; }
+      closeModal(); TSEdit.select([]); changed(true); snapshot(); panel(); toast(`${parsed.slides.length}장을 만들었습니다 — [되돌리기] 로 되돌릴 수 있습니다`, false, 6000); };
+    setTimeout(() => ta.focus(), 50);
+  }
+
+  /* ---------- 찾기 · 바꾸기 (전체 장) ---------- */
+  const WHERE = { kicker: '머리말', title: '제목', subtitle: '부제', body: '본문', meta: '아래 정보', source: '출처', notes: '발표 노트', memo: '메모', k: '번호' };
+  /* 교안의 모든 글을 돈다: fn(글, 바꾸는 함수(정규식, 바꿀 말), 어디, 장 번호) */
+  function eachText(fn) {
+    deck.slides.forEach((s, i) => {
+      const f = (o, k, where) => { if (typeof o[k] === 'string' && o[k]) fn(o[k], (re, to) => { o[k] = o[k].replace(re, to); }, where, i); };
+      Object.keys(WHERE).forEach(k => f(s, k, WHERE[k])); (s.items || []).forEach((it, n) => it && ['k', 't', 'd', 'v', 'u'].forEach(k => f(it, k, `항목 ${n + 1}`))); if (s.image) f(s.image, 'caption', '그림 설명');
+      (s.els || []).forEach(e => {
+        if (typeof e.html === 'string' && e.html) { const txt = new DOMParser().parseFromString(e.html, 'text/html').body.textContent || ''; if (txt) fn(txt, (re, to) => { const t = document.createElement('template'); t.innerHTML = e.html; const w = document.createTreeWalker(t.content, NodeFilter.SHOW_TEXT); let n; while ((n = w.nextNode())) n.nodeValue = n.nodeValue.replace(re, to); e.html = t.innerHTML; }, e.type === 'shape' ? '도형 글' : '글상자', i); }
+        if (e.type === 'table') (e.rows || []).forEach((r, ri) => r.forEach((v, ci) => { if (v) fn(String(v), (re, to) => { r[ci] = String(r[ci]).replace(re, to); }, '표', i); }));
+        if (e.type === 'chart') (e.data || []).forEach(r => { if (r[0]) fn(String(r[0]), (re, to) => { r[0] = String(r[0]).replace(re, to); }, '차트', i); });
+      });
+    });
+  }
+  function findModal(withReplace) {
+    const sh = modal(`<h3>찾기 · 바꾸기</h3><div class="grid2"><label class="f"><span>찾을 말</span><input id="fq" autocomplete="off"></label><label class="f"><span>바꿀 말</span><input id="fr" autocomplete="off"></label></div>
+      <div class="row"><label class="chk" style="margin:0"><input type="checkbox" id="fCase"> 대소문자 구분</label><span class="sp"></span><span id="fCount" class="muted small"></span></div>
+      <div id="fList" class="flist"></div><div class="row end"><button class="btn ghost" id="mClose">닫기</button><button class="btn ghost" id="fOne">이 장에서만 바꾸기</button><button class="btn pri" id="fAll">모두 바꾸기</button></div>`, 'wide');
+    const q = sh.querySelector('#fq'), r = sh.querySelector('#fr'); const reOf = () => { const v = q.value; if (!v) return null; return new RegExp(v.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), sh.querySelector('#fCase').checked ? 'g' : 'gi'); };
+    const scan = () => { const re = reOf(); const box = sh.querySelector('#fList'); if (!re) { box.innerHTML = ''; sh.querySelector('#fCount').textContent = ''; return; } const hits = []; let total = 0;
+      eachText((txt, _, where, i) => { const m = txt.match(re); if (!m) return; total += m.length; const at = txt.search(re); const a = Math.max(0, at - 18); hits.push({ i, where, snip: (a ? '…' : '') + E(txt.slice(a, at)) + '<mark>' + E(txt.slice(at, at + m[0].length)) + '</mark>' + E(txt.slice(at + m[0].length, at + m[0].length + 30)).replace(/\n/g, ' ') }); });
+      sh.querySelector('#fCount').textContent = total ? `${total}곳 (${new Set(hits.map(h => h.i)).size}장)` : '찾는 말이 없습니다';
+      box.innerHTML = hits.slice(0, 200).map(h => `<button class="frow" data-i="${h.i}"><b>${h.i + 1}장</b><small>${h.where}</small><span>${h.snip}</span></button>`).join(''); };
+    q.oninput = scan; sh.querySelector('#fCase').onchange = scan; sh.querySelector('#mClose').onclick = closeModal;
+    sh.querySelector('#fList').onclick = e => { const b = e.target.closest('.frow'); if (b) { closeModal(); select(+b.dataset.i); } };
+    const doRep = only => { const re = reOf(); if (!re) return; let n = 0; const to = r.value.replace(/\$/g, '$$$$'); eachText((txt, repl, where, i) => { if (only != null && i !== only) return; const m = txt.match(re); if (!m) return; n += m.length; repl(re, to); }); if (!n) { toast('바꿀 곳이 없습니다'); return; } $('deckTitle').value = deck.title || ''; changed(true); snapshot(); panel(); scan(); toast(`${n}곳을 바꿨습니다 — [되돌리기] 로 되돌릴 수 있습니다`, false, 6000); };
+    sh.querySelector('#fAll').onclick = () => doRep(null); sh.querySelector('#fOne').onclick = () => doRep(cur);
+    setTimeout(() => (withReplace && q.value ? r : q).focus(), 50);
+  }
+
+  /* ---------- 디자인 점검 ---------- */
+  async function designCheck() {
+    await flushEdit(); toast('디자인 점검 중…', false, 60000);
+    try { issues = await TSCheck.run(deck, t => toast(t, false, 60000)); } catch (e) { console.error(e); toast('점검하지 못했습니다: ' + (e.message || e), true); return; }
+    $('toast').hidden = true; rail(); const fixable = issues.filter(x => x.fix).length; const by = {}; issues.forEach((x, n) => { (by[x.slide] = by[x.slide] || []).push(Object.assign({ n }, x)); });
+    const sh = modal(`<h3>디자인 점검</h3><p>${issues.length ? `<b>${Object.keys(by).length}장</b>에서 <b>${issues.length}건</b>을 찾았습니다. 이 가운데 <b>${fixable}건</b>은 자동으로 고칠 수 있습니다.` : '찾은 문제가 없습니다. 글자 넘침 · 사진 위 글자 대비 · 작은 글자 · 여백을 모두 살폈습니다.'}</p>
+      <div class="clist">${Object.keys(by).map(i => `<div class="cgroup"><button class="chead" data-go="${i}"><b>${+i + 1}장</b><span>${E(String(deck.slides[i].title || (TS.LAYOUTS[deck.slides[i].layout] || {}).name || '').replace(/\*/g, '').replace(/\n/g, ' ').slice(0, 40))}</span><small>보러 가기</small></button>${by[i].map(x => `<div class="crow"><b class="k-${x.kind === '넘침' ? 'o' : x.kind === '대비' ? 'c' : x.kind === '작은 글자' ? 's' : 'm'}">${x.kind}</b><span>${E(x.msg)}</span>${x.fix ? `<button class="tb" data-fix="${x.n}">고치기</button>` : '<small>직접 고쳐야 함</small>'}</div>`).join('')}</div>`).join('')}</div>
+      <div class="row end"><button class="btn ghost" id="mClose">닫기</button><button class="btn ghost" id="cAgain">다시 점검</button>${fixable ? `<button class="btn pri" id="cAll">한 번에 고치기 (${fixable}건)</button>` : ''}</div>`, 'wide');
+    sh.querySelector('#mClose').onclick = closeModal; sh.querySelector('#cAgain').onclick = designCheck;
+    const done = n => { changed(true); snapshot(); panel(); toast(`${n}건을 고쳤습니다 — [되돌리기] 로 되돌릴 수 있습니다`, false, 5000); designCheck(); };
+    /* 한 번에 고치기: 하나를 고치면 다른 것의 조건이 바뀔 수 있어(배경을 덮으면 글자색이 다시 안 맞는 식), 고치고 다시 재는 것을 몇 번 되풀이한다 */
+    const all = sh.querySelector('#cAll'); if (all) all.onclick = async () => { all.disabled = true; let n = 0; for (let round = 0; round < 4; round++) { const f = issues.filter(x => x.fix); if (!f.length) break; f.forEach(x => x.fix()); n += f.length; if (round < 3) issues = await TSCheck.run(deck, t => toast(t, false, 60000)); } done(n); };
+    sh.querySelector('.clist').onclick = e => { const g = e.target.closest('[data-go]'); if (g) { closeModal(); select(+g.dataset.go); return; } const b = e.target.closest('[data-fix]'); if (b) { issues[+b.dataset.fix].fix(); done(1); } };
+  }
+  $('tCheck').onclick = designCheck; $('tOutline').onclick = outlineModal; $('tFind').onclick = () => findModal(false);
+
   /* ---------- 도움말 (단축키) ---------- */
   function help() {
-    const rows = [['저장 · PDF 인쇄 · 도움말', 'Ctrl+S · Ctrl+P · F1'], ['발표 (지금 장부터)', 'F5'], ['새 장 · 장 복제 · 장 지우기', 'Ctrl+M · Ctrl+Shift+D · Ctrl+Delete'], ['장 이동', 'PageUp · PageDown'], ['요소 고르기', '클릭 · Shift+클릭 · 빈 곳에서 끌기 · Tab · Ctrl+A · Esc 해제'], ['요소 옮기기', '끌기 · 화살표 10 · Ctrl+화살표 1 · Shift+화살표 50'], ['끌 때', 'Shift 한 방향 · Ctrl 복제 · Alt 자석 끄기'], ['크기 · 회전', '테두리 점(Shift 비율 유지) · 위쪽 둥근 점(Shift 15도씩)'], ['복제 · 지우기', 'Ctrl+D · Delete'], ['복사 · 잘라내기 · 붙여넣기', 'Ctrl+C · Ctrl+X · Ctrl+V (다른 교안 탭에도)'], ['서식 복사 · 붙여넣기', 'Ctrl+Shift+C · Ctrl+Shift+V'], ['앞으로 · 뒤로 / 맨 앞 · 맨 뒤', 'Ctrl+] · Ctrl+[ / Ctrl+Shift+] · Ctrl+Shift+['], ['묶기 · 풀기', 'Ctrl+G · Ctrl+Shift+G'], ['글 고치기 시작 · 끝', '더블클릭 · Enter · F2 / Esc'], ['글 서식', 'Ctrl+B · Ctrl+I · Ctrl+U'], ['표', '칸 더블클릭 · Tab 다음 칸 · 엑셀/한글 표 Ctrl+V'], ['그림', 'Ctrl+V · 화면에 끌어다 놓기 · 더블클릭 자르기(휠 확대)'], ['되돌리기 · 다시 실행', 'Ctrl+Z · Ctrl+Y']];
+    const rows = [['저장 · PDF 인쇄 · 도움말', 'Ctrl+S · Ctrl+P · F1'], ['발표 (지금 장부터)', 'F5'], ['새 장 · 장 복제 · 장 지우기', 'Ctrl+M · Ctrl+Shift+D · Ctrl+Delete'], ['장 이동', 'PageUp · PageDown'], ['요소 고르기', '클릭 · Shift+클릭 · 빈 곳에서 끌기 · Tab · Ctrl+A · Esc 해제'], ['요소 옮기기', '끌기 · 화살표 10 · Ctrl+화살표 1 · Shift+화살표 50'], ['끌 때', 'Shift 한 방향 · Ctrl 복제 · Alt 자석 끄기'], ['크기 · 회전', '테두리 점(Shift 비율 유지) · 위쪽 둥근 점(Shift 15도씩)'], ['복제 · 지우기', 'Ctrl+D · Delete'], ['복사 · 잘라내기 · 붙여넣기', 'Ctrl+C · Ctrl+X · Ctrl+V (다른 교안 탭에도)'], ['서식 복사 · 붙여넣기', 'Ctrl+Shift+C · Ctrl+Shift+V'], ['앞으로 · 뒤로 / 맨 앞 · 맨 뒤', 'Ctrl+] · Ctrl+[ / Ctrl+Shift+] · Ctrl+Shift+['], ['묶기 · 풀기', 'Ctrl+G · Ctrl+Shift+G'], ['글 고치기 시작 · 끝', '더블클릭 · Enter · F2 / Esc'], ['글 서식', 'Ctrl+B · Ctrl+I · Ctrl+U'], ['표', '칸 더블클릭 · Tab 다음 칸 · 엑셀/한글 표 Ctrl+V'], ['그림', 'Ctrl+V · 화면에 끌어다 놓기 · 더블클릭 자르기(휠 확대)'], ['되돌리기 · 다시 실행', 'Ctrl+Z · Ctrl+Y'], ['찾기 · 바꾸기', 'Ctrl+F · Ctrl+H'], ['터치(휴대폰 · 태블릿)', '한 번 톡 고르기 · 끌어 옮기기 · 두 번 톡 글 고치기 · 장 순서는 ↑ ↓']];
     const sh = modal(`<h3>단축키 (PowerPoint 와 같은 배치)</h3><table class="keys">${rows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}</table><div class="row end"><button class="btn pri" id="mClose">닫기</button></div>`, 'wide');
     sh.querySelector('#mClose').onclick = closeModal;
   }
@@ -398,7 +493,7 @@
     const sh = modal(`<h3>저장 이력 · 보관된 작업본</h3><div class="sub-h" style="margin-top:0">보관된 작업본 <small>이 기기 · 30일</small></div><div id="hKept"><p class="muted small">불러오는 중…</p></div><div class="sub-h">저장 이력 <small>저장할 때마다 남은 판 (GitHub 저장소)</small></div><div id="hVer"><p class="muted small">불러오는 중…</p></div><div class="row end"><button class="btn ghost" id="mClose">닫기</button></div>`, 'wide');
     sh.querySelector('#mClose').onclick = closeModal;
     const useDeck = async (d, label) => { await TSStore.keepPut(deck, '다른 판을 불러오기 전 모습'); const x = JSON.parse(JSON.stringify(d)); x.id = id; delete x._synced; deck = x; cur = Math.min(cur, deck.slides.length - 1); $('deckTitle').value = deck.title || ''; TSEdit.select([]); closeModal(); changed(true); snapshot(); panel(); toast(`${label} 을(를) 불러왔습니다 — 확인한 뒤 [저장] 을 눌러야 저장소에 반영됩니다. 직전 모습은 보관함에 30일 남습니다`, false, 9000); };
-    const preview = (d, label, onUse) => { const pv = modal(`<h3>미리 보기 — ${E(label)}</h3><p class="muted">${(d.slides || []).length}장 · 지금 교안과 ${TSStore.diff(deck, d)}장이 다릅니다.</p><div class="lay-grid pv">${(d.slides || []).map((x, i) => `<div class="lay-item"><div class="pic"></div><span>${i + 1}</span></div>`).join('')}</div><div class="row end"><button class="btn ghost" id="pvBack">목록으로</button><button class="btn pri" id="pvUse">이 판으로 되돌리기</button></div>`, 'wide'); pv.querySelectorAll('.pic').forEach((h, i) => TS.thumb(d, d.slides[i], i, d.slides.length, h)); pv.querySelector('#pvBack').onclick = historyModal; pv.querySelector('#pvUse').onclick = onUse; };
+    const preview = (d, label, onUse) => { const pv = modal(`<h3>미리 보기 — ${E(label)}</h3><p class="muted">${(d.slides || []).length}장 · 지금 교안과 ${TSStore.diff(deck, d)}장이 다릅니다.</p><div class="lay-grid pv">${(d.slides || []).map((x, i) => { const df = JSON.stringify(x) !== JSON.stringify(deck.slides[i]); return `<div class="lay-item${df ? ' diff' : ''}"><div class="pic"></div><span>${i + 1}${df ? ' · 지금과 다름' : ''}</span></div>`; }).join('')}</div><div class="row end"><button class="btn ghost" id="pvBack">목록으로</button><button class="btn pri" id="pvUse">이 판으로 되돌리기</button></div>`, 'wide'); pv.querySelectorAll('.pic').forEach((h, i) => TS.thumb(d, d.slides[i], i, d.slides.length, h)); pv.querySelector('#pvBack').onclick = historyModal; pv.querySelector('#pvUse').onclick = onUse; };
     const kept = await TSStore.keepList(id); const kb = sh.querySelector('#hKept'); if (!kb) return;
     kb.innerHTML = kept.length ? kept.map((k, i) => `<div class="hrow" data-i="${i}"><div><b>${whenFull(k.at)}</b><small>${k.slides}장 · ${E(k.why || '')}</small></div><button class="tb" data-a="pv">미리 보기</button><button class="tb" data-a="use">되살리기</button><button class="tb danger" data-a="del">지우기</button></div>`).join('') : '<p class="muted small">보관된 작업본이 없습니다.</p>';
     kb.onclick = async e => { const b = e.target.closest('button'); if (!b) return; const k = kept[+b.closest('.hrow').dataset.i]; const label = whenFull(k.at) + ' 작업본';
@@ -451,7 +546,7 @@
       <div class="row end"><button class="btn pri" data-c="cancel">취소 (저장하지 않음)</button></div>`, 'wide', true);
     sh.onclick = async e => { const b = e.target.closest('[data-c]'); if (!b) return; closeModal(); const c = b.dataset.c;
       if (c === 'mine') done(await save1(Object.assign({}, opt, { force: true })));
-      else if (c === 'theirs') { await TSStore.keepPut(deck, '다른 곳의 저장본을 불러오며 보관'); await TSStore.draftDel(id); deck = remote; deck.id = id; base = remote.modified || ''; cur = Math.min(cur, deck.slides.length - 1); dirty = false; rev++; hist = [JSON.stringify(deck)]; hi = 0; $('deckTitle').value = deck.title || ''; TSEdit.select([]); state(); rail(); view(); panel(); toast('저장소의 교안을 불러왔습니다 · 내 것은 [내보내기] → [저장 이력 · 보관된 작업본] 에 남겼습니다', false, 8000); done(true); }
+      else if (c === 'theirs') { await TSStore.keepPut(deck, '다른 곳의 저장본을 불러오며 보관'); await TSStore.draftDel(id); deck = remote; deck.id = id; base = remote.modified || ''; cur = Math.min(cur, deck.slides.length - 1); dirty = false; rev++; hist = [snapOf()]; hi = 0; $('deckTitle').value = deck.title || ''; TSEdit.select([]); state(); rail(); view(); panel(); toast('저장소의 교안을 불러왔습니다 · 내 것은 [내보내기] → [저장 이력 · 보관된 작업본] 에 남겼습니다', false, 8000); done(true); }
       else done(false); };
   });
   /* 저장: 끝나면 true. 저장 중에 또 고쳤으면 '저장 안 됨' 으로 남긴다 */
@@ -516,6 +611,7 @@
     if (ty) return;
     if (c && k === 'z') { e.preventDefault(); return e.shiftKey ? redo() : undo(); }
     if (c && k === 'y') { e.preventDefault(); return redo(); }
+    if (c && (k === 'f' || k === 'h')) { e.preventDefault(); return findModal(k === 'h'); }
     if (c && k === 'm') { e.preventDefault(); return addSlide(); }
     if (c && e.shiftKey && k === 'd') { e.preventDefault(); return dupSlide(); }
     if (c && e.key === 'Delete') { e.preventDefault(); return delSlide(); }

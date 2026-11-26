@@ -224,7 +224,7 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
 .ts-els { position: absolute; inset: 0; pointer-events: none; }
 .ts-el { position: absolute; pointer-events: auto; }
 .ts-el .tx { width: 100%; height: 100%; display: flex; flex-direction: column; overflow: visible; }
-.ts-el .tx-in { width: 100%; outline: none; min-height: 1em; }
+.ts-el .tx-in { width: 100%; outline: none; min-height: 1em; flex: none; }
 .ts-el .tx-in ul, .ts-el .tx-in ol { padding-left: 1.3em; }
 .ts-el .tx-in ul > li { list-style: disc; } .ts-el .tx-in ol > li { list-style: decimal; }
 .ts-el .tx-in li::marker { color: var(--accent); }
