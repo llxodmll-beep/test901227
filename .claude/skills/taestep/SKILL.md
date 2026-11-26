@@ -44,6 +44,17 @@ DPV(`app/` · `decks/`)와는 따로 만든 앱이다. 코드를 서로 섞지 �
 - bullets · stat · cards · steps 는 클릭마다 하나씩 나온다(`build: false` 면 한 번에).
 - 내용이 넘치면 엔진이 본문을 줄인다. 줄어들지 않게 한 장에는 한 가지 메시지만, 항목 설명은 한두 줄로.
 
+## 2-1. 자유 요소 (els) — 어느 장에나 얹는 글상자 · 그림 · 도형 · 선 · 아이콘 · 표 · 차트
+- 장의 `els: [ … ]` 에 넣는다. 좌표는 1920×1080 기준 { id, type, x, y, w, h, rot?, lock?, hide?, g?(묶음) }. `layout: "free"` 는 요소만 있는 빈 장.
+- 색은 테마 이름표(`title · fg · muted · accent · ink · bg2 · card · line`)를 쓴다(테마를 바꾸면 함께 바뀜). 꼭 필요할 때만 `#색`.
+- text: { html, fs, color, align, lh, weight, valign, font(body·mono), fill?, pad?, radius? } — html 은 b · i · u · mark · span(style) · br · ul/ol/li 만.
+- image: { src, zoom(1~), px, py(보여 줄 곳 0~100), mask(none·round·circle·hexagon·arch·diamond), radius, br, ct, sat, gray, stroke, sw, shadow }
+- shape: { shape(rect·round·ellipse·card·triangle·diamond·hexagon·pentagon·star·arrow·chevron·speech), fill, stroke, sw, radius, dash, op, html(도형 안 글), fs, color }
+- line: { stroke, sw, arrow(none·end·both), dash, flip, rev } · icon: { name(`ts/icons.js` 의 이름), color, sw }
+- table: { rows[[칸]], head, stripe, plain, fs } · chart: { kind(bar·hbar·line·pie·donut), data[[항목, 값]], unit, values, pct, fs, color }
+- 장 유형으로 만든 장을 요소로 풀 때는 `TS.explode(deck, slide, i, total)` (편집 화면의 [요소로 풀기], PPTX 내보내기가 같이 씀).
+- 배경 · 글+그림 장의 그림도 `zoom · px · py` 로 자른다.
+
 ## 3. 품질 규칙 (어떤 주제든 같은 수준이 나오게)
 - 흐름: 표지 → 첫 질문(statement) → 순서(agenda) → [장 구분(section) → 내용 3~6장] 반복 → 핵심 정리(closing) → 마무리. 같은 유형을 세 장 넘게 잇지 않는다.
 - 표지 · 장 구분 · 한 문장 · 사진 장에는 장마다 다른 전면 배경을 넣는다. 내용 장은 `deck.bg` 기본 배경으로 통일한다.
@@ -55,6 +66,8 @@ DPV(`app/` · `decks/`)와는 따로 만든 앱이다. 코드를 서로 섞지 �
 
 ## 4. 앱을 고칠 때
 - 슬라이드 디자인 = `ts/engine.css`, 그리기 = `ts/engine.js`, 저장 = `ts/store.js`, 화면 = `ts/home.js · studio.js · play.js`, 앱 화면 꾸밈 = `ts/app.css`.
+- 화면 위 직접 편집 = `ts/edit.js`(고르기 · 옮기기 · 크기 · 회전 · 자석 · 자르기 · 복사), PPTX 내보내기 = `ts/pptx.js`(+ `ts/vendor/pptxgen.bundle.js`), 아이콘 = `ts/icons.js`.
+- 고친 뒤에는 편집 화면을 실제로 띄워 넣기 · 옮기기 · 되돌리기 · 발표 화면 · PPTX 까지 확인한다.
 - 장 유형을 더할 때: `LAYOUTS` 에 칸 정의 → `R` 에 그리는 함수 → `engine.css` 에 `.L-<이름>` → 이 표에 한 줄.
 - 화면 파일을 더하면 `taestep/sw.js` 의 `CORE` 와 `CACHE` 번호를 함께 고친다.
 - 작업 규칙(CLAUDE.md): 최신 main 에서 worktree → 커밋 → `--no-ff` 병합 → 푸시 → Pages 배포 확인.
