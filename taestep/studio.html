@@ -11,19 +11,26 @@
   <span id="state" class="state"></span>
   <span class="sp"></span>
   <button id="btUndo" class="btn ghost" title="되돌리기 (Ctrl+Z)">되돌리기</button>
+  <button id="btRedo" class="btn ghost" title="다시 실행 (Ctrl+Y)">다시 실행</button>
   <button id="btMore" class="btn ghost">교안 설정</button>
   <button id="btPlay" class="btn ghost" title="이 장부터 발표 (F5)">▶ 발표</button>
   <button id="btSave" class="btn pri" title="저장 (Ctrl+S)">저장</button>
 </header>
 <div class="studio-main">
   <aside class="rail"><div id="rail"></div><button id="btAdd" class="btn add">+ 장 추가</button></aside>
-  <section class="canvas"><div class="canvas-in"><div id="view" class="view"></div></div>
+  <section class="canvas">
+    <div id="tools" class="tools">
+      <button data-tool="text" title="글상자 — 누른 뒤 넣을 자리를 클릭하거나 끌기">글상자</button><button data-tool="image" title="그림 (Ctrl+V · 끌어다 놓기도 됨)">그림</button><button data-tool="shape">도형</button><button data-tool="line">선</button><button data-tool="line:arrow">화살표</button><button data-tool="icon">아이콘</button><button data-tool="table">표</button><button data-tool="chart">차트</button>
+      <i></i><button id="tSnap" title="다른 요소 · 화면 가운데 · 여백에 맞춰 붙음 (끌 때 Alt 로 잠깐 끄기)">자석</button><button id="tGrid" title="20px 격자에 맞추기">격자</button>
+      <span class="sp"></span><button id="tExplode" title="장 유형으로 만든 장을 요소 단위로 풀어 자유롭게 고치기">요소로 풀기</button><button id="tHelp" title="단축키 (F1)">단축키</button>
+    </div>
+    <div class="canvas-in"><div id="view" class="view"></div></div>
     <div class="canvas-bar"><button id="btMotion" class="btn ghost">▶ 모션 보기</button><span class="sp"></span><button id="btUp" class="btn ghost" title="앞으로">↑</button><button id="btDown" class="btn ghost" title="뒤로">↓</button><button id="btDup" class="btn ghost">복제</button><button id="btDel" class="btn ghost danger">삭제</button></div>
   </section>
-  <aside class="panel"><div class="tabs"><button data-tab="content" class="on">내용</button><button data-tab="bg">배경</button><button data-tab="notes">노트</button></div><div id="panel" class="panel-body"></div></aside>
+  <aside class="panel"><div class="tabs"><button data-tab="content" class="on">내용</button><button data-tab="el">요소</button><button data-tab="bg">배경</button><button data-tab="notes">노트</button></div><div id="panel" class="panel-body"></div></aside>
 </div>
 <div id="modal" class="modal" hidden></div>
 <div id="toast" class="toast" hidden></div>
-<script src="ts/engine.js"></script><script src="ts/store.js"></script><script src="ts/studio.js"></script>
+<script src="ts/icons.js"></script><script src="ts/engine.js"></script><script src="ts/store.js"></script><script src="ts/edit.js"></script><script src="ts/studio.js"></script>
 </body>
 </html>
