@@ -5,6 +5,7 @@
 /* ---------- 테마 ---------- */
 .ts-slide {
   --font: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Noto Sans CJK KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  --head: 'Noto Serif KR', 'Nanum Myeongjo', 'Batang', serif; /* 제목: 명조 */
   --mono: 'JetBrains Mono', 'SFMono-Regular', ui-monospace, Consolas, 'Noto Sans KR', monospace;
   --bg: #06101E; --bg2: #0B1B33; --fg: #EAF0F8; --title: #FFFFFF; --muted: #93A4BC;
   --line: rgba(255, 255, 255, .14); --card: rgba(11, 27, 51, .58); --card-line: rgba(255, 255, 255, .13);
@@ -64,8 +65,8 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
 .ts-head { flex: none; margin-bottom: 40px; max-width: 1560px; }
 .ts-kicker { display: flex; align-items: center; gap: 16px; font-size: 23px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; }
 .ts-kicker i { display: block; width: 44px; height: 4px; background: var(--accent); border-radius: 2px; }
-.ts-title { font-size: 72px; font-weight: 800; line-height: 1.16; letter-spacing: -.03em; color: var(--title); text-wrap: balance; }
-.ts-lead { margin-top: 18px; font-size: 34px; font-weight: 500; color: var(--muted); line-height: 1.45; text-wrap: pretty; }
+.ts-title { font-family: var(--head); font-size: 72px; font-weight: 700; line-height: 1.2; letter-spacing: -.03em; color: var(--title); text-wrap: balance; }
+.ts-lead { margin-top: 20px; font-size: 34px; font-weight: 400; color: var(--muted); line-height: 1.45; text-wrap: pretty; }
 .ts-main { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
 .ts-fit { width: 100%; }
 .ts-source { position: absolute; left: 128px; right: 128px; bottom: 74px; font-size: 21px; color: var(--muted); opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -261,3 +262,6 @@ video.ts-bg-img { width: 100%; height: 100%; object-fit: cover; }
   .ts-print .ts-slide { position: relative; break-after: page; page-break-after: always; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .ts-print .ts-card { -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
+
+/* 항목 제목도 명조로 (숫자 · 꼬리표 · 설명은 고딕) */
+.L-bullets .ts-item .t, .L-cards .ts-cardi .t, .L-steps .ts-step .t, .L-compare .ts-side .t, .L-agenda .ts-row .t, .L-quote .ts-title { font-family: var(--head); font-weight: 700; }
