@@ -244,3 +244,28 @@ body.play .toast, body.presenter .toast { background: #17325C; }
 .tl-r span { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .tl-r small { flex: none; color: var(--a-muted); font-size: 12px; }
 .tl-e { padding: 4px 6px; font-size: 12.5px; color: var(--a-muted); }
 .view.ts-live { pointer-events: none; } .view.ts-live .ed-ov { display: none; }
+
+/* ---------- 3단계: 구역 · 숨김 · 점검 · 찾기 · 유형 바꾸기 ---------- */
+.rail-sec { display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 4px 0 8px; padding: 6px 8px; border: 0; border-radius: 8px; background: var(--a-sunken); cursor: pointer; font-size: 12.5px; font-weight: 700; text-align: left; } .rail-sec small { font-weight: 400; color: var(--a-muted); } .rail-sec:hover { background: var(--a-hover); }
+.rail-item.hid .pic { opacity: .35; } .rail-item .flags { position: absolute; z-index: 3; right: 6px; top: 6px; display: flex; gap: 3px; }
+.rail-item .flags b { padding: 1px 6px; border-radius: 6px; font-size: 11px; font-weight: 600; color: #fff; background: #475569; } .rail-item .flags .f-w { background: #B45309; } .rail-item .flags .f-m { background: #1553D0; }
+.btn.on { background: var(--a-accent-soft); border-color: var(--a-accent-line); color: var(--a-accent); }
+.lay-grid.swap .lay-item.now { border-color: var(--a-accent); } .lay-item.diff { border-color: var(--a-warn); } .lay-item.diff span { color: var(--a-warn); }
+.mono-ta { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--a-line); background: var(--a-field); font-family: ui-monospace, Consolas, 'Pretendard Variable', monospace; font-size: 13.5px; line-height: 1.6; resize: vertical; }
+.flist, .clist { max-height: 46vh; overflow: auto; margin: 10px 0; border: 1px solid var(--a-line); border-radius: 11px; } .flist:empty { display: none; } .clist:empty { display: none; }
+.frow { display: flex; align-items: baseline; gap: 10px; width: 100%; padding: 8px 12px; border: 0; border-bottom: 1px solid var(--a-line); background: none; cursor: pointer; text-align: left; font-size: 13.5px; } .frow:hover { background: var(--a-hover); }
+.frow b { flex: none; width: 44px; } .frow small { flex: none; width: 76px; color: var(--a-muted); } .frow span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .frow mark, .flist mark { background: #FFE08A; color: #111; border-radius: 3px; padding: 0 2px; }
+.chead { display: flex; align-items: baseline; gap: 10px; width: 100%; padding: 9px 12px; border: 0; background: var(--a-sunken); cursor: pointer; text-align: left; font-size: 14px; } .chead span { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .chead small { color: var(--a-accent); }
+.crow { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-top: 1px solid var(--a-line); font-size: 13.5px; } .crow span { flex: 1; } .crow small { color: var(--a-muted); white-space: nowrap; }
+.crow b { flex: none; padding: 1px 8px; border-radius: 6px; font-size: 12px; color: #fff; background: #475569; } .crow .k-o { background: #B45309; } .crow .k-c { background: #9333EA; } .crow .k-s { background: #0E7490; } .crow .k-m { background: #475569; }
+/* 휴대폰 · 태블릿 */
+@media (max-width: 760px) {
+  html, body.studio { height: auto; min-height: 100%; } body.studio { display: block; overflow: auto; } .studio-main { display: block; } .rail, .canvas, .panel { display: block; min-height: 0; } #rail { padding: 8px 10px; } .rail .btn.add { margin: 0 10px 8px; }
+  .canvas-in { display: flex; height: 58vw; padding: 8px; } .canvas-bar { display: flex; } .tools { display: flex; } .panel-body { overflow: visible; }
+  .top { overflow-x: auto; gap: 6px; padding: 0 10px; scrollbar-width: none; } .top::-webkit-scrollbar { display: none; } .top .btn.ghost:not(#btPlay) { display: inline-flex; } .top .btn, .top .state { flex: none; } .top .sp { display: none; } .brand b { display: none; } .title-in { flex: 0 0 150px; }
+  .tools { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; } .tools::-webkit-scrollbar { display: none; } .tools button { flex: none; height: 38px; } .tools .sp { display: none; }
+  .canvas-bar { overflow-x: auto; } .canvas-bar .btn { flex: none; height: 40px; } .canvas-bar .sp { display: none; }
+  .rail-sec { flex: none; width: auto; margin: 0; } .rail-item .lay { display: none; }
+  .ed-h { width: 18px; height: 18px; margin: -9px 0 0 -9px; } .h-rot { top: -34px; }
+  .f input, .f select, .f textarea { font-size: 16px; } .tb { height: 36px; } .sheet { padding: 18px; }
+}
