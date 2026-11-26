@@ -301,7 +301,8 @@ const TS = (() => {
   /* 모핑: 앞 장(a)과 지금 장(b)에 같은 요소(같은 id)가 있으면 앞 장의 자리 · 크기 · 기울기에서 지금 자리로 부드럽게 옮긴다 */
   function morph(a, b) {
     const pairs = [];
-    b.querySelectorAll('.ts-el.in, .ts-el.on').forEach(y => { const x = a.querySelector(`.ts-el[data-el="${y.dataset.el}"]`); if (!x || !y.offsetWidth || !y.offsetHeight || getComputedStyle(x).opacity === '0' || x.classList.contains('out')) return;
+    b.querySelectorAll('.ts-el.in, .ts-el.on').forEach(y => { const x = a.querySelector(`.ts-el[data-el="${y.dataset.el}"]`); const shown = x && !x.classList.contains('out') && (x.classList.contains('in') || x.classList.contains('on') || x.classList.contains('done')); // 등장하는 중이어도 이어 움직인다
+      if (!shown || !y.offsetWidth || !y.offsetHeight) return;
       const dx = (x.offsetLeft + x.offsetWidth / 2) - (y.offsetLeft + y.offsetWidth / 2), dy = (x.offsetTop + x.offsetHeight / 2) - (y.offsetTop + y.offsetHeight / 2);
       pairs.push({ y, from: { transform: `translate(${dx}px, ${dy}px) scale(${x.offsetWidth / y.offsetWidth}, ${x.offsetHeight / y.offsetHeight})`, rotate: x.style.rotate || '0deg' }, to: { transform: 'translate(0px, 0px) scale(1, 1)', rotate: y.style.rotate || '0deg' } }); });
     return { count: pairs.length, run(ms) { pairs.forEach(p => { p.y.classList.add('done'); if (p.y.animate) p.y.animate([p.from, p.to], { duration: ms || 900, easing: 'cubic-bezier(.3, .7, .2, 1)' }); }); } };
