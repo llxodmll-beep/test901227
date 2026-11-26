@@ -16249,12 +16249,12 @@
    ]
   },
   {
-   "id": "emd0685",
+   "id": "emd0711",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
    "transition": "",
-   "notes": "[1분]\n말초정맥으로 투여한 뒤에는 세 가지를 합니다.\n01 에피네프린 IV 투여 → 02 NS 20 mL 플러싱(0.9% 생리식염수) → 03 가능하면 투여한 팔을 들어 중심순환으로 전달을 돕습니다.\n그리고 이 모든 과정에서 가슴압박과 제세동을 지연하지 않습니다.\n[그림] 초안 37장 인포그래픽(assets/emd-img18.jpg) — 그림 안 근거 표기: 2025 한국 심폐소생술 가이드라인 · 성인 전문소생술.\n[보완] 초안 37장을 \"용량 장\"과 \"인포그래픽 장\" 두 장으로 나눔(정보량 유지).",
+   "notes": "[1분]\n말초정맥으로 에피네프린을 준 뒤에는 세 가지를 이어서 합니다.\n클릭① 에피네프린 1 mg 을 정맥으로 투여하고,\n클릭② 0.9% 생리식염수 20 mL 로 바로 밀어 넣습니다(플러싱). 약이 라인에 머물지 않고 순환으로 들어가게 하는 것입니다.\n클릭③ 가능하면 투여한 팔을 들어 중심순환으로 가는 것을 돕습니다. 다만 팔 거상의 효과 근거는 제한적입니다.\n클릭④ 이 모든 과정에서 가슴압박과 제세동을 늦추지 않습니다.\n[그림] 단계 그림은 직접 그린 움직이는 그림(assets/emd-ill-epi1~3.svg) — 약물이 라인을 따라 흐르고, 플러싱 밀대가 밀리고, 팔이 들립니다.\n[보완] 초안 37장 인포그래픽(assets/emd-img18.jpg)의 내용을 모두 옮겨 교안 디자인으로 다시 지음. 원래 그림 파일은 그대로 둠.",
    "elements": [
     {
      "id": "emd0677",
@@ -16440,30 +16440,649 @@
      "anim": "fade",
      "rotate": 0,
      "opacity": 1,
+     "type": "text",
+     "x": 120,
+     "y": 226,
+     "w": 600,
+     "h": 50,
+     "role": "text",
+     "html": "성인 심정지 · 말초정맥 투여",
+     "style": {
+      "fontSize": 26,
+      "color": "#14213D",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3,
+      "bg": "#E8EEF7",
+      "radius": 25,
+      "padding": 6
+     }
+    },
+    {
+     "id": "emd0685",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "shape",
+     "x": 120,
+     "y": 300,
+     "w": 520,
+     "h": 540,
+     "shape": "rect",
+     "fill": "#FFFFFF",
+     "stroke": "#E4E7EC",
+     "strokeWidth": 2,
+     "radius": 22,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     }
+    },
+    {
+     "id": "emd0686",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 148,
+     "y": 326,
+     "w": 76,
+     "h": 56,
+     "role": "text",
+     "html": "01",
+     "style": {
+      "fontSize": 30,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3,
+      "bg": "#C8102E",
+      "radius": 12,
+      "padding": 6
+     }
+    },
+    {
+     "id": "emd0687",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 240,
+     "y": 322,
+     "w": 380,
+     "h": 64,
+     "role": "text",
+     "html": "에피네프린 IV 투여",
+     "style": {
+      "fontSize": 34,
+      "color": "#14213D",
+      "bold": true,
+      "align": "left",
+      "valign": "middle",
+      "lineHeight": 1.4
+     }
+    },
+    {
+     "id": "emd0688",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
      "type": "image",
-     "x": 300,
-     "y": 240,
-     "w": 1320,
-     "h": 740,
-     "src": "assets/emd-img18.jpg",
+     "x": 140,
+     "y": 400,
+     "w": 480,
+     "h": 240,
+     "src": "assets/emd-ill-epi1.svg",
      "fit": "contain",
-     "radius": 16,
+     "radius": 0,
      "shadow": false,
      "border": 0,
      "borderColor": "#ffffff"
+    },
+    {
+     "id": "emd0689",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "shape",
+     "x": 148,
+     "y": 650,
+     "w": 464,
+     "h": 2,
+     "shape": "rect",
+     "fill": "#E4E7EC",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 0,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     }
+    },
+    {
+     "id": "emd0690",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 148,
+     "y": 664,
+     "w": 464,
+     "h": 90,
+     "role": "text",
+     "html": "1 mg IV",
+     "style": {
+      "fontSize": 60,
+      "color": "#C8102E",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1
+     }
+    },
+    {
+     "id": "emd0691",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 148,
+     "y": 760,
+     "w": 464,
+     "h": 60,
+     "role": "text",
+     "html": "말초정맥으로 투여",
+     "style": {
+      "fontSize": 28,
+      "color": "#344054",
+      "bold": false,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.4
+     }
+    },
+    {
+     "id": "emd0692",
+     "step": 2,
+     "anim": "left",
+     "rotate": 90,
+     "opacity": 1,
+     "type": "shape",
+     "x": 654,
+     "y": 548,
+     "w": 32,
+     "h": 44,
+     "shape": "triangle",
+     "fill": "#98A2B3",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 0,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     }
+    },
+    {
+     "id": "emd0693",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "shape",
+     "x": 700,
+     "y": 300,
+     "w": 520,
+     "h": 540,
+     "shape": "rect",
+     "fill": "#FFFFFF",
+     "stroke": "#E4E7EC",
+     "strokeWidth": 2,
+     "radius": 22,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     }
+    },
+    {
+     "id": "emd0694",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 728,
+     "y": 326,
+     "w": 76,
+     "h": 56,
+     "role": "text",
+     "html": "02",
+     "style": {
+      "fontSize": 30,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3,
+      "bg": "#14213D",
+      "radius": 12,
+      "padding": 6
+     }
+    },
+    {
+     "id": "emd0695",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 820,
+     "y": 322,
+     "w": 380,
+     "h": 64,
+     "role": "text",
+     "html": "NS 20 mL 플러싱",
+     "style": {
+      "fontSize": 34,
+      "color": "#14213D",
+      "bold": true,
+      "align": "left",
+      "valign": "middle",
+      "lineHeight": 1.4
+     }
+    },
+    {
+     "id": "emd0696",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "image",
+     "x": 720,
+     "y": 400,
+     "w": 480,
+     "h": 240,
+     "src": "assets/emd-ill-epi2.svg",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "border": 0,
+     "borderColor": "#ffffff"
+    },
+    {
+     "id": "emd0697",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "shape",
+     "x": 728,
+     "y": 650,
+     "w": 464,
+     "h": 2,
+     "shape": "rect",
+     "fill": "#E4E7EC",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 0,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     }
+    },
+    {
+     "id": "emd0698",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 728,
+     "y": 664,
+     "w": 464,
+     "h": 90,
+     "role": "text",
+     "html": "NS 20 mL",
+     "style": {
+      "fontSize": 60,
+      "color": "#14213D",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1
+     }
+    },
+    {
+     "id": "emd0699",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 728,
+     "y": 760,
+     "w": 464,
+     "h": 60,
+     "role": "text",
+     "html": "0.9% 생리식염수로 밀어 넣기",
+     "style": {
+      "fontSize": 28,
+      "color": "#344054",
+      "bold": false,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.4
+     }
+    },
+    {
+     "id": "emd0700",
+     "step": 3,
+     "anim": "left",
+     "rotate": 90,
+     "opacity": 1,
+     "type": "shape",
+     "x": 1234,
+     "y": 548,
+     "w": 32,
+     "h": 44,
+     "shape": "triangle",
+     "fill": "#98A2B3",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 0,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     }
+    },
+    {
+     "id": "emd0701",
+     "step": 3,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "shape",
+     "x": 1280,
+     "y": 300,
+     "w": 520,
+     "h": 540,
+     "shape": "rect",
+     "fill": "#FFFFFF",
+     "stroke": "#E4E7EC",
+     "strokeWidth": 2,
+     "radius": 22,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     }
+    },
+    {
+     "id": "emd0702",
+     "step": 3,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 1308,
+     "y": 326,
+     "w": 76,
+     "h": 56,
+     "role": "text",
+     "html": "03",
+     "style": {
+      "fontSize": 30,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3,
+      "bg": "#14213D",
+      "radius": 12,
+      "padding": 6
+     }
+    },
+    {
+     "id": "emd0703",
+     "step": 3,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 1400,
+     "y": 322,
+     "w": 380,
+     "h": 64,
+     "role": "text",
+     "html": "가능하면 팔 거상",
+     "style": {
+      "fontSize": 34,
+      "color": "#14213D",
+      "bold": true,
+      "align": "left",
+      "valign": "middle",
+      "lineHeight": 1.4
+     }
+    },
+    {
+     "id": "emd0704",
+     "step": 3,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "image",
+     "x": 1300,
+     "y": 400,
+     "w": 480,
+     "h": 240,
+     "src": "assets/emd-ill-epi3.svg",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "border": 0,
+     "borderColor": "#ffffff"
+    },
+    {
+     "id": "emd0705",
+     "step": 3,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "shape",
+     "x": 1308,
+     "y": 650,
+     "w": 464,
+     "h": 2,
+     "shape": "rect",
+     "fill": "#E4E7EC",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 0,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     }
+    },
+    {
+     "id": "emd0706",
+     "step": 3,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 1308,
+     "y": 664,
+     "w": 464,
+     "h": 90,
+     "role": "text",
+     "html": "팔 거상",
+     "style": {
+      "fontSize": 60,
+      "color": "#14213D",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1
+     }
+    },
+    {
+     "id": "emd0707",
+     "step": 3,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 1308,
+     "y": 760,
+     "w": 464,
+     "h": 60,
+     "role": "text",
+     "html": "투여한 팔을 들어 중심순환 전달 보조",
+     "style": {
+      "fontSize": 28,
+      "color": "#344054",
+      "bold": false,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.4
+     }
+    },
+    {
+     "id": "emd0708",
+     "step": 4,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 120,
+     "y": 868,
+     "w": 1680,
+     "h": 80,
+     "role": "text",
+     "html": "가슴압박과 제세동을 <span style=\"color:#FF8A98\">지연하지 않습니다</span>",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3,
+      "bg": "#14213D",
+      "radius": 14,
+      "padding": 6
+     }
+    },
+    {
+     "id": "emd0709",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 120,
+     "y": 958,
+     "w": 840,
+     "h": 40,
+     "role": "text",
+     "html": "상지 거상의 임상적 효과에 대한 근거는 제한적입니다",
+     "style": {
+      "fontSize": 24,
+      "color": "#5B6474",
+      "bold": false,
+      "align": "left",
+      "valign": "top",
+      "lineHeight": 1.4
+     }
+    },
+    {
+     "id": "emd0710",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 960,
+     "y": 958,
+     "w": 840,
+     "h": 40,
+     "role": "text",
+     "html": "근거: 2025 한국 심폐소생술 가이드라인 · 성인 전문소생술",
+     "style": {
+      "fontSize": 24,
+      "color": "#5B6474",
+      "bold": false,
+      "align": "right",
+      "valign": "top",
+      "lineHeight": 1.4
+     }
     }
    ]
   },
   {
-   "id": "emd0694",
+   "id": "emd0739",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
    "transition": "",
-   "notes": "[1분 30초]\n제세동에 반응하지 않는 VF 나 pVT 에는 아미오다론을 씁니다.\n1차 300 mg(150 mg/3 mL 앰플 2개) — 3차 제세동 후 CPR 중, D5W 20~30 mL 에 희석, IV bolus.\n2차 150 mg(1앰플) — VF/pVT 가 지속되면, 추가 1회.\n현재 리듬이 PEA 나 Asystole 이면 아미오다론을 추가로 주지 않습니다. CPR 과 제세동은 지연하지 않습니다.\n[그림] 초안 41장 인포그래픽(assets/emd-img20.jpg) — 그림 안 근거 표기: 2025 한국 심폐소생술 가이드라인, 2017 대한내과학회 교육자료.\n[확인 필요] 초안 41장의 화면 글자는 \"150 mg\" 하나뿐 — 위 멘트는 인포그래픽 내용을 옮긴 것. 가이드라인 원문으로 용량 · 시점 대조.\n[보완] 순서 변경: 젝스트 뒤 → PART 4 에피네프린 옆.",
+   "notes": "[1분 30초]\n제세동에 반응하지 않는 VF 나 pVT 에는 아미오다론을 씁니다.\n클릭① 1차 300 mg — 150 mg/3 mL 앰플 2개. 3차 제세동 뒤 CPR 중에, D5W 20~30 mL 에 희석해 IV bolus.\n클릭② 2차 150 mg — 1앰플. 불응성 VF/pVT 가 계속되면 1회 더, 같은 방법으로.\n클릭③ 현재 리듬이 PEA 나 Asystole 이면 아미오다론을 추가로 주지 않습니다.\n클릭④ 약을 준비하느라 CPR 과 제세동을 늦추지 않습니다.\n[보완] 초안 41장 인포그래픽(assets/emd-img20.jpg)의 내용을 모두 옮겨 교안 디자인으로 다시 지음(앰플 · D5W 그림은 직접 그린 assets/emd-ill-ampoule.svg · emd-ill-d5w.svg). 원래 그림 파일은 그대로 둠. 순서 변경: 젝스트 뒤 → PART 4 에피네프린 옆.\n[확인 필요] 가이드라인 원문으로 용량 · 투여 시점 대조. 희석 부피는 근거 표기대로 조제 예시.",
    "elements": [
     {
-     "id": "emd0686",
+     "id": "emd0712",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16490,7 +17109,7 @@
      }
     },
     {
-     "id": "emd0687",
+     "id": "emd0713",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16513,7 +17132,7 @@
      }
     },
     {
-     "id": "emd0688",
+     "id": "emd0714",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16540,7 +17159,7 @@
      }
     },
     {
-     "id": "emd0689",
+     "id": "emd0715",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16567,7 +17186,7 @@
      }
     },
     {
-     "id": "emd0690",
+     "id": "emd0716",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16594,7 +17213,7 @@
      }
     },
     {
-     "id": "emd0691",
+     "id": "emd0717",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16619,7 +17238,7 @@
      }
     },
     {
-     "id": "emd0692",
+     "id": "emd0718",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16630,7 +17249,7 @@
      "w": 1680,
      "h": 90,
      "role": "text",
-     "html": "아미오다론 — 제세동에 반응하지 않는 VF / pVT",
+     "html": "아미오다론 — 성인 심정지 1차 · 2차 투여",
      "style": {
       "fontSize": 54,
       "color": "#14213D",
@@ -16641,27 +17260,461 @@
      }
     },
     {
-     "id": "emd0693",
+     "id": "emd0719",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
      "opacity": 1,
+     "type": "text",
+     "x": 120,
+     "y": 226,
+     "w": 600,
+     "h": 50,
+     "role": "text",
+     "html": "제세동에 반응하지 않는 VF / pVT",
+     "style": {
+      "fontSize": 26,
+      "color": "#14213D",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3,
+      "bg": "#E8EEF7",
+      "radius": 25,
+      "padding": 6
+     }
+    },
+    {
+     "id": "emd0720",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "shape",
+     "x": 120,
+     "y": 300,
+     "w": 800,
+     "h": 450,
+     "shape": "rect",
+     "fill": "#FFFFFF",
+     "stroke": "#C8102E",
+     "strokeWidth": 3,
+     "radius": 22,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     }
+    },
+    {
+     "id": "emd0721",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 152,
+     "y": 326,
+     "w": 200,
+     "h": 56,
+     "role": "text",
+     "html": "1차 투여",
+     "style": {
+      "fontSize": 30,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3,
+      "bg": "#C8102E",
+      "radius": 12,
+      "padding": 6
+     }
+    },
+    {
+     "id": "emd0722",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 152,
+     "y": 392,
+     "w": 440,
+     "h": 120,
+     "role": "text",
+     "html": "300 mg",
+     "style": {
+      "fontSize": 104,
+      "color": "#C8102E",
+      "bold": true,
+      "align": "left",
+      "valign": "middle",
+      "lineHeight": 1
+     }
+    },
+    {
+     "id": "emd0723",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 152,
+     "y": 516,
+     "w": 440,
+     "h": 46,
+     "role": "text",
+     "html": "150 mg/3 mL × 2앰플",
+     "style": {
+      "fontSize": 30,
+      "color": "#14213D",
+      "bold": true,
+      "align": "left",
+      "valign": "top",
+      "lineHeight": 1.4
+     }
+    },
+    {
+     "id": "emd0724",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 152,
+     "y": 576,
+     "w": 460,
+     "h": 160,
+     "role": "text",
+     "html": "<span style=\"color:#C8102E\">✔</span>&nbsp; 3차 제세동 후 CPR 중<br><span style=\"color:#C8102E\">✔</span>&nbsp; D5W 20~30 mL에 희석<br><span style=\"color:#C8102E\">✔</span>&nbsp; IV bolus",
+     "style": {
+      "fontSize": 30,
+      "color": "#344054",
+      "bold": false,
+      "align": "left",
+      "valign": "top",
+      "lineHeight": 1.6
+     }
+    },
+    {
+     "id": "emd0725",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
      "type": "image",
-     "x": 300,
-     "y": 240,
-     "w": 1320,
-     "h": 740,
-     "src": "assets/emd-img20.jpg",
+     "x": 590,
+     "y": 340,
+     "w": 86,
+     "h": 206,
+     "src": "assets/emd-ill-ampoule.svg",
      "fit": "contain",
-     "radius": 16,
+     "radius": 0,
      "shadow": false,
      "border": 0,
      "borderColor": "#ffffff"
+    },
+    {
+     "id": "emd0726",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "image",
+     "x": 676,
+     "y": 340,
+     "w": 86,
+     "h": 206,
+     "src": "assets/emd-ill-ampoule.svg",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "border": 0,
+     "borderColor": "#ffffff"
+    },
+    {
+     "id": "emd0727",
+     "step": 1,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "image",
+     "x": 768,
+     "y": 380,
+     "w": 132,
+     "h": 204,
+     "src": "assets/emd-ill-d5w.svg",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "border": 0,
+     "borderColor": "#ffffff"
+    },
+    {
+     "id": "emd0728",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "shape",
+     "x": 1000,
+     "y": 300,
+     "w": 800,
+     "h": 450,
+     "shape": "rect",
+     "fill": "#FFFFFF",
+     "stroke": "#E4E7EC",
+     "strokeWidth": 2,
+     "radius": 22,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     }
+    },
+    {
+     "id": "emd0729",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 1032,
+     "y": 326,
+     "w": 200,
+     "h": 56,
+     "role": "text",
+     "html": "2차 투여",
+     "style": {
+      "fontSize": 30,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3,
+      "bg": "#14213D",
+      "radius": 12,
+      "padding": 6
+     }
+    },
+    {
+     "id": "emd0730",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 1032,
+     "y": 392,
+     "w": 440,
+     "h": 120,
+     "role": "text",
+     "html": "150 mg",
+     "style": {
+      "fontSize": 104,
+      "color": "#14213D",
+      "bold": true,
+      "align": "left",
+      "valign": "middle",
+      "lineHeight": 1
+     }
+    },
+    {
+     "id": "emd0731",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 1032,
+     "y": 516,
+     "w": 440,
+     "h": 46,
+     "role": "text",
+     "html": "150 mg/3 mL × 1앰플",
+     "style": {
+      "fontSize": 30,
+      "color": "#14213D",
+      "bold": true,
+      "align": "left",
+      "valign": "top",
+      "lineHeight": 1.4
+     }
+    },
+    {
+     "id": "emd0732",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 1032,
+     "y": 576,
+     "w": 460,
+     "h": 160,
+     "role": "text",
+     "html": "<span style=\"color:#C8102E\">✔</span>&nbsp; 불응성 VF / pVT가 지속되면<br><span style=\"color:#C8102E\">✔</span>&nbsp; D5W 20~30 mL에 희석<br><span style=\"color:#C8102E\">✔</span>&nbsp; 추가 1회 · IV bolus",
+     "style": {
+      "fontSize": 30,
+      "color": "#344054",
+      "bold": false,
+      "align": "left",
+      "valign": "top",
+      "lineHeight": 1.6
+     }
+    },
+    {
+     "id": "emd0733",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "image",
+     "x": 1556,
+     "y": 340,
+     "w": 86,
+     "h": 206,
+     "src": "assets/emd-ill-ampoule.svg",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "border": 0,
+     "borderColor": "#ffffff"
+    },
+    {
+     "id": "emd0734",
+     "step": 2,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "image",
+     "x": 1648,
+     "y": 380,
+     "w": 132,
+     "h": 204,
+     "src": "assets/emd-ill-d5w.svg",
+     "fit": "contain",
+     "radius": 0,
+     "shadow": false,
+     "border": 0,
+     "borderColor": "#ffffff"
+    },
+    {
+     "id": "emd0735",
+     "step": 2,
+     "anim": "left",
+     "rotate": 90,
+     "opacity": 1,
+     "type": "shape",
+     "x": 926,
+     "y": 500,
+     "w": 28,
+     "h": 40,
+     "shape": "triangle",
+     "fill": "#98A2B3",
+     "stroke": "",
+     "strokeWidth": 0,
+     "radius": 0,
+     "shadow": false,
+     "html": "",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3
+     }
+    },
+    {
+     "id": "emd0736",
+     "step": 3,
+     "anim": "left",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 120,
+     "y": 770,
+     "w": 1680,
+     "h": 80,
+     "role": "text",
+     "html": "⚠&nbsp; 현재 리듬이 PEA / Asystole이면 아미오다론 추가 투여 X",
+     "style": {
+      "fontSize": 32,
+      "color": "#C8102E",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3,
+      "bg": "#FFF1F3",
+      "radius": 14,
+      "padding": 6,
+      "border": 3,
+      "borderColor": "#C8102E"
+     }
+    },
+    {
+     "id": "emd0737",
+     "step": 4,
+     "anim": "up",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 120,
+     "y": 868,
+     "w": 1680,
+     "h": 80,
+     "role": "text",
+     "html": "CPR · 제세동을 <span style=\"color:#FF8A98\">지연하지 않습니다</span>",
+     "style": {
+      "fontSize": 32,
+      "color": "#FFFFFF",
+      "bold": true,
+      "align": "center",
+      "valign": "middle",
+      "lineHeight": 1.3,
+      "bg": "#14213D",
+      "radius": 14,
+      "padding": 6
+     }
+    },
+    {
+     "id": "emd0738",
+     "step": 0,
+     "anim": "fade",
+     "rotate": 0,
+     "opacity": 1,
+     "type": "text",
+     "x": 120,
+     "y": 958,
+     "w": 1680,
+     "h": 40,
+     "role": "text",
+     "html": "용량 · 적응증: 2025 한국 심폐소생술 가이드라인　|　희석 부피: 2017 대한내과학회 교육자료의 조제 예시 · 실제 조제는 소속 프로토콜 · 의료지도 확인",
+     "style": {
+      "fontSize": 24,
+      "color": "#5B6474",
+      "bold": false,
+      "align": "left",
+      "valign": "top",
+      "lineHeight": 1.4
+     }
     }
    ]
   },
   {
-   "id": "emd0714",
+   "id": "emd0759",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -16669,7 +17722,7 @@
    "notes": "[1분 30초]\n마지막은 인계입니다. 우리가 한 처치는 병원에서 이어져야 의미가 있습니다.\n클릭① 무엇을, 얼마나, 어떤 경로로 — 예) 에피네프린 1 mg 정맥.\n클릭② 언제 투여했는가 — 시각.\n클릭③ 환자가 어떻게 변했는가 — 앞에서 본 재평가 지표(혈당 · 혈압 · 호흡 · 리듬).\n클릭④ 다음 의료진이 처치를 이어갈 수 있도록 전달합니다.\n[보완] 순서 변경: 포도당 뒤 → 정리 구역.",
    "elements": [
     {
-     "id": "emd0695",
+     "id": "emd0740",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16696,7 +17749,7 @@
      }
     },
     {
-     "id": "emd0696",
+     "id": "emd0741",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16719,7 +17772,7 @@
      }
     },
     {
-     "id": "emd0697",
+     "id": "emd0742",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16746,7 +17799,7 @@
      }
     },
     {
-     "id": "emd0698",
+     "id": "emd0743",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16773,7 +17826,7 @@
      }
     },
     {
-     "id": "emd0699",
+     "id": "emd0744",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16800,7 +17853,7 @@
      }
     },
     {
-     "id": "emd0700",
+     "id": "emd0745",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16827,7 +17880,7 @@
      }
     },
     {
-     "id": "emd0701",
+     "id": "emd0746",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -16849,7 +17902,7 @@
      }
     },
     {
-     "id": "emd0702",
+     "id": "emd0747",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -16876,7 +17929,7 @@
      }
     },
     {
-     "id": "emd0703",
+     "id": "emd0748",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -16898,7 +17951,7 @@
      }
     },
     {
-     "id": "emd0704",
+     "id": "emd0749",
      "step": 1,
      "anim": "up",
      "rotate": 0,
@@ -16920,7 +17973,7 @@
      }
     },
     {
-     "id": "emd0705",
+     "id": "emd0750",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -16942,7 +17995,7 @@
      }
     },
     {
-     "id": "emd0706",
+     "id": "emd0751",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -16969,7 +18022,7 @@
      }
     },
     {
-     "id": "emd0707",
+     "id": "emd0752",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -16991,7 +18044,7 @@
      }
     },
     {
-     "id": "emd0708",
+     "id": "emd0753",
      "step": 2,
      "anim": "up",
      "rotate": 0,
@@ -17013,7 +18066,7 @@
      }
     },
     {
-     "id": "emd0709",
+     "id": "emd0754",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -17035,7 +18088,7 @@
      }
     },
     {
-     "id": "emd0710",
+     "id": "emd0755",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -17062,7 +18115,7 @@
      }
     },
     {
-     "id": "emd0711",
+     "id": "emd0756",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -17084,7 +18137,7 @@
      }
     },
     {
-     "id": "emd0712",
+     "id": "emd0757",
      "step": 3,
      "anim": "up",
      "rotate": 0,
@@ -17106,7 +18159,7 @@
      }
     },
     {
-     "id": "emd0713",
+     "id": "emd0758",
      "step": 4,
      "anim": "up",
      "rotate": 0,
@@ -17133,7 +18186,7 @@
    ]
   },
   {
-   "id": "emd0734",
+   "id": "emd0779",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -17141,7 +18194,7 @@
    "notes": "[1분]\n오늘 핵심 세 가지입니다.\n클릭① 확인 — 투여 전 5 Right, ARM SAVE, 복창.\n클릭② 판단 — 리듬을 보고 제세동과 약물을 결정합니다. VF 와 pVT 는 제세동 후 바로 CPR.\n클릭③ 재평가와 인계 — 약물마다 다른 지표를 다시 보고, 무엇을 · 언제 · 어떻게 변했는지 전달합니다.\n[보완] 새로 넣은 장.",
    "elements": [
     {
-     "id": "emd0715",
+     "id": "emd0760",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17168,7 +18221,7 @@
      }
     },
     {
-     "id": "emd0716",
+     "id": "emd0761",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17191,7 +18244,7 @@
      }
     },
     {
-     "id": "emd0717",
+     "id": "emd0762",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17218,7 +18271,7 @@
      }
     },
     {
-     "id": "emd0718",
+     "id": "emd0763",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17245,7 +18298,7 @@
      }
     },
     {
-     "id": "emd0719",
+     "id": "emd0764",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17272,7 +18325,7 @@
      }
     },
     {
-     "id": "emd0720",
+     "id": "emd0765",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17299,7 +18352,7 @@
      }
     },
     {
-     "id": "emd0721",
+     "id": "emd0766",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17321,7 +18374,7 @@
      }
     },
     {
-     "id": "emd0722",
+     "id": "emd0767",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -17348,7 +18401,7 @@
      }
     },
     {
-     "id": "emd0723",
+     "id": "emd0768",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -17370,7 +18423,7 @@
      }
     },
     {
-     "id": "emd0724",
+     "id": "emd0769",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -17392,7 +18445,7 @@
      }
     },
     {
-     "id": "emd0725",
+     "id": "emd0770",
      "step": 1,
      "anim": "left",
      "rotate": 0,
@@ -17414,7 +18467,7 @@
      }
     },
     {
-     "id": "emd0726",
+     "id": "emd0771",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -17441,7 +18494,7 @@
      }
     },
     {
-     "id": "emd0727",
+     "id": "emd0772",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -17463,7 +18516,7 @@
      }
     },
     {
-     "id": "emd0728",
+     "id": "emd0773",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -17485,7 +18538,7 @@
      }
     },
     {
-     "id": "emd0729",
+     "id": "emd0774",
      "step": 2,
      "anim": "left",
      "rotate": 0,
@@ -17507,7 +18560,7 @@
      }
     },
     {
-     "id": "emd0730",
+     "id": "emd0775",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -17534,7 +18587,7 @@
      }
     },
     {
-     "id": "emd0731",
+     "id": "emd0776",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -17556,7 +18609,7 @@
      }
     },
     {
-     "id": "emd0732",
+     "id": "emd0777",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -17578,7 +18631,7 @@
      }
     },
     {
-     "id": "emd0733",
+     "id": "emd0778",
      "step": 3,
      "anim": "left",
      "rotate": 0,
@@ -17602,7 +18655,7 @@
    ]
   },
   {
-   "id": "emd0754",
+   "id": "emd0799",
    "bg": {
     "gradient": "linear-gradient(180deg, #FFFFFF 0%, #F3F5F9 100%)"
    },
@@ -17610,7 +18663,7 @@
    "notes": "[2분]\n세 문제로 확인하겠습니다. 문제를 읽고 잠시 기다린 뒤 클릭해서 답을 보여 줍니다.\n클릭① Q1 — 120 ÷ 3 = 40 gtt/min, 60 ÷ 40 = 1.5초에 한 방울.\n클릭② Q2 — X. SBP 90 mmHg 이하는 NTG 금기.\n클릭③ Q3 — O. 확인된 VF 는 진폭과 관계없이 제세동, 바로 CPR.\n[보완] 새로 넣은 장. 문제는 초안 내용(점적 계산 · NTG 금기 · Fine VF)에서 출제.",
    "elements": [
     {
-     "id": "emd0735",
+     "id": "emd0780",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17637,7 +18690,7 @@
      }
     },
     {
-     "id": "emd0736",
+     "id": "emd0781",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17660,7 +18713,7 @@
      }
     },
     {
-     "id": "emd0737",
+     "id": "emd0782",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17687,7 +18740,7 @@
      }
     },
     {
-     "id": "emd0738",
+     "id": "emd0783",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17714,7 +18767,7 @@
      }
     },
     {
-     "id": "emd0739",
+     "id": "emd0784",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17741,7 +18794,7 @@
      }
     },
     {
-     "id": "emd0740",
+     "id": "emd0785",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17768,7 +18821,7 @@
      }
     },
     {
-     "id": "emd0741",
+     "id": "emd0786",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17790,7 +18843,7 @@
      }
     },
     {
-     "id": "emd0742",
+     "id": "emd0787",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17817,7 +18870,7 @@
      }
     },
     {
-     "id": "emd0743",
+     "id": "emd0788",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17839,7 +18892,7 @@
      }
     },
     {
-     "id": "emd0744",
+     "id": "emd0789",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17861,7 +18914,7 @@
      }
     },
     {
-     "id": "emd0745",
+     "id": "emd0790",
      "step": 1,
      "anim": "pop",
      "rotate": 0,
@@ -17886,7 +18939,7 @@
      }
     },
     {
-     "id": "emd0746",
+     "id": "emd0791",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17913,7 +18966,7 @@
      }
     },
     {
-     "id": "emd0747",
+     "id": "emd0792",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17935,7 +18988,7 @@
      }
     },
     {
-     "id": "emd0748",
+     "id": "emd0793",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -17957,7 +19010,7 @@
      }
     },
     {
-     "id": "emd0749",
+     "id": "emd0794",
      "step": 2,
      "anim": "pop",
      "rotate": 0,
@@ -17982,7 +19035,7 @@
      }
     },
     {
-     "id": "emd0750",
+     "id": "emd0795",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18009,7 +19062,7 @@
      }
     },
     {
-     "id": "emd0751",
+     "id": "emd0796",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18031,7 +19084,7 @@
      }
     },
     {
-     "id": "emd0752",
+     "id": "emd0797",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18053,7 +19106,7 @@
      }
     },
     {
-     "id": "emd0753",
+     "id": "emd0798",
      "step": 3,
      "anim": "pop",
      "rotate": 0,
@@ -18080,7 +19133,7 @@
    ]
   },
   {
-   "id": "emd0763",
+   "id": "emd0808",
    "bg": {
     "image": "assets/emd-bg-section.svg",
     "color": "#0A1324"
@@ -18089,7 +19142,7 @@
    "notes": "[2분 30초]\n마지막으로 2019년 10월 31일 독도에서 환자를 이송하다 순직한 분들을 기억하겠습니다.\n(영상 약 2분 · 영상이 끝나면 잠시 멈춤 후 다음 장)\n[결정] 실명 유지(사용자 결정, 2026-11-26).\n[영상] 초안 42장 영상(assets/emd-video4.mp4).",
    "elements": [
     {
-     "id": "emd0755",
+     "id": "emd0800",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18116,7 +19169,7 @@
      }
     },
     {
-     "id": "emd0756",
+     "id": "emd0801",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18139,7 +19192,7 @@
      }
     },
     {
-     "id": "emd0757",
+     "id": "emd0802",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18161,7 +19214,7 @@
      }
     },
     {
-     "id": "emd0758",
+     "id": "emd0803",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18183,7 +19236,7 @@
      }
     },
     {
-     "id": "emd0759",
+     "id": "emd0804",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18205,7 +19258,7 @@
      }
     },
     {
-     "id": "emd0760",
+     "id": "emd0805",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18227,7 +19280,7 @@
      }
     },
     {
-     "id": "emd0761",
+     "id": "emd0806",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18249,7 +19302,7 @@
      }
     },
     {
-     "id": "emd0762",
+     "id": "emd0807",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18270,7 +19323,7 @@
    "noFooter": true
   },
   {
-   "id": "emd0769",
+   "id": "emd0814",
    "bg": {
     "color": "#0A1324"
    },
@@ -18278,7 +19331,7 @@
    "notes": "[남은 시간 · 질의응답]\n감사합니다. 질문 받겠습니다.\n[그림] ChatGPT 생성 배경(assets/emd-ai-end.jpg) — 새벽 빛 속에 선 구급차. 이전 배경(assets/emd-fx-aurora.svg)은 그대로 둠.",
    "elements": [
     {
-     "id": "emd0764",
+     "id": "emd0809",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18300,7 +19353,7 @@
      "locked": true
     },
     {
-     "id": "emd0765",
+     "id": "emd0810",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18330,7 +19383,7 @@
      "gAngle": 0
     },
     {
-     "id": "emd0766",
+     "id": "emd0811",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18353,7 +19406,7 @@
      }
     },
     {
-     "id": "emd0767",
+     "id": "emd0812",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
@@ -18375,7 +19428,7 @@
      }
     },
     {
-     "id": "emd0768",
+     "id": "emd0813",
      "step": 0,
      "anim": "fade",
      "rotate": 0,
