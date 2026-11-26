@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 240" width="480" height="240"><defs>
+<linearGradient id="glass" x1="0" x2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset=".5" stop-color="#EEF3FA"/><stop offset="1" stop-color="#D9E3F0"/></linearGradient>
+<linearGradient id="skin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6D7BE"/><stop offset="1" stop-color="#E3B593"/></linearGradient>
+<linearGradient id="amber" x1="0" x2="1"><stop offset="0" stop-color="#8A4B0F"/><stop offset=".35" stop-color="#D98A2B"/><stop offset=".6" stop-color="#F0B25A"/><stop offset="1" stop-color="#9A5512"/></linearGradient>
+<linearGradient id="cap" x1="0" x2="1"><stop offset="0" stop-color="#1F4E9A"/><stop offset=".5" stop-color="#3D74C9"/><stop offset="1" stop-color="#163C78"/></linearGradient>
+<filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#14213D" flood-opacity=".18"/></filter>
+</defs><style>.flow{stroke-dasharray:6 14;animation:fl 1.2s linear infinite}@keyframes fl{to{stroke-dashoffset:-20}}
+.push{animation:push 3.2s ease-in-out infinite}@keyframes push{0%,15%{transform:translateX(0)}70%,100%{transform:translateX(120px)}}.drain{animation:drain 3.2s ease-in-out infinite}@keyframes drain{0%,15%{transform:scaleX(1)}70%,100%{transform:scaleX(.16)}}
+.rise{transform-origin:232px 192px;animation:rise 6s ease-in-out infinite}@keyframes rise{0%,12%{transform:rotate(0)}45%,85%{transform:rotate(-38deg)}100%{transform:rotate(0)}}
+.arw{animation:ar 6s ease-in-out infinite}@keyframes ar{0%,30%{opacity:0;transform:translateY(10px)}45%,85%{opacity:1;transform:translateY(0)}100%{opacity:0}}</style><g filter="url(#sh)"><rect x="150" y="168" width="330" height="58" rx="29" fill="url(#skin)" stroke="#E3B593" stroke-width="2"/></g>
+<rect x="318" y="174" width="64" height="46" rx="8" fill="#FFFFFF" fill-opacity=".75" stroke="#C7D2E3" stroke-width="2"/>
+<rect x="336" y="186" width="30" height="14" rx="4" fill="#C9B8F0" stroke="#14213D" stroke-width="2"/><path d="M262 76 C 300 76, 330 90, 340 120 L 351 186" fill="none" stroke="#C7D2E3" stroke-width="7" stroke-linecap="round"/><path class="flow" d="M262 76 C 300 76, 330 90, 340 120 L 351 186" fill="none" stroke="#C8102E" stroke-width="4" stroke-linecap="round"/><g filter="url(#sh)"><rect x="232" y="66" width="36" height="20" rx="5" fill="#FFFFFF" stroke="#14213D" stroke-width="3"/>
+<rect x="242" y="50" width="16" height="20" rx="4" fill="#FFFFFF" stroke="#14213D" stroke-width="3"/>
+<rect x="246" y="36" width="8" height="18" rx="3" fill="#3D74C9"/></g><g filter="url(#sh)">
+<g class=""><rect x="32" y="71" width="56" height="10" rx="3" fill="#D0D5DD" stroke="#14213D" stroke-width="2"/>
+<rect x="20" y="57" width="12" height="38" rx="4" fill="#E4E7EC" stroke="#14213D" stroke-width="2"/>
+<rect x="84" y="59" width="12" height="34" rx="2" fill="#14213D"/></g>
+<rect class="" x="96" y="61" width="116" height="30" rx="3" fill="#F4B8C1" fill-opacity=".75" style="transform-origin:212px 76px"/>
+<rect x="78" y="55" width="138" height="42" rx="8" fill="url(#glass)" fill-opacity=".55" stroke="#14213D" stroke-width="3"/>
+<line x1="96.0" y1="57" x2="96.0" y2="69" stroke="#14213D" stroke-width="2" stroke-opacity=".5"/><line x1="108.8" y1="57" x2="108.8" y2="65" stroke="#14213D" stroke-width="2" stroke-opacity=".5"/><line x1="121.5" y1="57" x2="121.5" y2="69" stroke="#14213D" stroke-width="2" stroke-opacity=".5"/><line x1="134.2" y1="57" x2="134.2" y2="65" stroke="#14213D" stroke-width="2" stroke-opacity=".5"/><line x1="147.0" y1="57" x2="147.0" y2="69" stroke="#14213D" stroke-width="2" stroke-opacity=".5"/><line x1="159.8" y1="57" x2="159.8" y2="65" stroke="#14213D" stroke-width="2" stroke-opacity=".5"/><line x1="172.5" y1="57" x2="172.5" y2="69" stroke="#14213D" stroke-width="2" stroke-opacity=".5"/><line x1="185.2" y1="57" x2="185.2" y2="65" stroke="#14213D" stroke-width="2" stroke-opacity=".5"/><line x1="198.0" y1="57" x2="198.0" y2="69" stroke="#14213D" stroke-width="2" stroke-opacity=".5"/>
+<path d="M216 67 L238 71 L238 81 L216 85 Z" fill="#FFFFFF" stroke="#14213D" stroke-width="3" stroke-linejoin="round"/>
+<rect x="119.4" y="66" width="57.96" height="20" rx="4" fill="#FFFFFF" stroke="#14213D" stroke-width="1.5"/>
+<text x="148.38" y="81" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#14213D" text-anchor="middle">EPI 1 mg</text>
+</g></svg>
