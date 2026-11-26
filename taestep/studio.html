@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0B1B33"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest"><link rel="preload" href="ts/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="ts/fonts.css"><link rel="stylesheet" href="ts/engine.css"><link rel="stylesheet" href="ts/app.css">
+<title>TAESTEP 편집</title>
+</head>
+<body class="studio">
+<header class="top">
+  <a class="brand" href="./" title="목록으로"><img src="icon.svg" alt=""><b>TAESTEP</b></a>
+  <input id="deckTitle" class="title-in" placeholder="교안 제목" spellcheck="false">
+  <span id="state" class="state"></span>
+  <span class="sp"></span>
+  <button id="btUndo" class="btn ghost" title="되돌리기 (Ctrl+Z)">되돌리기</button>
+  <button id="btMore" class="btn ghost">교안 설정</button>
+  <button id="btPlay" class="btn ghost" title="이 장부터 발표 (F5)">▶ 발표</button>
+  <button id="btSave" class="btn pri" title="저장 (Ctrl+S)">저장</button>
+</header>
+<div class="studio-main">
+  <aside class="rail"><div id="rail"></div><button id="btAdd" class="btn add">+ 장 추가</button></aside>
+  <section class="canvas"><div class="canvas-in"><div id="view" class="view"></div></div>
+    <div class="canvas-bar"><button id="btMotion" class="btn ghost">▶ 모션 보기</button><span class="sp"></span><button id="btUp" class="btn ghost" title="앞으로">↑</button><button id="btDown" class="btn ghost" title="뒤로">↓</button><button id="btDup" class="btn ghost">복제</button><button id="btDel" class="btn ghost danger">삭제</button></div>
+  </section>
+  <aside class="panel"><div class="tabs"><button data-tab="content" class="on">내용</button><button data-tab="bg">배경</button><button data-tab="notes">노트</button></div><div id="panel" class="panel-body"></div></aside>
+</div>
+<div id="modal" class="modal" hidden></div>
+<div id="toast" class="toast" hidden></div>
+<script src="ts/engine.js"></script><script src="ts/store.js"></script><script src="ts/studio.js"></script>
+</body>
+</html>

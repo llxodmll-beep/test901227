@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0B1B33"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest"><link rel="preload" href="ts/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="ts/fonts.css"><link rel="stylesheet" href="ts/engine.css"><link rel="stylesheet" href="ts/app.css">
+<title>TAESTEP</title>
+</head>
+<body class="home">
+<header class="top">
+  <a class="brand" href="./"><img src="icon.svg" alt=""><b>TAESTEP</b></a>
+  <span class="sp"></span>
+  <button id="btGh" class="btn ghost">GitHub 연결</button>
+  <button id="btInstall" class="btn ghost" hidden>앱으로 설치</button>
+  <button id="btNew" class="btn pri">+ 새 교안</button>
+</header>
+<main class="home-main">
+  <section class="hero">
+    <p class="eyebrow">STEP BY STEP</p>
+    <h1>한 장씩, 한 계단씩.<br>내용만 넣으면 <em>완성된 교안</em>이 됩니다.</h1>
+    <p class="sub">장 유형 14가지 · 움직이는 전면 배경 · 차례로 등장하는 모션 · 발표자 화면 · PDF 출력</p>
+  </section>
+  <section>
+    <div class="sec-head"><h2>내 교안</h2><span id="count" class="muted"></span></div>
+    <div id="decks" class="deck-grid"><p class="muted">불러오는 중…</p></div>
+  </section>
+</main>
+<div id="modal" class="modal" hidden></div>
+<script src="ts/engine.js"></script><script src="ts/store.js"></script><script src="ts/home.js"></script>
+</body>
+</html>

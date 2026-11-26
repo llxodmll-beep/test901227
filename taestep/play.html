@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0B1B33"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest"><link rel="preload" href="ts/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="ts/fonts.css"><link rel="stylesheet" href="ts/engine.css"><link rel="stylesheet" href="ts/app.css">
+<title>TAESTEP 발표</title>
+</head>
+<body class="play">
+<div id="wrap"><div id="stage" class="ts-stage ts-live"></div></div>
+<div id="bar" class="play-bar">
+  <button id="btPrev" title="이전 (←)">◀</button><span class="pg"><b id="pgNow">1</b> / <span id="pgAll">1</span></span><button id="btNext" title="다음 (→ · 스페이스)">▶</button>
+  <i></i><button id="btGrid" title="전체 장 보기 (G)">전체 장</button><button id="btNotes" title="발표 노트 (N)">노트</button><button id="btPres" title="발표자 화면 (P)">발표자 화면</button><button id="btFull" title="전체 화면 (F)">전체 화면</button><button id="btExit" title="나가기 (Esc)">나가기</button>
+</div>
+<aside id="notes" class="play-notes" hidden><h4>발표 노트</h4><div id="notesText"></div></aside>
+<div id="overview" class="play-ov" hidden><div class="ov-head"><b>전체 장</b><button id="ovClose">닫기 (Esc)</button></div><div class="ov-grid"></div></div>
+<script src="ts/engine.js"></script><script src="ts/store.js"></script><script src="ts/play.js"></script>
+</body>
+</html>
