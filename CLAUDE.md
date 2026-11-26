@@ -41,6 +41,13 @@ GitHub 로그인이나 `gh` 설치를 사용자에게 부탁하지 않는다.
 - **바꾸기 전에는 반드시 사용자에게 질문(선택지)으로 묻고, 고른 소식만 넣는다.** 넣기 전에 기사·보도자료로 날짜·숫자·발언을 확인하고, 실증 단계·계획 단계는 그렇게 적는다. 출처는 notes 의 [사례 출처] 에, 화면 오른쪽 위 `UPDATE` 날짜를 갱신한다.
 - 칸 그림은 소식마다 새로 만든다(`assets/drone2nd-news*.jpg`). 이미지 엔진을 못 쓰면 ChatGPT 프롬프트를 사용자에게 준다.
 
+## TAESTEP (김태의 전용 교안 앱)
+
+- `taestep/` 는 DPV 와 따로 처음부터 만든 사용자 전용 앱이다(첫 화면 · 편집 · 발표). 주소: `https://llxodmll-beep.github.io/test901227/taestep/`. DPV(`app/` · `decks/`) 코드와 섞지 않는다.
+- 교안은 `taestep/decks/<이름>.json` + `taestep/decks/index.json`, 그림은 `taestep/media/` + `taestep/media/index.json`. 웹 편집기에서도 저장되므로(`TAESTEP 교안 저장: …`) 최신 `main` 에서 고친다.
+- 교안을 만들거나 앱을 고칠 때는 `taestep` 스킬(`.claude/skills/taestep/SKILL.md`)의 장 유형 · 품질 규칙을 따른다.
+- 새 교안 요청은 따로 말이 없으면 TAESTEP 으로 만든다. 기존 DPV 교안(심폐소생술 · 드론)은 사용자가 옮기라고 할 때만 옮긴다.
+
 ## 소방 기동복 그림 (고정 복장)
 
 - 사용자가 "소방 기동복"이라고 하면 그림 속 복장은 주황 바탕 + 남색 칼라·어깨·옆판·소매 끝, 왼팔 태극기 「KOREA」 패치, 등판 「소방 119」 기동복으로 고정한다.
