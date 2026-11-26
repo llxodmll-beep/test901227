@@ -29,11 +29,12 @@ const TSPptx = (() => {
     const im = g.src && !TS.isVideo(g.src) ? await img(g.src) : null;
     if (im) {
       const [px, py] = g.pos.split(' ').map(parseFloat); cover(x, im, 1920, 1080, g.zoom, px, py);
-      const sh = a => `rgba(${pal.shade.join(',')},${Math.max(0, Math.min(1, a))})`; const d = g.dim;
-      if (g.tone === 'full') { x.fillStyle = sh(d); x.fillRect(0, 0, 1920, 1080); }
+      const sh = a => `rgba(${pal.shade.join(',')},${Math.max(0, Math.min(1, a))})`; const d = g.dim; const paper = TS.themeOf(deck) === 'paper'; // engine.css 의 덮는 규칙과 같게
+      if (g.tone === 'full') { x.fillStyle = sh(paper ? Math.max(d, .9) : d); x.fillRect(0, 0, 1920, 1080); }
       else if (g.tone !== 'none') {
         const v = g.tone === 'bottom'; const k = x.createLinearGradient(g.tone === 'left' ? 0 : g.tone === 'right' ? 1920 : 0, v ? 1080 : 0, g.tone === 'left' ? 1920 : g.tone === 'right' ? 0 : 0, 0);
-        k.addColorStop(0, sh(d + .25)); k.addColorStop(v ? .3 : .38, sh(d)); k.addColorStop(v ? .62 : .72, sh(d * (v ? .2 : .25))); k.addColorStop(1, sh(0)); x.fillStyle = k; x.fillRect(0, 0, 1920, 1080);
+        const stops = paper ? (v ? [[0, .98], [.3, .95], [.48, .55], [.74, 0], [1, 0]] : [[0, .98], [.46, .96], [.64, .62], [.86, .14], [1, 0]]) : (v ? [[0, d + .25], [.3, d], [.62, d * .2], [1, 0]] : [[0, d + .25], [.38, d], [.72, d * .25], [1, 0]]);
+        stops.forEach(([o, a]) => k.addColorStop(o, sh(a))); x.fillStyle = k; x.fillRect(0, 0, 1920, 1080);
       }
     }
     return c.toDataURL('image/jpeg', .82);
@@ -82,8 +83,8 @@ const TSPptx = (() => {
   async function addEl(p, sl, e, pal) {
     if (e.hide) return; const box = { x: e.x / IN, y: e.y / IN, w: Math.max(.02, e.w / IN), h: Math.max(.02, e.h / IN) }; if (e.rot) box.rotate = +e.rot;
     const text = (html, o) => {
-      const fs = Math.round((+o.fs || 32) * .5 * 10) / 10; const c = colorOf(o.color || 'fg', pal) || { c: 'FFFFFF' }; const al = o.align || 'left'; const grow = al === 'left' ? e.w * .06 : 0;
-      sl.addText(runs(html, fs, pal), Object.assign({}, box, { w: (e.w + grow) / IN, fontSize: fs, color: c.c, fontFace: o.font === 'mono' ? 'Consolas' : 'Pretendard', bold: (+o.weight || 400) >= 600, align: al === 'justify' ? 'justify' : al, valign: { middle: 'middle', bottom: 'bottom' }[o.valign] || 'top', margin: o.pad ? (+o.pad * .5) : 0, lineSpacingMultiple: Math.round((+o.lh || 1.4) / 1.2 * 100) / 100, fit: 'none', wrap: e.h > (+o.fs || 32) * (+o.lh || 1.4) * 1.6 || al !== 'left' }, o.ls ? { charSpacing: Math.round(o.ls * fs * 10) / 10 } : {}, o.fillc ? { fill: { color: o.fillc.c, transparency: o.fillc.t } } : {}));
+      const fs = Math.round((+o.fs || 32) * .5 * 10) / 10; const c = colorOf(o.color || 'fg', pal) || { c: 'FFFFFF' }; const al = o.align || 'left'; const oneLine = e.h <= (+o.fs || 32) * (+o.lh || 1.4) * 1.6 && al === 'left'; const grow = al === 'left' && !oneLine ? e.w * .06 : 0; // 한 줄짜리는 줄바꿈 없이 그대로
+      sl.addText(runs(html, fs, pal), Object.assign({}, box, { w: (e.w + grow) / IN, fontSize: fs, color: c.c, fontFace: o.font === 'mono' ? 'Consolas' : 'Pretendard', bold: (+o.weight || 400) >= 600, align: al === 'justify' ? 'justify' : al, valign: { middle: 'middle', bottom: 'bottom' }[o.valign] || 'top', margin: o.pad ? (+o.pad * .5) : 0, lineSpacingMultiple: Math.round((+o.lh || 1.4) / 1.2 * 100) / 100, fit: 'none', wrap: !oneLine }, o.ls ? { charSpacing: Math.round(o.ls * fs * 10) / 10 } : {}, o.fillc ? { fill: { color: o.fillc.c, transparency: o.fillc.t } } : {}));
     };
     if (e.type === 'text') return text(e.html, Object.assign({}, e, { fillc: colorOf(e.fill, pal) }));
     if (e.type === 'image') { if (!e.src) return; const d = await rasterImage(e, pal); if (d) sl.addImage(Object.assign({ data: b64(d) }, box)); return; }
