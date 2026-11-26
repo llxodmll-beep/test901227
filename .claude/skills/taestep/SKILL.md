@@ -55,6 +55,7 @@ DPV(`app/` · `decks/`)와는 따로 만든 앱이다. 코드를 서로 섞지 �
 - 모션(요소마다): { step(0 = 장이 열릴 때, 1~ = 그 클릭에 등장), anim(rise · fade · drop · left · right · zoom · pop · wipe · blur · flip · none), dur(초), delay(초), emph(pulse · shake · glow · blink), emphAt(강조할 클릭 · 없으면 등장 직후), exit(사라질 클릭), exitAnim(fade · fall · zoom · none) }. 클릭 번호는 1부터 빈 번호 없이.
 - 장 넘김: 교안 `transition` 이 기본, 장의 `tr` 이 그 장으로 넘어올 때의 효과(fade · slide · up · cover · wipe · zoom · blur · morph · none). morph 는 앞 장과 id 가 같은 요소를 이어 움직인다(장을 복제해서 만들면 id 가 같다).
 - 배경 움직임: 장의 `bg.motion`(zoom-in · zoom-out · pan-left · pan-right · rise · fall · none) + `bg.speed`(1 = 기본, 2 = 두 배 빠르게) + `bg.amt`(움직임 크기).
+- `titleScale`(0.5~1): 긴 제목의 글자 크기 배율. 디자인 점검이 3줄 안에 들어가게 정해 준다.
 - 장에 붙는 표시: `hidden`(발표 · 인쇄에서 건너뜀), `section`(이 장에서 시작하는 구역 이름), `memo`(작성자만 보는 메모 — 발표 화면 · 유인물에 안 나옴).
 - 장 유형으로 만든 장을 요소로 풀 때는 `TS.explode(deck, slide, i, total)` (편집 화면의 [요소로 풀기], PPTX 내보내기가 같이 씀).
 - 배경 · 글+그림 장의 그림도 `zoom · px · py` 로 자른다.

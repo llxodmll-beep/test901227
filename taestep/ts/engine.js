@@ -68,9 +68,10 @@ const TS = (() => {
   }
   /* data-f = 이 글이 교안의 어느 칸인지 (편집 화면에서 더블클릭하면 그 자리에서 고침) · data-fp = 오른쪽 칸에서 고치는 것 */
   const A = p => ` data-f="${p}"`;
+  const tz = s => +s.titleScale > .3 && +s.titleScale < 1 ? `;--tz:${+s.titleScale}` : ''; // 긴 제목을 줄여 넣는 배율
   function head(s, c, tag) {
     return `<header class="ts-head">${s.kicker ? `<div class="ts-kicker in" style="--i:${c.i++}"><i></i><span${A('kicker')}>${F(s.kicker)}</span></div>` : ''}`
-      + (s.title ? `<${tag || 'h2'} class="ts-title in" style="--i:${c.i++}"${A('title')}>${F(s.title)}</${tag || 'h2'}>` : '')
+      + (s.title ? `<${tag || 'h2'} class="ts-title in" style="--i:${c.i++}${tz(s)}"${A('title')}>${F(s.title)}</${tag || 'h2'}>` : '')
       + (s.subtitle ? `<p class="ts-lead in" style="--i:${c.i++}"${A('subtitle')}>${F(s.subtitle)}</p>` : '') + '</header>';
   }
   const stepAttr = (s, L, c, idx, st = '') => (L.build && s.build !== false) ? `data-step="${idx + 1}"${st ? ` style="${st}"` : ''}` : `style="${st}--i:${c.i++}"`;
@@ -120,7 +121,7 @@ const TS = (() => {
       const hd = rows.shift() || [];
       return head(s, c) + wrap(`<table class="ts-card in" data-fp="body" style="--i:${c.i++}"><thead><tr>${hd.map(x => `<th>${F(x)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(x => `<td>${F(x)}</td>`).join('')}</tr>`).join('')}</tbody></table>`);
     },
-    quote(s, c) { return `<div class="ts-q in" style="--i:${c.i++}">“</div><h2 class="ts-title in" style="--i:${c.i++}"${A('title')}>${F(s.title)}</h2>${s.subtitle ? `<div class="ts-by in" style="--i:${c.i++}"${A('subtitle')}>${F(s.subtitle)}</div>` : ''}`; },
+    quote(s, c) { return `<div class="ts-q in" style="--i:${c.i++}">“</div><h2 class="ts-title in" style="--i:${c.i++}${tz(s)}"${A('title')}>${F(s.title)}</h2>${s.subtitle ? `<div class="ts-by in" style="--i:${c.i++}"${A('subtitle')}>${F(s.subtitle)}</div>` : ''}`; },
     photo(s, c) { return head(s, c); },
     closing(s, c, d, L) {
       const a = items(s, L);
@@ -337,7 +338,7 @@ const TS = (() => {
     const token = c => { const m = rgba(c); if (m.length < 3 || m[3] === 0) return 'none'; const h = '#' + m.slice(0, 3).map(v => (v | 0).toString(16).padStart(2, '0')).join('').toUpperCase(); const solid = m[3] == null || m[3] > .95; const k = solid && Object.keys(pal).find(k => typeof pal[k] === 'string' && pal[k].toUpperCase() === h); return k || (solid ? h : `rgba(${m.slice(0, 4).join(',')})`); };
     const alpha = c => { const m = rgba(c); return m.length < 3 ? 0 : m[3] == null ? 1 : m[3]; };
     const box = n => { const r = n.getBoundingClientRect(); return { x: Math.round(r.left - o.left), y: Math.round(r.top - o.top), w: Math.round(r.width), h: Math.round(r.height) }; };
-    const zoomOf = n => { const f = n.closest('.ts-fit'); return f ? parseFloat(f.style.zoom) || 1 : 1; };
+    const zoomOf = n => { let z = 1; for (let x = n; x && x !== el; x = x.parentElement) z *= parseFloat(x.style.zoom) || 1; return z; }; // 본문 줄임 · 제목 배율을 모두 곱한다
     const INLINE = { EM: 1, B: 1, SPAN: 1, SMALL: 1, BR: 1, STRONG: 1, I: 1, U: 1 };
     const isLeaf = n => n.textContent.trim() && [...n.children].every(ch => INLINE[ch.tagName] && getComputedStyle(ch).display.startsWith('inline'));
     const ser = (n, base) => [...n.childNodes].map(ch => {

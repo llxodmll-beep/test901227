@@ -87,7 +87,7 @@
   const full = () => { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(() => { }); };
   const overview = on => {
     const o = $('overview'); const want = on == null ? o.hidden : on; o.hidden = !want; if (!want) return;
-    if (!o.dataset.ready) { o.dataset.ready = '1'; S.forEach((s, i) => { const b = document.createElement('button'); b.className = 'ov-item'; b.innerHTML = `<div class="ov-pic"></div><span>${i + 1}${s.hidden ? ' · 숨김' : ''}</span>`; if (s.hidden) b.classList.add('hid'); b.onclick = () => { overview(false); show(i); }; o.querySelector('.ov-grid').appendChild(b); TS.thumb(deck, s, i, N, b.firstChild); }); }
+    if (!o.dataset.ready) { o.dataset.ready = '1'; S.forEach((s, i) => { if (s.section) { const h = document.createElement('div'); h.className = 'ov-sec'; h.textContent = s.section; o.querySelector('.ov-grid').appendChild(h); } const b = document.createElement('button'); b.className = 'ov-item'; b.innerHTML = `<div class="ov-pic"></div><span>${i + 1}${s.hidden ? ' · 숨김' : ''}</span>`; if (s.hidden) b.classList.add('hid'); b.onclick = () => { overview(false); show(i); }; o.querySelector('.ov-grid').appendChild(b); TS.thumb(deck, s, i, N, b.firstChild); }); }
     o.querySelectorAll('.ov-item').forEach((b, i) => b.classList.toggle('cur', i === cur));
     const c = o.querySelector('.ov-item.cur'); if (c) c.scrollIntoView({ block: 'center' });
   };

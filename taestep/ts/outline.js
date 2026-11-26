@@ -5,6 +5,7 @@
    > 노트        → 발표 노트
    | 가 | 나 |   → 표
    그 밖의 줄    → 부제 · 설명
+   ("09:00 개회" 처럼 시각의 쌍점은 제목 · 설명으로 나누지 않는다)
    항목의 모양을 보고 장 유형을 고른다(숫자 → 숫자, 절차 → 단계, 둘 비교 → 비교, 설명 있는 4개 이하 → 카드 …). */
 'use strict';
 const TSOutline = (() => {
@@ -19,7 +20,7 @@ const TSOutline = (() => {
       if (!cur) open('', t.replace(/^[-*>]\s*/, ''));
       else if ((m = t.match(/^>\s?(.*)/))) cur.notes.push(m[1]);
       else if (/^\|.*\|$/.test(t)) { if (!/^\|[\s:|-]+\|$/.test(t)) cur.rows.push(t.slice(1, -1).split('|').map(x => x.trim())); }
-      else if ((m = line.match(/^(\s*)(?:[-*•]|\d+[.)])\s+(.+)/))) { if (m[1].length >= 2 && cur.items.length) { const it = cur.items[cur.items.length - 1]; it.d = it.d ? it.d + '\n' + m[2] : m[2]; } else { const p = m[2].match(/^(.{1,40}?)\s*(?::|：| — | - )\s*(.+)$/); cur.items.push(p ? { t: p[1], d: p[2] } : { t: m[2], d: '' }); } }
+      else if ((m = line.match(/^(\s*)(?:[-*•]|\d+[.)])\s+(.+)/))) { if (m[1].length >= 2 && cur.items.length) { const it = cur.items[cur.items.length - 1]; it.d = it.d ? it.d + '\n' + m[2] : m[2]; } else { const p = m[2].match(/^(.{1,40}?)\s*(?::(?!\d)|：| — | - )\s*(.+)$/); cur.items.push(p ? { t: p[1], d: p[2] } : { t: m[2], d: '' }); } }
       else cur.subs.push(t);
     }
     const out = [];
